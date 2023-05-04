@@ -973,6 +973,159 @@ int main()
 **示例：**
 
 ```c++
+#include <iostream>
+#include <string>
 
+using namespace std;
+
+int main()
+{
+
+	int a = 0;
+	cout << "请输入你的分数：";
+	cin >> a;
+
+	if (a >= 503) //这里不能有分号
+	{
+		cout << "你能考上一所一本大学" << endl;
+	}
+	else
+	{
+		cout << "你不能考上一本大学" << endl;
+	}
+
+
+	system("pause");
+
+	return 0;
+}
+```
+
+
+
+3.多条件的if语句：**`if(条件1){条件1满足执行的语句} else if(条件2){条件2满足执行的语句}... else{都不满足执行的语句}`**
+
+![屏幕截图 2023-05-04 211605](E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-04 211605.png)
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	int a = 0;
+	cout << "请输入你的分数：";
+	cin >> a;
+
+	if (a>=0&&a<446) //这里不能有分号
+	{
+		cout << "你啥也考不上，去专科吧" << endl;
+	}
+	else if(a>=446&&a<503)
+	{
+		cout << "你能考上二本大学" << endl;
+	}
+	else if(a>=503&&a<700)
+	{
+		cout << "一本啊一本" << endl;
+	}
+	else if(a>=700&&a<=750)
+	{
+		cout << "你牛逼" << endl;
+	}
+	else
+	{
+		cout << "啥？" << endl;
+	}
+
+	system("pause");
+
+	return 0;
+}
+```
+
+> 注意 与&& 或|| 符号的运用
+
+
+
+**嵌套if语句：**在if语句中，可以嵌套使用if语句，达到更精确的条件判断
+
+案例需求：
+
+- 提示用户输入一个高考考试分数，根据分数做如下判断
+- 分数如果大于600分视为考上一本，大于500分考上二本，大于400分考上三本，其余视为未考上本科
+- 在一本分数中，如果大于700分，考入北大，大于650，考入清华，大于600考入人大
+
+示例：
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+/*
+要求：
+	- 提示用户输入一个高考考试分数，根据分数做如下判断
+	- 分数如果大于600分视为考上一本，大于500分考上二本，大于400分考上三本，其余视为未考上本科
+	- 在一本分数中，如果大于700分，考入北大，大于650，考入清华，大于600，考入人大
+*/
+
+	//输入分数
+	int fen = 0;
+	cout << "请输入你的分数：" << endl;
+	cin >> fen;
+	cout << "你输入的分数为 " << fen << endl;
+
+	//判断一本600
+	if (fen > 600)
+	{
+		cout << "恭喜你可以考上一本" << endl;
+
+		//判断北大
+		if (fen > 700)
+		{
+			cout << "恭喜你可以考上北大！" << endl;
+		}
+
+		//判断清华
+		else if (fen > 650)
+		{
+			cout << "恭喜你可以考上清华！" << endl;
+		}
+
+		//判断人大
+		else if (fen > 600)
+		{
+			cout << "恭喜你可以考上人大！" << endl;
+		}
+	}
+
+	//判断二本500
+	else if (fen > 500)
+	{
+		cout << "恭喜你可以考上二本" << endl;
+	}
+
+	//判断三本400
+	else if (fen > 400)
+	{
+		cout << "恭喜你可以考上二本" << endl;
+	}
+	else
+	{
+		cout << "你啥jb也没考上兄弟" << endl;
+	}
+
+	system("pause");
+
+	return 0;
+}
 ```
 
