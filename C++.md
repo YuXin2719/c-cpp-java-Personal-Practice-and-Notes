@@ -172,7 +172,6 @@ C++中能够表示整型的类型有以下几种方式，**区别在于所占的
 
 ```c++
 #include <iostream>
-#define day 7 //1.#define 宏常量
 
 using namespace std;
 
@@ -209,6 +208,767 @@ int main()
 **作用：**利用sizeof关键字可以统计数据类型所占内存大小
 
 **语法：**`sizeof（ 数据类型 /变量 ）`
+
+**示例：**
+
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    //sizeof可以求出数据类型占用内存的大小
+    //语法：sizeof（ 数据类型 / 变量 ）
+    
+	cout << "short 类型所占内存空间为：" << sizeof(short) << endl;//2
+
+	cout << "int 类型所占内存空间为：" << sizeof(int) << endl;//4
+
+	cout << "long 类型所占内存空间为：" << sizeof(long) << endl;//4
+
+	cout << "long long 类型所占内存空间为：" << sizeof(long) << endl;//8
+
+    //整型大小比较
+    // short < int <= long <= long long
+    
+	return 0;
+}
+```
+
+
+
+### 实型（浮点型）
+
+**作用：**用于==表示小数==
+
+浮点型变量分两种：
+
+1. 单精度 float
+2. 双精度 double
+
+两者区别在于表示的有效数字范围不同：
+
+| 数据类型 | 占用空间 | 有效数字范围    |
+| -------- | -------- | --------------- |
+| float    | 4字节    | 7位有效数字     |
+| double   | 8字节    | 15~16位有效数字 |
+
+**示例：**
+
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+	//1.单精度 float
+	//2.双精度 double
+	//默认情况下，输出一个小数，会显示出六位有效数字，五位小数
+
+	float f1 = 3.141592653f;
+	double d2 = 3.14;
+
+	cout << "f1 = " << f1 << endl;
+	cout << "d2 = " << d2 << endl;
+
+	//统计float和double占用内存空间
+	//	float 4
+	//	double 8
+
+	cout << "float占用的内存空间为" << sizeof(float) << endl;
+	cout << "double占用的内存空间为" << sizeof(double) << endl;
+
+	//科学计数法
+	float f2 = 3e2; //3 * 10 ^ 2
+	cout << "f2 = " << f2 << endl; //300
+
+	float f3 = 3e-2; //3 * 0.1 ^ 2
+	cout << "f3 = " << f3 << endl; //0.03
+
+	system("pause");
+
+	return 0;
+}
+```
+
+
+
+### 2.4 字符型
+
+**作用：**字符型变量用于显示单个字符
+
+**语法：**`char ch = 'a';`
+
+
+
+> 注意1：在显示字符型变量时，用单引号将字符括起来，不用双引号
+>
+> 注意2：单引号只能有一个字符，不可以是字符串
+
+
+
+- C和C++中字符型变量只占用==一个字节==
+
+- 字符型变量并不是把字符本身放在内存中存储，而是将对应的ASCII编码放入到存储单元
+
+  
+
+**示例：**
+
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+	//1.字符型变量创建方式
+	char ch = 'a';
+	cout << ch << endl;
+
+	//2.字符型变量所占内存大小
+	cout << "字符型变量占用内存:" << sizeof(ch) << endl; //1
+
+	//3.字符型变量常见错误
+	//char ch2 = "b";  用单引号
+	//char ch2 = 'abc';  数量过多
+
+	//4.字符型变量对应ASCII编码
+	//a - 97
+	//A - 65
+	cout << (int)ch << endl; //97 就是 a 对应的ASCII码
+
+	system("pause");
+	return 0;
+}
+```
+
+[ASCII码对照表 —在线工具 (sojson.com)](https://www.sojson.com/asciitable.html)
+
+ASCII 码大致由以下**两部分**组成：
+
+- ASCII 非打印字符：ASCII表上的数字 **0-31** 分配给了控制字符，用于控制像打印机等一些外围设备
+- ASCII 打印字符：数字 **32-126** 分配给了能在键盘上找到的字符，当查看或打印文档时就会出现
+
+
+
+### 2.5 转移字符
+
+**作用：**用于表示一些==不能显示出来的ASCII字符==
+
+现阶段我们常用的转义字符有：`\n \\ \t`
+
+| 转义字符 | 含义                    | ASCII码 |
+| -------- | ----------------------- | ------- |
+| \a       | 响铃7                   | 7       |
+| \b       | 退格                    | 8       |
+| \f       | 换页                    | 12      |
+| **\n**   | **换行**                | **10**  |
+| \r       | 回车                    | 13      |
+| **\t**   | **横向制表符**          | **9**   |
+| \v       | 纵向制表符              | 11      |
+| \\       | 反斜杠                  | 92      |
+| \'       | 单引号                  | 39      |
+| \"       | 双引号                  | 34      |
+| \?       | 问号                    | 63      |
+| \0       | 空字符                  | 0       |
+| **\\\\** | **代表一个反斜线\'\\'** | **92**  |
+
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+	//转义字符
+
+	//换行符 \n
+
+	cout << "hello world\n" << endl;
+
+	//反斜杠 \\
+	
+	cout << "\\" << endl;
+	
+	//水平制表符 \t
+	//作用：可以整齐地输出数据
+
+	cout << "a\thello" << endl;
+	cout << "aaaaa\thello" << endl;
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+### 2.6 字符串型
+
+**作用：**用于表示一串字符
+
+**两种风格**
+
+1. ​	**C风格字符串：`char 变量名[] = "字符串值"`**
+
+   示例：
+
+   ```c++
+   #include <iostream>
+   
+   using namespace std;
+   
+   int main()
+   {
+   
+   	char ch[] = "Hello World";
+   
+   	cout << ch << endl;
+   
+   	return 0;
+   }
+   ```
+
+   > 注意：C风格的字符串要用双引号括起来
+   >
+   > ​			char 字符串名 []
+
+2. **C++风格字符串：`string 变量名 = "字符串值"`**
+
+   示例：
+
+   ```c++
+   #include <iostream>
+   #include <string>
+   
+   using namespace std;
+   
+   int main()
+   {
+   
+   	string ch = "Hello World";
+   
+   	cout << ch << endl;
+   
+   	return 0;
+   }
+   ```
+
+   > 注意：需要包含一个头文件 **`#include <string>`**  vs2022貌似不用
+
+
+
+### 2.7 布尔数据类型
+
+**作用：**布尔数据类型代表真和假的值
+
+bool 类型只有两个值：
+
+- true --- 真（本质是1）(非0的其实都为真)
+
+- false --- 假（本质是0）
+
+  **bool类型占==1个字节==大小**
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//1.创建bool数据类型
+	bool flag = true; //true代表真
+	cout << flag << endl;
+
+	bool flag2 = false; //假
+	cout << flag2 << endl;
+
+	//本质上  1代表真  0代表假
+
+	//2.查看bool类型所占内存空间
+	cout << "bool类型所占的内存空间：" << sizeof(bool) << endl; //1
+
+	return 0;
+}
+```
+
+
+
+### 2.8 数据的输入
+
+
+
+**作用：用于从键盘获取数据**
+
+**关键字：**cin
+
+**语法：` cin >> 变量`**
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//1.整型
+	//int a = 0;
+	//cout << "请给整型变量a赋值：" << endl;
+	//cin >> a;
+	//cout << "整型变量a = " << a << endl;
+
+	//2.浮点型
+	//float b = 3.14f;
+	//cout << "请给浮点型变量b赋值：" << endl;
+	//cin >> b;
+	//cout << "浮点型变量b = " << b << endl;
+
+	//3.字符型
+	//char ch = 'a';
+	//cout << "请给字符型变量ch赋值：" << endl;
+	//cin >> ch;
+	//cout << "字符型变量ch = "<< ch << endl;
+
+	//4.字符串型
+	//string str = "hello";
+	//cout << "请给字符串型变量str赋值：" << endl;
+	//cin >> str;
+	//cout << "字符串变量str = " << str << endl;
+
+	//5.布尔类型（非0的值都为真）
+	bool flag = false;
+	cout << "请给布尔类型的flag赋值：" << endl;
+	cin >> flag;
+	cout << "布尔类型的flag为" << flag << endl;
+
+	return 0;
+}
+```
+
+
+
+## 三、运算符
+
+**作用：**用于执行代码的运算
+
+本章我们主要讲解一下几类运算符
+
+| 运算符类型 | 作用                                     |
+| ---------- | ---------------------------------------- |
+| 算术运算符 | 用于四则运算                             |
+| 赋值运算符 | 用于将表达式的值赋给变量                 |
+| 比较运算符 | 用于表达式的比较，并返回一个真值或者假值 |
+| 逻辑运算符 | 用于根据表达式的值返回真值或者假值       |
+
+
+
+### 3.1 算数运算符
+
+**作用：**用于四则运算
+
+算数运算符包括以下符号：
+
+| 运算符 | 术语         | 示例       | 结果     |
+| ------ | ------------ | ---------- | -------- |
+| +      | 正号         | +3         | 3        |
+| -      | 负号         | -3         | -3       |
+| +      | 加           | 10+5       | 15       |
+| -      | 减           | 10-5       | 5        |
+| *      | 乘           | 10*5       | 50       |
+| /      | 除           | 10/5       | 2        |
+| %      | 取模（取余） | 10%3       | 1        |
+| ++     | 前置递增     | a=2;b=++a; | a=3;b=3; |
+| ++     | 后置递增     | a=2;b=a++; | a=3;b=2; |
+| --     | 前置递减     | a=2;b=--a; | a=1;b=1; |
+| --     | 后置递减     | a=2;b=a--; | a=1;b=2; |
+
+**加减乘除代码示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//加减乘除
+	int a1 = 10;
+	int b1 = 3;
+
+	cout << a1 + b1 << endl;
+	cout << a1 - b1 << endl;
+	cout << a1 * b1 << endl;
+	cout << a1 / b1 << endl; //两个整数相除，结果依然是整数，将小数部分去除
+
+	double f1 = 10;
+	double f2 = 3;
+	cout << f1 / f2 << endl; //这样结果就有小数
+
+	int a2 = 10;
+	int b2 = 20;
+	cout << a2 / b2 << endl; //0
+
+	//int a3 = 10;
+	//int b3 = 0; //除数不能为0
+	//cout << a3 / b3 << endl;  非法操作
+
+	system("pause");
+
+	return 0;
+}
+```
+
+**取模运算示例：**
+
+> 注意：两个小数是不可以做取模运算的
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//取模运算本质
+	int a1 = 10;
+	int b1 = 3;
+
+	cout << a1 % b1 << endl; //1
+
+	int a2 = 10;
+	int b2 = 20;
+	cout << a2 % b2 << endl; //10
+
+	//int a3 = 10;
+	//int b3 = 0;
+	//cout << a3 % b3 << endl;  非法
+
+	//两个小数是不可以做取模运算的
+	//double d1 = 3.14;
+	//double d2 = 1.1;
+	//cout << d1 % d2 << endl;
+
+	system("pause");
+
+	return 0;
+}
+```
+
+**递增递减示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//1.前置递增
+	int a = 10;
+	++a; //让变量进行+1的操作
+	cout << "a = " << a << endl;
+
+	//2.后置递增
+	int b = 10;
+	b++; //让变量进行+1的操作
+	cout << "b = " << b << endl;
+
+	//3.前置和后置的区别
+	//前置递增，先让变量+1，然后进行表达式运算
+
+	int a2 = 10;
+	int b2 = ++a2 * 10;
+
+	cout << "a2 = " << a2 << endl << "b2 = " << b2 << endl; //a2=11,b2=110
+
+	//后置递增，先进行表达式运算，然后变量+1
+
+	int a3 = 10;
+	int b3 = a3++ * 10;
+
+	cout << "a3 = " << a3 << endl << "b3 = " << b3 << endl; //a3=11,b3=100
+
+	system("pause");
+
+	return 0;
+}
+```
+
+
+
+### 3.2 赋值运算符
+
+**作用：**用于将表达式的值赋给变量
+
+赋值运算符包括以下几种符号：
+
+| 运算符 | 术语   | 示例      | 结果     |
+| ------ | ------ | --------- | -------- |
+| =      | 赋值   | a=2;b=3;  | a=2;b=3; |
+| +=     | 加等于 | a=0;a+=2; | a=2;     |
+| -=     | 减等于 | a=5;a-=3; | a=2;     |
+| *=     | 乘等于 | a=2;a*2;  | a=4;     |
+| /=     | 除等于 | a=4;a/=2; | a=2;     |
+| %=     | 模等于 | a=3;a%2;  | a=1;     |
+
+> 注：a+=2 就是 a=a+2 其他同理
+
+**简略示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	int a = 10;
+	a += 2;
+	cout << "a = " << a << endl; //12
+
+	system("pause");
+
+	return 0;
+}
+```
+
+
+
+### 3.3 比较运算符
+
+**作用：**用于表达式的比较，并返回一个真值或假值（用于判断！）
+
+比较运算符有以下符号：
+
+| 运算符 | 术语     | 示例   | 结果 |
+| ------ | -------- | ------ | ---- |
+| ==     | 相等于   | 4 == 3 | 0    |
+| !=     | 不相等   | 4 != 3 | 1    |
+| <      | 小于     | 4 < 3  | 0    |
+| >      | 大于     | 4 > 3  | 1    |
+| <=     | 小于等于 | 4 <= 3 | 0    |
+| >=     | 大于等于 | 4>= 1  | 1    |
+
+**简略示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	bool bo = true;
+	bo = 4 == 3;
+	cout << bo << endl; //0
+
+	//比较运算符
+	//==
+	int a = 10;
+	int b = 20;
+	cout << (a == b) << endl; //0 加()是先运算a == b再运算endl
+
+	//!=
+	cout << (a != b) << endl; //1
+
+	//...
+
+	system("pause");
+
+	return 0;
+}
+```
+
+
+
+### 3.4 逻辑运算符
+
+**作用：**用于根据表达式的值返回真值或假值
+
+逻辑运算符有以下符号：
+
+| 运算符 | 术语 | 示例   | 结果                                                   |
+| ------ | ---- | ------ | ------------------------------------------------------ |
+| !      | 非   | !a     | 如果a为假，则!a为真；如果a为真，则!a为假               |
+| &&     | 与   | a&&b   | 如果a和b都为真，则结果为真，否则为假                   |
+| \|\|   | 或   | a\|\|b | 如果a和b有一个为真，则结果为真，二者都为假时，结果为假 |
+
+**示例1：**逻辑非
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//逻辑运算符 非 !
+	int a = 10;
+
+	cout << !a << endl; //0
+	cout << !!a << endl; //1
+
+	system("pause");
+
+	return 0;
+}
+```
+
+> 总结：==真变假，假变真==
+
+**示例2：**逻辑与
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//逻辑运算符 与 &&
+	
+	int a = 10;
+	int b = 10;
+	cout << (a && b) << endl; //1
+
+	int c = 10;
+	int d = 0;
+	cout << (c && d) << endl; //0
+
+	int e = 0;
+	int f = 0;
+	cout << (e && f) << endl; //0
+
+	system("pause");
+
+	return 0;
+}
+```
+
+> 总结：==都真为真，其余为假==
+
+**示例3：**逻辑或
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//逻辑运算符 或 ||
+
+	int a = 10;
+	int b = 10;
+	cout << (a || b) << endl;
+
+	int c = 10;
+	int d = 0;
+	cout << (c || d) << endl;
+
+	int e = 0;
+	int f = 0;
+	cout << (e || f) << endl;
+
+	system("pause");
+
+	return 0;
+}
+```
+
+> 总结：==都假为假，其余为真==
+
+
+
+## 四、程序流程结构
+
+C/C++支持最基本的三种程序运行结构：==顺序结构==、==选择结构==、==循环结构==
+
+- 顺序结构：程序按顺序执行，不发生跳转
+- 选择结构：依据条件是否满足，有选择的执行相应的功能
+- 循环结构：依据条件是否满足，循环多次执行某段代码
+
+
+
+### 4.1 选择语句
+
+#### 4.1.1 if语句
+
+**作用：**执行满足条件的语句
+
+if语句的三种形式
+
+- 单行格式if语句
+- 多行格式if语句
+- 多条件的if语句
+
+
+
+1.单行格式的if语句：**`if(条件){条件满足的语句}`**
+
+<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-04 182131.png" alt="屏幕截图 2023-05-04 182131" style="zoom: 50%;" />
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	int a = 0;
+	cout << "请输入你的分数：";
+	cin >> a;
+
+	if (a > 503) //这里不能有分号
+	{
+		cout << "你能考上一所一本大学" << endl;
+	}
+
+	system("pause");
+
+	return 0;
+}
+```
+
+
+
+2.多行格式if语句：**`if(条件){条件满足的语句}else{条件不能满足的语句};`**
+
+<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-04 183531.png" alt="屏幕截图 2023-05-04 183531" style="zoom:50%;" />
 
 **示例：**
 
