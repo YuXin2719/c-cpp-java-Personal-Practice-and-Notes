@@ -1129,3 +1129,512 @@ int main()
 }
 ```
 
+
+
+#### if语句练习案例：三只小猪称体重
+
+有三只小猪ABC，请分别输入三只小猪的体重，并且判断哪只小猪最重？
+
+<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-05 131212.png" alt="屏幕截图 2023-05-05 131212" style="zoom:50%;" />
+
+```c++
+#include <string>
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+
+	//有三只小猪ABC，请分别输入三只小猪的体重，并且判断哪只小猪最重？
+	
+	//1.输入三只小猪的体重
+	int arr[3] = {0};
+
+	int i;
+	for (i = 0; i < 3; i++)
+	{
+		cout << "请输入第" << i + 1 << "只小猪的体重：" << endl;
+		cin >> arr[i];
+		cout << "您输入的第" << i + 1 << "个小猪的体重为：" << arr[i] << endl;
+	}
+
+	//2.判断三只小猪哪只最重
+	int max = arr[0];
+	for (i = 1; i < 3; i++)
+	{
+		if (arr[i] > max)
+		{
+			max = arr[i];
+		}
+	}
+	for (i = 0; i < 3; i++)
+	{
+		if (arr[i] == max)
+		{
+			cout << "第" << i + 1 << "只小猪最重，它的体重为" << arr[i] << endl;
+		}
+	}
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 4.1.2 三目运算符
+
+**作用：**通过三目运算符实现简单的判断
+
+**语法：`表达式1 ? 表达式2 : 表达式3`**
+
+**解释：**
+
+如果表达式1为真，执行表达式2，并返回表达式2的结果
+
+如果表达式1为假，执行表达式3，并返回表达式3的结果
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+	//三目运算符
+	//创建三个变量 abc
+	//将a和b比较，将变量大的值赋给c
+	int a = 10;
+	int b = 20;
+	int c = 0;
+
+	c = (a > b ? a : b);
+
+	cout << "max1 = " <<c << endl;
+
+	//在C++中三目运算符返回的是变量，可以继续赋值
+	(a < b ? a : b) = 100;
+	cout << "a = " << a << endl;
+	cout << "b = " << b << endl;
+
+	return 0;
+}
+```
+
+
+
+#### 4.1.3 switch语句
+
+**作用：**执行多条件的分支语句
+
+**语法：**
+
+```c++
+switch(表达式)
+{
+        
+    case 结果1:执行语句;break;
+    
+    case 结果2:执行语句;break;
+        
+    ...
+        
+    default:执行语句;break;
+    
+}
+```
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//switch语句
+	//给一个电影打分
+	//10~9	经典
+	//8~7	非常好
+	//6~5	一般
+	//5以下	烂
+
+	//1.提示用户评分
+	cout << "请给电影打分：" << endl;
+
+	//2.用户开始打分
+	int score = 0;
+	cin >> score;
+	cout << "您打出的分数为：" << score << endl;
+
+	//3.根据用户输入的分数提示用户最后的结果
+	switch (score)
+	{
+	case 10:
+		cout << "您认为是经典电影" << endl;
+		break;
+	case 9:
+		cout << "您认为是经典电影" << endl;
+		break;
+	case 8:
+		cout << "您认为是非常好电影" << endl;
+		break;
+	case 7:
+		cout << "您认为是非常好电影" << endl;
+		break;
+	case 6:
+		cout << "您认为是一般电影" << endl;
+		break;
+	case 5:
+		cout << "您认为是一般电影" << endl;
+		break;
+	default:
+		cout << "您认为是垃圾电影" << endl;
+		break;
+	}
+
+	//if 和 switch 区别？
+	//switch 缺点，判断只能是整型或者字符型，不可以是一个区间
+	//switch 优点，结构清晰，执行效率高
+
+	system("pause");
+	return 0;
+}
+```
+
+> switch优缺点：
+>
+> 1. ==缺点==：判断只能是整型或者字符型，==不可以是一个区间==
+> 2. ==优点==：结构清晰，==执行效率高==
+
+
+
+### 4.2 循环结构
+
+#### 4.2.1 while循环语句
+
+**作用：**满足循环条件，执行循环语句
+
+**语法：`while(循环条件){循环语句}`**
+
+**解释：**只要循环条件为真，就执行语句
+
+<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-05 155135.png" alt="屏幕截图 2023-05-05 155135" style="zoom:50%;" />
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//while循环
+	//在屏幕中打印 0~9 这十个数字
+	int num = 0;
+	while (num < 10)
+	{
+		cout << num << endl;
+		num++;
+	}
+
+	system("pause");
+	return 0;
+}
+```
+
+> 注意：记得提供挑出循环的出口，否则会出现死循环
+
+
+
+**while循环练习案例：==猜数字==**
+
+**案例描述：**系统随机生成一个1-100之间的数字，玩家进行猜测，如果猜错，提示玩家数字过大或者过小，如果猜对恭喜玩家胜利，并且退出游戏
+
+<img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230505161450687.png" alt="image-20230505161450687" style="zoom:50%;" />
+
+流程图：
+
+<img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230505161804461.png" alt="image-20230505161804461" style="zoom:50%;" />
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//1.系统生成随机数
+	int num = rand() % 100 + 1;	//生成 0 + 1 ~ 99 + 1 的随机数
+
+	cout << "随机数 = " << num << endl;  //可屏蔽，这里做示范
+
+	//2.玩家进行猜测
+	int val = 0;
+	
+	//3.判断玩家的猜测
+	while (1)
+	{
+		cin >> val;
+
+		if (val < num)
+		{
+			cout << "你输入的数字小了，请重新输入" << endl;
+		}
+		else if (val > num)
+		{
+			cout << "你输入的数字大了，请重新输入" << endl;
+		}
+		else
+		{
+			cout << "对溜！" << endl;
+			break;
+		}
+	}
+	//猜错	提示猜的结果	过大或者过小
+	//猜对	恭喜
+
+	system("pause");
+	return 0;
+}
+```
+
+**注：添加随机数种子（小方法）**
+
+```c++
+#include <iostream>
+#include <string>
+//time系统时间头文件包含
+#include <ctime>
+
+using namespace std;
+
+int main()
+{
+
+	//添加随机数种子，作用利用当前系统时间生成随机数，防止每次随机数都一样
+	srand((unsigned int)time(NULL));
+
+	int num = rand() % 100;
+
+	cout << "随机数：" << num << endl;
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 4.2.2 do...while循环语句
+
+**作用：**满足循环条件，执行循环语句
+
+**语法：`do{循环语句}while(循环条件);`**
+
+**注意：**与while的区别在于==do...while会先执行一次循环语句==，再判断循环条件
+
+<img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230505170946144.png" alt="image-20230505170946144" style="zoom:50%;" />
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//do...while语句
+	//在屏幕中输出 0 到 9 这十个数字
+
+	int num = 0;
+
+	do
+	{
+		cout << num << endl;
+		num++;
+	}
+	while (num < 10);
+
+	//do...while和while循环的区别在于do...while会先执行一次循环语句
+
+	system("pause");
+	return 0;
+}
+```
+
+> 总结：do...while和while循环的区别在于do...while会先执行一次循环语句
+
+
+
+**练习案例：水仙花数**
+
+**案例描述：**水仙花是指一个三位数，它的每个位上的数字的三次幂之和等于它本身
+
+例如：1^3 + 5^3 + 3^3 = 153
+
+请用do...while语句，求出所有三位数中的水仙花数
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+/*
+案例描述：水仙花是指一个三位数，它的每个位上的数字的三次幂之和等于它本身
+
+例如：1^3 + 5^3 + 3^3 = 153
+
+请用do...while语句，求出所有三位数中的水仙花数
+*/
+
+int main()
+{
+
+	double num = 100;
+	int bai = 0, shi = 0, ge = 0;
+
+
+	do {
+		bai = (int)(num * 0.01);
+		shi = (int)((num-bai*100) * 0.1);
+		ge = (int)(num - bai * 100 - shi * 10);
+		if ((bai * bai * bai + shi * shi * shi + ge * ge * ge) == num)
+		{
+			cout << num << "是水仙花数" << endl;
+		}
+		num++;
+	} while (num < 1000);
+
+	system("pause");
+	return 0;
+}
+
+//或者取余
+//ge = num % 10;
+//shi = num / 10 % 10;
+//bai = num / 100;
+```
+
+
+
+#### 4.2.3 for循环语句
+
+**作用：**满足循环条件，执行循环语句
+
+**语法：`for(起始表达式;条件表达式;末尾循环体)`**
+
+
+
+**示例:**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	int i = 0;
+	
+	for (i = 0; i < 10; i++) //或者在内部定义i for (int i = 0 ; i < 10 ; i++)
+	{
+		cout << i << endl;
+	}
+
+	system("pause");
+	return 0;
+}
+
+
+//for循环可拆分为以下形式
+
+//int i = 0;
+//for ( ; ; )
+//{
+//	if (i >= 10)
+//	{
+//		break;
+//	}
+//	i++;
+//}
+```
+
+**详解：**
+
+<img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230505181237337.png" alt="image-20230505181237337" style="zoom:50%;" />
+
+> 注意：for循环中的表达式，要用分号进行分隔
+
+> 总结：while,do...while,for都是开发中常用的循环语句，for循环结构比较清晰，比较常用
+
+
+
+**练习案例：敲桌子**
+
+案例描述：从1开始数到数字100，如果数字个位含有7，或者数字十位含有7，或者该数字是7的倍数，我们打印敲桌子，其余数字直接打印输出
+
+<img src="E:\c.---c.---java-exercise\photo\c6d7ce76d327e87a.gif" alt="c6d7ce76d327e87a"  />
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	for (int i = 1; i <= 100; i++)
+	{
+		if (i % 10 == 7 || i / 10 == 7 || i % 7 == 0)
+		{
+			cout << "敲桌子" << endl;
+		}
+		else
+		{
+			cout << i << endl;
+		}
+	}
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 4.2.4 嵌套循环
+
+**作用：**在循环体中再嵌套一层循环，解决一些实际问题
+
+例如我们想在屏幕中打印如下图片，就需要利用嵌套循环
+
+<img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230505182827121.png" alt="image-20230505182827121" style="zoom: 50%;" />
+

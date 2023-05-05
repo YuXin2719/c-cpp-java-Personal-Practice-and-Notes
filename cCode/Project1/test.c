@@ -4,10 +4,13 @@
 int main()
 {
 
-	//转义字符，转变了原有的意思
-	printf("ab\ncd");// \+n
-
-	printf("c:\\test\\test.c\n");
+	int arr[] = { 0 };
+	int i;
+	for (i = 0; i < 10; i++)
+	{
+		scanf("%d", &arr[i]);
+		printf("%d", arr[i]);
+	}
 
 	return 0;
 }
