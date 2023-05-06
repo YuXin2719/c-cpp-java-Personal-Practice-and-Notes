@@ -1361,11 +1361,11 @@ int main()
 
 **案例描述：**系统随机生成一个1-100之间的数字，玩家进行猜测，如果猜错，提示玩家数字过大或者过小，如果猜对恭喜玩家胜利，并且退出游戏
 
-<img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230505161450687.png" alt="image-20230505161450687" style="zoom:50%;" />
+<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-05 161445.png" alt="屏幕截图 2023-05-05 161445" style="zoom:50%;" />
 
 流程图：
 
-<img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230505161804461.png" alt="image-20230505161804461" style="zoom:50%;" />
+<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-05 161751.png" alt="屏幕截图 2023-05-05 161751" style="zoom:50%;" />
 
 
 
@@ -1450,7 +1450,7 @@ int main()
 
 **注意：**与while的区别在于==do...while会先执行一次循环语句==，再判断循环条件
 
-<img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230505170946144.png" alt="image-20230505170946144" style="zoom:50%;" />
+<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-05 170940.png" alt="屏幕截图 2023-05-05 170940" style="zoom:50%;" />
 
 **示例：**
 
@@ -1586,7 +1586,7 @@ int main()
 
 **详解：**
 
-<img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230505181237337.png" alt="image-20230505181237337" style="zoom:50%;" />
+<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-05 181224.png" alt="屏幕截图 2023-05-05 181224" style="zoom:50%;" />
 
 > 注意：for循环中的表达式，要用分号进行分隔
 
@@ -1636,5 +1636,768 @@ int main()
 
 例如我们想在屏幕中打印如下图片，就需要利用嵌套循环
 
-<img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230505182827121.png" alt="image-20230505182827121" style="zoom: 50%;" />
+<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-05 182822.png" alt="屏幕截图 2023-05-05 182822" style="zoom:50%;" />
 
+
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//利用嵌套循环实现星图
+
+	//打印一行星图
+
+	//外层循环
+	for (int i = 0; i < 10; i++)
+	{
+		//内层循环
+		for (int j = 0; j < 10; j++)
+		{
+			cout << "* ";
+		}
+		cout << endl;
+	}
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+**练习案例：乘法口诀表**
+
+案例描述：利用嵌套循环，实现九九乘法表
+
+<img src="E:\c.---c.---java-exercise\photo\669bc2f8c200491583e3e4088506f3a1.jpeg" alt="669bc2f8c200491583e3e4088506f3a1" style="zoom: 67%;" />
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//九九乘法表
+	for (int i = 1; i <= 9; i++)
+	{
+		for (int j = 1; j <= 9; j++)
+		{
+			if (j <= i)
+			{
+				cout << i << " * " << j << " = " << i * j << "\t";
+			}
+		}
+		cout << endl;
+	}
+	system("pause");
+	return 0;
+}
+```
+
+
+
+### 4.3 跳转语句
+
+#### 4.3.1 break语句
+
+**作用：**用于跳出==选择结构==或者==循环结构==
+
+break使用的时机：
+
+- 出现在switch条件语句中，作用是终止case并跳出switch
+- 出现在循环语句中，作用是跳出当前的循环语句
+- 出现在嵌套循环中，跳出最近的内层循环语句
+
+**示例1：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//break的使用时机
+
+	//1.出现在switch语句中
+	cout << "请选择副本难度" << endl;
+	cout << "1.普通" << endl;
+	cout << "2.中等" << endl;
+	cout << "3.困难" << endl;
+	
+	int select = 0; //创建一个选择结果的变量
+
+	cin >> select; //等待用户输入数据
+
+	switch (select)
+	{
+	case 1:
+		cout << "您选择的是普通难度" << endl;
+		break;
+	case 2:
+		cout << "您选择的是中等难度" << endl;
+		break;
+	case 3:
+		cout << "您选择的是困难难度" << endl;
+		break;
+	default:
+		break;
+	}
+
+	//2.出现在循环语句中
+	for (int i = 0; i < 10; i++)
+	{
+		cout << i << endl;
+
+		//如果i = 5，退出循环，不再打印
+		if (i == 5)
+		{
+			break;
+		}
+	}
+
+	//3.出现在嵌套循环语句中
+	for (int i = 0; i < 10; i++)
+	{
+
+		for (int j = 0; j < 10; j++)
+		{
+			cout << "* ";
+			if (j == 5)
+			{
+				break; //退出内层循环
+			}
+		}
+		cout << endl;
+	}
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 4.3.2 continue语句
+
+**作用：**在==循环语句==中，跳过本次循环中余下尚未执行的语句，继续执行下一次循环
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//continue语句的用途
+
+	for (int i = 0; i <= 100; i++)
+	{
+		//如果是奇数输出，偶数不输出
+		if (i % 2 == 0)
+		{
+			continue; //可以筛选条件，执行到此就不再向下执行，执行下一次循环
+		}
+		cout << i << endl;
+	}
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 4.3.3 goto语句
+
+**作用：**可以无条件跳转语句
+
+**语法：`goto 标记；`**
+
+**解释：**如果标记的名称存在的话，执行到goto语句时，会跳转到标记的位置
+
+<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-06 162132.png" alt="屏幕截图 2023-05-06 162132" style="zoom:50%;" />
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//goto语句
+
+	cout << "1.XXXX" << endl;
+
+	cout << "2.XXXX" << endl;
+
+	goto FLAG;
+
+	cout << "3.XXXX" << endl;
+
+	cout << "4.XXXX" << endl;
+
+	cout << "5.XXXX" << endl;
+
+FLAG:
+
+	cout << "6.XXXX" << endl;
+
+	system("pause");
+	return 0;
+}
+```
+
+==注：不经常用，不建议用==
+
+
+
+## 五、数组
+
+### 5.1 概括
+
+所谓数组，就是一个集合，里面存放了相同的数据元素
+
+
+
+**特点1：**数组中的每个==数据元素都是相同的数据类型==
+
+**特点2：**数组是由==连续的内存==位置组成的
+
+
+
+### 5.2 一维数组
+
+#### 5.2.1 一维数组定义方式
+
+三种方式：
+
+1. **`数据类型 数组名[数组长度];`**
+2. **`数据类型 数组名[数组长度] = {值1,值2,...};`**
+3. **`数据类型 数组名[] = {值1,值2,...};`**
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	/*
+	1. 数据类型 数组名[数组长度];
+	2. 数据类型 数组名[数组长度] = {值1,值2,...};
+	3. 数据类型 数组名[] = {值1,值2,...};
+	*/
+
+	//1.数据类型 数组名[数组长度];
+	int arr[5];
+	//给数组中的元素进行赋值
+	//数组元素的下标是从0开始的
+	arr[0] = 10;
+	arr[1] = 20;
+	arr[2] = 30;
+	arr[3] = 40;
+	arr[4] = 50;
+
+	//访问数据元素
+	cout << arr[0] << endl;
+	cout << arr[1] << endl;
+	cout << arr[2] << endl;
+	cout << arr[3] << endl;
+	cout << arr[4] << endl;
+
+	//2.数据类型 数组名[数组长度] = {值1,值2,...};
+	//如果初始化数据时，没全部填写完，会用0来填补数据
+	int arr2[5] = { 10,20,30 };
+
+	cout << arr2[0] << endl;
+	cout << arr2[1] << endl;
+	cout << arr2[2] << endl;
+	cout << arr2[3] << endl;
+	cout << arr2[4] << endl;
+
+	//利用循环 输出数组中的元素
+	for (int i = 0; i < 5; i++)
+	{
+		cout << arr2[i] << endl;
+	}
+
+	//3.数据类型 数组名[] = { 值1,值2,... };
+	//定义数组的时候，必须有初始长度
+	int arr3[] = { 90,80,70,60,50,40,30,20,10 };
+	for (int j = 0; j < 9; j++)
+	{
+		cout << arr3[j] << endl;
+	}
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 5.2.2 一维数组数组名
+
+一维数组名称的**用途**：
+
+1. 可以统计整个数组在内存中的长度  **`sizeof(arr)`**
+2. 可以获取数组在内存中的首地址  **`cout << arr <<endl;`**
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//数组名的用途
+
+	//1.可以通过数组名统计整个数组占用内存大小
+	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+	cout << "整个数组占用的内存空间为：" << sizeof(arr) << endl;
+	cout << "整个数组占用的内存空间为：" << sizeof(arr) << endl;
+	cout << "数组中元素个数是多少：" << sizeof(arr)/sizeof(arr[0]) << endl;
+
+	//2.可以通过数组名查看数组首地址
+	cout << "数组的首地址为：" << (int)arr << endl;
+	cout << "数组中第一个元素的地址：" << (int) & arr[0] << endl;
+	cout << "数组中第二个元素的地址：" << (int) & arr[1] << endl;
+
+	//数组名是常量，不可以进行赋值操作，它就等于他的首地址（初始是16进制的）
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+**练习案例1：**
+
+**案例描述：**
+
+在一个数组中记录了五只小猪的体重，如：int arr[5] = {300,350,200,400,250};
+
+**要求**：找出并打印最重的小猪的体重
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	/*
+	在一个数组中记录了五只小猪的体重，如：int arr[5] = {300,350,200,400,250};
+	要求：找出并打印最重的小猪的体重
+	*/
+
+	//定义数组
+	int arr[5] = { 300,350,200,400,250 };
+
+	//判断最重的小猪
+	int max = arr[0];
+	for (int i = 1; i < 5; i++)
+	{
+		if (max < arr[i])
+		{
+			max = arr[i];
+		}
+	}
+
+	//输出最重小猪体重
+	cout << "最重的小猪体重为：" << max << endl;
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+**练习案例2：**数组元素逆置
+
+**案例描述：**请声明一个5个元素的数组，并且将元素逆置
+
+（如原数组为 1,2,3,4,5; 逆置输出后为 5,4,3,2,1; )
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	/*
+	请声明一个5个元素的数组，并且将元素逆置
+	（如原数组为 1,2,3,4,5; 逆置输出后为 5,4,3,2,1; )
+	*/
+
+	//定义数组
+	int arr[] = { 1,2,3,4,5 };
+
+	//计算数组长度
+	int length = sizeof(arr) / sizeof(arr[0]);
+
+	cout << "数组逆置前：" << endl;
+	for (int i = 0; i < length; i++)
+	{
+		cout << arr[i] << endl;
+	}
+
+	cout << "数组逆置后：" << endl;
+	for (int i = 0; i < length; i++) //例子中，长度5，循环5次
+	{
+		cout << arr[length - (i + 1)] << endl; //最后的元素就是 arr[length-1]
+	}
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 5.2.3 冒泡排序
+
+**作用：**最常用的排序算法，对数组内的元素进行排序
+
+1. 比较相邻的元素，如果第一个比第二个大，就交换他们两个
+2. 对每一对相邻元素做同样的工作，执行完毕后，找到第一个最大值
+3. 重复以上的步骤，每次比较次数-1，直到不需要比较
+
+![屏幕截图 2023-05-06 180114](E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-06 180114.png)
+
+**示例：**将数组{4,2,8,0,5,7,1,3,9}进行升序排序
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//冒泡排序
+	//题目：将数组{4,2,8,0,5,7,1,3,9}进行升序排序
+	int arr[] = { 4,2,8,0,5,7,1,3,9 };
+	int length = sizeof(arr) / sizeof(arr[0]);
+	int a = 0;
+	int b = 0;
+	
+	for (int j = 0; j < length - 1; j++) //3.总共需要排序 length-1 次
+	{
+		for (int i = 0; i < length - (j + 1); i++) //2.总共有length个元素，那就调换 length-1 次
+		{
+			if (arr[i] > arr[i + 1]) //1.如果前一个元素比后一个元素大，就调换一下它俩的位置，最后挑一个最大的到最右边
+			{
+				a = arr[i];
+				b = arr[i + 1];
+				arr[i + 1] = a;
+				arr[i] = b;
+			}
+		}
+	}
+
+	//输出最终数组
+	cout << "最终数组为：" << endl;
+	for (int i = 0; i < length; i++)
+	{
+		cout << arr[i] << " " ;
+	}
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+### 5.3 二维数组
+
+二位数组就是在一维数组的基础上，多加一个维度
+
+<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-06 192827.png" alt="屏幕截图 2023-05-06 192827" style="zoom:50%;" />
+
+
+
+#### 5.3.1 二维数组定义方式
+
+四种方式：
+
+1. **`数据类型 数组名[行数][列数];`**
+2. **`数据类型 数组名[行数][列数] = {{数据1,数据2},{数据3,数据4}};`**
+3. **`数据类型 数组名[行数][列数] = {数据1,数据2,数据3,数据4};`**
+4. **`数据类型 数组名[ ][列数] = {数据1,数据2,数据3,数据4};`**
+
+> 建议：以上4种定义方式，利用==**第二种**更加直观，提高代码的可读性==
+
+图例：**`arr[2][3]`↓**
+
+<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-06 193934.png" alt="屏幕截图 2023-05-06 193934" style="zoom:50%;" />
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//2.二维数组的定义方式
+
+	/*
+	1. 数据类型 数组名[行数][列数];
+	2. 数据类型 数组名[行数][列数] = {{数据1,数据2},{数据3,数据4}};
+	3. 数据类型 数组名[行数][列数] = {数据1,数据2,数据3,数据4};
+	4. 数据类型 数组名[ ][列数] = {数据1,数据2,数据3,数据4};
+	*/
+
+	//1. 数据类型 数组名[行数][列数];
+	int arr[2][3] = { 0 };
+
+	arr[0][1] = 2;
+	cout << arr[0][1] << endl;
+
+	//遍历方法：外层循环打印行数，内层循环打印列数
+	for (int i = 0; i < 2; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			cout << arr[i][j] << " ";
+		}
+		cout << endl;
+	}
+
+	//2.数据类型 数组名[行数][列数] = {{数据1,数据2},{数据3,数据4}};
+	int arr1[2][3] = {
+		{1,2,3},
+		{4,5,6}
+	};
+	for (int i = 0; i < 2; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			cout << arr1[i][j] << " ";
+		}
+		cout << endl;
+	}
+
+	//3.数据类型 数组名[ ][列数] = {数据1,数据2,数据3,数据4};
+	int arr2[2][3] = {1,2,3,4,5,6};
+	for (int i = 0; i < 2; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			cout << arr2[i][j] << " ";
+		}
+		cout << endl;
+	}
+
+	//4.数据类型 数组名[ ][列数] = {数据1,数据2,数据3,数据4};
+	int arr3[][3] = { 1,2,3,4,5,6 };
+	for (int i = 0; i < 2; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			cout << arr3[i][j] << " ";
+		}
+		cout << endl;
+	}
+
+
+	system("pause");
+	return 0;
+}
+```
+
+> ==第二种==最直观最常用
+
+
+
+#### 5.3.2 二维数组数组名
+
+
+
+- 查看二维数组所占内存空间
+- 获取二维数组首地址
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//二维数组名称用途
+
+	//1.可以查看占用的内存空间大小
+	int arr[2][3] =
+	{
+		{1,2,3},
+		{4,5,6}
+	};
+	cout << "二维数组占用的内存：" << sizeof(arr) << endl;
+	cout << "二维数组第一行占用的内存：" << sizeof(arr[0]) << endl;
+	cout << "二维数组第一个元素所占用的内存：" << sizeof(arr[0][0]) << endl;
+
+	cout << "二维数组的行数：" << sizeof(arr) / sizeof(arr[0]) << endl;
+	cout << "二维数组的列数：" << sizeof(arr[0]) / sizeof(arr[0][0]) << endl;
+
+	//2.可以查看二位数组的首地址
+	cout << "二维数组首地址：" << (int)arr << endl;
+	cout << "二维数组第一行的首地址：" << (int)arr[0] << endl;
+	cout << "二维数组第二行的首地址：" << (int)arr[1] << endl;
+
+	cout << "二维数组第一个元素的首地址：" << (int)&arr[0][0] << endl; // &！！！
+
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 5.3.3 二维数组应用案例
+
+**考试成绩统计：**
+
+案例描述：有三民同学（张三，李四，王五），在一次考试中的成绩分别如下表，**请分别输出三名同学的总成绩**
+
+|      | 语文 | 数学 | 英语 |
+| ---- | ---- | ---- | ---- |
+| 张三 | 100  | 100  | 100  |
+| 李四 | 90   | 50   | 100  |
+| 王五 | 60   | 70   | 80   |
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	/*
+	案例描述：有三民同学（张三，李四，王五），在一次考试中的成绩分别如下表
+				请分别输出三名同学的总成绩
+	*/
+
+	int sum = 0;
+
+	int arr[3][3] =
+	{
+		{100,100,100},
+		{90,50,100},
+		{60,70,80}
+	};
+
+	string name[3] = { "张三","李四","王五" };
+
+	for (int j = 0; j < 3 ; j++)
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			sum = sum + arr[j][i];
+		}
+		
+		cout << name[j] << "同学的总成绩为：" << sum << endl;
+
+		sum = 0;
+	}
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+## 六、函数
+
+### 6.1 概述
+
+**作用：**讲一段经常使用的代码封装起来，减少重复代码
+
+一个较大的程序，一般分为若干个程序块，每个模块实现特定的功能
+
+### 6.2 函数的定义
+
+函数的定义一般主要有5个步骤：
+
+1. 返回值类型
+2. 函数名
+3. 参数列表
+4. 函数体语句
+5. return 表达式
+
+**语法：**
+
+```c++
+返回值类型 函数名 (参数列表)
+{
+    
+    函数体语句
+        
+    return表达式
+        
+}
+```
+
+**图例：**
+
+<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-06 222220.png" alt="屏幕截图 2023-05-06 222220" style="zoom:50%;" />

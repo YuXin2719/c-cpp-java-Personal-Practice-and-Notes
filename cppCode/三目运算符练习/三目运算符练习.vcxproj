@@ -128,17 +128,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="continue语句练习.cpp" />
     <ClCompile Include="dowhile水仙花案例练习.cpp" />
     <ClCompile Include="dowhile练习.cpp" />
     <ClCompile Include="for循环语句.cpp" />
     <ClCompile Include="for敲桌子练习.cpp" />
+    <ClCompile Include="goto语句练习.cpp" />
     <ClCompile Include="switch结构.cpp" />
     <ClCompile Include="while循环.cpp" />
     <ClCompile Include="while练习案例，猜数字.cpp" />
+    <ClCompile Include="一维数组名.cpp" />
+    <ClCompile Include="一维数组案例-五只小猪称体重.cpp" />
     <ClCompile Include="三目运算符.cpp" />
+    <ClCompile Include="二维数组.cpp" />
+    <ClCompile Include="二维数组名.cpp" />
+    <ClCompile Include="二维数组应用案例.cpp" />
     <ClCompile Include="嵌套循环.cpp" />
+    <ClCompile Include="嵌套循环练习-九九乘法表.cpp" />
+    <ClCompile Include="一维数组.cpp" />
+    <ClCompile Include="数组练习案例2-元素逆置.cpp" />
     <ClCompile Include="根据系统时间随机数.cpp" />
     <ClCompile Include="测试代码.cpp" />
+    <ClCompile Include="算法-冒泡排序.cpp" />
+    <ClCompile Include="跳转语句break语句.cpp" />
     <ClCompile Include="默认模版.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
