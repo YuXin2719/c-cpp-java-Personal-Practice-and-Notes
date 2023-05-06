@@ -6,9 +6,8 @@
 //int main()
 //{
 //
-//	double a = 1.53;
-//	int b = (int)a;
-//	cout << b << endl;
+//	double a = 0.01;
+//	double* p = &a;
 //
 //	system("pause");
 //	return 0;

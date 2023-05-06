@@ -134,6 +134,7 @@
     <ClCompile Include="for循环语句.cpp" />
     <ClCompile Include="for敲桌子练习.cpp" />
     <ClCompile Include="goto语句练习.cpp" />
+    <ClCompile Include="swap.cpp" />
     <ClCompile Include="switch结构.cpp" />
     <ClCompile Include="while循环.cpp" />
     <ClCompile Include="while练习案例，猜数字.cpp" />
@@ -143,15 +144,24 @@
     <ClCompile Include="二维数组.cpp" />
     <ClCompile Include="二维数组名.cpp" />
     <ClCompile Include="二维数组应用案例.cpp" />
+    <ClCompile Include="值传递.cpp" />
+    <ClCompile Include="函数的分文件编写.cpp" />
+    <ClCompile Include="函数的声明.cpp" />
+    <ClCompile Include="函数的常见样式.cpp" />
+    <ClCompile Include="函数语法.cpp" />
     <ClCompile Include="嵌套循环.cpp" />
     <ClCompile Include="嵌套循环练习-九九乘法表.cpp" />
     <ClCompile Include="一维数组.cpp" />
+    <ClCompile Include="指针的定义和使用.cpp" />
     <ClCompile Include="数组练习案例2-元素逆置.cpp" />
     <ClCompile Include="根据系统时间随机数.cpp" />
     <ClCompile Include="测试代码.cpp" />
     <ClCompile Include="算法-冒泡排序.cpp" />
     <ClCompile Include="跳转语句break语句.cpp" />
     <ClCompile Include="默认模版.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="swap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

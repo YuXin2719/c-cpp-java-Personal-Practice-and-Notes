@@ -2401,3 +2401,426 @@ int main()
 **图例：**
 
 <img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-06 222220.png" alt="屏幕截图 2023-05-06 222220" style="zoom:50%;" />
+
+<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-06 223422.png" alt="屏幕截图 2023-05-06 223422" style="zoom:50%;" />
+
+**加法示例代码：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+//函数的定义
+int add(int num1, int num2)
+{
+	int sum = num1 + num2;
+	return sum;
+}
+
+int main()
+{
+	system("pause");
+	return 0;
+}
+```
+
+- 返回值类型：一个函数可以返回一个值，在函数定义中
+- 函数名：给函数起个名称
+- 参数列表：使用该函数时，传入的数据
+- 函数体语句：花括号内的代码，函数内需要执行的语句
+- return 表达式：和返回值类型挂钩，函数执行完后，返回相应的数据
+
+
+
+### 6.3 函数的调用
+
+**功能：**使用定义好的函数
+
+**语法：`函数名(参数)`**
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+//函数的定义
+//函数定义时，num1和num2并没有真的数据，他只是一个形式上的参数，简称形参
+int add(int num1, int num2)
+{
+	int sum = num1 + num2;
+	return sum;
+}
+
+int main()
+{
+	cout << "加法计算，请输入两个数字，中间用空格隔开：" << endl;
+	int b, c;
+	cin >> b;
+	cin >> c;
+
+	// a 和 b 称为 实际参数，简称实参
+	//当调用函数的时候，实参的值会传递给形参
+	int a = add(b,c);
+	cout << "两数相加为:" << a << endl;
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+### 6.4 值传递
+
+- 所谓值传递，就是参数调用时实参将数值传入给形参
+- 值传递时，==如果形参发生，并不会影响实参==
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+//值传递
+//定义函数，实现两个数字交换的函数
+
+//如果函数不需要返回值，声明的时候可以写 void（翻译：无效）
+void swap(int num1, int num2)
+{
+
+	cout << "交换前：" << endl;
+	cout << "num1 = " << num1 << endl;
+	cout << "num2 = " << num2 << endl;
+
+	int temp = num1;
+	num1 = num2;
+	num2 = temp;
+
+	cout << "交换后：" << endl;
+	cout << "num1 = " << num1 << endl;
+	cout << "num2 = " << num2 << endl;
+
+	return;
+}
+
+int main()
+{
+
+	int a = 10;
+	int b = 20;
+	
+	cout << "a = " << a << endl;
+	cout << "b = " << b << endl;
+
+	//当我们做值传递的时候，函数的形参发生改变，不会影响到实参
+	swap(a, b);
+
+	cout << "a = " << a << endl;
+	cout << "b = " << b << endl;
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+### 6.5 函数的常见样式
+
+常见样式有4种
+
+1. 无参无返
+2. 有参无返
+3. 无参有返
+4. 有参有返
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+//函数的常见样式
+
+//1.无参无返
+void test01()
+{
+	cout << "helloworld" << endl;
+}
+
+//2.有参无返
+void test02(int a)
+{
+	cout << "test02 a = " << a << endl;
+}
+
+//3.无参有返
+int test03()
+{
+	cout << "test03" << endl;
+
+	return 1000;
+}
+
+//4.有参有返
+int test04(int num1)
+{
+	int sum = num1 + 10;
+	return sum;
+}
+
+int main()
+{
+
+	//无参无返的函数调用
+	test01();
+
+	//有参无返的函数调用
+	test02(100);
+
+	//无参有返函数调用
+	int num1 = test03();
+	cout << "num1 = " << num1 << endl;
+
+	//有参有返函数调用
+	int num2 = 10;
+	cout << "num2 + 10 = " << test04(num2) << endl;
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+### 6.6 函数的声明
+
+**作用：**告诉编译器函数名称及如何调用函数，函数的实际主体可以单独定义
+
+
+
+- 函数的**声明可以多次**，但是函数的**定义只能有一次**
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+//函数的声明
+//比较函数，实现两个整型数字进行比较，返回较大的值
+
+//定义
+//int max(int a, int b)
+//{
+//	//int Max = (a >= b ? a : b);
+//	//return Max;
+//
+//	return a >= b ? a : b;
+//
+//}
+
+//提前告诉编译器函数的存在，可以利用函数的声明（如果定义在main前可以不用声明）
+//声明可以多次，定义只能有一次
+int max(int a, int b);
+//这一步其实vs2022可以不用了
+
+int main()
+{
+
+	//声明可以多次，定义只能有一次
+
+	int a = 10;
+	int b = 20;
+
+	cout << max(a, b) << endl;
+
+	system("pause");
+	return 0;
+}
+
+
+int max(int a, int b)
+{
+	//int Max = (a >= b ? a : b);
+	//return Max;
+
+	return a >= b ? a : b;
+
+}
+```
+
+
+
+### 6.7 函数的分文件编写
+
+**作用：**让代码结构更加清晰
+
+函数分文件编写一般有4个步骤
+
+1. 创建后缀名.h的头文件
+2. 创建后缀名为.cpp的源文件
+3. 在头文件中写函数的声明
+4. 在源文件中写函数的定义
+
+**示例：**
+
+**头文件 swap.h**
+
+```c++
+//声明
+void swap(int a, int b);
+```
+
+**源文件 swap.cpp**
+
+```c++
+#include <iostream>
+#include "swap.h" //双引号代表自定义
+
+using namespace std;
+
+//定义
+void swap(int a, int b)
+{
+	int c = a;
+	a = b;
+	b = c;
+
+	cout << "a = " << a << endl;
+	cout << "b = " << b << endl;
+}
+```
+
+**主文件 函数的分文件编写**
+
+```c++
+#include <iostream>
+#include <string>
+
+#include "swap.h"
+
+using namespace std;
+
+//函数的分文件编写
+//实现两个数字交换的函数
+
+//函数的声明
+//void swap(int a, int b);
+
+//函数的定义
+//void swap(int a, int b)
+//{
+//	int c = a;
+//	a = b;
+//	b = c;
+//
+//	cout << "a = " << a << endl;
+//	cout << "b = " << b << endl;
+//}
+
+int main()
+{
+
+	int a = 10;
+	int b = 20;
+
+	swap(a, b);
+
+	system("pause");
+	return 0;
+}
+```
+
+> 注：#include "swap.h" //==双引号代表自定义==
+
+
+
+## 七、指针
+
+### 7.1 指针的基本概念
+
+**指针的作用：**可以通过指针间接访问内存
+
+
+
+- 内存编号是从0开始记录的，一般用十六进制数字表示
+- 可以利用指针变量保存地址
+
+
+
+<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-07 014454.png" alt="屏幕截图 2023-05-07 014454" style="zoom:50%;" />
+
+
+
+> 可以认为，指针就是一个地址
+>
+> 实际上，指针是一个变量，其中保存着地址
+
+
+
+### 7.2 指针变量的定义和使用
+
+指针变量定义语法：**`数据类型 * 变量名`**
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//1.定义指针
+	int a = 10;
+	//指针定义的语法：数据类型 * 指针变量名;
+	int* p = &a; //让指针记录变量a的地址
+
+	cout << "a的地址为：" << &a << endl;
+	cout << "指针p为：" << p << endl;
+
+	//2.使用指针
+	//可以通过解引用的方式来找到指针指向的内存
+	//指针前加一个 * 代表解引用，找到指针指向的内存中的数据
+
+	*p = 1000;
+	cout << "a = " << a << endl;
+	cout << "*p = " << *p << endl;
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+### 7.3 指针所占空间
+
+
+
+提问：指针也是种数据类型，那么这种数据类型占用多少内存空间？
+
+
+
+**示例：**
+
+```c++
+
+```
+
