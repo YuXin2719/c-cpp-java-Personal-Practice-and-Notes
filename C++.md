@@ -3030,3 +3030,228 @@ int main()
 }
 ```
 
+
+
+### 7.7 指针和函数
+
+**作用：**利用指针作函数的参数，可以修改实参的值
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+//实现两个数字互换
+void swap1(int num1, int num2)
+{
+	int temp = num1;
+	num1 = num2;
+	num2 = temp;
+	
+	cout << "swap1 a = " << num1 << endl;
+	cout << "swap1 b = " << num2 << endl;
+}
+
+void swap2(int* p1, int* p2)
+{
+	int temp = *p1;
+	*p1 = *p2;
+	*p2 = temp;
+}
+
+int main()
+{
+
+	//指针和函数
+
+	int a = 10;
+	int b = 20;
+
+	//1.值传递
+	//swap1(a, b);
+
+	//2.地址传递
+	//如果是地址传递，可以修饰实参
+	//也就是说传进去地址，然后解地址直接操作地址指向的内存
+	swap2(&a, &b);
+
+	cout << "a = " << a << endl; //20
+	cout << "b = " << b << endl; //10
+
+	system("pause");
+	return 0;
+}
+```
+
+1. 值传递：传进去的是值，实参不被操作
+2. 地址传递：可以修饰实参，也就是说传进去地址，然后解地址直接操作地址指向的内存
+
+> ==不想修改实参==就用==值传递==，==想修改实参==就用==地址传递==
+
+
+
+### 7.8 指针、数组、函数
+
+**案例描述：**封装一个函数，利用冒泡排序，实现对整型数组的升序排序
+
+例如：
+
+数组：int arr[10] = {4,3,6,9,1,2,10,8,7,5};
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+void bublleSort(int* arr,int length) //int* arr也可以写成int arr[]
+{
+	for (int i = 0; i < length-1; i++)
+	{
+		for (int j = 0; j < length-1; j++)
+		{
+			if (*(arr + j) > *(arr + 1 + j)) //也可以写成 arr[j] > arr[j + 1]
+			{
+				int temp = *(arr + 1 + j);
+				*(arr + 1 + j) = *(arr + j);
+				*(arr + j) = temp;
+			}
+		}
+	}
+}
+
+int main()
+{
+
+	/*
+	案例描述：封装一个函数，利用冒泡排序，实现对整型数组的升序排序
+	int arr[10] = {4,3,6,9,1,2,10,8,7,5};
+	*/
+
+	int arr[10] = { 4,3,6,9,1,2,10,8,7,5 };
+
+	bublleSort(arr, 10);
+
+	for (int i = 0; i < 10; i++)
+	{
+		cout << arr[i] << endl;
+	}
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+## 八、结构体
+
+### 8.1 结构体基本概念
+
+结构体属于用户==自定义的数据类型==，允许用户储存不同的数据类型
+
+
+
+### 8.2 结构体定义和使用
+
+**语法：`struct 结构体名 {结构体成员列表};`**
+
+通过结构体创建变量的方式有三种：
+
+- struct 结构体名 变量名
+- struct 结构体名 变量名 = {成员1值,成员2值...}
+- 定义结构体时顺便创建变量
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+//1.创建学生数据类型：包括（姓名，年龄，分数）
+//自定义数据类型，一些类型集合组成的一个类型
+//语法 struct 类型名称 {成员列表}
+struct Student //放属性的
+{
+	//成员列表
+
+	//姓名
+	string name;
+
+	//年龄
+	int age;
+
+	//分数
+	double score;
+}s3; //顺便创建结构体变量
+
+//2.通过学生数据类型创建具体的学生
+
+//2.1 struct Student s1;
+//2.2 struct Student s2 = {...};
+//2.3 在定义结构体时顺便创建结构体变量
+
+int main()
+{
+
+//2.1 struct Student s1
+	//struct关键字可以省略
+	/*struct*/ Student s1; //s1算是成员
+	//给 s1 属性赋值，通过 . 访问结构体变量中的属性
+	s1.name = "张三";
+	s1.age = 18;
+	s1.score = 100;
+
+	cout << "姓名：" << s1.name << endl;
+	cout << "年龄：" << s1.age << endl;
+	cout << "成绩：" << s1.score << endl;
+
+//2.2 struct Student s2 = {...}
+//struct可以省略
+	struct Student s2 = { "李四",20,80 };
+	cout << "姓名：" << s2.name << endl;
+	cout << "年龄：" << s2.age << endl;
+	cout << "成绩：" << s2.score << endl;
+
+//2.3 在定义结构体时顺便创建结构体变量（创建代码示例在上面）
+//一般不用
+	s3.name = "王五";
+	s3.age = 19;
+	s3.score = 90;
+
+	system("pause");
+	return 0;
+}
+```
+
+> 总结1：定义结构体时的关键字struct，不可省略
+>
+> 总结2：创建结构体变量时，关键字struct，可以省略
+>
+> 总结3：结构体变量利用操作符 . 访问成员（属性）
+
+
+
+### 8.3 结构体数组
+
+**作用：**将自定义的结构体放入到数组中方便维护
+
+**语法：`struct 结构体名 数组名[元素个数] = {{},{},...{}};`**
+
+**示例：**
+
+```c++
+
+```
+
