@@ -2816,11 +2816,217 @@ int main()
 
 提问：指针也是种数据类型，那么这种数据类型占用多少内存空间？
 
+1. 在**32位**操作系统下，任何类型的指针都是**4个字节**
+2. 在**64位**操作系统下，占**8个字节**
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//指针所占内存空间
+	int a = 10;
+	//int* p;
+	//p = &a;
+
+	int* p = &a;
+
+	cout << "sizeof int *p = " << sizeof(int*) << endl;
+	cout << "sizeof float *p = " << sizeof(float*) << endl;
+	cout << "sizeof double *p = " << sizeof(double*) << endl;
+	cout << "sizeof char *p = " << sizeof(char*) << endl;
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+### 7.4 空指针和野指针
+
+**空指针：**指针变量指向内存中编号为0的空间
+
+**用途：**初始化指针变量
+
+**注意：**空指针指向的内存是不可以访问的，0-255的内存是系统占用的，我们不能访问
+
+
+
+**示例1：空指针**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//空指针
+	//1.用于给指针变量初始化
+	int* p = NULL; //NULL = 0;
+
+	//2.空指针是不能用于访问的
+	//0~255之间的内存编号是系统占用的，因此不可以访问
+	 
+	//*p = 100;
+
+	int a = 10;
+	p = &a;
+
+	cout << "*p = " << *p << endl;
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+**野指针：**指针变量指向非法的内存空间（你无法操控的内存空间等）
+
+**示例2：野指针**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//野指针
+	//在程序中，尽量避免出现野指针
+	int* p = (int*)0x1100;
+
+	//cout << *p << endl;
+
+	system("pause");
+	return 0;
+}
+```
+
+> 总结：空指针和野指针都不是我们申请的空间，因此不要访问
+
+
+
+### 7.5 const修饰指针
+
+const修饰指针的三种情况：
+
+1. const 修饰指针 --- 常量指针
+2. const 修饰常量 --- 指针常量
+3. const 既修饰指针，又修饰常量
+
+
+
+![屏幕截图 2023-05-07 175813](E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-07 175813.png)
+
+- 常量指针：**`const int* p = &a;`**
+- 特点：指针的指向可以改，但是指针指向的值不能改，即const作用在指向的变量上
+
+
+
+![屏幕截图 2023-05-07 180925](E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-07 180925.png)
+
+- 指针常量：**`int* const p = &a;`**
+- 特点：指针的指向不能改，指向的值可以改
+
+
+
+- const即修饰指针，又修饰常量
+- **`const int* const p = &a;`**
+- 特点：指针的指向和指针的值都不能改
+
 
 
 **示例：**
 
 ```c++
+#include <iostream>
+#include <string>
 
+using namespace std;
+
+int main()
+{
+
+	//1.常量指针
+	int a = 10;
+	int b = 10;
+
+	const int* p = &a;
+	//指针指向的值不能改，指向可以改
+	//*p = 20; 错误
+	p = &b; //正确
+
+	//2.指针常量
+	int* const p1 = &a;
+	*p1 = 20; //正确
+	//p2 = &b; 错误
+
+	//3.const修饰常量和指针
+	const int* const p2 = &a;
+	//*p2 = 20; 错误
+	//p2 = &b; 错误
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+### 7.6 指针和数组
+
+**作用：**利用指针访问数组中的元素
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	//指针和数组
+	//利用指针访问数组
+
+	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+
+	cout << "第一个元素是：" << arr[0] << endl;
+
+	int* p = arr; //arr存放了数组的首地址
+
+	cout << "利用指针来访问第一个元素：" << *p << endl;
+
+	p++; //往后推四个字节，整型指针直接++就行
+
+	cout << "利用指针来访问第二个元素：" << *p << endl;
+
+
+	cout << "利用指针遍历数组：" << endl;
+	int* p2 = arr;
+	for (int i = 0; i < 10; i++)
+	{
+		cout << "数组中第" << i + 1 << "个元素为：" << *p2 << endl;
+		p2++;
+	}
+
+	system("pause");
+	return 0;
+}
 ```
 
