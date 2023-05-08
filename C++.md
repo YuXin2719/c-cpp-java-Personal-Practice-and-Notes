@@ -3252,6 +3252,472 @@ int main()
 **示例：**
 
 ```c++
+#include <iostream>
+#include <string>
 
+using namespace std;
+
+//1.定义结构体
+struct student
+{
+	string name;
+	int age;
+	double score;
+};
+
+int main()
+{
+
+	//2.创建结构体数组
+	struct student stuArray[3] =
+	{
+		{"张三",18,100},
+		{"李四",19,90},
+		{"王五",18,80}
+	};
+
+	//3.给结构体数组中的元素赋值
+	stuArray[2].name = "赵六";
+	stuArray[2].age = 80;
+	stuArray[2].score = 60;
+
+	//4.遍历结构体数组
+	for (int i = 0; i < 3; i++)
+	{
+		cout << "姓名：" << stuArray[i].name << endl;
+		cout << "年龄：" << stuArray[i].age << endl;
+		cout << "分数：" << stuArray[i].score << endl;
+	}
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+### 8.4 结构体指针
+
+**作用：**通过指针访问结构体中的成员
+
+
+
+- 利用操作符 -> 可以通过结构体指针访问结构体属性
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+//结构体指针
+
+//定义学生的结构体
+struct student
+{
+	string name;
+	int age;
+	int score;
+};
+
+int main()
+{
+
+	//创建学生的结构体变量
+	student s = { "张三",18,100 };
+
+	//通过指针指向结构体变量
+	student* p = &s;
+
+	//通过指针访问结构体变量中的数据
+	//通过结构体指针 访问结构体中的属性，需要利用 '->'
+	cout << "姓名：" << p->name << endl;
+	cout << "年龄：" << p->age << endl;
+	cout << "成绩：" << p->score << endl;
+
+	system("pause");
+	return 0;
+}
+```
+
+> 总结：结构体指针可以通过 -> 操作符 来访问结构体中的成员
+
+
+
+### 8.5 结构体嵌套结构体
+
+**作用：**结构体中的成员可以是另一个结构体
+
+**例如：**每个老师辅导一个学生，一个老师的结构体中，记录一个学生的结构体
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+//学生结构体的定义
+struct student
+{
+	string name;	//学生姓名
+	int age;		//学生年龄
+	int score;		//学生分数
+};
+
+//教师结构体的定义
+struct teacher
+{
+	int id;			//职工id
+	string name;	//职工姓名
+	int age;		//职工年龄
+	student stu1;	//子结构体 教的学生
+};
+
+int main()
+{
+
+	teacher t;
+	t.id = 10000;
+	t.name = "老王";
+	t.age = 50;
+	t.stu1.name = "小王";
+	t.stu1.age = 20;
+	t.stu1.score = 60;
+
+	cout << "老师编号：" << t.id << endl;
+	cout << "老师名字：" << t.name << endl;
+	cout << "老师年龄：" << t.age << endl;
+	cout << "老师辅导的学生姓名：" << t.stu1.name << endl;
+	cout << "老师辅导的学生年龄：" << t.stu1.age << endl;
+	cout << "老师辅导的学生分数：" << t.stu1.score << endl;
+
+	system("pause");
+	return 0;
+}
+```
+
+> 总结：在结构体中可以定义另一个结构体作为成员，用来解决实际问题
+
+
+
+### 8.6 结构体做函数参数
+
+**作用：**将结构体作为参数向函数中传递
+
+传递方式有两种：
+
+- 值传递（实参不被改变）
+- 地址传递（实参被改变）
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+//学生结构体定义
+struct student
+{
+	//姓名
+	string name;
+	//年龄
+	int age;
+	//分数
+	int score;
+};
+
+//打印学生信息的函数
+//1.值传递
+void printStudent1(student s)
+{
+	s.score = 100;
+	cout << "在子函数中 姓名：" << s.name << endl;
+	cout << "在子函数中 年龄：" << s.age << endl;
+	cout << "在子函数中 分数：" << s.score << endl; //100
+}
+
+//2.地址传递
+void printStudent2(student* p)
+{
+	p->score = 100;
+	cout << "在子函数2中 姓名：" << p->name << endl;
+	cout << "在子函数2中 年龄：" << p->age << endl;
+	cout << "在子函数2中 分数：" << p->score << endl; //100
+}
+
+int main()
+{
+
+	//结构体做函数参数
+	//将学生传入到一个参数中,打印学生身上的所有信息
+
+	//创建结构体变量
+	student s;
+	s.name = "张三";
+	s.age = 20;
+	s.score = 85;
+
+	printStudent1(s);
+	cout << "main函数中打印 姓名：" << s.name << endl;
+	cout << "main函数中打印 年龄：" << s.age << endl;
+	cout << "main函数中打印 分数：" << s.score << endl; //85
+
+	printStudent2(&s);
+	cout << "main函数中打印 姓名：" << s.name << endl;
+	cout << "main函数中打印 年龄：" << s.age << endl;
+	cout << "main函数中打印 分数：" << s.score << endl;  //100
+
+	system("pause");
+	return 0;
+}
+```
+
+> 总结：如果不想修改主函数中的数据，用值传递，反之用地址传递
+
+
+
+### 8.7 结构体中 const 的使用场景
+
+**作用：**用const来防止误操作
+
+- 值传递实际是复制出副本，太大不好优化
+- 要调用大的数据时可以直接地址传递
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+//const的使用场景
+
+struct student
+{
+	string name;//姓名
+	int age;//年龄
+	int score;//分数
+};
+
+//将函数中的形参改为指针，可以减少内存空间，而且不会复制新的副本出来
+void printStudent(const student* p) //指针只占4个字节
+{
+	//p->name = "李四"; 不行 加入const之后，一旦有修改的操作就会报错，可以防止我们误操作
+	cout << "学生姓名为：" << p->name << endl; // (*p).name 也可以
+	cout << "学生年龄为：" << p->age << endl;
+	cout << "学生分数为：" << p->score << endl;
+}
+
+int main()
+{
+
+	//创建结构体变量
+	student s = { "张三",15,70 };
+
+	//通过函数打印结构体变量的信息
+	printStudent(&s);
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+### 8.8 结构体案例
+
+#### 8.8.1 案例1
+
+**案例描述：**
+
+学校正在做毕设项目，每名老师带领5个学生，总共有3名老师，需求如下：
+
+设计学生和老师的结构体，其中在老师的结构体中，有老师姓名和一个存放5名学生的数组作为成员
+
+学生的成员有姓名、考试分数，创建数组存放3名老师，通过函数给每个老师及所带的学生赋值
+
+最终打印出老师数据以及老师所带的学生数据
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+#include <ctime>
+
+using namespace std;
+
+/*
+学校正在做毕设项目，每名老师带领5个学生，总共有3名老师，需求如下：
+
+设计学生和老师的结构体，其中在老师的结构体中，有老师姓名和一个存放5名学生的数组作为成员
+
+学生的成员有姓名、考试分数，创建数组存放3名老师，通过函数给每个老师及所带的学生赋值
+
+最终打印出老师数据以及老师所带的学生数据
+*/
+
+//创建老师结构体
+struct student
+{
+	string name;//学生姓名
+	int score;//学生分数
+};
+
+//创建学生结构体
+struct teacher
+{
+	string name;//老师姓名
+	student student[5];
+};
+
+//创建赋值函数
+void assign(teacher teacher[], int len)
+{
+	string nameSeed = "ABCDE";
+	//给老师赋值
+	for (int i = 0; i < len; i++)
+	{
+		teacher[i].name = "teacher_";
+		teacher[i].name += nameSeed[i];
+
+		//给学生赋值
+		for (int j = 0; j < 5; j++)
+		{
+			teacher[i].student[j].name = "student_";
+			teacher[i].student[j].name += nameSeed[j];
+
+			int random = rand() % 101; //随机数
+
+			teacher[i].student[j].score = random;
+		}
+	}
+}
+
+
+//打印所有信息
+void printInfo(teacher teacher[], int len)
+{
+	for (int i = 0; i < 3; i++)
+	{
+
+		cout << "教师姓名：" << teacher[i].name << endl;
+		cout << "学生信息：" << endl;
+
+		for (int j = 0; j < 5; j++)
+		{
+			cout << "学生姓名：" << teacher[i].student[j].name << endl;
+			cout << "学生成绩：" << teacher[i].student[j].score << endl;
+		}
+	}
+}
+
+int main()
+{
+	//随机数种子
+	srand((unsigned int)time(NULL));
+	//srand是C语言中的随机数种子函数，它与rand()函数一同使用，用来产生随机数。
+	//无符号整数（Unsigned Integer）是一种整数类型，用于存储正整数或零。它与有符号整数类型相似，但有一个重要的区别，即它不允许存储负数。
+	//time(NULL)函数返回当前时间的UTC时间戳，以秒为单位。
+	//记得包含头文件 #include <ctime>
+
+	//给学生和老师赋值
+	teacher teacher[3];
+	int len = sizeof(teacher) / sizeof(teacher[0]);
+	assign(teacher,len);
+	
+	//打印所有老师和学生的信息
+	printInfo(teacher, len);
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 8.8.2 案例2
+
+**案例描述：**
+
+设计一个英雄的结构体，包括成员姓名，年龄，性别；创建结构体数组，数组中存放5名英雄。
+
+通过冒泡排序的算法，将数组中的英雄按照年龄进行升序排序，最终打印排序后的结果。
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct hero
+{
+	string name;//名字
+	int age;//年龄
+	string sex;//性别
+};
+
+//冒泡排序算法
+void bubbleSort(hero revenger[], int len)
+{
+	for (int i = 0; i < len - 1; i++)
+	{
+		for (int j = 0; j < len - 1; j++)
+		{
+			if (revenger[j].age > revenger[j + 1].age)
+			{
+				hero temp = revenger[j];
+				revenger[j] = revenger[j + 1];
+				revenger[j + 1] = temp;
+			}
+		}
+	}
+}
+
+int main()
+{
+
+	/*
+	设计一个英雄的结构体，包括成员姓名，年龄，性别；创建结构体数组，数组中存放5名英雄。
+
+	通过冒泡排序的算法，将数组中的英雄按照年龄进行升序排序，最终打印排序后的结果。
+	*/
+
+	hero revenger[5] =
+	{
+		{"张三",18,"男"},
+		{"李四",19,"女"},
+		{"王五",20,"男"},
+		{"寅子",40,"男"},
+		{"表哥",23,"男"}
+	};
+	int len = sizeof(revenger) / sizeof(revenger[0]);
+
+	//冒泡排序
+	bubbleSort(revenger, len);
+
+	//打印排序后的结果
+	for (int i = 0; i < len; i++)
+	{
+		cout << "英雄名字：" << revenger[i].name << endl;
+		cout << "英雄年龄：" << revenger[i].age << endl;
+		cout << "英雄性别：" << revenger[i].sex << endl;
+		cout << endl;
+	}
+
+	system("pause");
+	return 0;
+}
 ```
 

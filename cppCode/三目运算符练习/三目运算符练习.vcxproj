@@ -163,8 +163,14 @@
     <ClCompile Include="测试代码.cpp" />
     <ClCompile Include="空指针.cpp" />
     <ClCompile Include="算法-冒泡排序.cpp" />
+    <ClCompile Include="结构体中const的使用场景.cpp" />
+    <ClCompile Include="结构体做函数参数.cpp" />
     <ClCompile Include="结构体定义使用.cpp" />
+    <ClCompile Include="结构体嵌套结构体.cpp" />
+    <ClCompile Include="结构体指针.cpp" />
     <ClCompile Include="结构体数组.cpp" />
+    <ClCompile Include="结构体案例1.cpp" />
+    <ClCompile Include="结构体案例2英雄排序.cpp" />
     <ClCompile Include="跳转语句break语句.cpp" />
     <ClCompile Include="野指针.cpp" />
     <ClCompile Include="默认模版.cpp" />
