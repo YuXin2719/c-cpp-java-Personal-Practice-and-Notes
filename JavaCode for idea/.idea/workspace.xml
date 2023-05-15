@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5895f94e-cdd9-4bfb-8fd7-b87fbd93c018" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/../cCode/Project1/.vs/Project1/FileContentIndex/2485d63c-aa71-4a73-a342-c5026b235697.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cCode/Project1/.vs/Project1/FileContentIndex/2a9c29be-e50f-4513-a467-d5f98fe4b05a.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cCode/Project1/.vs/Project1/FileContentIndex/a3a77fb8-35d9-4a87-a3e7-7a92ddd40a33.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cCode/Project1/.vs/Project1/v17/Browse.VC.db" beforeDir="false" afterPath="$PROJECT_DIR$/../cCode/Project1/.vs/Project1/v17/Browse.VC.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++.md" beforeDir="false" afterPath="$PROJECT_DIR$/../C++.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cppCode/三目运算符练习/.vs/程序流程结构练习（循环前没有）/FileContentIndex/05b75d75-4244-45d8-bb50-ea525caf3e44.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cppCode/三目运算符练习/.vs/程序流程结构练习（循环前没有）/FileContentIndex/18ad3b8d-a933-4741-b386-90ab44588115.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cppCode/三目运算符练习/.vs/程序流程结构练习（循环前没有）/FileContentIndex/9b3ea7b1-c8ba-49d0-8676-abf136f00f2b.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cppCode/三目运算符练习/.vs/程序流程结构练习（循环前没有）/FileContentIndex/d1eae6d3-3396-404d-b77a-d97d6f051d37.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cppCode/三目运算符练习/.vs/程序流程结构练习（循环前没有）/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../cppCode/三目运算符练习/.vs/程序流程结构练习（循环前没有）/v17/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cppCode/三目运算符练习/.vs/程序流程结构练习（循环前没有）/v17/Browse.VC.db" beforeDir="false" afterPath="$PROJECT_DIR$/../cppCode/三目运算符练习/.vs/程序流程结构练习（循环前没有）/v17/Browse.VC.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cppCode/三目运算符练习/三目运算符练习.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../cppCode/三目运算符练习/三目运算符练习.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cppCode/三目运算符练习/三目运算符练习.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/../cppCode/三目运算符练习/三目运算符练习.vcxproj.filters" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,12 +25,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "E:/c.---c.---java-exercise/JavaCode for idea"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/c.---c.---java-exercise/JavaCode for idea&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">

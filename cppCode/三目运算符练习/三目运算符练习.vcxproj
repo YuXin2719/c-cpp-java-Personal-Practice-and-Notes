@@ -44,14 +44,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -132,6 +132,8 @@
     <ClCompile Include="continue语句练习.cpp" />
     <ClCompile Include="dowhile水仙花案例练习.cpp" />
     <ClCompile Include="dowhile练习.cpp" />
+    <ClCompile Include="EasyX图像处理.cpp" />
+    <ClCompile Include="EasyX图形测试.cpp" />
     <ClCompile Include="for循环语句.cpp" />
     <ClCompile Include="for敲桌子练习.cpp" />
     <ClCompile Include="goto语句练习.cpp" />

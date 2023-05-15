@@ -3727,5 +3727,228 @@ int main()
 
 ## 九、课外补充
 
-### 9.1 分文件开发（自定义头文件）
+### 9.1 EasyX图形库
+
+### 9.1.1 EasyX简单介绍
+
+1. 安装：本质上，查找VS的安装目录，并将相关文件分别拷贝至lib目录和include目录
+2. 安装成功后，包含头文件 graphics.h 即可开始学习
+3. 帮助文档链接：https://docs.easyx.cn/zh-cn/intro'
+4. 仅用于c++
+
+
+
+#### 9.1.2 EasyX颜色
+
+> 补充：光的三原色是红、黄、蓝，我们表示颜色的使用就用三原色来表示
+
+- 用RGB宏合成颜色，实际上合成出来的颜色是一个十六进制的整数
+
+  **`RGB(红色部分，绿色部分，蓝色部分);`**
+
+  每个颜色部分的值都是从0~255
+
+
+
+#### 9.1.3 EasyX坐标和设备
+
+- 坐标默认的原点在窗口的左上角，X轴向右为正，Y轴向下为正，度量单位是像素点
+- 设备：简单来说，就是绘图表面
+  1. 在EasyX中，设备分两种，一种是默认的绘图窗口，另一种是IMAGE对象。通过SetWorkingImage()函数可以设置当前用于绘图的设备。设置当前用于绘图的设备以后，所有的绘图函数都会绘制在该设备上。（后面有详解）
+
+
+
+#### 9.1.4 窗口函数用于窗口的一些操作
+
+##### 初始化窗口
+
+- initgraph(int width,int height,int flag = NULL);	用于初始化绘图窗口（创建窗口）
+
+  width 	指定窗口的宽度
+
+  height	指定窗口的高度
+
+  flag		窗口的样式，默认为NULL
+
+- closegraph();   关闭绘图窗口
+
+- cleardevice();   清空绘图设备
+
+
+
+##### 绘图函数
+
+- 绘图函数从填充样式分类可分为无填充，有边框填充，无边框三种。
+
+  以画圆为例：
+
+  1. circle()		  无填充
+  2. fillcircle()      有边框填充
+  3. solidcircle()  无边框填充
+
+- 从形状来分，常用的可以分为八种
+
+  1. circle 画**圆**
+  2. ellipse 画**椭圆**
+  3. pie 画**扇形**
+  4. polygon 画**多边形**
+  5. rectangle 画**矩形**
+  6. roundrect 画**圆角矩形**
+  7. line 画**线**
+  8. putpixel 画**点**
+
+- 设置**填充颜色** setfillcolor(颜色);
+
+- 设置**线条颜色** setlinecolor(颜色);
+
+- 设置**线条样式** setlinestyle(高度,宽度,字体);
+
+
+
+​	**设置背景颜色**，以下两步必不可少(可以理解为设置的颜色在默认黑色背景的底下，然后清屏清除的是黑色)
+
+- 设置**背景颜色** setbkcolor(颜色);
+- **清屏**-清除原本背景颜色 cleardevice();
+
+
+
+- outtextxy(int x,int y,LPCTSTR str); 在**指定位置输出字符串**
+- settextcolor(COLORREF color); 设置当前**文字颜色**
+- settextstyle(int nHeight,int nWidth,LPCTSTR IpszFace) 设置**字体样式**
+  1. nHeight 指定高度
+  2. nWidth 字符的平均宽度。如果为0，则比例自适应
+  3. IpszFace 字体名称
+  4. 示例：`settextstyle(50, 0, "楷体");`
+
+
+
+以下两种函数可用于文本的垂直和水平居中显示
+
+- textheight(LPCTSTR str); 获取字符串实际占用的像素高度
+- textwidth(LPCTSTR str); 获取字符串实际占用的像素宽度
+
+**文字在矩形框居中示例代码：**
+
+```c++
+fillrectangle(200, 50, 500, 100);//填充一个矩形，参数为 左上角坐标+右下角坐标
+settextcolor(RGB(30, 30, 30));
+char arr[] = "居中显示测试";
+
+int width = textwidth(arr);//像素所占宽度
+int height = textheight(arr);//像素所占高度
+
+outtextxy(300 / 2 - width / 2 + 200, 50 / 2 - height / 2 + 50, "居中显示测试");//绘制字符串
+```
+
+
+
+**全部示例代码：**
+
+```c++
+#include <iostream>
+#include <string>
+#include <graphics.h>
+
+using namespace std;
+
+int main()
+{
+	//创建一个窗口，确定窗口大小，show console 显示控制台
+	initgraph(640,480,SHOWCONSOLE);
+
+	//设置背景以下两步必不可少
+	//设置背景颜色
+	setbkcolor(YELLOW);
+	cleardevice();//清屏，清除黑色背景
+
+	//画粑粑，圆
+	setlinestyle(PS_SOLID, 5);//设置线条样式
+	setfillcolor(GREEN);//设置填充颜色
+	setlinecolor(BLUE);//设置线条颜色
+	circle(50, 50, 50);
+	fillcircle(50, 150, 50);
+	solidcircle(50, 250, 50);
+
+	//设置字体颜色
+	settextcolor(BLACK);
+
+	//设置字体样式，大小，字体..
+	settextstyle(20, 0, "楷体");
+
+	//设置背景模式 transparent-透明
+	setbkmode(TRANSPARENT);
+
+	//设置字体颜色
+	settextcolor(RGB(85, 177, 85));
+
+	//绘制文字
+	outtextxy(50, 50, 'a');//绘制字符
+
+	outtextxy(60, 50, "大家好");//绘制字符串
+
+	//把文字居中
+	fillrectangle(200, 50, 500, 100);//填充一个矩形，参数为 左上角坐标+右下角坐标
+	settextcolor(RGB(30, 30, 30));
+	char arr[] = "居中显示测试";
+
+	int width = textwidth(arr);//像素所占宽度
+	int height = textheight(arr);//像素所占高度
+
+	outtextxy(300 / 2 - width / 2 + 200, 50 / 2 - height / 2 + 50, "居中显示测试");//绘制字符串
+
+
+	//如果参数错误，找不到对应的函数
+	//是由于字符集导致的，那么解决方案有三种
+	// 
+	//1.在字符串前面加大写的L           常用
+	//outtextxy(50, 50, L"大家好");
+	// 
+	//2.用TEXT()把字符串包起来
+	//outtextxy(50, 50, TEXT("大家好"));
+	//
+	//3.用__TEXT()把字符串包起来
+	//
+	//实际上 TEXT() -> __TEXT() -> L"文本"
+	//
+	//4.不用添加任何代码，进 项目 -> 属性 -> 配置属性 -> 常规 -> 字符集 -> 改为多字节字符集    推荐使用这个！
+	int maye = 0;
+	cin >> maye;
+	cout << maye << endl;
+
+	//关闭窗口
+	closegraph();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#####  显示图片
+
+- 在使用图像之前，需要定义一个变量（对象），然后把图片加载进变量才能使用。
+  1. 平时定义变量都是使用的基础数据类型，比如：`int temp;`
+  2. 在使用图像的时候需要使用EasyX提供给我们的类型：IMAGE，如IMAGE img;
+
+
+
+- loadimage(IMAGE* pDstlmg,LPCTSTR plmgFile,int nWidth = 0,int nHeight = 0,bool bResize = false);从文件中读取图像
+  1. pDstlmg			//保存图像的IMAGE对象指针
+  2. plmgFile            //图片文件名
+  3. nWidth = 0       //图片的拉伸宽度
+  4. nHeight = 0      //图片的拉伸高度
+  5. bResize = false //是否调整IMAGE的大小以适应图片
+
+
+
+- putimage(int dstX,int dstY,IMAGE* pSrclmg,DWORD dwRop = SRCCOPY);在当前设备上绘制指定的图像
+  1. dstX					        //绘制位置的x坐标
+  2. dstY                            //绘制位置的y坐标
+  3. pSrclmg                     //要绘制的IMAGE对象指针
+  4. dwRop = SRCCOPY   //三元光栅操作码
+
+
+
+##### 鼠标操作
 

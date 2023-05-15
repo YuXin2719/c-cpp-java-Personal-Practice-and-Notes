@@ -153,6 +153,12 @@
     <ClCompile Include="结构体案例2英雄排序.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="EasyX图形测试.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="EasyX图像处理.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="swap.h">

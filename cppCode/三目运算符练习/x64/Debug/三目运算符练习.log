@@ -1,4 +1,10 @@
 ﻿E:\vs\vs2022\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: 中间目录(x64\Debug\)包含从另一个项目(三目运算符练习.vcxproj, 程序流程结构练习（不全）.vcxproj)共享的文件。   这会导致错误的清除和重新生成行为。
-  默认模版.cpp
-E:\c.---c.---java-exercise\cppCode\三目运算符练习\默认模版.cpp(156): warning C4715: “isWin”: 不是所有的控件路径都返回值
-  三目运算符练习.vcxproj -> E:\c.---c.---java-exercise\cppCode\三目运算符练习\x64\Debug\程序流程结构练习（循环前没有）.exe
+  EasyX图形测试.cpp
+E:\c.---c.---java-exercise\cppCode\三目运算符练习\EasyX图形测试.cpp(31,2): error C2665: “outtextxy”: 没有重载函数可以转换所有参数类型
+E:\vs\vs2022\VC\Auxiliary\VS\include\easyx.h(226,6): message : 可能是“void outtextxy(int,int,TCHAR)”
+E:\c.---c.---java-exercise\cppCode\三目运算符练习\EasyX图形测试.cpp(31,2): message : “void outtextxy(int,int,TCHAR)”: 无法将参数 3 从“const char [7]”转换为“TCHAR”
+E:\c.---c.---java-exercise\cppCode\三目运算符练习\EasyX图形测试.cpp(31,21): message : 没有使该转换得以执行的上下文
+E:\vs\vs2022\VC\Auxiliary\VS\include\easyx.h(225,6): message : 或    “void outtextxy(int,int,LPCTSTR)”
+E:\c.---c.---java-exercise\cppCode\三目运算符练习\EasyX图形测试.cpp(31,2): message : “void outtextxy(int,int,LPCTSTR)”: 无法将参数 3 从“const char [7]”转换为“LPCTSTR”
+E:\c.---c.---java-exercise\cppCode\三目运算符练习\EasyX图形测试.cpp(31,21): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+E:\c.---c.---java-exercise\cppCode\三目运算符练习\EasyX图形测试.cpp(31,2): message : 尝试匹配参数列表“(int, int, const char [7])”时
