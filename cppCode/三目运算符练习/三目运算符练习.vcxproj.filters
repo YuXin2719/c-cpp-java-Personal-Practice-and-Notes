@@ -159,6 +159,12 @@
     <ClCompile Include="EasyX图像处理.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="EasyX鼠标操作.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="EasyX键盘消息.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="swap.h">

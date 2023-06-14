@@ -3872,7 +3872,7 @@ int main()
 	//设置字体颜色
 	settextcolor(BLACK);
 
-	//设置字体样式，大小，字体..
+	//设置字体大小，样式，字体..
 	settextstyle(20, 0, "楷体");
 
 	//设置背景模式 transparent-透明
@@ -3950,5 +3950,388 @@ int main()
 
 
 
+**示例代码：**
+
+```c++
+#include <iostream>
+#include <string>
+#include <graphics.h>
+
+using namespace std;
+
+int main()
+{
+
+	initgraph(640, 480, SHOWCONSOLE);
+	cleardevice();
+
+	//输出图片
+	IMAGE img;//定义一个对象
+	//加载图片
+	//相对路径 ./表示当前文件夹下（源文件所在的目录），../是当前文件夹的上一级目录
+	//绝对路径 
+	loadimage(&img, "../666.jpg",640,480);
+	putimage(0, 0, &img);//(0,0)图片锚点是左上角
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
 ##### 鼠标操作
 
+**示例：**
+
+```c++
+#include <iostream>
+#include <string>
+#include <easyx.h>
+
+using namespace std;
+
+void button(int x, int y, int w, int h,const char arr[])
+{
+	setbkmode(TRANSPARENT);
+	setfillcolor(BROWN);
+	settextstyle(30, 0, "黑体");
+	fillroundrect(x, y, x + w, x + h, 10, 10);//10是圆角有多圆
+
+	int width = textwidth(arr);
+	int height = textheight(arr);
+
+	outtextxy(w / 2 - width / 2 + x, h / 2 - height / 2 + y, arr);
+}
+
+int main()
+{
+
+	initgraph(640, 480, EX_SHOWCONSOLE);
+	button(50,50,150,150,"botton");
+
+	ExMessage msg;
+	while (1)
+	{
+		if (peekmessage(&msg, EX_MOUSE))
+		{
+			switch (msg.message)
+			{
+			case WM_LBUTTONDOWN:
+				if (msg.x >= 50 && msg.x <= 50 + 150 && msg.y >= 50 && msg.y <= 50 + 150)
+				{
+					cout << "我是按钮，我被点击了" << endl;
+				}
+				break;
+			default:
+				break;
+			}
+		}
+	}
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+##### 非EasyX函数——键盘消息函数
+
+**键盘消息函数用于获取键盘按键消息**
+
+- getch();
+
+  需要头文件conio.h
+
+  
+
+- getAsyncKeyState(键值);
+
+  需要头文件windows.h,但是由于EasyX包含了windows头文件，所以无需自己包含
+
+  (其他需要windows头文件的函数也一样，但是需要在graphics.h的下方包含：比如放音乐的头文件mmsystem.h)
+
+  
+
+- getch(); 需要使用返回值来判断
+
+  1. 与非ASCII表字符的按键比较，需要使用虚拟键值
+
+     上：72	下：80	左：75	右：77
+
+  2. 如果是与字母比较直接写字母，比如'A'
+
+  3. 详细使用方法，请看下图 (↓)
+
+     
+
+- getAsyncKeyState(键值);需要传入一个键值，如果按下返回真
+
+  上：VK_UP	下：VK_DOWN	左：VK_LEFT	右：VK_RIGHT
+
+![QQ截图20230516183514](E:\c.---c.---java-exercise\photo\QQ截图20230516183514.png)
+
+
+
+- 在设备上不断进行绘图操作时，会产生闪屏现象，针对这个现象，我们需要两个函数处理：
+  1. BeginBatchDraw(); 开始批量绘图
+  2. ---中间放置绘图代码---
+  3. EndBatchDraw(); 结束批量绘制
+- GetHWnd(); 获取窗口句柄，获取之后可以用来操作窗口
+
+
+
+### 9.2 容器map
+
+#### 9.2.1 map简介
+
+map是c++标准模板库（STL）的一个关联容器，提供一对一的映射关系
+
+“第一个”称为关键字（key），别名first，每个关键字只能在map中出现一次
+
+“第二个”称为该关键字的值（value），别名second
+
+
+
+**例：**建立一个朋友数据表，保存多个“姓名-电话号码”的对应关系，并保存在某种数据结构中
+
+​	如：**`张三-123456`**
+
+那么，可以定义一个map对象
+
+**`map < string , string > friends;`**
+
+把 朋友-电话号码 保存在friends中：
+
+**`friends.insert("张三","123456"); //通过insert函数把张三以及对应他的电话号码保存在friends里面`** 
+
+要查询朋友的号码，通过
+
+**`cout << "张三的电话号码是：" << friends.find("张三")；`**
+
+```c++
+#include <iostream>
+#include <string>
+#include <map>
+
+using namespace std;
+
+int main()
+{
+
+	map<string, string>friends; //创建一个map映射
+
+	friends.insert(pair<string, string>("张三", "123456"));
+    //pair 由两个元素组成，分别命名为 first 和 second，它们可以是不同类型的任意数据类型，如 int，string 等。
+    //pair<string, string> 表示一个键和关联值都是 string 类型的 pair 对象。例如 pair<string, string> mypair ("hello", "world"); 用来定义一个字符串 “hello” 与字符串 “world” 的键值对形式的 pair 对象。
+
+	cout << "张三的电话号码是：" << friends.find("张三")->second; //find查询功能，second指电话号码
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+**例：**给出一段英文
+
+abacsdf
+
+统计其中每个字母出现的次数
+
+定义 `map<char,int>cnt; //把每个字母出现的次数保存在cnt中`
+
+```c++
+#include <iostream>
+#include <string>
+#include <map>
+
+using namespace std;
+
+int main()
+{
+    map<char, int> cnt;    // 把每个字符出现的次数保存在 cnt 中
+
+    cnt.insert(pair<char, int>('a', 1));
+    cnt.insert(pair<char, int>('c', 1));    // 插入 ('c', 1) 键值对
+
+    // 将 a 字符的值增加 1
+    cnt['a']++;
+
+    // 输出每个字符出现的次数
+    for (auto& p : cnt) {
+        cout << p.first << ": " << p.second << endl;
+    }
+    /*
+    这是一个 C++ 11 引入的基于范围的 for 循环，也称为 for-each 循环，用于遍历容器（比如 vector，map，set 等）中的元素，无需使用迭代器，简化了代码的书写。
+    对于 map 容器，每个元素都是一对键值对，
+    因此 for (auto& p : cnt) 表示遍历 cnt 容器的所有元素，对于每个元素，auto& p 表示取出容器中的一个键值对，即键在 p.first 中，关联值在 p.second 中。
+    */
+
+    system("pause");
+    return 0;
+}
+```
+
+
+
+map以模版（泛型）的方式实现，可以储存任意类型的数据，包括使用者自定义的数据类型
+
+如：
+
+```c++
+map<int,int>mp;
+map<int,string>m2;
+map<string,string>m3;
+map<float,int>m4;
+map<person,int>m6; //创建一个key位person型、value为int类型的map对象
+```
+
+
+
+在map内部所有的数据都是有序的
+
+map由一棵红黑树实现，这棵树具有对数据自动排序的功能
+
+
+
+#### 9.2.2 插入元素
+
+`map<int,string>student;`
+
+方式一：用insert函数插入pair
+
+`student.insert(pair<int,string>(0,"Zhangsan"));`
+
+方式二：用insert函数插入value_type数据：
+
+`student.insert(map<int,string>::value_type(1,"Lisi"));`
+
+方式三：用类似数组的方式增加元素：
+
+`student[123]="Wangwu";`
+
+
+
+#### 9.2.3 查找元素
+
+find()返回一个迭代器，指向查找的元素，
+
+找不到，则返回map::end()位置(NULL)
+
+```c++
+iter = student.find(123);
+if(iter!=student.end())
+	cout<<"found,the value is"<<iter->second;
+else
+    cout<<"not found";
+```
+
+
+
+如果关键字是整型，也可以通过
+
+student[1]读取关键字1对应的值，如"Lisi"
+
+
+
+#### 9.2.4 引用方法
+
+map<int,int>mp1;
+
+**第一种情况**
+
+int sum = 100;
+
+mp1[10] = 3;
+
+sum += map1[10]; //mp1中存在关键字10，它的对应值是3，所以sum累加后变为103
+
+**第二种情况**
+
+int sum = 100;
+
+sum += map1[10]; //mp1中不存在关键字10，所以mp1返回的值是0，sum累加后仍为100
+
+**第三种情况**
+
+mp1[10]=3;
+
+mp1[10]++; //mp1[10]的值变为4
+
+**第四种情况**
+
+mp1[20]++; //因关键字20不存在，增加一个关键字20，且其值从0自增到1
+
+即mp1增加一个元素<20,1>
+
+
+
+### 9.3 二叉数基本
+
+根节点
+
+左子树指针
+
+右子树指针
+
+孩子节点	LChild/2=parent（**完全二叉树**中任何一个**左**孩子节点除以2都等于父亲节点）
+
+父节点
+
+兄弟节点
+
+姊妹节点
+
+二叉树编序号从1开始
+
+单一个体：结构体写法
+
+#### 9.3.1 基本概念
+
+1. 空二叉树：就是**结构体指针**	tree=NULL
+2. **只有根**节点的二叉树
+3. **只有左**子树或者**右**子树的二叉树
+4. **左右子树都存在**的二叉树
+   1. 完全二叉树：**除了叶子节点**（最后一个节点）之外，其他都是满的
+   2. 满二叉树：左右子树**都是完整**的
+
+
+
+#### 9.3.2 遍历
+
+![屏幕截图 2023-06-13 204018](E:\c.---c.---java-exercise\photo\屏幕截图 2023-06-13 204018.png)
+
+另：
+
+层次遍历：就是从上到下依次遍历 ABC
+
+前序遍历也叫先序遍历
+
+![屏幕截图 2023-06-13 204508](E:\c.---c.---java-exercise\photo\屏幕截图 2023-06-13 204508.png)
+
+![屏幕截图 2023-06-13 205400](E:\c.---c.---java-exercise\photo\屏幕截图 2023-06-13 205400.png)
+
+
+
+#### 9.3.3 创建、连接二叉树
+
+![屏幕截图 2023-06-13 212339](E:\c.---c.---java-exercise\photo\屏幕截图 2023-06-13 212339.png)
+
+
+
+## 十、通讯录管理系统
+
+
+
+### 10.1 系统要求
+
+通讯录是一个可以记录亲人、好友的工具
+
+本教程主要利用C++来实现一个通讯录管理系统
+
+系统中需要实现的功能如下：
+
+- 添加联系人：向通讯录
