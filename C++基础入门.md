@@ -936,7 +936,7 @@ if语句的三种形式
 
 1.单行格式的if语句：**`if(条件){条件满足的语句}`**
 
-<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-04 182131.png" alt="屏幕截图 2023-05-04 182131" style="zoom: 50%;" />
+<img src="https://gitee.com/YuXinHome/blogimg/raw/master/屏幕截图 2023-05-04 182131.png" alt="屏幕截图 2023-05-04 182131" style="zoom: 50%;" />
 
 **示例：**
 
@@ -968,7 +968,7 @@ int main()
 
 2.多行格式if语句：**`if(条件){条件满足的语句}else{条件不能满足的语句};`**
 
-<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-04 183531.png" alt="屏幕截图 2023-05-04 183531" style="zoom:50%;" />
+<img src="https://gitee.com/YuXinHome/blogimg/raw/master/屏幕截图 2023-05-04 183531.png" alt="屏幕截图 2023-05-04 183531" style="zoom:50%;" />
 
 **示例：**
 
@@ -1135,7 +1135,7 @@ int main()
 
 有三只小猪ABC，请分别输入三只小猪的体重，并且判断哪只小猪最重？
 
-<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-05 131212.png" alt="屏幕截图 2023-05-05 131212" style="zoom:50%;" />
+<img src="https://gitee.com/YuXinHome/blogimg/raw/master/屏幕截图 2023-05-05 131212.png" alt="屏幕截图 2023-05-05 131212" style="zoom:50%;" />
 
 ```c++
 #include <string>
@@ -1326,7 +1326,7 @@ int main()
 
 **解释：**只要循环条件为真，就执行语句
 
-<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-05 155135.png" alt="屏幕截图 2023-05-05 155135" style="zoom:50%;" />
+<img src="https://gitee.com/YuXinHome/blogimg/raw/master/屏幕截图 2023-05-05 155135.png" alt="屏幕截图 2023-05-05 155135" style="zoom:50%;" />
 
 **示例：**
 
@@ -1361,11 +1361,11 @@ int main()
 
 **案例描述：**系统随机生成一个1-100之间的数字，玩家进行猜测，如果猜错，提示玩家数字过大或者过小，如果猜对恭喜玩家胜利，并且退出游戏
 
-<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-05 161445.png" alt="屏幕截图 2023-05-05 161445" style="zoom:50%;" />
+<img src="https://gitee.com/YuXinHome/blogimg/raw/master/屏幕截图 2023-05-05 161445.png" alt="屏幕截图 2023-05-05 161445" style="zoom:50%;" />
 
 流程图：
 
-<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-05 161751.png" alt="屏幕截图 2023-05-05 161751" style="zoom:50%;" />
+<img src="https://gitee.com/YuXinHome/blogimg/raw/master/屏幕截图 2023-05-05 161751.png" alt="屏幕截图 2023-05-05 161751" style="zoom:50%;" />
 
 
 
@@ -1450,7 +1450,7 @@ int main()
 
 **注意：**与while的区别在于==do...while会先执行一次循环语句==，再判断循环条件
 
-<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-05 170940.png" alt="屏幕截图 2023-05-05 170940" style="zoom:50%;" />
+<img src="https://gitee.com/YuXinHome/blogimg/raw/master/屏幕截图 2023-05-05 170940.png" alt="屏幕截图 2023-05-05 170940" style="zoom:50%;" />
 
 **示例：**
 
@@ -1586,7 +1586,7 @@ int main()
 
 **详解：**
 
-<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-05 181224.png" alt="屏幕截图 2023-05-05 181224" style="zoom:50%;" />
+<img src="https://gitee.com/YuXinHome/blogimg/raw/master/屏幕截图 2023-05-05 181224.png" alt="屏幕截图 2023-05-05 181224" style="zoom:50%;" />
 
 > 注意：for循环中的表达式，要用分号进行分隔
 
@@ -1598,7 +1598,7 @@ int main()
 
 案例描述：从1开始数到数字100，如果数字个位含有7，或者数字十位含有7，或者该数字是7的倍数，我们打印敲桌子，其余数字直接打印输出
 
-<img src="E:\c.---c.---java-exercise\photo\c6d7ce76d327e87a.gif" alt="c6d7ce76d327e87a"  />
+<img src="https://gitee.com/YuXinHome/blogimg/raw/master/c6d7ce76d327e87a.gif" alt="c6d7ce76d327e87a"  />
 
 **示例：**
 
@@ -1636,7 +1636,7 @@ int main()
 
 例如我们想在屏幕中打印如下图片，就需要利用嵌套循环
 
-<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-05 182822.png" alt="屏幕截图 2023-05-05 182822" style="zoom:50%;" />
+<img src="https://gitee.com/YuXinHome/blogimg/raw/master/屏幕截图 2023-05-05 182822.png" alt="屏幕截图 2023-05-05 182822" style="zoom:50%;" />
 
 
 
@@ -1677,7 +1677,7 @@ int main()
 
 案例描述：利用嵌套循环，实现九九乘法表
 
-<img src="E:\c.---c.---java-exercise\photo\669bc2f8c200491583e3e4088506f3a1.jpeg" alt="669bc2f8c200491583e3e4088506f3a1" style="zoom: 67%;" />
+<img src="https://gitee.com/YuXinHome/blogimg/raw/master/669bc2f8c200491583e3e4088506f3a1.jpeg" alt="669bc2f8c200491583e3e4088506f3a1" style="zoom: 67%;" />
 
 
 
@@ -1837,7 +1837,7 @@ int main()
 
 **解释：**如果标记的名称存在的话，执行到goto语句时，会跳转到标记的位置
 
-<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-06 162132.png" alt="屏幕截图 2023-05-06 162132" style="zoom:50%;" />
+<img src="https://gitee.com/YuXinHome/blogimg/raw/master/屏幕截图 2023-05-06 162132.png" alt="屏幕截图 2023-05-06 162132" style="zoom:50%;" />
 
 **示例：**
 
@@ -2158,7 +2158,7 @@ int main()
 
 二位数组就是在一维数组的基础上，多加一个维度
 
-<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-06 192827.png" alt="屏幕截图 2023-05-06 192827" style="zoom:50%;" />
+<img src="https://gitee.com/YuXinHome/blogimg/raw/master/屏幕截图 2023-05-06 192827.png" alt="屏幕截图 2023-05-06 192827" style="zoom:50%;" />
 
 
 
@@ -2175,7 +2175,7 @@ int main()
 
 图例：**`arr[2][3]`↓**
 
-<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-06 193934.png" alt="屏幕截图 2023-05-06 193934" style="zoom:50%;" />
+<img src="https://gitee.com/YuXinHome/blogimg/raw/master/屏幕截图 2023-05-06 193934.png" alt="屏幕截图 2023-05-06 193934" style="zoom:50%;" />
 
 **示例：**
 
@@ -2400,9 +2400,9 @@ int main()
 
 **图例：**
 
-<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-06 222220.png" alt="屏幕截图 2023-05-06 222220" style="zoom:50%;" />
+<img src="https://gitee.com/YuXinHome/blogimg/raw/master/屏幕截图 2023-05-06 222220.png" alt="屏幕截图 2023-05-06 222220" style="zoom:50%;" />
 
-<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-06 223422.png" alt="屏幕截图 2023-05-06 223422" style="zoom:50%;" />
+<img src="https://gitee.com/YuXinHome/blogimg/raw/master/屏幕截图 2023-05-06 223422.png" alt="屏幕截图 2023-05-06 223422" style="zoom:50%;" />
 
 **加法示例代码：**
 
@@ -2762,7 +2762,7 @@ int main()
 
 
 
-<img src="E:\c.---c.---java-exercise\photo\屏幕截图 2023-05-07 014454.png" alt="屏幕截图 2023-05-07 014454" style="zoom:50%;" />
+<img src="https://gitee.com/YuXinHome/blogimg/raw/master/屏幕截图 2023-05-07 014454.png" alt="屏幕截图 2023-05-07 014454" style="zoom:50%;" />
 
 
 
