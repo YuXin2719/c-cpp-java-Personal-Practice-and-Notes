@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "C++进阶练习", "C++进阶练习.vcxproj", "{6FD4A55F-7348-47FB-BEB0-4C06A723987C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6FD4A55F-7348-47FB-BEB0-4C06A723987C}.Debug|x64.ActiveCfg = Debug|x64
+		{6FD4A55F-7348-47FB-BEB0-4C06A723987C}.Debug|x64.Build.0 = Debug|x64
+		{6FD4A55F-7348-47FB-BEB0-4C06A723987C}.Debug|x86.ActiveCfg = Debug|Win32
+		{6FD4A55F-7348-47FB-BEB0-4C06A723987C}.Debug|x86.Build.0 = Debug|Win32
+		{6FD4A55F-7348-47FB-BEB0-4C06A723987C}.Release|x64.ActiveCfg = Release|x64
+		{6FD4A55F-7348-47FB-BEB0-4C06A723987C}.Release|x64.Build.0 = Release|x64
+		{6FD4A55F-7348-47FB-BEB0-4C06A723987C}.Release|x86.ActiveCfg = Release|Win32
+		{6FD4A55F-7348-47FB-BEB0-4C06A723987C}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CEA96015-6868-4185-9CE5-23DBA5A9ACF9}
+	EndGlobalSection
+EndGlobal
