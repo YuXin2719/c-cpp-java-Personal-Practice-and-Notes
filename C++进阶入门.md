@@ -420,6 +420,84 @@ int main()
 **示例：**
 
 ```c++
+#include <iostream>
+
+using namespace std;
+
+//交换函数
+
+//1.值传递
+void mySwap01(int a,int b)
+{
+	int temp = a;
+	a = b;
+	b = temp;
+	cout << "swap01 a = " << a << endl;
+	cout << "swap01 b = " << b << endl;
+}
+
+//2.地址传递
+void mySwap02(int* a, int* b)
+{
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+//3.引用传递
+void mySwap03(int& a, int& b)
+{
+	int temp = a;
+	a = b;
+	b = temp;
+}
+
+int main()
+{
+
+	int a = 10;
+	int b = 20;
+
+	mySwap01(a, b); //值传递，形参不会修饰实参
+
+	mySwap02(&a, &b); //地址传递，修饰实参
+	cout << "swap02 a = " << a << endl;
+	cout << "swap02 b = " << b << endl;
+
+	a = 10;
+	b = 20;
+	mySwap03(a, b); //引用传递，形参也会修饰实参
+	cout << "swap03 a = " << a << endl;
+	cout << "swap03 b = " << b << endl;
+
+	system("pause");
+	return 0;
+}
+```
+
+**总结：**	通过引用参数产生的效果同按地址传递是一样的，引用的语法更清楚简单
+
+1. 值传递，形参==不会修饰实参==
+2. 地址传递，==修饰实参==
+3. 引用传递，形参也==会修饰实参==
+
+
+
+### 2.4 引用做函数返回值
+
+作用：引用是可以作为函数的返回值存在的
+
+
+
+注意：**不要返回局部变量引用**
+
+用法：函数调用作为左值
+
+
+
+**示例：**
+
+```c++
 
 ```
 

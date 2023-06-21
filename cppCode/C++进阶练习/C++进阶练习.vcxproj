@@ -130,6 +130,7 @@
     <ClCompile Include="new操作符.cpp" />
     <ClCompile Include="全局区.cpp" />
     <ClCompile Include="堆区.cpp" />
+    <ClCompile Include="引用做函数参数.cpp" />
     <ClCompile Include="引用基本语法.cpp" />
     <ClCompile Include="引用注意事项.cpp" />
     <ClCompile Include="栈区.cpp" />
