@@ -498,6 +498,136 @@ int main()
 **示例：**
 
 ```c++
+#include <iostream>
 
+using namespace std;
+
+//引用做函数返回值
+//1.不要返回局部变量的引用
+int& test01()
+{
+	int a = 10; //局部变量 存放在 栈区
+	return a;
+}
+
+//2.函数的调用可以作为左值
+int& test02()
+{
+	static int a = 10; //静态变量，存放在全局区，全局区上的数据在程序结束后系统释放
+	return a;
+}
+
+int main()
+{
+
+	//int& ref = test01(); //&ref = a
+
+	//cout << "ref = " << ref << endl; //第一次结果正确，因为编译器做了保留
+	//cout << "ref = " << ref << endl; //第二次结果错误，因为a的内存已经释放
+
+	int& ref2 = test02();
+	
+	cout << "ref2 = " << ref2 << endl;
+	cout << "ref2 = " << ref2 << endl; //均正确
+
+	//如果函数作左值，那么必须返回引用
+	test02() = 1000; //如果函数的返回值是引用（返回的是 a 的本身），则这个函数调用可作为左值
+
+	cout << "ref2 = " << ref2 << endl;
+
+
+	system("pause");
+	return 0;
+}
 ```
 
+
+
+### 2.5 引用的本质
+
+本质：**引用的本质在C++内部实现是一个指针常量**
+
+讲解示例：
+
+```c++
+#include <iostream>
+
+using namespace std;
+
+//发现是引用，转换为 int* const ref = &a;
+void func(int& ref)
+{
+	ref = 100; //ref是引用，转换为*ref = 100
+}
+
+int main()
+{
+
+	int a = 10;
+
+	//自动转换为 int* cosnt ref = &a; 指针常量是指针指向不可改，也说明为什么引用不可更改
+	int& ref = a;
+	ref = 20; //内部发现ref是引用，自动帮我们转换为:*ref = 20;
+
+	cout << "a = " << a << endl;
+	cout << "ref = " << ref << endl;
+
+	system("pause");
+	return 0;
+}
+```
+
+![屏幕截图 2023-06-30 202117](https://gitee.com/YuXinHome/blogimg/raw/master/屏幕截图 2023-06-30 202117.png)
+
+==结论：==C++推荐使用引用技术，因为语法方便，引用本质是指针常量，但是所有的指针编译器都帮我们做了
+
+1. 引用的本质 就是一个指针常量
+2. 引用一旦初始化后，就不可以发生改变
+
+
+
+### 2.6 常量引用
+
+**作用：**常量引用主要用来修饰实参，防止误操作
+
+在函数形参列表中，可以加==const修饰形参==，防止形参改变实参
+
+**示例：**
+
+```c++
+#include <iostream>
+
+using namespace std;
+
+//打印数据函数
+void showValue(const int& val)
+{
+	//val = 1000;
+	cout << "val = " << val << endl;
+}
+
+int main()
+{
+
+	//常量引用
+	//使用场景，用来修饰形参，防止误操作
+
+	//int a = 10;
+
+	//加上const之后 编译器将代码修改为 int temp = 10; const int& ref = temp;
+	//const int& ref = 10; //引用必须引一块合法的内存空间
+	//ref = 20; //加入const之后变为只读，不可以修改
+
+	//int& ref = a;
+
+	int a = 100;
+	showValue(a);
+
+	cout << "a = " << a << endl;
+
+	system("pause");
+	return 0;
+}
+```
+
+==重点：==`void showValue(const int& val)`中的`const int& val`

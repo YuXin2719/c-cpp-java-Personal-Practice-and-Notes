@@ -39,5 +39,17 @@
     <ClCompile Include="引用做函数参数.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="引用做函数返回值.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="引用的本质.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="常量引用.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="函数默认参数.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
