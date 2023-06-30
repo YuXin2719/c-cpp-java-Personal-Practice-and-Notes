@@ -631,3 +631,302 @@ int main()
 ```
 
 ==重点：==`void showValue(const int& val)`中的`const int& val`
+
+
+
+## 三、函数提高
+
+### 3.1 函数默认参数
+
+
+
+在C++中，函数的形参列表中的形参是可以有默认值的
+
+语法：`返回值类型 函数名 (参数 = 默认值){}`
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+
+using namespace std;
+
+//函数默认参数
+
+//如果我们自己传入数据，就用自己的数据，如果没有，那么用默认值
+//语法：返回值类型 函数名(形参 = 默认值){}
+int func(int a, int b = 20, int c = 30)
+{
+	return a + b + c;
+}
+
+//注意事项
+//1.如果某个位置已经有了默认参数，那么从这个位置往后，从左到右都必须有默认值
+//	假如 func2 中的 b 被初始化赋值，则 c 和 d 都需要初始化赋值
+int func2(int a, int b = 10, int c = 10, int d = 10)
+{
+	return a + b + c;
+}
+
+//2.如果函数声明有默认参数，函数实现不能有默认参数
+//	声明和实现只能有一个默认参数
+int func3(int a, int b);
+
+int func3(int a = 10, int b = 10)
+{
+	return a + b;
+}
+
+int main()
+{
+
+	cout << func(10,30) << endl;
+
+	cout << func3(10, 10) << endl;
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+### 3.2 函数占位参数
+
+
+
+C++中函数的形参列表里可以有占位参数，用来做占位，调用函数时必须填补该位置
+
+
+
+**语法：**`返回值类型 函数名  (数据类型){}`
+
+
+
+在现阶段函数的占位参数存在意义不大，但是后面的课程中会用到该技术
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+
+using namespace std;
+
+//占位参数
+//返回值类型 函数名 (数据类型) {}
+
+//目前阶段的占位参数，我们还用不到，后面的课程中会用到
+//占位参数 还可以有默认参数
+void func(int a,int = 10)
+{
+	cout << "this is function" << endl;
+}
+
+int main()
+{
+
+	func(10);
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+### 3.3 函数重载
+
+#### 3.3.1 函数重载概述
+
+
+
+**作用：**函数名可以相同，提高复用性
+
+
+
+**函数重载满足条件：**
+
+- 同一个作用域下
+- 函数名称相同
+- 函数参数**类型不同** 或者 **个数不同** 或者 **顺序不同**
+
+
+
+**注意：**函数的返回值不可以作为函数重载的条件
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+
+using namespace std;
+
+//函数重载
+//可以让函数名相同，提高复用性
+
+//函数重载的满足条件
+//1.同一个作用域下
+//2.函数名称相同
+//3.函数参数类型不同，或者个数不同，或者顺序不同
+void func()
+{
+	cout << "func的调用" << endl;
+}
+
+void func(int a)
+{
+	cout << "func(int a)的调用" << endl;
+}
+
+void func(double a)
+{
+	cout << "func(double a)的调用" << endl;
+}
+
+void func(int a,double b)
+{
+	cout << "func(int a,double b)的调用" << endl;
+}
+
+void func(double a, int b)
+{
+	cout << "func(double a, int b)的调用" << endl;
+}
+
+//注意事项
+//函数的返回值不可以作为函数重载的条件，如下错误
+
+//int func(double a, int b)
+//{
+//	cout << "func(double a, int b)的调用" << endl;
+//}
+
+int main()
+{
+
+	func();
+	func(10);
+	func(3.14);
+	func(10, 3.14);
+	func(3.14,10);
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 3.3.2 函数重载注意事项
+
+
+
+- 引用作为重载条件
+- 函数重载碰到函数默认参数
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+
+using namespace std;
+
+//函数重载的注意事项
+//1.引用作为重载的条件
+void func(int& a) //int& a = 10; 不合法
+{
+	cout << "func(int& a)调用" << endl;
+}
+
+void func(const int& a) //const int& a = 10;
+{
+	cout << "func(const int& a)调用" << endl;
+}
+
+//2.函数重载碰到默认参数
+void func2(int a,int b = 10)
+{
+	cout << "func2(int a,int b)调用" << endl;
+}
+
+void func2(int a)
+{
+	cout << "func2(int a)调用" << endl;
+}
+
+int main()
+{
+
+	int a = 10;
+	func(a); //func(int& a)调用
+
+	const int b = 10;
+	func(b); //func(const int& a)调用
+	func(10); //func(const int& a)调用
+
+	//func2(10); //当函数重载碰到默认参数，出现二义性，尽量避免这种情况
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+## 四、类和对象
+
+
+
+C++面向对象的三大特性为：==封装、继承、多态==
+
+
+
+C++认为==万事万物都皆为对象==，对象上有其属性和行为
+
+
+
+**例如：**
+
+人可以作为对象，属性有姓名、年龄、身高、体重...，行为有走、跑、跳、吃饭、唱歌...
+
+车也可以作为对象，属性有轮胎、方向盘、车灯...，行为有载人、放音乐、放空调...
+
+具有相同性质的==对象==，我们可以抽象称为==类==，人属于人类，车属于车类
+
+
+
+### 4.1 封装
+
+#### 4.1.1 封装的意义
+
+封装是C++面向对象三大特性之一
+
+封装的**意义：**
+
+- 将属性和行为作为一个整体，表现生活中的事务
+- 将属性和行为加以权限控制
+
+**封装意义一：**
+
+在设计类的时候，属性和行为写在一起，表现事物
+
+**语法：**`class 类名{ 访问权限: 属性 / 行为 }`
+
+
+
+**示例1：**设计一个圆类，求圆的周长
+
+**示例代码：**
+
+```c++
+
+```
+

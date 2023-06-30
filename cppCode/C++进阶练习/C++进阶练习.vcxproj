@@ -129,8 +129,12 @@
   <ItemGroup>
     <ClCompile Include="new操作符.cpp" />
     <ClCompile Include="全局区.cpp" />
+    <ClCompile Include="函数占位参数.cpp" />
+    <ClCompile Include="函数重载概述.cpp" />
+    <ClCompile Include="函数重载的注意事项.cpp" />
     <ClCompile Include="函数默认参数.cpp" />
     <ClCompile Include="堆区.cpp" />
+    <ClCompile Include="封装的意义.cpp" />
     <ClCompile Include="常量引用.cpp" />
     <ClCompile Include="引用做函数参数.cpp" />
     <ClCompile Include="引用做函数返回值.cpp" />
