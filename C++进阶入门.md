@@ -1,5 +1,7 @@
 # C++ 核心编程
 
+编译器使用：**VS2022**
+
 本节点主要针对C++==面向对象==编程技术做详细讲解，探讨C++中的核心和精髓
 
 
@@ -927,6 +929,336 @@ C++认为==万事万物都皆为对象==，对象上有其属性和行为
 **示例代码：**
 
 ```c++
+#include <iostream>
 
+using namespace std;
+
+const double PI = 3.14;
+
+//设计一个圆类，求圆的周长
+//圆求周长的公式： 2 * PI * 半径
+
+//class 代表设计一个类，类后面紧跟着类的名称
+class Circle
+{
+	//访问权限
+	//公共权限
+public:
+
+	//属性
+	//半径
+	int m_r;
+
+	//行为
+	//获取圆的周长
+	double calculateZC()
+	{
+		return 2 * PI * m_r;
+	}
+};
+
+int main()
+{
+
+	//通过圆类 创建具体的圆（对象）
+	//实例化	（通过一个类 创建一个对象的过程）
+	Circle c1;
+	//给圆对象的 属性 进行赋值
+	c1.m_r = 10;
+
+	cout << "圆的周长为：" << c1.calculateZC() << endl;
+
+	system("pause");
+	return 0;
+}
 ```
 
+
+
+**示例2：**设计一个学生类，属性有姓名和学号，可以给姓名和学号赋值，可以显示学生的姓名和学号
+
+
+
+**示例2代码：**
+
+```c++
+#include <iostream>
+
+using namespace std;
+
+//学生类	属性：姓名、学号，可以赋值，可以显示
+class Student
+{
+public: //公共权限
+
+	//类中的属性和行为	我们统一称为	成员
+	//属性	成员属性 成员变量
+	//行为	成员函数 成员方法
+
+	//属性
+	string m_Name; //姓名
+	int m_Id; //学号
+
+	//行为
+	//显示姓名和学号
+	void showStudent()
+	{
+		cout << "姓名：" << m_Name << endl << "学号：" << m_Id << endl;
+	}
+
+	//给姓名赋值
+	void setName(string name)
+	{
+		m_Name = name;
+	}
+
+	//给学号赋值
+	void setId(int id)
+	{
+		m_Id = id;
+	}
+};
+
+int main()
+{
+
+	//创建一个具体的学生	实例化对象
+	Student s1;
+	//给s1对象 进行属性赋值操作
+	//s1.m_Name = "张三";
+	s1.setName("张三");
+	s1.setId(1);
+
+	//显示学生信息
+	s1.showStudent();
+
+	Student s2;
+	s2.m_Name = "李四";
+	s2.m_Id = 2;
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+**封装意义二：**
+
+类在设计时，可以把属性和行为放在不同的权限下，加以控制
+
+访问权限有三种：
+
+
+
+1. public          公共权限
+2. protected    保护权限
+3. private         私有权限
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+
+using namespace std;
+
+//访问权限
+//三种
+//公共权限 public		成员	类内可以访问	类外可以访问
+//保护权限 protected	成员	类内可以访问	类外不可以访问	儿子也可以访问父亲中的保护内容
+//私有权限 private		成员	类内可以访问	类外不可以访问	儿子不可以访问父亲的私有内容
+
+class Person
+{
+	//公共权限
+public:
+	string m_Name; //姓名
+
+	//保护权限
+protected:
+	string m_Car; //汽车
+
+	//私有权限
+private:
+	int m_Password; //银行卡密码
+
+public:
+	void func()
+	{
+		m_Name = "张三";
+		m_Car = "拖拉机";
+		m_Password = 123456;
+	}
+};
+
+int main()
+{
+
+	//实例化具体对象
+	Person p1;
+
+	p1.m_Name = "李四";
+	//p1.m_Car = "奔驰"; //保护权限的内容在类外访问不到
+	//p1.m_Password = 123; //私有权限的内容类外也访问不到
+
+	p1.func();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 4.1.2 struct和class的区别
+
+
+
+在C++中struct和class**唯一**的 **区别** 就在于 **默认的访问权限不同**
+
+区别：
+
+- struct     默认权限为公共
+- class      默认权限为私有
+
+
+
+```c++
+#include <iostream>
+
+using namespace std;
+
+class C1
+{
+	int m_A; //默认权限为 私有
+};
+
+struct C2
+{
+	int m_A; //默认权限为 公共
+};
+
+int main()
+{
+
+	//struct 和 class 的区别
+	//struct 默认权限是 公共 public
+	//class  默认权限是 私有 private
+
+	C1 c1;
+	//c1.m_A = 100;
+
+	C2 c2;
+	c2.m_A = 100; //在struct默认的权限为公共，因此可以访问
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 4.1.3 成员属性设置为私有
+
+
+
+**优点1：**将所有成员属性设置为私有，可以自己==控制读写权限==
+
+**优点2：**对于写权限，我们可以==检测数据的有效性==
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+
+using namespace std;
+
+//成员属性设置为私有
+//1.可以自己控制读写的权限
+//2.对于写可以检测数据的有效性
+
+//设计人类
+class Person
+{
+public:
+	//设置姓名
+	void setName(string name)
+	{
+		m_Name = name;
+	}
+	//获取姓名
+	string getName()
+	{
+		return m_Name;
+	}
+	
+	//获取年龄
+	int getAge()
+	{ 
+		return m_Age;
+	}
+	//设置年龄	检测数据有效性
+	void setAge(int age)
+	{
+		if (age < 0 || age>150)
+		{
+			m_Age = 0;
+			cout << "你这年龄不对劲啊，我给你改0了，重新设置" << endl;
+		}
+		else
+			m_Age = age;
+	}
+
+	//设置情人
+	void setLover(string lover)
+	{
+		m_Lover = lover;
+	}
+
+private:
+	//控制读写权限
+
+	//姓名	可读可写
+	string m_Name;
+
+	//年龄	可读可写
+	int m_Age;
+
+	//情人	只写
+	string m_Lover;
+};
+
+int main()
+{
+
+	Person p;
+	p.setName("张三");
+
+	cout << "姓名为：" << p.getName() << endl;
+
+	//设置年龄
+	//p.setAge(155);
+	p.setAge(18);
+	cout << "年龄为：" << p.getAge() << endl;
+
+	//设置情人为仓井女士
+	p.setLover("仓井");
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+**练习案例1：设计立方体类**
+
+设计立方体类（Cube）
+
+求出立方体的面积和体积
+
+分别用全局函数和成员函数判断两个立方体是否相等

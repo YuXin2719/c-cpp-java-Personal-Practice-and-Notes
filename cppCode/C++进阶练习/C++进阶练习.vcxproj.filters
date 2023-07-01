@@ -63,5 +63,17 @@
     <ClCompile Include="封装的意义.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="封装示例2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="封装意义2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="struct和class的区别.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="成员属性设置为私有.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
