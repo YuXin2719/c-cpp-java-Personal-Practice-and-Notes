@@ -75,5 +75,8 @@
     <ClCompile Include="成员属性设置为私有.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="设计案例1：立方体类.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
