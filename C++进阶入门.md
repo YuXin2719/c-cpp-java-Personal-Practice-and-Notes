@@ -1402,8 +1402,718 @@ int main()
 
 
 
-**练习案例2：电和圆的关系**
+**练习案例2：点和圆的关系**
 
 设计一个圆类（Circle），和一个点类（Point），计算点和圆的关系
 
 ![屏幕截图 2023-07-05 115836](https://gitee.com/YuXinHome/blogimg/raw/master/屏幕截图 2023-07-05 115836.png)
+
+
+
+**示例：**
+
+**1.	练习案例2：点和圆的关系.cpp**
+
+```c++
+#include <iostream>
+#include <cmath>
+#include "point.h"
+#include "Circle.h"
+
+using namespace std;
+
+////点和圆关系案例
+//// 点类
+//class Point
+//{
+//public:
+//	//设置x
+//	void setX(int x)
+//	{
+//		m_X = x;
+//	}
+//	//获取x
+//	int getX()
+//	{
+//		return m_X;
+//	}
+//
+//	//设置y
+//	void setY(int y)
+//	{
+//		m_Y = y;
+//	}
+//
+//	//获取y
+//	int getY()
+//	{
+//		return m_Y;
+//	}
+//
+//private:
+//	int m_X;
+//	int m_Y;
+//};
+
+////圆类
+//class Circle
+//{
+//public:
+//	//设置半径
+//	void setR(int r)
+//	{
+//		m_R = r;
+//	}
+//
+//	//获取半径
+//	int getR()
+//	{
+//		return m_R;
+//	}
+//
+//	//设置圆心
+//	void setCenter(Point center)
+//	{
+//		m_Center = center;
+//	}
+//
+//	//获取圆心
+//	Point getCenter()
+//	{
+//		return m_Center;
+//	}
+//
+//private:
+//	int m_R; //半径
+//
+//	Point m_Center; //圆心
+//};
+
+//判断点和圆的关系
+void isInCircle(Circle& c, Point& p)
+{
+	//计算两点之间的距离 平方
+	double twoPointsDistance = pow((c.getCenter().getX() - p.getX()), 2) + pow((c.getCenter().getY() - p.getY()), 2);
+
+	//计算半径的平方
+	double rDistance = pow(c.getR(), 2);
+
+	//判断关系
+	if (twoPointsDistance == rDistance)
+	{
+		cout << "点在圆上" << endl;
+	}
+	else if (twoPointsDistance > rDistance)
+	{
+		cout << "点在圆外" << endl;
+	}
+	else
+	{
+		cout << "点在圆内" << endl;
+	}
+}
+
+int main()
+{
+
+	//创建圆
+	Circle c1; //圆
+	Point c1Center; //圆心
+
+	//设置圆心参数
+	c1Center.setX(10);
+	c1Center.setY(0);
+
+	//设置圆半径和圆心
+	c1.setR(10);
+	c1.setCenter(c1Center);
+
+	//创建点
+	Point p1;
+
+	p1.setX(10);
+	p1.setY(9);
+
+	Point p2;
+
+	p2.setX(10);
+	p2.setY(10);
+
+	Point p3;
+
+	p3.setX(10);
+	p3.setY(11);
+
+	//判断关系
+	isInCircle(c1, p1);
+	isInCircle(c1, p2);
+	isInCircle(c1, p3);
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+**2.	point.cpp**
+
+```c++
+#include <iostream>
+#include "point.h"
+
+//点和圆关系案例
+// 点类
+
+//设置x
+void Point::setX(int x)
+{
+	m_X = x;
+}
+//获取x
+int Point::getX()
+{
+	return m_X;
+}
+
+//设置y
+void Point::setY(int y)
+{
+	m_Y = y;
+}
+
+//获取y
+int Point::getY()
+{
+	return m_Y;
+}
+```
+
+
+
+**3.	point.h**
+
+```c++
+#pragma once //防止头文件重复包含
+#include <iostream>
+using namespace std;
+
+//点和圆关系案例
+// 点类
+class Point
+{
+public:
+	//设置x
+	void setX(int x);
+
+	//获取x
+	int getX();
+
+
+	//设置y
+	void setY(int y);
+
+
+	//获取y
+	int getY();
+
+
+private:
+	int m_X;
+	int m_Y;
+};
+```
+
+
+
+**4.	Circle.cpp**
+
+```c++
+#include "Circle.h"
+
+//设置半径
+void Circle::setR(int r)
+{
+	m_R = r;
+}
+
+//获取半径
+int Circle::getR()
+{
+	return m_R;
+}
+
+//设置圆心
+void Circle::setCenter(Point center)
+{
+	m_Center = center;
+}
+
+//获取圆心
+Point Circle::getCenter()
+{
+	return m_Center;
+}
+
+```
+
+
+
+**5.	Circle.h**
+
+```c++
+#pragma once
+#include "point.h"
+//圆类
+class Circle
+{
+public:
+	//设置半径
+	void setR(int r);
+
+
+	//获取半径
+	int getR();
+
+
+	//设置圆心
+	void setCenter(Point center);
+
+
+	//获取圆心
+	Point getCenter();
+
+
+private:
+	int m_R; //半径
+
+	Point m_Center; //圆心
+};
+```
+
+
+
+**重点：**
+
+1. 在类中可以让另一个类	作为本来中的成员
+2. 如何把一个类拆到不同的文件中 - 分文件开发
+
+
+
+### 4.2 对象的初始化和清理
+
+
+
+- 生活中我们买的电子产品都基本会有出厂设置，在某一天我们不用的时候也会删除一些信息数据保证信息安全
+- C++中的面向对象来源于生活，每个对象也都会有初始设置以及对象销毁前的清理数据的设置
+
+
+
+#### 4.2.1 构造函数和析构函数
+
+对象的**初始化和清理**也是两个非常重要的安全问题
+
+​	一个对象或者变量没有初始状态，对其使用后果是未知的
+
+​	同样的使用完一个对象或者变量，没有及时清理，也会造成一定的安全问题
+
+
+
+C++利用了**构造函数**和**析构函数**解决上述问题，这两个函数将会被编译器自动调用，完成对象初始化和清理工作。对象的初始化和清理工作是编译器强制要我们做的事情，因此如果**我们不提供构造和析构，编译器会提供编译器提供的构造函数和析构函数是空实现。**
+
+
+
+- 构造函数：主要作用在于创建对象时为对象的成员属性赋值，构造函数由编译器自动调用，无需手动调用
+- 析构函数：主要作用在于对象**销毁前**系统自动调用，执行一些清理工作
+
+
+
+**构造函数语法：`类名(){}`**
+
+1. 构造函数，没有返回值也不写void
+2. 函数名称与类名相同
+3. 构造函数可以有参数，因此可以发生重载
+4. 程序在调用对象的时候会自动调用构造，无需手动调用，而且只会调用一次
+
+
+
+**析构函数语法：`~类名(){}`**
+
+1. 析构函数，没有返回值也不写void
+2. 函数名称与类名相同，在名称前加上符号~
+3. 析构函数不可以有参数，因此不可以发生重载
+4. 程序在对象销毁前会自动调用析构，无须手动调用，而且只会调用一次
+
+
+
+```c++
+#include <iostream>
+using namespace std;
+
+//对象的初始化和清理
+//1.构造函数	进行初始化操作
+class Person
+{
+public:
+	//1.1	构造函数
+	//没有返回值 不用写void
+	//函数名与类的名称相同
+	//构造函数可以有参数，可以发生重载
+	//创建对象的时候，会自动调用，而且只调用一次
+	Person()
+	{
+		cout << "Person 构造函数的调用" << endl;
+	}
+
+	//2.析构函数	进行清理的操作
+	//没有返回值	不写 void
+	//函数名和类名相同 在名称前加 ~
+	//析构函数不可以有参数的，不可以发生重载
+	//对象在销毁前 会自动调用析构函数，而且只会调用一次
+	~Person()
+	{
+		cout << "Person 的析构函数调用" << endl;
+	}
+};
+
+//析构和构造都是必须有的实现，如果我们自己不提供，编译器会提供一个空实现的构造和析构
+void test01()
+{
+	Person p; //在栈上的数据，test01执行完毕后，释放这个对象
+}
+
+int main()
+{
+
+	//test01();
+
+	Person p;
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 4.2.2 构造函数的分类及调用
+
+两种分类方式：
+
+- 按参数分为：有参构造和无参构造
+- 按类型分为：普通构造和拷贝构造
+
+三种调用方式：
+
+- 括号法
+- 显示法
+- 隐式转换法
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+using namespace std;
+
+//1.构造函数的分类和调用
+//分类
+//按照参数来分类	无参构造（默认构造） 和 有参构造
+class Person
+{
+public:
+	//构造函数
+
+	//无参构造
+	Person()
+	{
+		cout << "Person的无参构造函数调用" << endl;
+	}
+
+	//有参构造
+	Person(int a)
+	{
+		age = a;
+		cout << "Person的有参构造函数调用" << endl;
+	}
+	//以上是普通构造
+	
+	//拷贝构造函数
+	Person(const Person &p)
+	{
+		//将传入的人身上的所有属性，拷贝到我身上
+		age = p.age;
+		cout << "Person的拷贝构造函数调用" << endl;
+	}
+
+	//析构函数
+	~Person()
+	{
+		cout << "Person的析构函数调用" << endl;
+	}
+
+	int age;
+};
+
+void test01()
+{
+	//1.括号法
+	//Person p1; //默认构造函数调用
+	//Person p2(10); //有参构造函数
+	//Person p3(p2); //拷贝构造函数
+
+	//注意事项1
+	//调用默认构造函数的时候，不要加()
+	//因为下面这行代码，编译器会认为是一个函数的声明，不会认为在创建对象
+	//Person p1();
+	//比如
+	//void func();
+
+	//cout << "p2的年龄：" << p2.age << endl;
+	//cout << "p3的年龄：" << p3.age << endl;
+
+	//2.显示法
+	Person p1;
+	Person p2 = Person(10); //有参构造
+	Person p3 = Person(p2); //拷贝构造
+
+	//Person(10); //匿名对象	特点：当前行执行结束后，系统会立即回收掉匿名对象
+	//cout << "aaaaa" << endl;
+
+	//注意事项2
+	//不要利用拷贝构造函数 初始化匿名对象	编译器会认为 Person(p3) === Person p3; 对象的声明
+	//Person(p3);
+
+	//3.隐式转换法
+	Person p4 = 10; //相当于 写了 Person p4 = Person(10);	有参构造
+	Person p5 = p4; //拷贝构造
+}
+
+//调用
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+**无参构造函数**
+
+```c++
+	//无参构造
+	Person()
+	{
+		cout << "Person的无参构造函数调用" << endl;
+	}
+```
+
+**有参构造函数**
+
+```c++
+	//有参构造
+	Person(int a)
+	{
+		age = a;
+		cout << "Person的有参构造函数调用" << endl;
+	}
+```
+
+**拷贝构造函数**
+
+```c++
+	//拷贝构造函数
+	Person(const Person &p)
+	{
+		//将传入的人身上的所有属性，拷贝到我身上
+		age = p.age;
+		cout << "Person的拷贝构造函数调用" << endl;
+	}
+```
+
+**析构函数**
+
+```c++
+	//析构函数
+	~Person()
+	{
+		cout << "Person的析构函数调用" << endl;
+	}
+```
+
+**调用法：1.括号法**
+
+```c++
+	//1.括号法
+	Person p1; //默认构造函数调用
+	Person p2(10); //有参构造函数
+	Person p3(p2); //拷贝构造函数
+```
+
+**调用法：2.显示法**
+
+```c++
+	//2.显示法
+	Person p1;
+	Person p2 = Person(10); //有参构造
+	Person p3 = Person(p2); //拷贝构造
+```
+
+**调用法：3.隐式转换法**
+
+```c++
+	//3.隐式转换法
+	Person p4 = 10; //相当于 写了 Person p4 = Person(10);	有参构造
+	Person p5 = p4; //拷贝构造
+```
+
+**调用法：匿名对象**
+
+```c++
+	Person(10); //匿名对象	特点：当前行执行结束后，系统会立即回收掉匿名对象
+```
+
+
+
+**注意事项：**
+
+```c++
+注意事项1
+调用默认构造函数的时候，不要加()
+因为下面这行代码，编译器会认为是一个函数的声明，不会认为在创建对象
+Person p1();
+比如
+void func();
+```
+```c++
+注意事项2
+不要利用拷贝构造函数 初始化匿名对象	编译器会认为 Person(p3) === Person p3; 对象的声明
+Person(p3);
+```
+
+
+#### 4.2.3 拷贝构造函数调用时机
+
+
+
+C++中拷贝构造函数调用时机通常由三种情况
+
+- 使用一个已经创建完毕的对象来初始化一个新对象
+- 值传递的方式给函数参数传值
+- 以值方式返回局部对象
+
+**示例：**
+
+```c++
+#include <iostream>
+using namespace std;
+
+//拷贝构造函数调用时机
+
+class Person
+{
+public:
+	Person()
+	{
+		cout << "Person默认构造函数调用" << endl;
+	}
+
+	Person(int age)
+	{
+		m_Age = age;
+		cout << "Person有参函数调用" << endl;
+	}
+
+	Person(const Person& p)
+	{
+		m_Age = p.m_Age;
+		cout << "Person拷贝构造函数" << endl;
+	}
+
+	~Person()
+	{
+		cout << "Person析构函数调用" << endl;
+	}
+
+	int m_Age;
+};
+
+//1.使用一个已经创建完毕的对象来初始化一个新对象
+void test01()
+{
+	Person p1(20);
+	Person p2(p1);
+
+	cout << "p2的年龄为：" << p2.m_Age << endl;
+}
+
+//2.值传递的方式给函数参数传值	值就是拷贝的新的数据
+void doWork(Person p)
+{
+
+}
+
+void test02()
+{
+	Person p;
+	doWork(p);
+}
+
+//3.值方式返回局部对象
+//如果直接写 return p1; 就会返回p1本身，也就是 p 和 p1 地址一样
+Person doWork2()
+{
+	Person p1;
+	cout << (int)&p1 << endl; //查看 p1 地址
+	return Person(p1);
+}
+
+void test03()
+{
+	Person p = doWork2();
+	cout << (int)&p << endl; //查看 p 地址
+}
+
+int main()
+{
+
+	//test01();
+	
+	//test02();
+
+	test03();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 4.2.4 构造函数调用规则
+
+默认情况下，C++编译器至少给一个类添加3个函数
+
+1. 默认构造函数（无参，函数体为空）
+2. 默认析构函数（无参，函数体为空）
+3. 默认拷贝函数，对属性进行值拷贝
+
+
+
+构造函数调用规则如下：
+
+- 如果用户定义有参构造函数，C++不在提供默认无参构造，但是会提供默认拷贝构造
+- 如果用户定义拷贝构造函数，C++不会再提供其他构造函数
+
+**示例：**
+
+```c++
+
+```
+

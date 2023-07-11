@@ -1,2 +1,5 @@
-﻿  设计案例1：立方体类.cpp
+﻿  Circle.cpp
+  练习案例2：点和圆的关系.cpp
+  正在生成代码...
+x64\Debug\point.obj : warning LNK4042: 对象被多次指定；已忽略多余的指定
   C++进阶练习.vcxproj -> E:\c.---c.---java-exercise\cppCode\C++进阶练习\x64\Debug\C++进阶练习.exe
