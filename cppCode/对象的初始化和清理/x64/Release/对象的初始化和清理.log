@@ -1,0 +1,6 @@
+﻿  拷贝构造函数调用时机.cpp
+  构造函数和析构函数.cpp
+  构造函数的分类和调用.cpp
+  模版.cpp
+MSVCRT.lib(exe_main.obj) : error LNK2001: 无法解析的外部符号 main
+E:\c.---c.---java-exercise\cppCode\对象的初始化和清理\x64\Release\对象的初始化和清理.exe : fatal error LNK1120: 1 个无法解析的外部命令

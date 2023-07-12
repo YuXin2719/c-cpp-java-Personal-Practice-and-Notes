@@ -1,6 +1,2 @@
-﻿  拷贝构造函数调用时机.cpp
-E:\c.---c.---java-exercise\cppCode\对象的初始化和清理\拷贝构造函数调用时机.cpp(60,10): warning C4311: “类型强制转换”: 从“Person *”到“int”的指针截断
-E:\c.---c.---java-exercise\cppCode\对象的初始化和清理\拷贝构造函数调用时机.cpp(60,10): warning C4302: “类型强制转换”: 从“Person *”到“int”截断
-E:\c.---c.---java-exercise\cppCode\对象的初始化和清理\拷贝构造函数调用时机.cpp(67,10): warning C4311: “类型强制转换”: 从“Person *”到“int”的指针截断
-E:\c.---c.---java-exercise\cppCode\对象的初始化和清理\拷贝构造函数调用时机.cpp(67,10): warning C4302: “类型强制转换”: 从“Person *”到“int”截断
+﻿  构造函数调用规则.cpp
   对象的初始化和清理.vcxproj -> E:\c.---c.---java-exercise\cppCode\对象的初始化和清理\x64\Debug\对象的初始化和清理.exe
