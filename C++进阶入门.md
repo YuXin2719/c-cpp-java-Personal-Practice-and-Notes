@@ -2295,6 +2295,175 @@ C++提供了初始化列表语法，用来初始化属性
 **示例：**
 
 ```c++
+#include <iostream>
+using namespace std;
+
+//初始化列表
+class Person
+{
+public:
+
+	//传统初始化操作
+	//Person(int a, int b, int c)
+	//{
+	//	m_A = a;
+	//	m_B = b;
+	//	m_C = c;
+	//}
+
+	//初始化列表 初始化属性
+	//Person() :m_A(10), m_B(20), m_C(30){
+	//
+	//}
+	
+	//初始化列表 另一种初始化方式
+	Person(int a, int b, int c) :m_A(a), m_B(b), m_C(c) {
+
+	}
+
+	int m_A;
+	int m_B;
+	int m_C;
+};
+
+void test01()
+{
+	//Person p(10, 20, 30);
+	
+	//Person p;
+
+	Person p(10, 20, 30);
+
+	cout << "m_A = " << p.m_A << endl;
+	cout << "m_B = " << p.m_B << endl;
+	cout << "m_C = " << p.m_C << endl;
+}
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 4.2.7 类对象作为类的成员
+
+
+
+C++类中的成员可以作为另一个类的对象，我们称该成员为 对象成员
+
+
+
+例如：
+
+```c++
+class A {}
+class B
+{
+    A a;
+}
+```
+
+
+
+B类中有对象A作为成员，A为对象成员
+
+
+
+那么当创建B对象时，A与B的构造和析构的顺序是谁先谁后？
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+using namespace std;
+
+//类对象作为类对象
+
+class Phone
+{
+public:
+	Phone(string pName) :m_PName(pName) {
+		cout << "Phone 构造函数调用" << endl;
+	}
+
+	//手机品牌
+	string m_PName;
+
+	~Phone()
+	{
+		cout << "Phone 析构函数调用" << endl;
+	}
+};
+
+class Person
+{
+public:
+	Person(string name, string pName) :m_Name(name), m_Phone(pName) {
+		cout <<"Person 构造函数调用" << endl;
+	}
+
+	//姓名
+	string m_Name;
+	//手机
+	Phone m_Phone;
+
+	~Person()
+	{
+		cout << "Person 析构函数调用" << endl;
+	}
+};
+
+//当其他类的对象作为本类的成员，构造时候先构造类对象，再构造自身
+//								析构的顺序与构造相反
+
+void test01()
+{
+	Person p("张三", "iPhone");
+
+	cout << p.m_Name << " 拿着 " << p.m_Phone.m_PName << endl;
+}
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 4.2.8 静态对象
+
+静态成员就是在成员变量和成员函数前加上关键字static，成为静态对象
+
+静态对象分为：
+
+
+
+- 静态成员变量
+  - 所有成员共享同一份数据
+  - 在编程阶段分配内存
+  - 类内声明，类外初始化
+- 静态成员函数
+  - 所有对象共享用一个函数
+  - 静态成员函数只能访问静态成员变量
+
+
+
+**示例1：**静态成员变量
+
+```c++
 
 ```
 
