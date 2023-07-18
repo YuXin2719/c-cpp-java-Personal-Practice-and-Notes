@@ -39,7 +39,13 @@
     <ClCompile Include="类对象作为类成员.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="静态对象.cpp">
+    <ClCompile Include="静态对象-静态成员变量.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="静态成员-静态成员函数.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="成员变量和成员函数分开存储.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
