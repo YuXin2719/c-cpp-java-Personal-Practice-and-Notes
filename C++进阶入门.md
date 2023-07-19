@@ -2598,9 +2598,459 @@ int main()
 
 在C++中，类内的成员变量和成员函数分开存储
 
-只有非静态成员变量才属于类的对象上
+**只有**非静态成员变量才属于类的对象上
 
 
+
+```c++
+#include <iostream>
+using namespace std;
+
+//成员变量 和 成员函数 是分开存储的
+
+class Person
+{
+	int m_A; //非静态成员变量			属于类的对象上的
+
+	static int m_B; //静态成员变量		不属于类的对象上
+
+	void func() //非静态成员函数		不属于类的对象上
+	{
+
+	}
+
+	static void func2() //静态成员函数	不属于类的对象上
+	{
+
+	}
+};
+
+int Person::m_B = 0;
+
+void test01()
+{
+	Person p;
+	//空对象占用内存空间为：1
+	//C++编译器会给每个空对象也分配一个字节空间，是为了区分空对象占内存的位置
+	//每个空对象也应该有一个独一无二的内存地址
+	cout << "sizeof p = " << sizeof(p) << endl;
+}
+
+void test02()
+{
+	Person p;
+	cout << "sizeof p = " << sizeof(p) << endl;
+}
+
+int main()
+{
+
+	//test01();
+
+	test02();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 4.3.2 this指针概念
+
+通过 4.3.1 我们知道在C++中成员变量和成员函数是分开储存的
+
+每一个非静态成员函数只会诞生一份函数实例，也就是说多个同类型的对象会共用一块代码
+
+那么问题是：这一块代码是如何区分哪个对象调用自己的呢？
+
+
+
+C++通过提供特殊的对象指针，this指针，解决上述问题。**this 指针指向被调用的成员函数所属的对象**
+
+
+
+this 指针是隐含每一个非静态成员函数内的一种指针
+
+this 指针不需要定义，直接使用即可
+
+
+
+this 指针的用途：
+
+- 当形参和成员变量同名时，可用this 指针来区分
+- 在类的非静态成员函数中返回对象本身，可使用 return *this
+
+```c++
+#include <iostream>
+using namespace std;
+
+class Person
+{
+public:
+	Person(int age)
+	{
+		//this指针指向的是 被调用的成员函数 所属的对象
+		this->age = age;
+	}
+
+	Person& personAddAge(Person& p)
+	{
+		this->age += p.age;	//this 是指向 p2 的一个指针（示例中）
+
+		//this 指向的是 p2 的指针，而 *this 指向的就是 p2 这个对象本体
+		return *this;
+	}
+
+	int age;
+};
+
+//this 指针概念
+//1.解决名称冲突
+void test01()
+{
+	Person p1(18);
+	cout << "p1的年龄：" << p1.age << endl;
+}
+
+//2.返回对象本身用 *this
+void test02()
+{
+	Person p1(10);
+
+	Person p2(10);
+
+	//链式编程思想
+	p2.personAddAge(p1).personAddAge(p1).personAddAge(p1);
+
+	cout << "p2的年龄为：" << p2.age << endl;
+}
+
+int main()
+{
+
+	test01();
+
+	test02();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 4.3.3 空指针访问成员函数
+
+
+
+C++中空指针也是可以调用成员函数的，但是也要注意有没有用到 this 指针
+
+
+
+如果用到 this 指针，需要加以判断保证代码的健壮性
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+using namespace std;
+
+//空指针调用成员函数
+
+class Person
+{
+public:
+
+	void showClassName()
+	{
+		cout << "this is Person class" << endl;
+	}
+
+	void showClassAge()
+	{
+		//报错原因是因为传入的指针是NULL空指针
+
+		if (this == NULL)
+		{
+			return;
+		}
+
+		cout << "age = " << m_Age << endl; //属性前面都默认加了this，即 this->m_Age ,由于this在示例中是空指针，所以没属性
+	}
+
+	int m_Age;
+};
+
+void test01()
+{
+	Person* p = NULL;
+
+	p->showClassName();
+
+	p->showClassAge();
+}
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 4.3.4 const修饰成员函数
+
+
+
+**常函数：**
+
+- 成员函数后加const后我们称这个函数为**常函数**
+- 常函数不可以修改成员函数
+- 成员函数声明时加关键字mutable后，在常函数中依然可以修改
+
+
+
+**常对象：**
+
+- 声明对象前加const称该对象为常对象
+- 常对象只能调用常函数
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+using namespace std;
+
+//常函数
+class Person
+{
+public:
+
+	//本身 this指针的本质	是指针常量	指针的指向是不可以修改的
+	//this指针本质是：Person* const this;
+
+	//常函数表达式：void showPerson() const
+	//意味着this指针变成：const void showPerson() const		即指针不能改，指向的值也不能改
+	//在成员函数后面加const，修饰的是this指针，让指针指向的值也不可以修改
+
+	void showPerson() const
+	{
+		this->m_B = 100;
+		//this->m_A = 100;
+		//this->NULL; //this指针是不可以修改指针的指向的
+	}
+
+	int m_A;
+	mutable int m_B; //特殊变量，即使在常函数中，也可以修改这个值		mutable - 可变的
+
+	void func() 
+	{
+		m_A = 100;
+	}
+};
+
+void test01()
+{
+	Person p;
+	p.showPerson();
+}
+
+//常对象
+void test02()
+{
+	const Person p; //在对象前加const，变为常对象
+	//p.m_A = 100; //常对象也不允许修改属性
+	p.m_B = 100; //m_B是特殊值，在常对象下也可以修改
+
+	//常对象只能调用常函数
+	p.showPerson();
+	//p.func(); //常对象 不可以调用普通成员函数，因为普通成员函数可以修改属性
+}
+
+int main()
+{
+
+	
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+### 4.4 友元
+
+
+
+生活中你的家有客厅(Public)，有你的卧室(Private)
+
+客厅所有来的客人都可以进去，但是你的卧室是私有的，也就是说只有你能进去
+
+但是呢，你也可以与允许你的好闺蜜好基友进去
+
+
+
+在程序中，有些私有属性 也想让类外特殊的一些函数或者类访问，就需要用到友元的技术
+
+
+
+友元的目的就是让一个函数或者类 访问另一个类中的私有成员
+
+
+
+友元的关键词为 ==friend==
+
+
+
+友元的三种实现
+
+- 全局函数做友元
+- 类做友元
+- 成员函数做友元
+
+
+
+#### 4.4.1 全局函数做友元
+
+```c++
+#include <iostream>
+using namespace std;
+
+class Building
+{
+	//goodGay全局函数是 Building好朋友，可以访问Building中私有成员
+	friend void goodGay(Building* building);
+
+public:
+	string m_SittingRoom; //客厅
+
+	Building()
+	{
+		m_SittingRoom = "客厅";
+		m_BedRoom = "卧室";
+	}
+
+private:
+	string m_BedRoom; //卧室
+};
+
+//全局函数
+void goodGay(Building *building)
+{
+	cout << "好基友全局函数 正在访问：" << building->m_SittingRoom << endl;
+
+	cout << "好基友全局函数 正在访问：" << building->m_BedRoom << endl;
+}
+
+int main()
+{
+
+	Building building;
+	goodGay(&building);
+
+	system("pause");
+	return 0;
+}
+```
+
+重点：
+
+```c++
+	//goodGay全局函数是 Building好朋友，可以访问Building中私有成员
+	friend void goodGay(Building* building);
+```
+
+
+
+**类做友元：**
+
+```c++
+#include <iostream>
+using namespace std;
+
+//类做友元
+
+class Building;
+class GoodGay
+{
+public:
+	GoodGay();
+
+	void visit(); //参观函数 访问Building中的属性
+
+	Building* building;
+};
+
+class Building
+{
+	//GoodGay类是本类的好朋友，可以访问本类中的私有成员
+	friend class GoodGay;
+
+public:
+	string m_SittingRoom; //客厅
+
+	Building();
+
+private:
+	string m_BedRoom; //卧室
+};
+
+//类外写成员函数
+Building::Building()
+{
+	m_SittingRoom = "客厅";
+	m_BedRoom = "卧室";
+}
+
+GoodGay::GoodGay()
+{
+	//创建一个建筑物对象
+	building = new Building;
+}
+
+void GoodGay::visit()
+{
+	cout << "好基友类正在访问：" << building->m_SittingRoom << endl;
+
+	cout << "好基友类正在访问：" << building->m_BedRoom << endl;
+}
+
+void test01()
+{
+	GoodGay gg;
+	gg.visit();
+}
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+重点：
+
+```c++
+	//GoodGay类是本类的好朋友，可以访问本类中的私有成员
+	friend class GoodGay;
+```
+
+
+
+**成员函数做友元：**
 
 ```c++
 
