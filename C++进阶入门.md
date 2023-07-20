@@ -3053,6 +3053,209 @@ int main()
 **成员函数做友元：**
 
 ```c++
+#include <iostream>
+using namespace std;
+
+//成员函数做友元
+
+class Building;
+class GoodGay
+{
+public:
+	GoodGay();
+
+	void visit(); //让visit函数可以访问Building中私有成员
+	void visit2(); //让visit2函数不可以访问Building中私有成员
+
+	Building* building;
+};
+
+class Building
+{
+	//告诉编译器 GoodGay类下的visit成员函数作为本类的好朋友，可以访问私有成员
+	friend void GoodGay::visit();
+
+public:
+	string m_SittingRoom; //客厅
+
+	Building();
+
+private:
+	string m_BedRoom; //卧室
+};
+
+//类外实现成员函数
+Building::Building()
+{
+	m_SittingRoom = "客厅";
+	m_BedRoom = "卧室";
+}
+
+GoodGay::GoodGay()
+{
+	building = new Building;
+}
+
+void GoodGay::visit()
+{
+	cout << "visit 函数正在访问：" << building->m_SittingRoom << endl;
+
+	cout << "visit 函数正在访问：" << building->m_BedRoom << endl;
+
+}
+
+void GoodGay::visit2()
+{
+	cout << "visit2 函数正在访问：" << building->m_SittingRoom << endl;
+
+	//cout << "visit 函数正在访问：" << building->m_BedRoom << endl;
+}
+
+void test01()
+{
+	GoodGay gg;
+	gg.visit();
+	gg.visit2();
+}
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+重点：
+
+```c++
+	//告诉编译器 GoodGay类下的visit成员函数作为本类的好朋友，可以访问私有成员
+	friend void GoodGay::visit();
+```
+
+
+
+### 4.5 运算符重载
+
+
+
+运算符重载概念：对已有的运算符重新进行定义，赋予其另一种功能，以适应不同的数据类型
+
+
+
+#### 4.5.1 加号运算符重载
+
+
+
+作用：实现两个自定义数据类型相加的运算
+
+
+
+![屏幕截图 2023-07-20 182322](https://gitee.com/YuXinHome/blogimg/raw/master/屏幕截图 2023-07-20 182322.png)
+
+
+
+```c++
+#include <iostream>
+using namespace std;
+
+//加号运算符重载
+
+class Person
+{
+public:
+	int m_A;
+	int m_B;
+
+	Person operator+ (Person& p);
+};
+
+Person operator+ (Person p1, Person p2);
+
+//函数重载的版本
+Person operator+(Person p, int i)
+{
+	Person temp;
+	temp.m_A = p.m_A + i;
+	temp.m_B = p.m_B + i;
+	return temp;
+}
+
+void test01()
+{
+	Person p1;
+	p1.m_A = 10;
+	p1.m_B = 10;
+
+	Person p2;
+	p2.m_A = 10;
+	p2.m_B = 10;
+
+	//成员函数重载本质调用
+	//Person p3 = p1.operator+(p2);
+
+	//全局函数重载本质调用
+	//Person p3 = operator+(p1, p2);
+
+	//Person p3 = p1 + p2;
+	//运算符重载 也可以发生函数重载
+
+	Person p4 = p1 + 100; //Person + int
+
+	//cout << "p3.m_A = " << p3.m_A << endl;
+	//cout << "p3.m_B = " << p3.m_B << endl;
+
+	cout << "p4.m_A = " << p4.m_A << endl;
+	cout << "p4.m_B = " << p4.m_B << endl;
+}
+
+//1.成员函数重载+号
+Person Person::operator+ (Person& p)
+{
+	Person temp;
+	temp.m_A = this->m_A + p.m_A;
+	temp.m_B = this->m_B + p.m_B;
+	return temp;
+}
+
+//2.全局函数重载+号
+Person operator+ (Person p1, Person p2)
+{
+	Person temp;
+	temp.m_A = p1.m_A + p2.m_A;
+	temp.m_B = p1.m_B + p2.m_B;
+	return temp;
+}
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+​	**注：**
+
+> 对于内置的数据类型的表达式的运算符是不可以改变的
+>
+> 不要滥用运算符重载（operator+函数中写两个数相减也是可以的，但是这是滥用）
+
+
+
+#### 4.5.2 左移运算符重载
+
+
+
+作用：可以输出自定义数据类型
+
+
+
+```c++
 
 ```
 

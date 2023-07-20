@@ -131,6 +131,8 @@
     <ClCompile Include="this指针概念.cpp" />
     <ClCompile Include="全局函数做友元.cpp" />
     <ClCompile Include="初始化列表.cpp" />
+    <ClCompile Include="加号运算符重载.cpp" />
+    <ClCompile Include="左移运算符重载.cpp" />
     <ClCompile Include="成员函数做友元.cpp" />
     <ClCompile Include="成员变量和成员函数分开存储.cpp" />
     <ClCompile Include="拷贝构造函数调用时机.cpp" />
