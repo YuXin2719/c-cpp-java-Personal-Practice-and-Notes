@@ -130,6 +130,8 @@
     <ClCompile Include="const修饰成员函数.cpp" />
     <ClCompile Include="this指针概念.cpp" />
     <ClCompile Include="全局函数做友元.cpp" />
+    <ClCompile Include="关系运算符重载.cpp" />
+    <ClCompile Include="函数调用运算符重载.cpp" />
     <ClCompile Include="初始化列表.cpp" />
     <ClCompile Include="加号运算符重载.cpp" />
     <ClCompile Include="左移运算符重载.cpp" />
@@ -144,6 +146,10 @@
     <ClCompile Include="空指针访问成员函数.cpp" />
     <ClCompile Include="类做友元.cpp" />
     <ClCompile Include="类对象作为类成员.cpp" />
+    <ClCompile Include="继承方式.cpp" />
+    <ClCompile Include="继承的基本语法.cpp" />
+    <ClCompile Include="赋值运算符重载.cpp" />
+    <ClCompile Include="递增运算符重载.cpp" />
     <ClCompile Include="静态对象-静态成员变量.cpp" />
     <ClCompile Include="静态成员-静态成员函数.cpp" />
   </ItemGroup>

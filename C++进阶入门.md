@@ -3256,6 +3256,802 @@ int main()
 
 
 ```c++
+#include <iostream>
+using namespace std;
 
+//左移运算符重载
+
+class Person
+{
+	friend ostream& operator<<(ostream& cout, Person& p);
+
+public:
+	Person(int a, int b)
+	{
+		m_A = a;
+		m_B = b;
+	}
+
+private:
+
+	//利用成员函数重载 左移运算符	p.operator<<(cout)	简化版本 p << cout
+	//通常不会利用成员函数重载<<运算符，因为无法实现 cout 在左侧
+	//void operator<<(cout)
+	//{
+
+	//}
+
+	int m_A;
+	int m_B;
+};
+
+//cout 的数据类型是 ostream - 标准输出流对象。 o - out		stream - 流		并且全局只允许存在一个cout，即要用就引用
+
+//只能利用全局函数重载左移运算符
+//用引用的方式保证全局只有一个 cout
+ostream& operator<<(ostream& out, Person& p) //本质 operator<<(cout,p) 简化版本 cout << p
+{
+	out << "m_A = " << p.m_A << endl << "m_B = " << p.m_B;
+	return out;
+}
+
+void test01()
+{
+	Person p(10, 10);
+	//p.m_A = 10;
+	//p.m_B = 10;
+
+	cout << p << endl;
+}
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
 ```
+
+**注：**
+
+> 重载左移运算符配合友元可以实现输出自定义数据类型
+
+
+
+#### 4.5.3 递增运算符重载
+
+
+
+作用：通过重载递增运算符，实现自己的整型数据
+
+
+
+```c++
+#include <iostream>
+using namespace std;
+
+//重载递增运算符
+
+//自定义整型
+class myInteger
+{
+	friend ostream& operator<<(ostream& cout, const myInteger& i);
+
+public:
+	myInteger()
+	{
+		m_Num = 0;
+	}
+
+	//重载前置++运算符	返回引用为了一直对一个数据进行操作
+	myInteger& operator++()
+	{
+		//先进行++运算
+		m_Num++;
+
+		//再将自身作返回
+		return *this;
+	}
+
+	//重载后置++运算符
+	//int 代表的占位参数，可以用于区分前置和后置。 并且编译器只认int，编译器可以确认为这是在写后置递增
+	myInteger operator++(int)
+	{
+		//先 记录当时的结果
+		myInteger temp = *this; //这里返回的是值，如果返回的是引用，那就是返回的局部变量的引用，这个函数用完就释放了，在操作就是非法操作
+
+		//后 递增操作
+		m_Num++;
+
+		//最后返回记录的结果返回
+		return temp;
+	}
+
+private:
+	int m_Num;
+};
+
+//重载<<运算符
+ostream& operator<<(ostream& cout, const myInteger& i)
+{
+	cout << i.m_Num;
+	return cout;
+}
+
+void test01()
+{
+	myInteger myint;
+
+	cout << ++(++myint) << endl;
+	cout << myint << endl;
+}
+
+void test02()
+{
+	myInteger myint;
+
+	cout << myint++ << endl;
+	cout << myint << endl;
+}
+//注：后置报错的，把左移运算符第二个参数使const 再加引用，或者直接不使用引用
+
+int main()
+{
+
+	//test01();
+
+	test02();
+
+	//一直在同一个数据上进行操作
+	//int a = 0;
+	//cout << ++(++a) << endl;
+	//cout << a << endl;
+
+	system("pause");
+	return 0;
+}
+```
+
+ **注：**
+
+> 前置递增返回引用，后置递增返回值
+
+
+
+
+
+#### 4.5.4 赋值运算符重载
+
+
+
+C++编译器至少给一个类添加4个函数
+
+1. 默认构造函数（无参，函数体为空）
+2. 默认析构函数（无参，函数体为空）
+3. 默认拷贝构造函数，对属性进行值拷贝
+4. 赋值运算符 operator=，对属性进行拷贝
+
+
+
+如果类中有属性指向堆区，做赋值操作时也会出现深浅拷贝的问题
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+using namespace std;
+
+//赋值运算符重载
+
+class Person
+{
+public:
+
+	Person(int age) //把数据创建在堆区
+	{
+		m_Age = new int(age);
+	}
+
+	~Person()
+	{
+		if (m_Age != NULL)
+		{
+			delete m_Age; //删除内存块的信息
+			m_Age = NULL; //指向空指针
+		}
+	}
+
+	//重载赋值运算符
+	Person& operator=(Person &p) //不能用Person，因为返回的是利用拷贝构造函数构造的值，用引用返回的才是真正的自身
+	{
+
+		if (&p == this) //判断出现自赋值的情况，如p1 = p1
+		{
+			return p;
+		}
+
+		//编译器提供的浅拷贝
+		//m_Age = p.m_Age;
+
+		//应该先判断是否有属性在堆区，如果有先释放干净，然后再深拷贝
+		if (m_Age != NULL)
+		{
+			delete m_Age;
+			m_Age = NULL;
+		}
+
+		m_Age = new int(*p.m_Age);
+	
+		//返回对象本身
+		return *this;
+	}
+
+	int* m_Age;
+};
+
+void test01()
+{
+	Person p1(18);
+
+	Person p2(20);
+
+	Person p3(30);
+
+	p3 = p2 = p1; //赋值操作
+
+	p1 = p1;
+
+	cout << "p1的年龄为：" << *p1.m_Age << endl;
+
+	cout << "p2的年龄为：" << *p2.m_Age << endl;
+
+	cout << "p3的年龄为：" << *p3.m_Age << endl;
+}
+
+int main()
+{
+
+	test01();
+
+	//int a = 10;
+	//int b = 20;
+	//int c = 30;
+
+	//c = b = a;
+
+	//cout << "a = " << a << endl;
+	//cout << "b = " << b << endl;
+	//cout << "c = " << c << endl;
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 4.5.5 关系运算符重载
+
+
+
+**作用：**重载关系运算符，可以让两个自定义类型对象进行对比操作
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+using namespace std;
+
+//重载关系运算符
+
+class Person
+{
+public:
+	Person(string name,int age):m_Name(name),m_Age(age){}
+
+	//重载 == 号
+
+	bool operator==(const Person& p)
+	{
+		if (this->m_Age == p.m_Age && this->m_Name == p.m_Name)
+			return true;
+		else
+			return false;
+
+	}
+
+	bool operator!=(const Person& p)
+	{
+		if (this->m_Age == p.m_Age && this->m_Name == p.m_Name)
+			return false;
+		else
+			return true;
+	}
+
+	string m_Name;
+	int m_Age;
+};
+
+void test01()
+{
+	Person p1("Tom", 18);
+
+	Person p2("Jerry", 18);
+
+	if (p1 == p2)
+	{
+		cout << "p1 和 p2 是相等的！" << endl;
+	}
+	else
+	{
+		cout << "p1 和 p2 不相等！" << endl;
+	}
+
+	if (p1 != p2)
+	{
+		cout << "p1 和 p2 不相等！" << endl;
+	}
+	else
+	{
+		cout << "p1 和 p2 是相等的！" << endl;
+	}
+}
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 4.5.6 函数调用运算符重载
+
+
+
+- 函数调用运算符 () 也可以重载
+- 由于重载后的使用方式非常像函数调用，因此称之为 仿函数
+- 仿函数没有固定写法，非常灵活
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+using namespace std;
+
+//函数调用运算符重载
+
+//打印输出类
+class myPrint
+{
+public:
+
+	//重载函数调用运算符
+	void operator()(string test)
+	{
+		cout << test << endl;
+	}
+};
+
+void myPrint02(string test)
+{
+	cout << test << endl;
+}
+
+void test01()
+{
+	myPrint myprint;
+
+	myprint("hello world"); //由于使用起来非常类似于函数调用，因此称之为仿函数
+
+	myPrint02("hello world");
+}
+
+//仿函数非常灵活，没有固定写法
+
+//加法类
+
+class myAdd
+{
+public:
+
+	int operator()(int a,int b)
+	{
+		return a + b;
+	}
+};
+
+void test02()
+{
+	myAdd myadd;
+
+	int ret = myadd(100, 100);
+	cout << "ret = " << ret << endl;
+
+	//匿名函数对象
+	cout << myAdd()(100, 100) << endl; //myAdd() 创建出一个匿名对象，运行完这一行立即释放
+}
+
+int main()
+{
+
+	//test01();
+
+	test02();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+### 4.6 继承
+
+**继承是面向对象三大特性之一**
+
+有些类与类之间存在特殊的关系，例如下图中：
+
+![Screenshot 2023-07-22 021747](E:\c.---c.---java-exercise\photo\Screenshot 2023-07-22 021747.png)
+
+我们发现，定义这些类时，下级别的成员除了拥有上一级的共性，还有自己的特性
+
+这个时候我们就可以考虑利用继承的技术，减少重复代码
+
+
+
+#### 4.6.1 继承的基本语法
+
+
+
+例如我们看到很多网站中，都有公共的头部，公共的底部，甚至公共的左侧列表，只有中心内容不同
+
+就下来们分别利用普通写法和继承的写法来实现网页中的内容，看一下继承存在的意义以及好处
+
+
+
+**最大的好处：**==减少重复代码==
+
+**语法：`class 子类 : 继承方式 父类`**	如：`class Java :public BasePage`
+
+
+
+**普通实现：**
+
+```c++
+//普通实现页面
+
+//Java页面
+class Java
+{
+public:
+	void header()
+	{
+		cout << "首页、公开课、登录、注册...(公共头部)" << endl;
+	}
+	void footer()
+	{
+		cout << "帮助中心、交流合作、站内地图...(公共底部)" << endl;
+	}
+	void left()
+	{
+		cout << "Java、Python、C++...(公共分类列表)" << endl;
+	}
+	void content()
+	{
+		cout << "Java学科视频" << endl;
+	}
+};
+
+//Python页面
+class Python
+{
+public:
+	void header()
+	{
+		cout << "首页、公开课、登录、注册...(公共头部)" << endl;
+	}
+	void footer()
+	{
+		cout << "帮助中心、交流合作、站内地图...(公共底部)" << endl;
+	}
+	void left()
+	{
+		cout << "Java、Python、C++...(公共分类列表)" << endl;
+	}
+	void content()
+	{
+		cout << "Python学科视频" << endl;
+	}
+};
+
+//C++页面
+class Cpp
+{
+public:
+	void header()
+	{
+		cout << "首页、公开课、登录、注册...(公共头部)" << endl;
+	}
+	void footer()
+	{
+		cout << "帮助中心、交流合作、站内地图...(公共底部)" << endl;
+	}
+	void left()
+	{
+		cout << "Java、Python、C++...(公共分类列表)" << endl;
+	}
+	void content()
+	{
+		cout << "Cpp学科视频" << endl;
+	}
+};
+```
+
+
+
+**继承实现：**
+
+```c++
+//继承实现页面
+
+//公共页面类
+class BasePage
+{
+public:
+	void header()
+	{
+		cout << "首页、公开课、登录、注册...(公共头部)" << endl;
+	}
+	void footer()
+	{
+		cout << "帮助中心、交流合作、站内地图...(公共底部)" << endl;
+	}
+	void left()
+	{
+		cout << "Java、Python、C++...(公共分类列表)" << endl;
+	}
+};
+
+//Java页面
+class Java :public BasePage
+{
+public:
+	void content()
+	{
+		cout << "Java学科视频" << endl;
+	}
+};
+
+//Python页面
+class Python :public BasePage
+{
+public:
+	void content()
+	{
+		cout << "Python学科视频" << endl;
+	}
+};
+
+//Cpp页面
+class Cpp :public BasePage
+{
+public:
+	void content()
+	{
+		cout << "Cpp学科视频" << endl;
+	}
+};
+```
+
+**注：**
+
+> 子类 也称为 派生类
+>
+> 父类 也称为 基类
+
+
+
+> **派生类中的成员，包含两大部分：**
+>
+> 一类是从基类继承过来的，一类是自己增加的成员
+>
+> 从基类继承过来的表现其共性，新增的成员体现其个性
+
+
+
+本节全部示例代码：
+
+```c++
+#include <iostream>
+using namespace std;
+
+//普通实现页面
+
+//Java页面
+//class Java
+//{
+//public:
+//	void header()
+//	{
+//		cout << "首页、公开课、登录、注册...(公共头部)" << endl;
+//	}
+//	void footer()
+//	{
+//		cout << "帮助中心、交流合作、站内地图...(公共底部)" << endl;
+//	}
+//	void left()
+//	{
+//		cout << "Java、Python、C++...(公共分类列表)" << endl;
+//	}
+//	void content()
+//	{
+//		cout << "Java学科视频" << endl;
+//	}
+//};
+
+//Python页面
+//class Python
+//{
+//public:
+//	void header()
+//	{
+//		cout << "首页、公开课、登录、注册...(公共头部)" << endl;
+//	}
+//	void footer()
+//	{
+//		cout << "帮助中心、交流合作、站内地图...(公共底部)" << endl;
+//	}
+//	void left()
+//	{
+//		cout << "Java、Python、C++...(公共分类列表)" << endl;
+//	}
+//	void content()
+//	{
+//		cout << "Python学科视频" << endl;
+//	}
+//};
+
+//C++页面
+//class Cpp
+//{
+//public:
+//	void header()
+//	{
+//		cout << "首页、公开课、登录、注册...(公共头部)" << endl;
+//	}
+//	void footer()
+//	{
+//		cout << "帮助中心、交流合作、站内地图...(公共底部)" << endl;
+//	}
+//	void left()
+//	{
+//		cout << "Java、Python、C++...(公共分类列表)" << endl;
+//	}
+//	void content()
+//	{
+//		cout << "Cpp学科视频" << endl;
+//	}
+//};
+
+//继承实现页面
+
+//公共页面类
+class BasePage
+{
+public:
+	void header()
+	{
+		cout << "首页、公开课、登录、注册...(公共头部)" << endl;
+	}
+	void footer()
+	{
+		cout << "帮助中心、交流合作、站内地图...(公共底部)" << endl;
+	}
+	void left()
+	{
+		cout << "Java、Python、C++...(公共分类列表)" << endl;
+	}
+};
+
+//继承的好处：减少重复代码
+//语法：class 子类: 继承方式 父类
+//子类 也称为 派生类
+//父类 也称为 基类
+
+//Java页面
+class Java :public BasePage
+{
+public:
+	void content()
+	{
+		cout << "Java学科视频" << endl;
+	}
+};
+
+//Python页面
+class Python :public BasePage //public公共继承
+{
+public:
+	void content()
+	{
+		cout << "Python学科视频" << endl;
+	}
+};
+
+//Cpp页面
+class Cpp :public BasePage
+{
+public:
+	void content()
+	{
+		cout << "Cpp学科视频" << endl;
+	}
+};
+
+void test01()
+{
+	cout << "Java下载视频页面如下：" << endl;
+	Java ja;
+	ja.header();
+	ja.footer();
+	ja.left();
+	ja.content();
+
+	cout << "-----------------------------------" << endl;
+
+	cout << "Python下载视频页面如下：" << endl;
+	Python py;
+	py.header();
+	py.footer();
+	py.left();
+	py.content();
+
+	cout << "-----------------------------------" << endl;
+
+	cout << "Cpp下载视频页面如下：" << endl;
+	Cpp cp;
+	cp.header();
+	cp.footer();
+	cp.left();
+	cp.content();
+}
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 4.6.2 继承方式
+
+
+
+继承的语法：`class 子类 : 继承方式 父类`
+
+
+
+继承方式一共有三种：
+
+- 公共继承
+- 保护继承
+- 私有继承
 
