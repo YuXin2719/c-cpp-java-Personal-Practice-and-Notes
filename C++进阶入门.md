@@ -4327,7 +4327,218 @@ int main()
 
 
 - 访问子类同名成员 直接访问即可
-- 访问父类同名成员 需要加作用域
+- 访问父类同名成员 需要加作用域   例如：**`s.Base::m_A`**（s为子类对象，Base为父类，m_A为父类成员）   父类同名函数调用同理**`s.Base::func()`**
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+using namespace std;
+
+//继承同名成员处理方式
+class Base
+{
+public:
+	Base()
+	{
+		m_A = 100;
+	}
+	void func()
+	{
+		cout << "Base - func()调用" << endl;
+	}
+	void func(int a)
+	{
+		cout << "Base - func(int a)调用" << endl;
+	}
+	int m_A;
+};
+
+class Son :public Base
+{
+public:
+	Son()
+	{
+		m_A = 200;
+	}
+	void func()
+	{
+		cout << "Son - func()调用" << endl;
+	}
+	int m_A;
+};
+
+//同名属性的处理方式
+void test01()
+{
+	Son s;
+	cout << "m_A = " << s.m_A << endl;
+	//如果通过子类对象，访问到父类中的同名成员，需要加作用域
+	cout << "s.Base::m_A = " << s.Base::m_A << endl;
+}
+
+//同名成员函数处理方式
+void test02()
+{
+	Son s;
+	s.func(); //直接调用 调用的是子类中的同名成员
+
+	//如何调用到父类中同名成员函数
+	s.Base::func();
+
+	//如果子类中出现和父类同名的成员函数，子类的同名成员会隐藏掉父类中所有的同名成员函数
+	//如果想访问到父类中被隐藏的同名成员函数，需要加作用域
+	s.Base::func(100);
+}
+
+int main()
+{
+
+	//test01();
+	test02();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+总结：
+
+1. 子类对象可以直接访问到子类中的同名成员
+2. 子类对象加作用域可以访问到父类同名成员
+3. 当子类与父类拥有同名的成名函数，子类会隐藏父类中同名成员函数，加作用域可以访问到父类中同名函数
+
+
+
+#### 4.6.6 继承同名静态成员处理方式
+
+
+
+问题：继承中同名的静态成员在子类对象上如何进行访问？
+
+
+
+静态成员和非静态成员出现同名，处理方式一致
+
+
+
+- 访问子类同名成员 直接访问即可
+- 访问子类同名成员 需要加作用域
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+using namespace std;
+
+//继承中同名静态成员处理方式
+
+class Base
+{
+public:
+	static int m_A;
+
+	static void func()
+	{
+		cout << "Base - static void func()" << endl;
+	}
+	static void func(int a)
+	{
+		cout << "Base - static void func(int a)" << endl;
+	}
+};
+int Base::m_A = 100;
+
+class Son :public Base
+{
+public:
+	static int m_A;
+
+	static void func()
+	{
+		cout << "Son - static void func()" << endl;
+	}
+};
+int Son::m_A = 200;
+
+//同名静态成员属性
+void test01()
+{
+	//1.通过对象访问
+	cout << "通过对象访问：" << endl;
+	Son s;
+	cout << "Son 下 m_A = " << s.m_A << endl;
+	cout << "Base 下 m_A = " << s.Base::m_A << endl;
+
+	//2.通过类名访问
+	cout << "通过类名访问：" << endl;
+	cout << "Son 下 m_A = " << Son::m_A << endl;
+	cout << "Base 下 m_A = " << Base::m_A << endl;
+	//或者	第一个::代表通过类名的方式访问  第二个::表示访问父类作用域下
+	cout << "Base 下 m_A = " << Son::Base::m_A << endl;
+}
+
+//同名静态成员函数
+void test02()
+{
+	//1.通过对象访问
+	cout << "通过对象访问：" << endl;
+	Son s;
+	s.func();
+	s.Base::func();
+
+	//2.通过类名访问
+	cout << "通过类名访问：" << endl;
+	Son::func();
+	Base::func();
+	Son::Base::func();
+
+	//子类出现和父类同名静态成员函数，也会隐藏父类中所有的同名成员函数
+	//如果想访问父类中被隐藏的同名成员，需要加作用域
+	Son::Base::func(100);
+}
+
+int main()
+{
+
+	//test01();
+
+	test02();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+> 总结：同名静态成员处理方式和非静态成员处理方式一样，只不过有两种访问方式（通过对象 和 通过类名）
+
+
+
+#### 4.6.7 多继承语法
+
+
+
+C++允许**一个类继承多个类**
+
+
+
+语法：`class 子类 : 继承方式 父类1 ， 继承方式 父类2 1...`
+
+
+
+多继承可能会引发父类中有同名成员出现，需要加作用域区分
+
+
+
+**C++实际开发中不建议用多继承**
 
 
 
