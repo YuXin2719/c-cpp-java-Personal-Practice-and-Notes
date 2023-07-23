@@ -146,6 +146,9 @@
     <ClCompile Include="空指针访问成员函数.cpp" />
     <ClCompile Include="类做友元.cpp" />
     <ClCompile Include="类对象作为类成员.cpp" />
+    <ClCompile Include="继承中构造和析构顺序.cpp" />
+    <ClCompile Include="继承中的对象模型.cpp" />
+    <ClCompile Include="继承同名成员处理方式.cpp" />
     <ClCompile Include="继承方式.cpp" />
     <ClCompile Include="继承的基本语法.cpp" />
     <ClCompile Include="赋值运算符重载.cpp" />

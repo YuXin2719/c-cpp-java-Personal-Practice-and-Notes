@@ -4066,3 +4066,274 @@ int main()
 
 
 
+**示例代码：**
+
+```c++
+#include <iostream>
+using namespace std;
+
+//继承方式
+
+//公共继承
+class Base1
+{
+public:
+	int m_A;
+protected:
+	int m_B;
+private:
+	int m_C;
+};
+
+class Son1 :public Base1
+{
+public:
+	void func()
+	{
+		m_A = 10; //父类中的公共权限成员 到子类中依然是公共权限
+		m_B = 10; //父类中的保护权限成员 到子类中依然是保护权限
+		//m_C = 10; //父类中的私有权限成员 到子类中访问不到
+	}
+};
+
+//保护继承
+class Base2
+{
+public:
+	int m_A;
+protected:
+	int m_B;
+private:
+	int m_C;
+};
+
+class Son2 :protected Base2
+{
+public:
+	void func()
+	{
+		m_A = 100; //父类中公共成员，到子类中变为保护权限
+		m_B = 100; //父类中保护成员，到子类中变为保护权限
+		//m_C = 100; //父类的私有成员访问不到
+	}
+};
+
+void test01()
+{
+	Son1 s1;
+	s1.m_A = 100;
+	//s1.m_B = 100; //继承到子类也是保护权限内容，所以类外不能访问
+}
+
+void test02()
+{
+	Son2 s1;
+	//s1.m_A = 1000; //在Son2中 m_A变为保护权限，因此类外访问不到
+	//s1.m_B = 1000; //在Son2中 m_B保护权限 不可以访问
+}
+
+void test03()
+{
+	Son3 s1;
+	//s1.m_A = 1000; //到Son3中变为 私有成员 类外访问不到
+	//s1.m_B = 1000; //到Son3中变为 私有成员 类外访问不到
+}
+
+//私有继承
+class Base3
+{
+public:
+	int m_A;
+protected:
+	int m_B;
+private:
+	int m_C;
+};
+
+class Son3 :private Base3
+{
+	void func()
+	{
+		m_A = 100; //父类中公共成员 到子类中变为 私有成员
+		m_B = 100; //父类中保护成员 到子类中变为 私有成员
+		//m_C = 100; //父类中私有成员，子类访问不到
+	}
+};
+
+class grandSon3 :public Son3
+{
+public:
+	void func()
+	{
+		//m_A = 1000; //到了Son3中 m_A变为私有，即使是儿子，也访问不到
+		//m_B = 1000; //到了Son3中 m_A变为私有，即使是儿子，也访问不到
+	}
+};
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 4.6.3 继承中的对象模型
+
+
+
+**问题：**从父类继承过来的成员，哪些属于子类对象中？
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+using namespace std;
+
+//继承中的对象模型
+
+class Base
+{
+public:
+	int m_A;
+protected:
+	int m_B;
+private:
+	int m_C;
+};
+
+class Son :public Base
+{
+public:
+	int m_D;
+};
+
+//利用开发人员命令提示工具(Developer Command Prompt for VS 2022)查看对象模型	(开始菜单可以找到)
+//跳转盘符	f:
+//跳转文件路径	cd	具体路径下	E:\c.---c.---java-exercise\cppCode\对象的初始化和清理
+//查看命名
+// cl(这是爱楼) /d1(这是一)  reportSingleClassLayou类名 文件名	||->	cl /d1 reportSingleClassLayoutSon 继承中的对象模型.cpp
+
+void test01()
+{
+	//16
+	//父类中所有的非静态成员属性都会被子类继承下去
+	//父类中私有成员属性 是被编译器给隐藏了，因此访问不到，但是被继承下去了
+	cout << "size of Son = " << sizeof(Son) << endl;
+}
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+![屏幕截图 2023-07-23 175919](E:\c.---c.---java-exercise\photo\屏幕截图 2023-07-23 175919.png)
+
+
+
+> 结论：父类中的私有成员也是被子类继承下去了，只是由编译器给隐藏后 访问不到
+
+
+
+#### 4.6.4 继承中构造和析构顺序
+
+
+
+子类继承父类后，当创建子类对象，也会调用父类的构造函数
+
+
+
+问题：父类和子类的构造和析构顺序是谁先谁后？
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+using namespace std;
+
+//继承中的构造和析构顺序
+class Base
+{
+public:
+	Base()
+	{
+		cout << "Base的构造函数！" << endl;
+	}
+	~Base()
+	{
+		cout << "Base的析构函数！" << endl;
+	}
+};
+
+class Son :public Base
+{
+public:
+	Son()
+	{
+		cout << "Son的构造函数！" << endl;
+	}
+	~Son()
+	{
+		cout << "Son的析构函数！" << endl;
+	}
+};
+
+void test01()
+{
+	//Base b;
+
+	//继承中的构造和析构顺序如下：
+	//先构造父类，再构造子类，析构的顺序与构造的顺序相反	类似栈
+	Son s;
+}
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+> 总结：继承中 先调用父类构造函数，再调用子类构造函数，析构顺序与构造相反
+
+
+
+#### 4.6.5 继承同名成员处理方式
+
+
+
+问题：当子类和父类出现同名成员，如何通过子类成员，访问到子类或父类中的同名数据呢？
+
+
+
+- 访问子类同名成员 直接访问即可
+- 访问父类同名成员 需要加作用域
+
+
+
+**示例：**
+
+```c++
+
+```
+
