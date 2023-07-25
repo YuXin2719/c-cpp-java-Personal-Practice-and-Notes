@@ -4545,6 +4545,296 @@ C++允许**一个类继承多个类**
 **示例：**
 
 ```c++
+#include <iostream>
+using namespace std;
+
+//多继承语法
+
+class Base1
+{
+public:
+	Base1()
+	{
+		m_A = 100;
+	}
+	int m_A;
+};
+
+class Base2
+{
+public:
+	Base2()
+	{
+		m_A = 200;
+	}
+	int m_A;
+};
+
+//子类 需要继承Base1和Base2
+//语法：class 子类 ， 继承方式 父类1，继承方式 父类2 ...
+class Son :public Base1, public Base2
+{
+public:
+	Son()
+	{
+		m_C = 300;
+		m_D = 400;
+	}
+	int m_C;
+	int m_D;
+};
+
+void test01()
+{
+	Son s;
+
+	cout << "sizeof Son = " << sizeof(s) << endl;
+	//当父类中出现同名成员，需要加作用域区分
+	cout << "Base1::m_A = " << s.Base1::m_A << endl;
+	cout << "Base2::m_A = " << s.Base2::m_A << endl;
+}
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+> 总结：多继承中如果父类中出现了同名情况，子类使用时候要加作用域
+
+
+
+#### 4.6.8 菱形继承
+
+
+
+**菱形继承概念：**
+
+两个派生类继承同一个基类
+
+又有某个类同时继承着两个派生类
+
+这种继承称为菱形继承，或者钻石继承
+
+
+
+**典型的菱形继承案例：**
+
+![屏幕截图 2023-07-24 162031](E:\c.---c.---java-exercise\photo\屏幕截图 2023-07-24 162031.png)
+
+
+
+**菱形继承问题：**
+
+1. 羊继承了动物的数据，驴同样继承了动物的数据，当草泥马使用数据时，就会产生二义性
+2. 草泥马继承自动物的数据继承了两份，其实我们应该清楚，这份数据我们只需要一份就可以
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+using namespace std;
+
+//动物类
+class Animal
+{
+public:
+	int m_Age;
+};
+
+//利用虚继承 解决菱形继承的问题
+//继承之前 加上关键字 virtual 变为虚继承
+//通过使用虚继承，可以确保在多重继承中，通过不同路径继承同一个基类的派生类只会存在一个共享的基类子对象
+//换句话说，虚继承能够消除由于多重继承导致的 数据重复（只保存一份数据） 以及 二义性问题
+//虚继承 只是继承了指针 指针通过偏移量去找到唯一的一份数据
+//Animal类称为 虚基类
+
+//羊类
+class Sheep :virtual public Animal{};
+
+//驼类
+class Tuo :virtual public Animal{};
+
+//羊驼类
+class sheepTuo :public Sheep, public Tuo{};
+
+void test01()
+{
+	sheepTuo st;
+
+	st.Sheep::m_Age = 18;
+	st.Tuo::m_Age = 28;
+	//当菱形继承，两个父类拥有相同数据，需要加以作用域区分
+	cout << "st.Sheep::m_Age = " << st.Sheep::m_Age << endl;
+	cout << "st.Tuo::m_Age = " << st.Tuo::m_Age<< endl;
+
+	cout << "st.m_Age = "<< st.m_Age << endl;
+
+	//这份数据我们知道 只有一份就可以，菱形继承导致数据有两份，资源浪费
+}
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+总结：
+
+- 菱形继承带来的主要问题是子类继承两份相同的数据，导致资源浪费以及毫无意义
+- 利用虚继承可以解决菱形继承问题
+
+
+
+### 4.7 多态
+
+#### 4.7.1 多态的基本概念
+
+
+
+**多态是C++面向对象三大特性之一**
+
+多态分为两类
+
+- 静态多态：函数重载 和 运算符重载属于静态多态，复用函数名
+- 动态多态：派生类和虚函数实现运行时多态
+
+静态多态和动态多态区别：
+
+- 静态多态的函数地址早绑定 - 编译阶段确定函数地址
+- 动态多态的函数地址晚绑定 - 运行阶段确定函数地址
+
+
+
+下面通过案例进行讲解多态
+
+```c++
+#include <iostream>
+using namespace std;
+
+//多态
+
+//动物类
+class Animal
+{
+public:
+	//虚函数
+	virtual void speak()
+	{
+		cout << "动物在说话" << endl;
+	}
+};
+
+//猫类
+class Cat :public Animal
+{
+public:
+	//重写是	函数返回值类型	函数名	参数列表	完全相同
+	void speak() //这里就是子类重写父类虚函数
+	{
+		cout << "小猫在说话" << endl;
+	}
+};
+
+//狗类
+class Dog :public Animal
+{
+public:
+	void speak()
+	{
+		cout << "小狗在说话" << endl;
+	}
+};
+
+//执行说话的函数
+//地址早绑定	在编译阶段确定函数地址
+//如果想执行让猫说话，那么这个函数地址就不能提前绑定，需要在运行阶段进行绑定，地址晚绑定
+
+//动态多态的满足条件
+//1.有继承关系
+//2.子类重写父类的虚函数
+
+//动态多态使用
+//父类的指针或者引用 指向子类对象
+
+void doSpeak(Animal& animal) //Animal & animal = cat;
+{
+	animal.speak();
+}
+
+void test01()
+{
+	Cat cat;
+	doSpeak(cat);
+
+	Dog dog;
+	doSpeak(dog);
+}
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+总结：
+
+多态满足条件：
+
+- 有继承关系
+- 子类重写父类中的虚函数
+
+多态使用条件：
+
+- 父类指针或引用指向子类对象
+
+重写：函数返回值类型  函数名  参数列表  完全一致称为重写
+
+![屏幕截图 2023-07-26 022807](E:\c.---c.---java-exercise\photo\屏幕截图 2023-07-26 022807.png)
+
+
+
+#### 4.7.2 多态案例一 - 计算机类
+
+
+
+案例描述：
+
+分别利用普通写法和多态技术，设计实现两个操作数进行运算的计算机类
+
+
+
+多态的优点：
+
+- 代码组织结构清晰
+- 可读性强
+- 利于前期和后期的拓展以及维护
+
+
+
+**示例：**
+
+```c++
 
 ```
 
