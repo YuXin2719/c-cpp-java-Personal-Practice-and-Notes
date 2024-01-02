@@ -1,2 +1,3 @@
-﻿  多态基本概念.cpp
+﻿  多态案例一 - 计算机类.cpp
+E:\c.---c.---java-exercise\cppCode\对象的初始化和清理\多态案例一 - 计算机类.cpp(27): warning C4715: “Calculator::getResult”: 不是所有的控件路径都返回值
   对象的初始化和清理.vcxproj -> E:\c.---c.---java-exercise\cppCode\对象的初始化和清理\x64\Debug\对象的初始化和清理.exe

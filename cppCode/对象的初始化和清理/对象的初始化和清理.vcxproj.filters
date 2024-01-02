@@ -114,5 +114,8 @@
     <ClCompile Include="多态案例一 - 计算机类.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="纯虚函数和抽象类.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
