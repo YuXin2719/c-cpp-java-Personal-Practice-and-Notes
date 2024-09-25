@@ -1,10 +1,28 @@
 # Java基础复习
 
+教程来自：【尚硅谷】7天搞定Java基础，Java零基础极速入门https://www.bilibili.com/video/BV1o841187iP/?p=5
+
 2023 4 28
 
 ## java基础常识
 
-![屏幕截图 2023-04-28 164539](E:\c.---c.---java-exercise\photo\屏幕截图 2023-04-28 164539.png)![屏幕截图 2023-04-28 163333](E:\typora\photo\屏幕截图 2023-04-28 163333.png)
+![屏幕截图 2023-04-28 164539](E:\c.---c.---java-exercise\photo\屏幕截图 2023-04-28 164539.png)
+
+<img src="image-20240925214630883.png" alt="image-20240925214630883" style="zoom:50%;" />
+
+- JDK：java编程环境
+- JRE：java运行环境
+- JVM：java虚拟机
+
+**编译器文件：**javac.exe
+
+**源文件：**xxx.java
+
+**字节码文件/类文件：**xxx.class
+
+**启动Java虚拟机文件：**java.exe
+
+
 
 idea常用快捷键:
 
@@ -201,11 +219,13 @@ public class Java03_Datatype_2 {
 package chapter02;
 
 public class Java03_Datatype_3 {
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
-    //TODO 引用数据类型，其实就是可以被引用的数据类型
+        //TODO 引用数据类型
+        //所谓的引用数据类型，其实就是可以被引用的数据类型
         String s = "abc";
 
+        int i = 10; //10直接存储在向量存储内，没有指向其他数据存储，所以不是引用数据类型
     }
 }
 
@@ -225,18 +245,19 @@ public class Java03_Datatype_3 {
 package chapter02;
 
 public class Java04_Operator {
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         //TODO 运算符
         //所谓的运算符就是参与数据运算的符号。Java定义的，无法自行定义
 
         //TODO 表达式
-        //所谓的表达式就是采用运算符和数据连接在一起形成符合Java语法规则的指令代码，称之为运算符
+        //所谓的表达式就是采用运算符和数据连接在一起形成符合Java语法规则的指令代码，称之为表达式
 
         //TODO 算数运算符  最小使用的类型是int类型
         //1.二元运算符 ： 两个元素参与运算的运算符，1 + 2
-        //  算术表达式 = 元素1 二元运算符 元素2
-        //  这个表达式是有结果的，就需要有类型，这里的类型是元素中类型最大的那一种，最小使用的类型是int类型
+        //  TODO 算术表达式 = 元素1 二元运算符 元素2
+        //  TODO 这个表达式是有结果的，就需要有类型，这里的类型是元素中类型最大的那一种
+        //   TODO 最小使用的类型是int类型
         System.out.println(1 + 2); // 3
         System.out.println(2 - 2); // 0
         System.out.println(3 * 2); // 6
@@ -249,7 +270,7 @@ public class Java04_Operator {
         byte b1 = 10;
         byte b2 = 10;
         //b1 + b2; (byte,byte) 不行
-        byte b3 = (byte)(b1 + b2);//强制转换
+        byte b3 = (byte) (b1 + b2);//强制转换
 
         System.out.println(1 + 2 * 3);//7
         System.out.println((1 + 2) * 3);//9
@@ -305,10 +326,4 @@ public class Java04_Operator_1 {
 ```
 
 
-
-### 关系运算符
-
-```java
-
-```
 

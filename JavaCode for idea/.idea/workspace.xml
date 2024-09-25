@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5895f94e-cdd9-4bfb-8fd7-b87fbd93c018" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/project1/HTML/test01.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cppCode/对象的初始化和清理/.vs/对象的初始化和清理/FileContentIndex/1a3c3247-1dba-439a-92f8-0c0802c62ba5.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cppCode/对象的初始化和清理/.vs/对象的初始化和清理/FileContentIndex/64563b78-3e0d-40aa-871e-102de6d4e2a9.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cppCode/对象的初始化和清理/.vs/对象的初始化和清理/FileContentIndex/f3217d8b-d13a-4e89-9208-6abdd2d6012c.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cppCode/对象的初始化和清理/.vs/对象的初始化和清理/FileContentIndex/f688eda1-521e-4e10-a60d-f2de471e2fc5.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cppCode/对象的初始化和清理/.vs/对象的初始化和清理/FileContentIndex/638f0d99-7568-4c45-bc55-796b4f000d94.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cppCode/对象的初始化和清理/.vs/对象的初始化和清理/FileContentIndex/8900fc6b-1104-4562-a70f-a901a3fef4a5.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cppCode/对象的初始化和清理/.vs/对象的初始化和清理/FileContentIndex/a4d9f310-be40-4469-9336-eec5fb40e2ee.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cppCode/对象的初始化和清理/.vs/对象的初始化和清理/FileContentIndex/d767a363-1a20-423e-8a30-dba9439097ac.vsidx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../cppCode/对象的初始化和清理/.vs/对象的初始化和清理/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../cppCode/对象的初始化和清理/.vs/对象的初始化和清理/v17/.suo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../cppCode/对象的初始化和清理/.vs/对象的初始化和清理/v17/Browse.VC.db" beforeDir="false" afterPath="$PROJECT_DIR$/../cppCode/对象的初始化和清理/.vs/对象的初始化和清理/v17/Browse.VC.db" afterDir="false" />
     </list>
@@ -22,17 +22,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2PHHPXYE7xmfSfEoFm1NEq5sl6P" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/c.---c.---java-exercise/JavaCode for idea&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/c.---c.---java-exercise/JavaCode for idea",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
