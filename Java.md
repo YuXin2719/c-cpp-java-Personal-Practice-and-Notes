@@ -4,7 +4,7 @@
 
 2023 4 28
 
-## java基础常识
+# 一、java基础常识
 
 ![屏幕截图 2023-04-28 164539](E:\c.---c.---java-exercise\photo\屏幕截图 2023-04-28 164539.png)
 
@@ -46,7 +46,7 @@ public class Java02_HelloJava {
 
 
 
-## 变量原理
+## 1.变量原理
 
 ```java
 package chapter02;
@@ -80,7 +80,7 @@ public class Java01_Variable {
 
 
 
-## 标识符
+## 2.标识符
 
 ```java
 package chapter02;
@@ -132,11 +132,11 @@ public class Java02_Identifier {
 
 
 
-## 数据类型
+# 二、数据类型
 
 ![屏幕截图 2023-04-29 011933](E:\c.---c.---java-exercise\photo\屏幕截图 2023-04-29 011933.png)
 
-### 基本数据类型
+## 1.基本数据类型
 
 ```java
 package chapter02;
@@ -177,7 +177,7 @@ public class Java03_Datatype_1 {
 
 ```
 
-### 数据类型之间的转换
+## 2.数据类型之间的转换
 
 ```java
 package chapter02;
@@ -213,7 +213,7 @@ public class Java03_Datatype_2 {
 
 ```
 
-### 引用数据类型
+## 3.引用数据类型
 
 ```java
 package chapter02;
@@ -233,13 +233,13 @@ public class Java03_Datatype_3 {
 
 
 
-## 运算符
+# 三、运算符
 
 ![屏幕截图 2023-04-29 122215](E:\c.---c.---java-exercise\photo\屏幕截图 2023-04-29 122215.png)
 
 
 
-### 算数运算符：一元运算符+二元运算符
+## 1.算数运算符：一元运算符+二元运算符
 
 ```java
 package chapter02;
@@ -293,7 +293,7 @@ public class Java04_Operator {
 
 
 
-### 赋值运算符
+## 2.赋值运算符
 
 ```java
 package chapter02;
@@ -326,4 +326,163 @@ public class Java04_Operator_1 {
 ```
 
 
+
+## 3.关系运算符
+
+```java
+package chapter02;
+
+public class Java04_Operator_2 {
+    public static void main(String[] args) {
+
+        //TODO 运算符 - 关系运算符
+        //所谓的关系运算符其实就是用于比较两个数据之间关系的运算符
+        //关系运算符基本语法结构：
+        //关系表达式 元素1（数据1/表达式1） 关系运算符[==,!=,>,>=,<,<=] 元素2（数据2/表达式2）、
+        //关系表达式的结果为布尔类型：如果表达式的结果和预想一样，那么结果为true，如果表达式的结果和预想不一样，那么结果为false
+        int i = 10;
+        int j = 20;
+        System.out.println(i > j); //false
+        System.out.println(i < j); //true
+        System.out.println(i == j); //false，双等号表示两个数据是否相等
+        System.out.println(i != j); //true，感叹号表示两个数据是否不相等
+        System.out.println(i >= j); //false，大于等于
+        System.out.println(i <= j); //true，小于等于
+    }
+}
+
+```
+
+
+
+## 4.逻辑运算符
+
+```java
+package chapter02;
+
+public class Java04_Operator_3 {
+    public static void main(String[] args) {
+
+        //TODO 运算符 - 逻辑运算符
+        //逻辑运算符其实就是用于描述多个条件表达式之间的关系的运算符
+        //TODO 基本语法结构：
+        //变量 = （条件表达式1） 逻辑运算符 （条件表达式2）
+        //结果变量的类型是布尔类型
+
+        //TODO 逻辑运算符：&，称之为与运算
+        //与运算，要求两个条件表达式都必须计算出结果，只有两个结果都为true的时候，最终结果为true，其他情况都为false
+        int i = 10;
+        boolean result = (i > 5) & (i < 20);
+        System.out.println(result);
+
+        //TODO 逻辑运算符：|，称之为或运算
+        //或运算，要求两个表达式都能计算出结果，只要有任何一个结果为true，那么最后结果都为true
+        //两个表达式结果都为false，最终结果才为false
+        int j = 10;
+        boolean result1 = (j > 5) | (j < 9);
+        System.out.println(result1);
+
+        //TODO 逻辑运算符：&&，称为短路与运算
+        //短路与运算，会根据第一个条件表达式的结果来判断，是否执行第二个表达式
+        //如果第一个表达式的结果为false，那么无需执行第二个表达式
+        int t = 10;
+        int y = 20;
+        boolean result2 = (t > 10) && (++y > 30);
+        System.out.println(result2);
+        System.out.println(y); //20
+
+        //TODO 逻辑运算符：||，称为短路或运算
+        //短路与运算，会根据第一个条件表达式的结果来判断，是否执行第二个表达式
+        //如果第一个表达式的结果为true，第二个表达式无需执行
+        int n = 10;
+        int s = 20;
+        boolean result3 = (n == 10) || (++s > 30);
+        System.out.println(result3);
+        System.out.println(s); //20
+
+        //TODO 逻辑运算符：！，逻辑非（相反）运算符
+        int b = 10;
+        boolean result4 = i == 10;
+        System.out.println(!result4); //false
+    }
+}
+
+```
+
+
+
+## 5.三元运算符
+
+```java
+package chapter02;
+
+public class Java04_Operator_4 {
+    public static void main(String[] args) {
+
+        //TODO 运算符 - 三元运算符
+        //所谓的三元运算符其实就是三个元素参与运算的运算符
+        //基本语法结构：
+        //变量 = （条件表达式）？（任意表达式1）：（任意表达式2）
+        //运算规则：判断条件表达式的结果，如果为true，那么执行表达式1的值，如果为false，执行表达式2的值
+        int i = 10;
+        int j = 20;
+
+        int k = (i == 10) ? 1 + 1 : 2 + 2;
+        System.out.println(k);
+    }
+}
+
+```
+
+
+
+# 四、流程控制
+
+## 1.顺序执行
+
+```java
+package chapter03;
+
+public class Java01_FlowControl {
+    public static void main(String[] args) {
+
+        //TODO 流程控制
+        //所谓的流程控制，其实就是计算机在执行代码时，对指令代码的执行顺序的控制
+        //Java中的流程控制主要分三种：
+        //1.顺序执行：代码出现的先后顺序，以及语法的先后顺序
+        //变量在使用之前，必须声明并且初始化
+        int i = 10;
+        int j = 20;
+        System.out.println(i + j);
+        //2.分支执行
+        //3.重复执行
+    }
+}
+
+```
+
+## 2.分支执行
+
+```java
+package chapter03;
+
+public class Java02_FlowControl {
+    public static void main(String[] args) {
+
+        //TODO 流程控制 - 分支执行
+        //分支结构
+        //TODO 1.可选分支：单分支结构
+        System.out.println("第一步");
+        System.out.println("第二步");
+        //判断：条件表达式的结果知否为true，如果为true，执行分支逻辑，如果为false，不执行分支逻辑
+        //判断的语法使用if关键字，表示如果，在条件表达式之前使用，如果结果为true，那么分支逻辑应该在后续的大括号中执行
+        int i = 20;
+        if (i == 10) {
+            System.out.println("分支");
+        }
+        System.out.println("第三步");
+    }
+}
+
+```
 
