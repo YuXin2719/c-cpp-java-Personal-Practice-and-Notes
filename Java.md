@@ -463,6 +463,8 @@ public class Java01_FlowControl {
 
 ## 2.分支执行
 
+### ①可选分支，必选分支，多分支
+
 ```java
 package chapter03;
 
@@ -476,13 +478,321 @@ public class Java02_FlowControl {
         System.out.println("第二步");
         //判断：条件表达式的结果知否为true，如果为true，执行分支逻辑，如果为false，不执行分支逻辑
         //判断的语法使用if关键字，表示如果，在条件表达式之前使用，如果结果为true，那么分支逻辑应该在后续的大括号中执行
-        int i = 20;
+//        int i = 20;
+//        if (i == 10) {
+//            System.out.println("分支");
+//        }
+
+        //TODO 2.必选分支：双分支结构（二选一）
+        //语法上使用if...else操作，这里的else表达其他场合
+//        int i = 10;
+//        if (i == 10) {
+//            System.out.println("分支1");
+//        } else {
+//            System.out.println("分支2");
+//        }
+
+        //TODO 3.多分支结构
+        //if...else if...else
+        int i = 30;
         if (i == 10) {
-            System.out.println("分支");
+            System.out.println("分支1");
+        } else if (i == 20) {
+            System.out.println("分支2");
+        }
+//        else {
+//            System.out.println("分支3");
+//        }
+
+        System.out.println("第三步");
+
+
+    }
+}
+
+```
+
+### ②特殊的分支结构
+
+<img src="image-20240928104924518.png" alt="image-20240928104924518" style="zoom:50%;" />
+
+```java
+package chapter03;
+
+public class Java03_FlowControl {
+    public static void main(String[] args) {
+
+        //TODO 流程控制 - 分支执行
+        //特殊的分支结构
+        //switch ( 数据 ) {}
+        //switch语法会对数据进行判断，如果等于某一个分支数据的值，那么执行相应分支的逻辑代码和以下的逻辑代码
+        //如果一个分支都无法匹配，那么一个分支都不会执行，如果想要无法匹配也需要执行分支（必选分支），那么可以增加default关键字
+        //如果想要执行某一个分支后，不想继续执行其他分支的话，可以使用break关键字跳出分支
+        System.out.println("第一步");
+        System.out.println("第二步");
+        int i = 10;
+        switch (i) {
+            case 10:
+                System.out.println("分支1");
+                break;
+            case 20:
+                System.out.println("分支2");
+            case 30:
+                System.out.println("分支3");
+            default: //加上这个就变成必选的了
+                System.out.println("其他分支");
+
         }
         System.out.println("第三步");
     }
 }
 
 ```
+
+### ③小练习
+
+```java
+package chapter03;
+
+public class Java04_FlowControl_test {
+    public static void main(String[] args) {
+
+        //TODO 流程控制 - 分支执行 - 小练习
+        int age = 30;
+        //儿童（0~6），少年（7~17），青年（18~40），中年（41~65），老年（66）
+        //if...else if...else if...else ： 多分支判断
+        //switch...case...case...default ： 等值分支判断
+        if (0 <= age && age <= 6) {
+            System.out.println("儿童");
+        } else if (7 <= age && age <= 17) {
+            System.out.println("少年");
+        } else if (18 <= age && age <= 40) {
+            System.out.println("青年");
+        } else if (41 <= age && age <= 65) {
+            System.out.println("中年");
+        } else if (66 <= age) {
+            System.out.println("老年");
+        } else {
+            System.out.println("错误");
+        }
+    }
+}
+
+```
+
+## 3.重复执行（循环执行）
+
+### ①while
+
+```java
+package chapter03;
+
+public class Java05_FlowControl {
+    public static void main(String[] args) {
+
+        //TODO 流程控制 - 重复执行（循环执行）
+        //根据条件重复执行某段代码
+        //Java中主要用于循环的语法有3个：
+        //1.while：有条件重复
+        //while (条件表达式) {需要循环的代码}
+        //基本的执行原理：while循环会判断条件表达式的结果是否为true
+        // 如果为true，会执行大括号内的逻辑代码，代码执行完毕后，会重新对条件表达式进行判断
+        // 如果为false，那么跳出循环结构
+        System.out.println("第一步");
+        int age = 30;
+        while (age < 40) { //执行十次
+            System.out.println("循环的代码");
+            age++;
+        }
+        //2.do...while
+        //3.for
+        System.out.println("第二步");
+    }
+}
+
+```
+
+### ②do...while
+
+
+
+```java
+package chapter03;
+
+public class Java05_FlowControl {
+    public static void main(String[] args) {
+
+        //TODO 流程控制 - 重复执行（循环执行）
+        //根据条件重复执行某段代码
+        //Java中主要用于循环的语法有3个：
+        //1.while：有条件重复
+        //while (条件表达式) {需要循环的代码}
+        //基本的执行原理：while循环会判断条件表达式的结果是否为true
+        // 如果为true，会执行大括号内的逻辑代码，代码执行完毕后，会重新对条件表达式进行判断
+        // 如果为false，那么跳出循环结构
+        System.out.println("第一步");
+        int age = 40;
+//        while (age < 40) { //执行十次
+//            System.out.println("循环的代码");
+//            age++;
+//        }
+
+        //2.do...while
+        //语法执行原理和while基本相同，区别在于循环代码是否至少执行一次
+        //while循环语法可能执行，可能不执行
+        //do...while循环语法中的循环代码至少执行一次
+        /*
+        do {
+            循环代码
+        } while(条件表达式)
+         */
+        do {
+            System.out.println("循环的代码");
+        } while (age < 40);
+        //3.for
+        System.out.println("第二步");
+    }
+}
+
+```
+
+### ③for
+
+```java
+package chapter03;
+
+public class Java05_FlowControl {
+    public static void main(String[] args) {
+
+        //TODO 流程控制 - 重复执行（循环执行）
+        //根据条件重复执行某段代码
+        //Java中主要用于循环的语法有3个：
+        //1.while：有条件重复
+        //while (条件表达式) {需要循环的代码}
+        //基本的执行原理：while循环会判断条件表达式的结果是否为true
+        // 如果为true，会执行大括号内的逻辑代码，代码执行完毕后，会重新对条件表达式进行判断
+        // 如果为false，那么跳出循环结构
+        System.out.println("第一步");
+        int age = 40;
+//        while (age < 40) { //执行十次
+//            System.out.println("循环的代码");
+//            age++;
+//        }
+
+        //2.do...while
+        //语法执行原理和while基本相同，区别在于循环代码是否至少执行一次
+        //while循环语法可能执行，可能不执行
+        //do...while循环语法中的循环代码至少执行一次
+        /*
+        do {
+            循环代码
+        } while(条件表达式)
+         */
+        do {
+            System.out.println("循环的代码");
+        } while (age < 40);
+
+        //3.for
+        //如果条件表达式返回结果为false，那么跳过循环语句，直接执行后续代码，如果返回结果为false，那么执行循环语句
+        //初始化表达式用于对条件表达式中是用到的变量进行初始化
+        //循环代码执行后，会重新进行表达式的判断，如果判断结果为true，会重复执行循环代码
+        /*
+        for( 初始化表达式 ; 条件表达式 ; 更新表达式 ) {
+            循环的代码
+        }
+         */
+        for (int i = 30; i < 40; i++) {
+            System.out.println("循环的代码");
+            System.out.println(i);
+        }
+
+        System.out.println("第二步");
+    }
+}
+
+```
+
+### ④break和continue关键字
+
+```java
+package chapter03;
+
+public class Java05_FlowControl_1 {
+    public static void main(String[] args) {
+
+        //TODO 流程控制 - 重复执行（循环执行）
+//        for (int i = 0; i < 10; i++) {
+//            if (i != 4) {
+//                System.out.println(i);
+//            }
+//        }
+
+        //break关键字会跳出循环，不再执行循环后续的操作
+        //continue关键字会跳过循环，执行下一次循环
+        for (int i = 0; i < 10; i++) {
+            if (i == 4) {
+                //切断，跳出循环
+                //break;
+                continue;
+            }
+            System.out.println(i);
+        }
+
+    }
+}
+
+```
+
+### ⑤小练习 - 九层妖塔
+
+```java
+package chapter03;
+
+public class Java06_FlowControl_test {
+    public static void main(String[] args) {
+
+        //TODO 流程控制 - 小练习
+        //九层妖塔
+        /*
+         *
+         ***
+         *****
+         *******
+         *********
+         ***********
+         *************
+         ***************
+         *****************
+         */
+
+        int level = 9; //优化代码，修改层数改这个数值就可以了
+
+        //0 -> 8
+        //1 -> 7
+        //2 -> 6
+        //...
+        for (int i = 0; i < level; i++) {
+            for (int n = 0; n < (level - 1) - i; n++) { //最后一层开头不需要空格
+                System.out.print(' '); //打印开头的空格
+            }
+
+            //0 -> 1
+            //1 -> 3
+            //2 -> 5
+            //3 -> 7
+            //...
+            for (int j = 0; j < 2 * i + 1; j++) {
+                System.out.print('*'); //打印*号
+            }
+            System.out.println();
+        }
+
+    }
+}
+
+```
+
+
+
+# 五、面向对象
 

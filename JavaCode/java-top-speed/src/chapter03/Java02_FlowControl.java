@@ -17,12 +17,24 @@ public class Java02_FlowControl {
 
         //TODO 2.必选分支：双分支结构（二选一）
         //语法上使用if...else操作，这里的else表达其他场合
-        int i = 10;
+//        int i = 10;
+//        if (i == 10) {
+//            System.out.println("分支1");
+//        } else {
+//            System.out.println("分支2");
+//        }
+
+        //TODO 3.多分支结构
+        //if...else if...else
+        int i = 30;
         if (i == 10) {
             System.out.println("分支1");
-        } else {
+        } else if (i == 20) {
             System.out.println("分支2");
         }
+//        else {
+//            System.out.println("分支3");
+//        }
 
         System.out.println("第三步");
 
