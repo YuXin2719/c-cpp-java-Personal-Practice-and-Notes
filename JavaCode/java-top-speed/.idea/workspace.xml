@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a933fb7-e81d-400a-939d-9a620121f28b" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/src/chapter03/Java02_FlowControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chapter03/Java02_FlowControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,10 +42,17 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/c.---c.---java-exercise/JavaCode/java-top-speed/src/chapter04",
     "settings.editor.selected.configurable": "preferences.keymap",
     "应用程序.Java01_HelloWorld.executor": "Run",
+    "应用程序.Java01_Object (1).executor": "Run",
+    "应用程序.Java01_Object.executor": "Run",
     "应用程序.Java01_variable.executor": "Run",
     "应用程序.Java02_FlowControl.executor": "Run",
+    "应用程序.Java02_Object.executor": "Run",
+    "应用程序.Java02_Object_1.executor": "Run",
+    "应用程序.Java02_Object_2 (1).executor": "Run",
+    "应用程序.Java02_Object_2.executor": "Run",
     "应用程序.Java03_FlowControl.executor": "Run",
     "应用程序.Java04_FlowControl_test.executor": "Run",
     "应用程序.Java04_Operator_2.executor": "Run",
@@ -52,22 +60,42 @@
     "应用程序.Java04_Operator_4.executor": "Run",
     "应用程序.Java05_FlowControl.executor": "Run",
     "应用程序.Java05_FlowControl_1.executor": "Run",
-    "应用程序.Java06_FlowControl_test.executor": "Run"
+    "应用程序.Java06_FlowControl_test.executor": "Run",
+    "应用程序.Java06_Object_Method.executor": "Run",
+    "应用程序.Java07_Object_Method_Param (1).executor": "Run",
+    "应用程序.Java07_Object_Method_Param (2).executor": "Run",
+    "应用程序.Java07_Object_Method_Param.executor": "Run",
+    "应用程序.Java07_Object_Method_Param_1.executor": "Run",
+    "应用程序.Java08_Object_Static (1).executor": "Run",
+    "应用程序.Java08_Object_Static.executor": "Run",
+    "应用程序.Java08_Object_Static_1 (1).executor": "Run",
+    "应用程序.Java08_Object_Static_1.executor": "Run",
+    "应用程序.Java08_Object_Static_2 (1).executor": "Run",
+    "应用程序.Java08_Object_Static_2 (2).executor": "Run",
+    "应用程序.Java08_Object_Static_2.executor": "Run",
+    "应用程序.Java10_Object_Import.executor": "Run",
+    "应用程序.Java11_Object_Instance (1).executor": "Run",
+    "应用程序.Java11_Object_Instance.executor": "Run",
+    "应用程序.Java12_Object_Extends.executor": "Run"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\c.---c.---java-exercise\JavaCode\java-top-speed\src\chapter04" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="chapter04" />
       <recent name="chapter03" />
       <recent name="chapter02" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.Java06_FlowControl_test">
-    <configuration name="Java03_FlowControl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter03.Java03_FlowControl" />
+  <component name="RunManager" selected="应用程序.Java12_Object_Extends">
+    <configuration name="Java08_Object_Static_2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter04.Java08_Object_Static_2" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chapter03.*" />
+          <option name="PATTERN" value="chapter04.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -75,12 +103,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java04_FlowControl_test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter03.Java04_FlowControl_test" />
+    <configuration name="Java10_Object_Import" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter04.Java10_Object_Import" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chapter03.*" />
+          <option name="PATTERN" value="chapter04.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -88,12 +116,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java05_FlowControl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter03.Java05_FlowControl" />
+    <configuration name="Java11_Object_Instance (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter04.Java11_Object_Instance" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chapter03.*" />
+          <option name="PATTERN" value="chapter04.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -101,12 +129,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java05_FlowControl_1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter03.Java05_FlowControl_1" />
+    <configuration name="Java11_Object_Instance" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter04.Java11_Object_Instance" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chapter03.*" />
+          <option name="PATTERN" value="chapter04.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -114,12 +142,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java06_FlowControl_test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter03.Java06_FlowControl_test" />
+    <configuration name="Java12_Object_Extends" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter04.Java12_Object_Extends" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chapter03.*" />
+          <option name="PATTERN" value="chapter04.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -129,11 +157,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.Java06_FlowControl_test" />
-        <item itemvalue="应用程序.Java05_FlowControl_1" />
-        <item itemvalue="应用程序.Java05_FlowControl" />
-        <item itemvalue="应用程序.Java04_FlowControl_test" />
-        <item itemvalue="应用程序.Java03_FlowControl" />
+        <item itemvalue="应用程序.Java12_Object_Extends" />
+        <item itemvalue="应用程序.Java11_Object_Instance (1)" />
+        <item itemvalue="应用程序.Java11_Object_Instance" />
+        <item itemvalue="应用程序.Java10_Object_Import" />
+        <item itemvalue="应用程序.Java08_Object_Static_2" />
       </list>
     </recent_temporary>
   </component>

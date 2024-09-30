@@ -1,6 +1,6 @@
 # Java基础复习
 
-教程来自：【尚硅谷】7天搞定Java基础，Java零基础极速入门https://www.bilibili.com/video/BV1o841187iP/?p=5
+配套课程：【尚硅谷】7天搞定Java基础，Java零基础极速入门https://www.bilibili.com/video/BV1o841187iP/?p=5
 
 2023 4 28
 
@@ -795,4 +795,704 @@ public class Java06_FlowControl_test {
 
 
 # 五、面向对象
+
+## 1.基本语法
+
+```java
+package chapter04;
+
+public class Java01_Object {
+    public static void main(String[] args) {
+
+        //TODO 面向对象
+        //所谓的面向对象，其实就是分析问题时，以问题所涉及的事或者物为中心的分析方式
+        //类和对象
+        //类表示归纳和整理
+        //对象就表示具体的事物
+        //TODO class（类）
+        /*
+        类的基本语法结构：
+        class 类名（命名规范，第一个字母大写） {
+        特征（属性），
+        功能（方法）
+
+        创建对象的语法：
+        new 类名()；
+        }
+         */
+
+        //问题：做一道菜，红烧排骨
+        //类：菜。对象：红烧排骨
+
+        //TODO 1.先声明类
+        //TODO 2.创建对象
+        //TODO 3.声明属性，所谓的属性就是类中的变量
+        //变量类型 变量名称 = 变量值
+        //属性类型 属性名称 = 属性值
+        //TODO 4.声明方法
+        //void 方法名(参数) {功能代码}
+        //TODO 5.执行方法
+        //对象.属性
+        //对象.方法()
+
+        //引用数据类型
+        Cooking c = new Cooking();
+        c.name = "红烧排骨";
+        c.food = "排骨";
+        c.execute();
+
+        Cooking c1 = new Cooking();
+        c1.name = "红烧鱼";
+        c1.food = "鲫鱼";
+        c1.execute();
+    }
+}
+
+class Cooking {
+
+    //特征（属性）
+    //名字
+    String name;
+    //菜的类型
+    String type = "红烧";
+    //食材
+    String food;
+    //佐料
+    String relish = "大料";
+
+    void execute() {
+        System.out.println("菜品名称:" + name);
+        System.out.println("菜的类型:" + type);
+        System.out.println("菜的食材:" + food);
+        System.out.println("菜的佐料:" + relish);
+
+        System.out.println("准备食材");
+        System.out.println("准备佐料");
+        System.out.println("开始烹饪");
+        System.out.println("烹饪完成");
+    }
+}
+```
+
+## 2.案例分析
+
+```java
+package chapter04;
+
+public class Java02_Object {
+    public static void main(String[] args) {
+
+        //TODO 面向对象
+
+        //类:动物
+        //对象:猫,狗
+        Animal a1 = new Animal();
+        a1.type = "猫";
+        a1.name = "小黑";
+        a1.run();
+
+        Animal a2 = new Animal();
+        a2.type = "狗";
+        a2.name = "大黄";
+        a2.run();
+    }
+}
+
+class Animal {
+
+    String type;
+    String name;
+
+    void run() {
+        System.out.println(type + ' ' + name + "跑开了");
+    }
+}
+```
+
+```java
+package chapter04;
+
+public class Java02_Object_1 {
+    public static void main(String[] args) {
+
+        //TODO 面向对象
+        //狗:2只,小黑,小白
+        Dog dog1 = new Dog();
+        dog1.color = "white";
+        dog1.name = "小白";
+        dog1.run();
+
+        Dog dog2 = new Dog();
+        dog2.color = "black";
+        dog2.name = "小黑";
+        dog2.run();
+    }
+}
+
+class Dog {
+    String color;
+    String name;
+
+    void run() {
+        System.out.println(color + "色的小狗" + name + "跑开了");
+    }
+}
+```
+
+```java
+package chapter04;
+
+public class Java02_Object_2 {
+    public static void main(String[] args) {
+
+        //TODO 面向对象
+
+        Teacher teacher1 = new Teacher();
+        teacher1.name = "zhangsan";
+        teacher1.teach();
+
+        Sdudent sdudent1 = new Sdudent();
+        sdudent1.name = "lisi";
+        sdudent1.sdudy();
+    }
+}
+
+class Teacher {
+    String name;
+
+    void teach() {
+        System.out.println(name + "老师在讲课");
+    }
+}
+
+class Sdudent {
+    String name;
+
+    void sdudy() {
+        System.out.println("学生" + name + "在听课");
+    }
+}
+```
+
+## 3.类和对象
+
+```java
+User04 user = new User04();
+```
+
+<img src="image-20240929193516378.png" alt="image-20240929193516378" style="zoom:50%;" />
+
+1. **栈：方法，属性**
+2. **堆：对象**
+3. **元空间：类的信息**
+
+```java
+package chapter04;
+
+public class Java04_Object_class {
+    public static void main(String[] args) {
+
+        //TODO 面向对象
+        //类:结构体,包含了属性(特征)和方法(行为)
+        //会有很多的对象
+        //class : 关键字(全是小写的)
+        //类名:类的名称,标识符,遵循规则,一般情况下,类名的首写字母是大写的(规范,不必须)
+
+        //对象:类的实例化(具象化)
+        //new 类名(),小括号需要增加
+        //new 也是关键字,表示创建一个具体的对象,而且使用一次,创建一次,每次都是全新的
+        //一般new出来的对象会赋值给变量,方便重复使用
+        //变量的类型就是对象的类型
+        //TODO 对象是将内存地址赋值给了变量,所以变量其实引用了内存中的对象,所以称之为引用变量
+        //而变量的类型称之为引用数据类型
+//        new User04();
+//        new User04();
+//        new User04();
+        User04 user = new User04();
+
+        //TODO 特殊的对象:空对象,没有引用的对象,称之为空对象,关键字对象
+        //所有引用类型变量的默认取值就是null
+        User04 user1 = null;
+    }
+}
+
+class User04 {
+
+}
+```
+
+## 4.属性
+
+```java
+package chapter04;
+
+public class Java05_Object_Field {
+    public static void main(String[] args) {
+
+        //TODO 面向对象
+        //所谓的属性,其实就是类的对象的相同特征
+        //语法和变量的声明很像
+        //属性类型 属性名称 = 属性值
+        //如果在声明属性的同时进行了初始化复制,那么所有对象的属性就完全相同
+        //如果希望每一个对象的属性不一致,那么可以不用在声明属性的时候进行初始化
+        //那么属性会在构造对象的时候默认初始化,而默认初始化的值取决于属性的类型
+        //byte,short,int,long => 0
+        //float,double => 0.0
+        //boolean flg = false
+        //char = 空字符
+        //引用数据类型 => null
+
+        //变量的作用域非常小,只在当前的大括号内有效
+        //属性不仅仅在当前类中有效,而且可以随着对象在其他地方使用
+        //变量使用前必须初始化,否则会出现错误,属性可以不用初始化,因为JVM会帮助我们自动完成初始化
+        String name = "zhangsan";
+
+    }
+}
+
+class User05 {
+    //String name = "zhangsan";
+    String name;
+}
+```
+
+## 5.方法
+
+```java
+package chapter04;
+
+public class Java06_Object_Method {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 方法
+        //声明的语法:void 方法名() { 逻辑代码 }
+        //声明的语法(补充):[方法的返回值类型][void] 方法名() { 逻辑代码 }
+        //这里的void表示方法的结果:没有结果
+
+        //方法的调用方式:对象.方法名()
+
+        //使用用户账号和密码进行登陆
+        //名词:用户,账号,密码
+        //动词:登陆
+        User06 user = new User06();
+        boolean registerResult = user.register();
+        if (registerResult) {
+            System.out.println("注册成功");
+            boolean loginResult = user.login();
+            if (loginResult) {
+                System.out.println("登录成功");
+            } else {
+                System.out.println("登录失败");
+            }
+        } else {
+            System.out.println("注册失败");
+        }
+
+    }
+}
+
+class User06 {
+    String cccount;
+    String password;
+
+    boolean register() { //注册
+        System.out.println("用户注册");
+        //返回结果:false
+        return true;
+    }
+
+    boolean login() { //登陆
+        System.out.println("用户登陆");
+        return false;
+    }
+}
+```
+
+## 6.方法参数
+
+```java
+package chapter04;
+
+public class Java07_Object_Method_Param {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 方法
+        //使用外部数据控制方法内部实现的操作,使用的是参数语法实现,也叫做方法参数
+        //语法:方法名( 参数类型 参数名称 )
+        //参数列表
+        //语法:方法名( 参数类型1 参数名称1 , 参数类型2 参数类型2 )
+
+        User07 user = new User07();
+        String name = "zhangsan";
+        int age = 30;
+        //传递参数
+        //user.sayHello(name, age);
+
+        //当方法传递多个参数的时候,需要注意:
+        //1.参数个数需要匹配
+        //2.参数类型需要匹配
+        //3.参数顺序需要匹配
+
+        //TODO 4.当参数的个数不确定,但是类型相同时,可以采用特殊的参数语法声明:可变参数
+        //如果参数还包含其他含义的参数,那么可变参数应该放在最后
+        //语法:参数类型... 参数名称
+        user.test(30);
+        user.test(30, "zhangsan");
+        user.test(30, "zhangsan", "lisi", "wangwu");
+    }
+}
+
+class User07 {
+
+    void sayHello(String name, int age) {
+        //使用参数
+        System.out.println("Hello " + name + ',' + age);
+    }
+
+    void test(int age, String... name) {
+        System.out.println(name);
+    }
+}
+```
+
+## 7.方法参数 - 传值方式
+
+```java
+package chapter04;
+
+import netscape.security.UserTarget;
+
+public class Java07_Object_Method_Param_1 {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 方法
+        //Java中方法参数的传递为值传递
+        //基本数据类型:数值
+        //引用数据类型:引用地址
+//        String s = "abc";
+//        test(s);
+//        System.out.println(s); //"abc10"?
+        User user = new User();
+        user.name = "zhangsan";
+        test(user);
+        System.out.println(user.name);
+
+        //字符串拼接机制:
+        // 在 Java 中，当一个字符串（如 "zhangsan"）与其他基本数据类型（这里是 int 类型的 10）进行拼接操作时,
+        // Java 会自动将基本数据类型转换为字符串类型，然后再进行拼接
+        String name = "zhangsan" + 10;
+        System.out.println(name);
+    }
+
+//    public static void test(int i) {
+//        i = i + 10;
+//    }
+
+//    public static void test(String s) {
+//        s = s + 10;
+//    }
+
+    public static void test(User user) {
+        user.name = "lisi";
+    }
+}
+
+class User {
+    String name;
+}
+```
+
+## 8.静态
+
+```java
+package chapter04;
+
+public class Java08_Object_Static {
+    public static void main(String[] args) {
+
+        //TODO 面向对象
+        //针对于具体对象的属性称之为对象属性,成员属性,实例属性
+        //针对于具体对象的方法称之为对象方法,成员方法,实例方法
+        //把和对象无关,只和类相关的称之为静态
+        //和类相关的属性称之为静态属性
+        //和类相关的方法称之为静态方法
+        //静态语法就是在属性和方法前增加static关键字
+//        Chinese c = new Chinese();
+//        Chinese c = null;
+//        c.name = "zhangsan";
+//
+//        System.out.println("Hello " + c.name + ", " + c.nationnality);
+
+        //静态不用创建对象就能访问
+        Bird.fly();
+        System.out.println(Bird.type);
+    }
+}
+
+class Bird {
+    static String type = "鸟";
+
+    static void fly() {
+        System.out.println("飞...");
+    }
+}
+
+class Chinese {
+    String name;
+
+    //国籍
+    String nationnality = "中国";
+}
+
+```
+
+```java
+package chapter04;
+
+public class Java08_Object_Static_1 {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 静态
+
+        //TODO 先有类,再有对象
+        //成员方法可以访问静态属性和静态方法
+        //静态方法不可以访问成员属性和成员方法
+        Test t = new Test();
+        t.sex = "女";
+        t.test();
+//        t.test1();
+//        Test.test1();
+    }
+}
+
+class Test {
+    String name; //成员属性
+    static String sex; //静态属性
+
+    void test() { //成员方法
+//        test1();
+//        System.out.println(sex);
+        System.out.println("test...");
+    }
+
+    static void test1() { //静态方法
+//        test();
+//        System.out.println(name);
+//        System.out.println("test1...");
+    }
+}
+
+
+class Bird1 {
+    static String type = "鸟";
+
+    static void fly() {
+        System.out.println("飞...");
+    }
+}
+```
+
+## 9.静态代码块
+
+```java
+package chapter04;
+
+public class Java08_Object_Static_2 {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 静态
+
+        //TODO 类的信息加载完成后,会自动调用静态代码快,可以完成静态属性的初始化功能
+        //TODO 对象准备创建时,也会自动调用代码块,但不是静态的
+//        User08.test();
+        new User08();
+    }
+}
+
+class User08 {
+    static {
+        //静态代码块
+        System.out.println("静态代码块执行1");
+    }
+
+    static {
+        //静态代码块
+        System.out.println("静态代码块执行2");
+    }
+
+    static void test() {
+        System.out.println("test...");
+    }
+
+    {
+        //静态代码块
+        System.out.println("代码块执行1");
+    }
+
+    static {
+        //静态代码块
+        System.out.println("静态代码块执行3");
+    }
+
+    {
+        //静态代码块
+        System.out.println("代码块执行1");
+    }
+}
+```
+
+## 10.包
+
+```java
+package chapter04;
+
+public class Java09_Object_Package {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - package - 包
+        //package容纳类
+        //基本语法:package 包完整路径;
+        //路径中的多个包使用.隔开
+        //java.long.Object
+        //主要功能用于分类管理
+
+        //一个类可以没有包,但是package不能在同一个源码文件中使用多次
+        //包名为了区分类名,所以一般全部都是小写
+        //java.long.Object  java和long是包,Object是类,为了区分,不强制规定
+
+        //Java中存在不同包的相同名称的类,可以使用包进行区分
+        //一般情况下,在使用类的情况下,我们都会使用类的全名(包名 + 类名)
+        new java.util.Date();
+    }
+}
+
+```
+
+## 11.Import - 导入类
+
+**Alt + 回车：自动导入类**
+
+```java
+package chapter04;
+
+import java.util.*;
+import java.sql.Date;
+
+public class Java10_Object_Import {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - Import
+        //import主要用于在使用类之前准备好
+        //import语句只能使用在package后,class前
+        //import关键字可以多次使用,导入多个类
+        //如果同一个包中需要导入大量的类,那么可以使用通配符*简化操作
+        //如果import了不同包中相同的类,那么还是需要使用时增加包名
+
+        //chapter04.Java10_Object_Import
+//        java.long.String name="zhangsan";
+        String name1 = "zhangsan";
+
+        java.util.Date d = new java.util.Date();
+        new ArrayList();
+
+        new chapter04.Java10_Object_Import();
+        new Java10_Object_Import();
+        new User10();
+    }
+}
+
+class User10 {
+
+}
+
+```
+
+## 12.构造方法
+
+```java
+package chapter04;
+
+public class Java11_Object_Instance {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 构建对象
+        //构造方法:专门用于构建对象
+        //如果一个类中没有任何的构造方法，那么JVM会自动添加一个公共的,无参的构造方法,方便对象的调用
+        //TODO 基本语法:类名(){}
+        //1.构造方法也是方法,但是没有void关键字
+        //2.方法名和类名完全相同
+        //3.如果类中没有构造方法,那么JVM会提供默认的构造方法
+        //4.如果类中有构造方法,那么JVM不会提供默认的构造方法
+        //5.构造方法也是方法,所以也可以传递参数,但是一般传递参数的目的是用于对象属性的赋值
+        System.out.println("before...");
+        User11 user = new User11("zhangsan");
+        System.out.println("after...");
+        user.test();
+        System.out.println(user.username);
+        //TODO 代码块，是在构造对象之前执行的
+
+    }
+}
+
+class User11 {
+    String username;
+
+    {
+        System.out.println("代码块1");
+    }
+
+    User11(String name) {
+        username = name;
+        System.out.println("user...");
+    }
+
+    {
+        System.out.println("代码块2");
+    }
+
+    void test() {
+        System.out.println("test...");
+    }
+
+    {
+        System.out.println("代码块3");
+    }
+}
+```
+
+## 13.继承
+
+<img src="image-20240929234419004.png" alt="image-20240929234419004" style="zoom:50%;" />
+
+```java
+package chapter04;
+
+public class Java12_Object_Extends {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 继承
+        //面向对象中有非常重要的三个特征:继承,封装,多态
+        //类存在父子关系,子类可以直接获取到父类的成员属性和方法
+        //类的继承只能是单继承,一个类只能有一个父类,不能存在多个父类
+        //一个父类可以有多个子类
+
+        //继承采用extends语法:子类 extends 父类
+        Child c = new Child();
+        System.out.println(c.name);
+        c.test();
+    }
+}
+
+class Parent {
+    String name = "zhangsan";
+
+    void test() {
+        System.out.println("test");
+    }
+}
+
+class Child extends Parent {
+
+}
+```
 
