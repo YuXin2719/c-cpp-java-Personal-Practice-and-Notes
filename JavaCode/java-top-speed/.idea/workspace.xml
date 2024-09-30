@@ -76,7 +76,28 @@
     "应用程序.Java10_Object_Import.executor": "Run",
     "应用程序.Java11_Object_Instance (1).executor": "Run",
     "应用程序.Java11_Object_Instance.executor": "Run",
-    "应用程序.Java12_Object_Extends.executor": "Run"
+    "应用程序.Java12_Object_Extends.executor": "Run",
+    "应用程序.Java12_Object_Extends_1 (1).executor": "Run",
+    "应用程序.Java12_Object_Extends_1 (2).executor": "Run",
+    "应用程序.Java12_Object_Extends_1.executor": "Run",
+    "应用程序.Java12_Object_Extends_2 (1).executor": "Run",
+    "应用程序.Java12_Object_Extends_2 (2).executor": "Run",
+    "应用程序.Java12_Object_Extends_2.executor": "Run",
+    "应用程序.Java13_Object.executor": "Run",
+    "应用程序.Java14_Object.executor": "Run",
+    "应用程序.Java14_Object_1.executor": "Run",
+    "应用程序.Java14_Object_2.executor": "Run",
+    "应用程序.Java15_Object (1).executor": "Run",
+    "应用程序.Java15_Object (2).executor": "Run",
+    "应用程序.Java15_Object (3).executor": "Run",
+    "应用程序.Java15_Object.executor": "Run",
+    "应用程序.Java15_Object_1 (1).executor": "Run",
+    "应用程序.Java15_Object_1 (2).executor": "Run",
+    "应用程序.Java15_Object_1 (3).executor": "Run",
+    "应用程序.Java15_Object_1 (4).executor": "Run",
+    "应用程序.Java15_Object_1 (5).executor": "Run",
+    "应用程序.Java15_Object_1.executor": "Run",
+    "应用程序.Java16_Object_Recursion.executor": "Run"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -89,9 +110,9 @@
       <recent name="chapter02" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.Java12_Object_Extends">
-    <configuration name="Java08_Object_Static_2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter04.Java08_Object_Static_2" />
+  <component name="RunManager" selected="应用程序.Java16_Object_Recursion">
+    <configuration name="Java15_Object_1 (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter04.Java15_Object_1" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
@@ -103,8 +124,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java10_Object_Import" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter04.Java10_Object_Import" />
+    <configuration name="Java15_Object_1 (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter04.Java15_Object_1" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
@@ -116,8 +137,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java11_Object_Instance (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter04.Java11_Object_Instance" />
+    <configuration name="Java15_Object_1 (4)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter04.Java15_Object_1" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
@@ -129,8 +150,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java11_Object_Instance" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter04.Java11_Object_Instance" />
+    <configuration name="Java15_Object_1 (5)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter04.Java15_Object_1" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
@@ -142,8 +163,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java12_Object_Extends" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter04.Java12_Object_Extends" />
+    <configuration name="Java16_Object_Recursion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter04.Java16_Object_Recursion" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
@@ -157,11 +178,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.Java12_Object_Extends" />
-        <item itemvalue="应用程序.Java11_Object_Instance (1)" />
-        <item itemvalue="应用程序.Java11_Object_Instance" />
-        <item itemvalue="应用程序.Java10_Object_Import" />
-        <item itemvalue="应用程序.Java08_Object_Static_2" />
+        <item itemvalue="应用程序.Java16_Object_Recursion" />
+        <item itemvalue="应用程序.Java15_Object_1 (5)" />
+        <item itemvalue="应用程序.Java15_Object_1 (4)" />
+        <item itemvalue="应用程序.Java15_Object_1 (3)" />
+        <item itemvalue="应用程序.Java15_Object_1 (2)" />
       </list>
     </recent_temporary>
   </component>

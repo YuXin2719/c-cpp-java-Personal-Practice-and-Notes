@@ -8,7 +8,7 @@
 
 ![屏幕截图 2023-04-28 164539](E:\c.---c.---java-exercise\photo\屏幕截图 2023-04-28 164539.png)
 
-<img src="image-20240925214630883.png" alt="image-20240925214630883" style="zoom:50%;" />
+<img src="image-20240925214630883.png" alt="image-20240925214630883" style="zoom:67%;" />
 
 - JDK：java编程环境
 - JRE：java运行环境
@@ -514,7 +514,7 @@ public class Java02_FlowControl {
 
 ### ②特殊的分支结构
 
-<img src="image-20240928104924518.png" alt="image-20240928104924518" style="zoom:50%;" />
+<img src="image-20240928104924518.png" alt="image-20240928104924518" style="zoom:67%;" />
 
 ```java
 package chapter03;
@@ -980,7 +980,7 @@ class Sdudent {
 User04 user = new User04();
 ```
 
-<img src="image-20240929193516378.png" alt="image-20240929193516378" style="zoom:50%;" />
+<img src="image-20240929193516378.png" alt="image-20240929193516378" style="zoom:67%;" />
 
 1. **栈：方法，属性**
 2. **堆：对象**
@@ -1462,7 +1462,7 @@ class User11 {
 
 ## 13.继承
 
-<img src="image-20240929234419004.png" alt="image-20240929234419004" style="zoom:50%;" />
+<img src="image-20240929234419004.png" alt="image-20240929234419004" style="zoom: 67%;" />
 
 ```java
 package chapter04;
@@ -1493,6 +1493,493 @@ class Parent {
 
 class Child extends Parent {
 
+}
+```
+
+## 14.super、this
+
+1. **super.表示父类**
+2. **this.表示子类**
+
+```java
+package chapter04;
+
+public class Java12_Object_Extends_1 {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 继承
+        //如果父类和子类含有相同的属性,那么可以采用特殊的关键字进行区分
+        Child1 c = new Child1();
+//        System.out.println(c.name);
+        c.test();
+    }
+}
+
+class Parent1 {
+    String name = "zhangsan";
+}
+
+class Child1 extends Parent1 {
+    String name = "lisi";
+
+    void test() {
+        System.out.println(super.name);
+        System.out.println(this.name);
+        System.out.println(name);
+    }
+}
+```
+
+## 15.继承、构造方法
+
+<img src="image-20240930125043588.png" alt="image-20240930125043588" style="zoom: 67%;" />
+
+```java
+package chapter04;
+
+public class Java12_Object_Extends_2 {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 继承
+        //构造方法
+        //父类对象是在子类对象创建前创建完成的,创建子类对象前,会调用父类的构造方法完成父类的创建
+        //默认情况下,子类对象创建时,会默认调用父类的构造方法完成父类对象的创建,使用的是super方式,只不过JVM自动完成
+        //如果父类提供构造方法,那么JVM不会提供默认的构造方法,那么子类应该显示调用super方法构建父类对象
+        Child2 c1 = new Child2();
+        Child2 c2 = new Child2();
+        Child2 c3 = new Child2();
+
+        //new : 只会构建一个对象
+        //子类中的父类属性是继承过来的,并不是真的创建了一个父类对象,只有子类对象,里面包含了父类属性,构建器也是在创建对象之后运行的
+    }
+}
+
+class Parent2 {
+    String username;
+
+    Parent2(String name) {
+        username = name;
+        System.out.println("parent...");
+    }
+}
+
+class Child2 extends Parent2 {
+    Child2() {
+        super("zhangsan");
+        System.out.println("child...");
+    }
+}
+```
+
+## 16.多态
+
+```java
+package chapter04;
+
+public class Java13_Object {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 多态
+        //所谓的多态,就是一个对象在不同场景下表现出来的不同状态和形态
+        //多态语法其实就是对对象的使用场景进行了约束
+        //一个对象可以使用的功能取决于引用变量的类型
+        Person p = new Person();
+        p.testPerson();
+        Person p1 = new Boy();
+        p1.testPerson();
+        Person p2 = new Girl();
+        p2.testPerson();
+
+        Boy boy = new Boy();
+        boy.testBoy();
+
+        Girl girl = new Girl();
+        girl.testGirl();
+    }
+}
+
+class Person {
+    void testPerson() {
+        System.out.println("test person...");
+    }
+}
+
+class Boy extends Person {
+    void testBoy() {
+        System.out.println("test boy...");
+    }
+}
+
+class Girl extends Person {
+    void testGirl() {
+        System.out.println("test girl...");
+    }
+}
+```
+
+## 17.方法重载
+
+```Java
+package chapter04;
+
+public class Java14_Object {
+    public static void main(String[] args) {
+
+        //TODO 面向对象
+        //一个类中,不要能声明相同的方法,也不能声明相同的属性
+        //这里相同的方法指的是方法名,参数列表相同,和返回值类型无关
+        //如果方法名相同,但是参数列表(个数,顺序,类型)不相同,会认为是不同的方法,只不过名称一样
+        //这个操作在Java中称为方法的重载
+        //构造方法也存在方法的重载
+        User14 user = new User14("zhangsan");
+        user.login(1111);
+        user.login("123123");
+        user.login("zhangsan", "123123");
+    }
+}
+
+class User14 {
+    User14() {
+        System.out.println("user...");
+    }
+
+    User14(String name) {
+        System.out.println("user..." + name);
+    }
+
+    void login(String account, String password) {
+        System.out.println("账号,密码登录");
+    }
+
+    void login(int tel) {
+        System.out.println("手机验证码登录");
+    }
+
+    void login(String wx) {
+        System.out.println("微信,支付宝登录");
+    }
+}
+```
+
+## 18.方法重载 - 小练习
+
+```java
+package chapter04;
+
+public class Java14_Object_1 {
+    public static void main(String[] args) {
+
+        //TODO 面向对象
+        //如果在一个构造方法中,想要调用其他的构造方法,那么需要使用特殊的关键字:this
+        User141 user1 = new User141();
+//        User141 user2 = new User141("zhangsan");
+//        User141 user3 = new User141("zhangsan", "男");
+    }
+}
+
+class User141 {
+    User141() {
+        this("zhangsan");
+    }
+
+    User141(String name) {
+        this(name, "男");
+    }
+
+    User141(String name, String sex) {
+        System.out.println(name + ',' + sex);
+    }
+}
+```
+
+```java
+package chapter04;
+
+public class Java14_Object_2 {
+    public static void main(String[] args) {
+
+        //TODO 面向对象
+        byte b = 10;
+//        test(b); //bbb
+        //byte => 8
+        //short => 16
+        //char => 16
+        //int => 32
+        //基本数据类型在匹配方法时,可以在数值不变的情况下,扩大数据的精度
+        //byte类型无法和char类型做转换,char没有负数,但是byte存在负数
+
+        test(b);
+    }
+
+//    static void test(byte b) {
+//        System.out.println("bbb");
+//    }
+
+//    static void test(short s) {
+//        System.out.println("sss");
+//    }
+
+    static void test(char c) {
+        System.out.println("ccc");
+    }
+
+    static void test(int i) {
+        System.out.println("iii");
+    }
+}
+
+```
+
+```java
+package chapter04;
+
+public class Java14_Object_3 {
+    public static void main(String[] args) {
+
+        //TODO 面向对象
+//        AAA aaa = new AAA();
+//        BBB aaa = new BBB();
+        BBB aaa = new BBB(); //使用什么方法取决于用的什么类型
+        test(aaa);
+
+        //多态其实就是约束了对象的使用场景,给了BBB但是当成AAA来用
+        //方法的重载:方法名相同,参数列表不同(个数,顺序,类型)
+        //如果找不到,会提升数据类型,找父类:
+        //AAA -> Object
+        //BBB -> AAA -> Object
+    }
+
+    static void test(AAA aaa) {
+        System.out.println("aaa");
+    }
+
+//    static void test(BBB bbb) {
+//        System.out.println("bbb");
+//    }
+}
+
+class AAA {
+
+}
+
+class BBB extends AAA {
+
+}
+```
+
+## 19.方法重写
+
+```java
+package chapter04;
+
+public class Java15_Object {
+    public static void main(String[] args) {
+
+        //TODO 面向对象
+        //方法的重写:父类对象的方法其实主要体现通用性,无法在特殊的场合下使用
+        //          如果子类对象需要在特殊的场合下使用,那么就需要重写方法的逻辑,这个操作在Java中称之为方法的重写
+        //这里的重写,并不意味着父类的方法被覆盖掉,只是在当前场合中不适用,如果使用super关键字,还是可以访问
+        //方法的重写要求,子类的方法和父类的方法,方法名相同,返回值类型相同,参数列表相同
+        Child15 child = new Child15();
+        child.test();
+    }
+}
+
+class Parent15 {
+    String name = "zhangsan";
+
+    void test() {
+        System.out.println("parent test...");
+    }
+}
+
+class Child15 extends Parent15 {
+    String name = "lisi";
+
+    void test() {
+        System.out.println(this.name);
+        System.out.println(super.name);
+        super.test();
+        System.out.println("child test...");
+    }
+}
+```
+
+## 20.方法重写 - 小练习
+
+```java
+package chapter04;
+
+public class Java15_Object_1 {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 重写
+//        CCC ccc = new CCC();
+//        DDD ddd = new DDD();
+        CCC ddd = new DDD();
+        //一个对象能使用什么方法,取决于引用变量的类型
+        //一个对象能使用什么属性,取决于引用变量的类型
+
+        //一个对象的方法具体的使用(直接,间接)是需要看具体的对象的
+        //一个对象的属性具体的使用是不需要看具体的对象的
+        //TODO 属性在哪里声明,在哪里使用
+        System.out.println(ddd.sum());
+    }
+}
+
+class CCC {
+    int i = 10;
+
+    int sum() {
+        return getI() + 10;
+    }
+
+    int getI() {
+        return i;
+    }
+}
+
+class DDD extends CCC {
+    int i = 20;
+
+    int sum() {
+        return getI() + 20;
+    }
+
+    int getI() {
+        return i;
+    }
+}
+```
+
+## 21.递归
+
+```java
+package chapter04;
+
+public class Java16_Object_Recursion {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 递归
+        //所谓的递归:方法调用自身,称之为递归方法
+        //例如想求20以内的奇数之和
+        //1 + 3 + 5 + 7 + 9 + ... + 19
+        int result = computeAP(20);
+        System.out.println(result);
+
+        //阶乘 : 5! => 5 * 4 * 3 * 2 * 1
+        //0的阶乘为1
+        //一个大于1的阶乘等于这个数乘以这个数减一的阶乘
+        int result1 = computeFactorial(5);
+        System.out.println(result1);
+
+        //1.递归方法应该有跳出的逻辑
+        //2.调用自身时,传递的参数应该有规律
+    }
+
+    /*
+    1是递归边界
+    先不断的递归调用,到达边界之后开始逐步返回结果向上累加
+
+    计算过程:
+    当第一次调用computeAP(20)时，由于 20 是偶数，先将其变为 19。
+    然后判断 19 不等于 1，执行return 19 + computeAP(17)。
+    接着调用computeAP(17)，同样进行判断和计算，得到17 + computeAP(15)。
+    以此类推，不断进行递归调用，直到num等于 1 时，开始返回结果并逐步向上累加。
+    最终，通过这种递归的方式，实现了对 20 以内奇数的累加，得到结果 100。
+     */
+    public static int computeAP(int num) {
+        num = num % 2 == 0 ? num - 1 : num;
+        if (num == 1) {
+            return 1;
+        } else {
+            return num + computeAP(num - 2);
+        }
+    }
+
+    public static int computeFactorial(int num) {
+        if (num <= 1) {
+            return 1;
+        } else {
+            return num * computeFactorial(num - 1);
+        }
+    }
+}
+```
+
+## 22.访问权限
+
+```java
+package chapter04;
+
+public class Java17_Object_Access {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 访问权限
+        //public:公共的,访问权限修饰符
+        //TODO Java的源码中,公共类只能有一个,而且必须与源码文件名相同
+        //main方法:main方法是由JVM调用的,JVM调用时应该可以任意调用,而不用考虑权限问题
+
+        //TODO Java中的访问权限主要分4中:
+        // 1.private:私有的,同一个类中可以使用
+        // 2.(default):默认权限,当不设定任何权限时,JVM会默认提供权限,包(路径权限)权限(同一个包下可以访问)(其他包和子包都不可以访问)
+        // 3.protected:受保护的权限,子类可以访问,包权限(同包也可以访问)
+        // 4.public:公共的,任意使用
+
+        User17 user = new User17();
+//        System.out.println(user.name);
+        System.out.println(user.username);
+        System.out.println(user.sex);
+        System.out.println(user.age);
+    }
+}
+
+class User17 {
+    private String name;
+    public String username;
+    String sex;
+    protected int age;
+
+    void test() {
+        System.out.println(name);
+        System.out.println(username);
+        System.out.println(age);
+    }
+}
+
+class Child17 extends User17 {
+    void test() {
+        System.out.println(age);
+    }
+}
+```
+
+## 23.访问权限 - 小练习
+
+```java
+package chapter04;
+
+public class Java17_Object_Access_1 {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 访问权限
+        Person17 person = new Person17();
+
+        //private:同类
+        //default:同类,同包(路径)
+        //protected:同类,同包(路径),子类(优先保护和自己直接相关的子类)
+        //public:公共的
+        //所谓的访问权限,其实就是访问属性,方法的权力和限制
+        //谁访问? Java17_Object_Access_1 -> super -> java.long.Object
+        //访问谁的? Person17 -> super -> java.long.Object(clone)
+//        Person.clone(); //所有类的父类都有Object类,clone是Object的一个protected方法,按理说子类可以访问,这里为什么不能用呢
+    }
+}
+
+class Person17 {
+    void test() throws Exception {
+        clone();
+    }
 }
 ```
 
