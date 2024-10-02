@@ -1983,3 +1983,262 @@ class Person17 {
 }
 ```
 
+## 24.内部类 / 外部类
+
+**.var：快捷创建对象**
+
+```java
+package chapter04;
+
+public class Java18_Object {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 外部类 - 内部类
+        //Java中不允许外部类使用private，protected修饰
+        //只能使用public或者默认修饰
+        //所谓的外部类，就是在源码中直接声明的类
+        //所谓的内部类，就是类中声明的类
+
+        //内部类被当成外部类的属性使用即可
+
+        //因为内部类可以看作外部类的属性，所以需要构建外部类对象才可以使用
+        OuterClass outer = new OuterClass();
+        OuterClass.InnerClass innerClass = outer.new InnerClass();
+    }
+
+}
+
+class OuterClass {
+    public class InnerClass {
+
+    }
+}
+```
+
+## 25.单例模式
+
+```java
+package chapter04;
+
+public class Java19_Object {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 单例模式
+        //JVM默认给类提供的构造方法，其实就是公共的，无参的构造方法
+        //1.类的创建过程复杂
+        //2.类的对象消耗资源
+//        User19 user = new User19();
+        User19 instance1 = User19.getInstance();
+        User19 instance2 = User19.getInstance();
+        User19 instance3 = User19.getInstance();
+        User19 instance4 = User19.getInstance();
+        User19 instance5 = User19.getInstance();
+        User19 instance6 = User19.getInstance();
+
+        System.out.println(instance1 == instance6); //true
+        System.out.println(instance1.equals(instance6)); //也是判断两个对象的内存地址是否相等 true
+    }
+}
+
+class User19 {
+    private static User19 user19 = null;
+
+    private User19() {
+
+    }
+
+    public static User19 getInstance() { //静态方法不能访问成员属性，所以上面user19需要加static
+        if (user19 == null) {
+            user19 = new User19();
+        }
+        return user19;
+
+    }
+}
+```
+
+## 26.final
+
+```java
+package chapter04;
+
+public class Java20_Object {
+    public static void main(String[] args) {
+
+        //TODO 面向对象
+        //如何保证在初始化一个数据之后不能再修改他？
+        //Java中提供了一种语法,可以在数据初始化后不被修改,使用关键字final
+        //final可以修饰变量,变量的值一旦初始化后无法修改
+        //final可以修饰属性,那么JVM不能自动进行初始化,需要自己进行初始化,属性值不能发生变化
+        //一般将final修饰的变量称之为常量,或者不可变变量
+        //final可以修饰方法，这个方法不能被子类重写(子类可以继承父类,但是方法逻辑改不了)
+        //final可以修饰类,这样类就没有子类了
+        //final不可以修饰构造方法
+        //final可以修饰方法的参数,一旦修饰,参数就无法修改
+
+        final String name = "zhangsan";
+        //name = "wangwu";
+        System.out.println(name);
+
+        User20 user = new User20("wangwu");
+        //user.name = "zhangsan";
+        System.out.println(user.name);
+
+        //user.name = "lisi";
+        System.out.println(user.name);
+    }
+}
+
+final class User20 {
+    public final String name;
+
+    public User20(String name) {
+        this.name = name;
+    }
+
+    public final void test() {
+
+    }
+
+    public void test1(final String name) {
+//        name = "lisi";
+    }
+}
+
+//class Child20 extends User20 {
+//    public void test() {
+//
+//    }
+//}
+```
+
+## 27.抽象
+
+```java
+package chapter04;
+
+public class Java21_Object_Abstract {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 抽象 - Abstract
+        //抽象类
+        //抽象方法
+
+        //分析问题:对象(具体) => 类(抽象)
+        //编写代码:类(抽象) => 对象(具体)
+    }
+}
+
+```
+
+## 28.抽象类和抽象方法
+
+```java
+package chapter04;
+
+public class Java21_Object_Abstract {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 抽象 - Abstract
+        //抽象类 : 不完整的类,就是抽象类
+        //          abstract class 类名
+        //      因为类不完整,所以无法直接构造对象
+        //抽象方法 : 只有声明,没有实现的方法
+        //          abstract 返回值类型 方法名(参数)
+
+        //分析问题:对象(具体) => 类(抽象)
+        //编写代码:类(抽象) => 对象(具体)
+
+        //如果一个类中含有抽象方法,那么这个类是抽象类
+        //如果一个类是抽象类,它的方法不一定是抽象方法
+        //抽象类无法直接构建对象,但是可以通过子类间接构建对象
+        //如果抽象类中含有抽象方法,那么子类继承抽象类,需要重写抽象方法,将方法补充完整
+
+        //abstract关键字不能和final同时使用(抽象类和抽象方法都不可以同时出现这俩关键字)
+//        Person21 person21 = new Person21();
+        Chinese21 chinese21 = new Chinese21();
+        chinese21.eat();
+    }
+}
+
+abstract class Person21 {
+    public abstract void eat();
+
+    public void test() {
+
+    }
+}
+
+class Chinese21 extends Person21 {
+    public void eat() {
+        System.out.println("中国人使用筷子吃饭");
+    }
+}
+```
+
+## 29.接口
+
+```java
+package chapter04;
+
+import jdk.nashorn.internal.runtime.UnwarrantedOptimismException;
+
+public class Java22_Object {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 接口
+        //所谓的接口,可以简单理解为规则
+        //基本语法:interface 接口名称 { 规则属性 , 规则的行为 }
+        //接口其实是抽象的
+        //规则的属性必须为固定值,而且不能修改
+        //属性和行为的访问权限必须为公共的
+        //属性应该是静态的
+        //行为应该是抽象的
+        //接口和类是两个层面的东西
+        //接口可以继承其他的接口
+        //类的对象需要遵循接口,在Java中,这个遵循,称之为实现(implements),类需要实现接口,而且可以实现多个接口
+        Computer computer = new Computer();
+        Light light = new Light();
+        computer.usb1 = light;
+        Light light1 = new Light();
+        computer.usb2 = light1;
+        computer.powerSupply();
+    }
+}
+
+interface USBInterface {
+
+}
+
+interface USBSupply extends USBInterface { //提供能源
+    public void powerSupply();
+}
+
+interface USBReceive extends USBInterface { //接收能源
+    public void powerReceive();
+}
+
+class Computer implements USBSupply {
+    public USBReceive usb1;
+    public USBReceive usb2;
+
+    public void powerSupply() {
+        System.out.println("电脑提供能源");
+        usb1.powerReceive();
+        usb2.powerReceive();
+    }
+}
+
+class Light implements USBReceive {
+    public void powerReceive() {
+        System.out.println("电灯接收能源");
+    }
+}
+```
+
+## 30.枚举
+
+```java
+
+```
+
