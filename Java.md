@@ -1462,6 +1462,8 @@ class User11 {
 
 ## 13.继承
 
+**实际上是对象和对象之间的继承关系，如果是静态类之间的继承，那其中的静态属性就没什么意义了，具体举例详见 -> 33.作用域**
+
 <img src="image-20240929234419004.png" alt="image-20240929234419004" style="zoom: 67%;" />
 
 ```java
@@ -1497,6 +1499,8 @@ class Child extends Parent {
 ```
 
 ## 14.super、this
+
+**这两个关键字是作用于对象的，如果是静态类，没有对象，那就不可以使用**
 
 1. **super.表示父类**
 2. **this.表示子类**
@@ -2239,6 +2243,275 @@ class Light implements USBReceive {
 ## 30.枚举
 
 ```java
+package chapter04;
+
+public class Java23_Object_Enum {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 枚举
+        //枚举是一个特殊的类,其中包含了一组特定的对象,这些对象不会发生改变,一般都使用大写的标识符
+        //枚举使用enum关键字使用
+        //枚举会将对象放置在最前面,那么和后面的语法需要使用分号隔开
+        //枚举类不能创建对象，他的对象是在内部自行创建
+        System.out.println(City.BEIJING.name);
+        System.out.println(City.SHANGHAI.code);
+        System.out.println(MyCity.BEIJING.name);
+        System.out.println(MyCity.SHANGHAI.code);
+    }
+}
+
+class MyCity {
+    public String name;
+    public int code;
+
+    private MyCity(String name, int code) {
+        this.name = name;
+        this.code = code;
+    }
+
+    public static final MyCity BEIJING = new MyCity("北京", 1001);
+    public static final MyCity SHANGHAI = new MyCity("上海", 1002);
+}
+
+enum City {
+    BEIJING("北京", 1001), SHANGHAI("上海", 1002);
+
+    City(String name, int code) {
+        this.name = name;
+        this.code = code;
+    }
+
+    public String name;
+    public int code;
+}
+```
+
+## 31.匿名类
+
+```java
+package chapter04;
+
+public class Java24_Object {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 匿名类
+        //在某种场合下,类的名字不重要,我们只想使用类中的方法或功能
+        //那么此时我们可以采用特殊的语法:匿名类
+        //所谓的匿名类,就是没有名字的类
+
+        Me me = new Me();
+//        me.sayHello(new Zhangsan());
+        me.sayHello(new Person24() {
+            public String name() {
+                return "wangwu";
+            }
+        });
+
+        me.sayHello(new Person24() {
+            public String name() {
+                return "zhaoliu";
+            }
+        });
+
+        new Bird24().fly();
+        
+        new Fly() {
+            public void fly() {
+                System.out.println("使用飞行器飞翔");
+            }
+        }.fly();
+    }
+}
+
+interface Fly {
+    public void fly();
+}
+
+class Bird24 implements Fly {
+    public void fly() {
+        System.out.println("使用翅膀飞翔");
+    }
+}
+
+abstract class Person24 {
+    public abstract String name();
+}
+
+class Me {
+    public void sayHello(Person24 person24) {
+        System.out.println("Hello " + person24.name());
+    }
+}
+
+class Zhangsan extends Person24 {
+    public String name() {
+        return "zhangsan";
+    }
+}
+
+class Lisi extends Person24 {
+    public String name() {
+        return "lisi";
+    }
+}
+```
+
+## 32.bean规范
+
+```java
+package chapter04;
+
+public class Java25_Object {
+    public static void main(String[] args) {
+
+        //TODO 面向对象
+        //类的主要两种
+        //1.主要用于编写逻辑
+        //2.主要用于建立数据模型(下面的例子User25就数据数据模型)
+        //TODO 重点是建立数据模型(bean)
+        //TODO bean类的设计规范:bean规范
+        //1.类要求必须含有无参,公共的构造方法
+        //2.属性必须私有化,然后提供公共的,set,get构造方法
+        User25 user = new User25();
+        user.setAccount("admin");
+        user.setPassword("admin");
+        System.out.println(login(user));
+    }
+
+    //登录功能不应该设置在用户类里,因为不需要每个用户都有自己的登录方法,这个功能交给服务器就好了(目前这个类代指服务器)
+    public static boolean login(User25 user) {
+        if (user.getAccount().equals("admin") && user.getPassword().equals("admin")) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+}
+
+class User25 {
+    //用户的账号和密码应该是私有的,所以这里的属性应该是private,外界访问或者修改应该提供对应的方法
+    private String account;
+    private String password;
+
+    public String getAccount() {
+        return account;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+}
+```
+
+## 33.作用域
+
+```java
+package chapter04;
+
+public class Java26_Object {
+    public static void main(String[] args) {
+
+        //TODO 面向对象 - 作用域
+        User26 user = new User26();
+        user.test();
+    }
+}
+
+class Person26 {
+    public static String name = "zhangsan";
+}
+
+class User26 extends Person26 {
+    public static String name = "lisi";
+
+    //    public void test() {
+////        String name = "wangwu";
+//
+//        //如果属性和(局部)变量的名称相同,访问时如果不加修饰符,那么优先访问变量
+//        System.out.println(this.name);
+//        System.out.println(super.name);
+//    }
+    public static void test() {
+        //我们所谓的继承,实际上是对象和对象之间的继承,所以说super,this是对象之间的关系
+        //但是当前的name属性已经和对象没关系了,也就失去了对象的意义
+        //所以这里就不要纠结super和this的问题了
+        //如果想访问Person26的name,还真就得Person26.name
+        System.out.println(Person26.name);
+    }
+}
+```
+
+
+
+# 六、常见类和对象
+
+## 1.Object
+
+```java
+package chapter05;
+
+public class Java01_Object {
+    public static void main(String[] args) {
+
+        //TODO 常见类和对象
+        //java.long.Object : 对象
+        Object obj = new Person01();
+
+        //将对象转换成字符串
+        //toString默认打印的就是对象的内存地址,所以,为了能够更直观的理解对象的内容,所以可以重写这个方法
+        String s = obj.toString();
+        System.out.println(s); //结果为:chapter05.User01@4554617c,其中4554617c代表该对象的哈西值,且为16进制的结果
+
+        //TODO 获取对象的内存地址
+        int i = obj.hashCode(); //简单的理解为:获取了对象的内存地址(并不是真正的内存地址,只是可以这么理解)
+        System.out.println(i); //结果为:1163157884,这里也是该对象的哈西值,且和上面的4554617c是一个意思,只是这里显示的数字为10进制的
+
+        //TODO 判断两个对象是否相等,如果相等,返回true,如果不相等,则返回false
+        //equals方法比较对象时,默认比较的就是内存地址
+        Person01 otherPerson = new Person01();
+        System.out.println(otherPerson.hashCode());
+        System.out.println(obj.equals(otherPerson));
+
+        //getClass获取对象的类型信息
+        Class<?> aClass = obj.getClass();
+        System.out.println(aClass.getSimpleName());
+        System.out.println(aClass.getPackage());
+    }
+}
+
+class Person01 {
+    public String name = "zhangsan";
+
+    //ctrl + o 快捷键快速重写某个方法
+//    @Override
+//    public String toString() {
+//        return "Person[" + name + "]"; // + 拼接字符串
+//    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        return true;
+    }
+}
+
+class User01 extends Person01 {
+
+}
+```
+
+## 2.数组
+
+```
 
 ```
 
