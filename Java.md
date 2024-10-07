@@ -2511,7 +2511,194 @@ class User01 extends Person01 {
 
 ## 2.数组
 
+<img src="image-20241007202132447.png" alt="image-20241007202132447" style="zoom: 67%;" />
+
+```java
+package chapter05;
+
+public class Java02_Object {
+    public static void main(String[] args) {
+
+        //TODO 常见类和对象
+        //数组
+        User02 user1 = new User02();
+        User02 user2 = new User02();
+        User02 user3 = new User02();
+        User02 user4 = new User02();
+
+        user1.test();
+        user2.test();
+        user3.test();
+        user4.test();
+
+        //0,1,2,3
+        User02[] user02s = new User02[4];
+        for (int i = 0; i < user02s.length; i++) {
+            user02s[i] = new User02();
+        }
+        for (int i = 0; i < user02s.length; i++) {
+            user02s[i].test();
+        }
+
+        //TODO 数组的声明方式:类型[] 变量
+        //TODO 数组的创建:new 类型[容量]
+        String[] names = new String[3];
+        //给数组的小格子添加数据,添加的方式为 : 数组变量[索引] = 数据
+        //添加数据和访问数据试,索引是不能超过指定范围的(0 ~ 数组总长度 - 1)
+        //如果重复给相同的索引添加数据,那么等同于修改数据
+        names[0] = "zhangsan";
+        names[0] = "zhaoliu";
+        names[1] = "lisi";
+        names[2] = "wangwu";
+
+        //查询(访问)数据,访问的方式为 : 数组变量[索引]
+//        System.out.println(names[0]);
+//        System.out.println(names[1]);
+//        System.out.println(names[2]);
+        System.out.println("**************************************");
+        for (int i = 0; i < 3; i++) {
+            System.out.println(names[i]);
+        }
+    }
+}
+
+class User02 {
+    public void test() {
+        System.out.println("test...");
+    }
+}
 ```
+
+## 3.数组 - 二维数组
+
+**数组实际上记录了对数据的引用（可以是对象）**
+
+<img src="image-20241007211301576.png" alt="image-20241007211301576" style="zoom:67%;" />
+
+<img src="image-20241007212609964.png" alt="image-20241007212609964" style="zoom:67%;" />
+
+```java
+package chapter05;
+
+public class Java03_Object {
+    public static void main(String[] args) {
+
+        //TODO 常见类和对象
+        //数组
+        //创建数组的时候编译器会自动帮我们赋默认值
+        String[] nums = new String[3];
+//        nums[0] = 1;
+        for (String num : nums) {
+            System.out.println(num); //String本质上也是对象,所以这里是null
+        }
+
+        String[] names = {"zhangsan", "lisi", "wangwu"};
+        System.out.println(names);
+        for (String name : names) {
+            System.out.println(name);
+        }
+
+        //二维数组(叫二维数组,但不是真的二维)
+        System.out.println(names.length);
+        String[][] names2 = {{"zhangsan", "lisi", "wangwu"}, {"zhangsan", "lisi"}, {"zhangsan"}};
+
+        //标准的二维数组
+        String[][] names3 = new String[3][3];
+
+        names3[0][1] = "zhangsan";
+
+        System.out.println(names3[0][1]);
+
+        //遍历数组的每个元素
+        for (int row = 0; row < 3; row++) { //row行
+            for (int col = 0; col < 3; col++) { //col列
+                System.out.println("第" + (row + 1) + "行 " + "第" + (col + 1) + "列 的值为 " + names3[row][col]);
+            }
+        }
+
+    }
+}
+```
+
+## 4.数组 - 九层妖塔
+
+```java
+package chapter05;
+
+public class Java03_Object_Test {
+    public static void main(String[] args) {
+
+        //TODO 常见类和对象
+        //二维数组
+        /*
+
+         九层妖塔
+         *
+         ***
+         *****
+
+         */
+        int row = 9;
+        int col = 2 * row - 1;
+
+        String[][] nineTower = new String[row][col];
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                nineTower[i][j] = "-";
+                nineTower[i][row - 1] = "*";
+                for (int n = 0; n <= i; n++) {
+                    nineTower[i][row - 1 - n] = "*";
+                    nineTower[i][row - 1 + n] = "*";
+                }
+            }
+        }
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                System.out.print(nineTower[i][j]);
+            }
+            System.out.println();
+        }
+
+    }
+}
+```
+
+## 5.数组 - 冒泡排序
+
+```java
+package chapter05;
+
+public class Java03_Object_Test_1 {
+    public static void main(String[] args) {
+
+        //TODO 常见类和对象
+        //数组
+        int[] nums = {1, 4, 3, 5, 2};
+        for (int num : nums) {
+            System.out.println(num);
+        }
+        //TODO 希望获取到的数据, 1,2,3,4,5
+        for (int j = 0; j < nums.length - 1; j++) {
+            for (int i = 0; i < nums.length - 1; i++) {
+                if (nums[i] > nums[i + 1]) {
+                    int tmp = nums[i + 1];
+                    nums[i + 1] = nums[i];
+                    nums[i] = tmp;
+                }
+            }
+        }
+        for (int num : nums) {
+            System.out.println(num);
+        }
+
+    }
+}
+```
+
+## 6.数组 - 选择排序
+
+```java
 
 ```
 

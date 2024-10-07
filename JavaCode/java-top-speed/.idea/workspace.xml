@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a933fb7-e81d-400a-939d-9a620121f28b" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Java.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chapter04/Java23_Object_Enum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chapter04/Java23_Object_Enum.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +42,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/c.---c.---java-exercise/JavaCode/java-top-speed/src/chapter04",
+    "last_opened_file_path": "E:/c.---c.---java-exercise/JavaCode/java-top-speed/src/chapter05",
     "settings.editor.selected.configurable": "preferences.keymap",
     "应用程序.Java01_HelloWorld.executor": "Run",
     "应用程序.Java01_Object (1).executor": "Run",
@@ -54,6 +54,9 @@
     "应用程序.Java02_Object_2 (1).executor": "Run",
     "应用程序.Java02_Object_2.executor": "Run",
     "应用程序.Java03_FlowControl.executor": "Run",
+    "应用程序.Java03_Object.executor": "Run",
+    "应用程序.Java03_Object_Test.executor": "Run",
+    "应用程序.Java03_Object_Test_1.executor": "Run",
     "应用程序.Java04_FlowControl_test.executor": "Run",
     "应用程序.Java04_Operator_2.executor": "Run",
     "应用程序.Java04_Operator_3.executor": "Run",
@@ -117,17 +120,71 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\c.---c.---java-exercise\JavaCode\java-top-speed\src\chapter05" />
       <recent name="E:\c.---c.---java-exercise\JavaCode\java-top-speed\src\chapter04" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="chapter05" />
       <recent name="chapter04" />
       <recent name="chapter03" />
       <recent name="chapter02" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.Java01_Object">
+  <component name="RunManager" selected="应用程序.Java03_Object_Test_1">
     <configuration name="Java01_Object" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="chapter05.Java01_Object" />
+      <module name="java-top-speed" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chapter05.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Java02_Object" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter05.Java02_Object" />
+      <module name="java-top-speed" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chapter05.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Java03_Object" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter05.Java03_Object" />
+      <module name="java-top-speed" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chapter05.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Java03_Object_Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter05.Java03_Object_Test" />
+      <module name="java-top-speed" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chapter05.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Java03_Object_Test_1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter05.Java03_Object_Test_1" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
@@ -152,78 +209,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java22_Object" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter04.Java22_Object" />
-      <module name="java-top-speed" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="chapter04.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Java26_Object (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter04.Java26_Object" />
-      <module name="java-top-speed" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="chapter04.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Java26_Object (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter04.Java26_Object" />
-      <module name="java-top-speed" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="chapter04.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Java26_Object (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter04.Java26_Object" />
-      <module name="java-top-speed" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="chapter04.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Java26_Object (4)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter04.Java26_Object" />
-      <module name="java-top-speed" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="chapter04.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.Java03_Object_Test_1" />
+        <item itemvalue="应用程序.Java03_Object_Test" />
+        <item itemvalue="应用程序.Java03_Object" />
+        <item itemvalue="应用程序.Java02_Object" />
         <item itemvalue="应用程序.Java01_Object" />
-        <item itemvalue="应用程序.Java26_Object (4)" />
-        <item itemvalue="应用程序.Java26_Object (3)" />
-        <item itemvalue="应用程序.Java26_Object (2)" />
-        <item itemvalue="应用程序.Java26_Object (1)" />
       </list>
     </recent_temporary>
   </component>
