@@ -2960,3 +2960,383 @@ public class Java04_Object_String_2 {
 }
 ```
 
+## 11.包装类
+
+```java
+package chapter05;
+
+public class Java05_Object_Datatype {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 常见类和对象
+        //byte short int long
+        //float double
+        //char
+        //boolean
+        //所有继承了Object类的类型都称为引用数据类型,包括字符串和数组
+
+        //TODO 包装类
+//        Byte b = null;
+//        Short s = null;
+//        Integer i = null;
+//        Long l = null;
+//        Float f = null;
+//        Double d = null;
+//        Character c = null;
+//        Boolean bln = null;
+        int i = 10;
+//        Integer i1 = new Integer(i);
+        //TODO 将基本数据类型转换为包装类型
+        //TODO 自动装箱
+//        Integer i1 = Integer.valueOf(i);
+        Integer i1 = i; //实际上这句话和上面这个一模一样,只是省略了Integer.valueOf,因为非常常用
+
+        //自动拆箱
+//        int i2 = i1.intValue();
+        int i2 = i1; //实际上这句话和上面这个一模一样,只是省略了intValue(),因为非常常用
+    }
+}
+```
+
+## 12.日期类
+
+```java
+package chapter05;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.SimpleTimeZone;
+
+public class Java06_Object_Date {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 常见类和对象
+        //Date:日期类
+        //时间戳:单位毫秒
+        System.out.println(System.currentTimeMillis());
+
+        //Date:日期类
+        //Calender:日历类
+        Date date = new Date();
+        System.out.println(date);
+
+        //Java格式化日期格式:
+        //y (Y) -> 年 -> yyyy
+        //m (M) -> MM : 月份 , mm : 分钟
+        //d (D) -> dd : 一个月中的日期 , D : 一年中的日期
+        //h (H) -> h : 12进制 , HH : 24进制
+        //s (S) -> s : 秒 , S : 毫秒
+
+        //Date -> String
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String format = sdf.format(date); //转换为指定格式的字符串
+        System.out.println(format);
+
+        //String -> Date
+        String DateString = "2022-06-01";
+        Date parse = sdf.parse(DateString);//对字符串进行解析,转换为Date
+        System.out.println(parse);
+
+        //根据时间戳构建指定的日期对象
+//        date.setTime(System.currentTimeMillis());
+        //获取时间戳
+//        date.getTime();
+        System.out.println(parse.before(date));
+        System.out.println(parse.after(date));
+    }
+}
+```
+
+## 13.日历类
+
+```java
+package chapter05;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+public class Java07_Object_Date {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 常见类和对象
+
+        //日历类
+        //获取当前日期的日历对象
+        Calendar instance = Calendar.getInstance();
+        System.out.println(instance);
+
+        System.out.println(instance.get(Calendar.YEAR));
+        System.out.println(instance.get(Calendar.MONTH)); //从0开始,所以假如现在是10月,但是显示9
+        System.out.println(instance.get(Calendar.DATE));
+        System.out.println(instance.get(Calendar.DAY_OF_WEEK)); //周日是 1，周一为 2，周二为 3，周三为 4
+//        System.out.println(instance.get(Calendar.DAY));
+
+        instance.setTime(new Date()); //让日历指向某一天
+        instance.add(Calendar.YEAR, -1); //将当前的年份减一年,其他日,月同理
+    }
+}
+```
+
+## 14.打印日历类
+
+```java
+package chapter05;
+
+import java.util.Calendar;
+import java.util.Date;
+
+public class Java07_Object_Date_Test {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 常见类和对象
+        //打印当前日历
+        System.out.println("周一\t周二\t周三\t周四\t周五\t周六\t周日\t");
+        //获取当前日期的日历对象
+        Calendar firstDate = Calendar.getInstance();
+        //把日历对象设定为当前月的第一天:10-01
+        firstDate.set(Calendar.DAY_OF_MONTH, 1);
+        //获取当前月最大的日期:31
+        int maxDay = firstDate.getMaximum(Calendar.DAY_OF_MONTH);
+        for (int i = 0; i < maxDay; i++) {
+            //当前日期是周几
+            int weekX = firstDate.get(Calendar.DAY_OF_WEEK);
+            //当前日期是几号
+            int mouthY = firstDate.get(Calendar.DAY_OF_MONTH);
+            if (i == 0) {
+                if (weekX == Calendar.SUNDAY) {
+                    for (int n = 0; n < 6; n++) {
+                        System.out.print("\t");
+                    }
+                    System.out.println(weekX);
+                } else {
+                    for (int j = 0; j < weekX - 2; j++) { //weekX的值 周日是 1，周一为 2，周二为 3，周三为 4
+                        System.out.print("\t");
+                    }
+                    System.out.print(mouthY);
+                    System.out.print("\t");
+                }
+
+            } else {
+                //不是一号的场合
+                if (weekX == Calendar.SUNDAY) {
+                    System.out.println(mouthY);
+                } else {
+                    System.out.print(mouthY);
+                    System.out.print("\t");
+                }
+            }
+            //打印日历后应该增加一天
+            firstDate.add(Calendar.DATE, 1);
+
+        }
+
+    }
+}
+```
+
+## 15.工具类
+
+```java
+package chapter05;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Random;
+import java.util.UUID;
+
+public class Java08_Object_Date_Util {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 常见类和对象
+        //封装工具类
+
+        System.out.println(StringUtil.isEmpty(null));
+        System.out.println(StringUtil.isEmpty(""));
+        System.out.println(StringUtil.isEmpty("    "));
+        System.out.println(StringUtil.isEmpty("abc"));
+
+        System.out.println(StringUtil.makeString());
+        System.out.println(StringUtil.makeString("abcdefg123456", 6));
+
+        System.out.println(StringUtil.formatDate(new Date(), "yyyy-MM-dd"));
+        System.out.println(StringUtil.parseDate("2024-10-11", "yyyy-MM-dd"));
+    }
+}
+
+//字符串工具类
+//1.工具类不应该创建对象才能使用,也就意味着,可以直接使用类中的属性和方法,一般都声明为静态的
+//2.工具类对外提供的属性和方法都应该是公共的
+//3.为了使用者开发方便,应该尽量提供丰富的方法和属性
+class StringUtil {
+    //非空判断
+    public static boolean isEmpty(String s) {
+        //1.如果字符串为null,为空
+        //2.如果字符串为空字符串,为空
+        //3.如果字符串全都是空格,为空
+        //其中23是可以一起判断的
+        if (s == null || "".equals(s.trim())) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static boolean isNotEmpty(String s) {
+        return !isEmpty(s);
+    }
+
+    //生成随机字符串
+    public static String makeString() {
+        return UUID.randomUUID().toString();
+    }
+
+    public static String makeString(String from, int len) {
+        if (len < 1) {
+            return "";
+        } else {
+            char[] chars = from.toCharArray();
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < len; i++) {
+                Random random = new Random();
+                int n = random.nextInt(chars.length);
+                char c = chars[n];
+                stringBuilder.append(c);
+            }
+            return stringBuilder.toString();
+        }
+    }
+
+    //转换字符串 : ISO8859-1 => str => UTF-8
+    //source 来源
+    public static String transform(String source, String encodeFrom, String encodeTo) throws Exception {
+        byte[] bytes = source.getBytes(encodeFrom);
+        return new String(bytes, encodeTo);
+    }
+
+    //字符串转换为日期
+    //parse 解析,format 格式
+    public static Date parseDate(String dateString, String format) throws Exception {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+        return simpleDateFormat.parse(dateString);
+    }
+
+    //日期转换为字符串
+    public static String formatDate(Date date, String format) throws Exception {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+        return simpleDateFormat.format(date);
+    }
+
+}
+```
+
+## 16.比较
+
+```java
+package chapter05;
+
+import java.util.Calendar;
+
+public class Java09_Object {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 常见类和对象
+//        //等于
+//        //基本数据类型,双等号比较数值
+//        int i = 10;
+//        int j = 10;
+//        System.out.println(i == j);
+//        double d = 10.0;
+//        System.out.println(i == d);
+//
+//        //引用数据类型,双等号比较变量的内存地址
+//        String s = "abc"; //字符串常量池
+//        String s1 = "abc";
+//        String s2 = new String("abc");
+//        System.out.println(s == s1);
+//        System.out.println(s == s2);
+//        //equals用于比较字符串内容是否一致
+//        System.out.println(s.equals(s2));
+//
+//        User9 user1 = new User9();
+//        User9 user2 = new User9();
+//        System.out.println(user1 == user2);
+//        System.out.println(user1.equals(user2));
+
+        //包装类型,也是引用数据类型
+        //包装类型的比较建议用equals,不建议用双等号,因为以下原因
+        //int => Integer => JVM为了操作方便,简化了很多操作
+        //Integer缓存:-128 ~ 127
+        Integer i1 = Integer.valueOf(-129);
+        Integer i2 = Integer.valueOf(-129);
+
+        System.out.println(i1 == i2);
+        System.out.println(i1.equals(i2));
+
+        //TODO 简单的说就是:以后所有的引用数据类型建议用equals,基本数据类型建议用双等号
+
+    }
+}
+
+class User9 {
+    //实际情况可以重写,但不是这么重写的
+    @Override
+    public int hashCode() {
+        return 1;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return true;
+    }
+}
+```
+
+
+
+# 七、异常
+
+## 1.介绍
+
+```java
+package chapter06;
+
+public class Java01_Exception {
+    public static void main(String[] args) {
+        //TODO - 错误
+
+        //1.类型转换出现了错误,纯粹是TODO 语法上的错误
+        String s = "123";
+//        Integer i = (Integer) s;
+        Integer i = Integer.parseInt(s);
+
+        //2.递归没有跳出的逻辑:StackOverflowError 栈溢出异常 : TODO Error 错误
+        //尽量避免
+//        test();
+
+        //3.访问一个为空对象的成员方法时,出现了错误:java.lang.NullPointerException(TODO 异常)
+        //Java中异常分为两大类:
+        //3.1 可以通过代码恢复正常逻辑执行的异常,称之为运行期异常 : RuntimeException
+        //3.2 不可以通过代码恢复正常逻辑执行的异常,称之为编译期异常 : Exception(范围最大的异常)
+        User user = null;
+        System.out.println(user.toString());
+    }
+
+    public static void test() {
+        test();
+    }
+}
+
+class User {
+
+}
+
+```
+
+## 2.基础语法
+
+```java
+
+```
+
