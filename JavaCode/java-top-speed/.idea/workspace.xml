@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a933fb7-e81d-400a-939d-9a620121f28b" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Java.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-top-speed/chapter05/Java04_Object_String_2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-top-speed/chapter05/Java04_Object_String_2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter06/Java02_Exception.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chapter06/Java02_Exception.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,17 +49,20 @@
     "应用程序.Java01_Object (1).executor": "Run",
     "应用程序.Java01_Object.executor": "Run",
     "应用程序.Java01_variable.executor": "Run",
+    "应用程序.Java02_Exception.executor": "Run",
     "应用程序.Java02_FlowControl.executor": "Run",
     "应用程序.Java02_Object.executor": "Run",
     "应用程序.Java02_Object_1.executor": "Run",
     "应用程序.Java02_Object_2 (1).executor": "Run",
     "应用程序.Java02_Object_2.executor": "Run",
+    "应用程序.Java03_Exception.executor": "Run",
     "应用程序.Java03_FlowControl.executor": "Run",
     "应用程序.Java03_Object.executor": "Run",
     "应用程序.Java03_Object_Test.executor": "Run",
     "应用程序.Java03_Object_Test_1.executor": "Run",
     "应用程序.Java03_Object_Test_2.executor": "Run",
     "应用程序.Java03_Object_Test_3.executor": "Run",
+    "应用程序.Java04_Exception.executor": "Run",
     "应用程序.Java04_FlowControl_test.executor": "Run",
     "应用程序.Java04_Object_String.executor": "Run",
     "应用程序.Java04_Object_String_1.executor": "Run",
@@ -140,13 +142,14 @@
       <recent name="E:\c.---c.---java-exercise\JavaCode\java-top-speed\src\chapter04" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="chapter06" />
       <recent name="chapter05" />
       <recent name="chapter04" />
       <recent name="chapter03" />
       <recent name="chapter02" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.Java01_Exception">
+  <component name="RunManager" selected="应用程序.Java04_Exception">
     <configuration name="Java01_Exception" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="chapter06.Java01_Exception" />
       <module name="java-top-speed" />
@@ -160,12 +163,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java08_Object_Date_Util (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter05.Java08_Object_Date_Util" />
+    <configuration name="Java02_Exception" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter06.Java02_Exception" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chapter05.*" />
+          <option name="PATTERN" value="chapter06.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -173,12 +176,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java08_Object_Date_Util (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter05.Java08_Object_Date_Util" />
+    <configuration name="Java03_Exception" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter06.Java03_Exception" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chapter05.*" />
+          <option name="PATTERN" value="chapter06.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -186,12 +189,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java08_Object_Date_Util" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter05.Java08_Object_Date_Util" />
+    <configuration name="Java04_Exception" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter06.Java04_Exception" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chapter05.*" />
+          <option name="PATTERN" value="chapter06.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -214,11 +217,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.Java04_Exception" />
+        <item itemvalue="应用程序.Java03_Exception" />
+        <item itemvalue="应用程序.Java02_Exception" />
         <item itemvalue="应用程序.Java01_Exception" />
         <item itemvalue="应用程序.Java09_Object" />
-        <item itemvalue="应用程序.Java08_Object_Date_Util (3)" />
-        <item itemvalue="应用程序.Java08_Object_Date_Util" />
-        <item itemvalue="应用程序.Java08_Object_Date_Util (2)" />
       </list>
     </recent_temporary>
   </component>
