@@ -3426,6 +3426,359 @@ class User3 {
 ## 4.常见异常 - 2
 
 ```java
+package chapter06;
+
+public class Java04_Exception {
+    public static void main(String[] args) {
+
+        //TODO - 异常
+        //3.索引越界:ArrayIndexOutOfBoundsException
+        String[] names = new String[3];
+        names[0] = "zhangsan";
+        names[1] = "lisi";
+        names[2] = "wangwu";
+        if (names.length == 4) {
+            names[3] = "zhaoliu";
+        }
+
+        for (int i = 0; i < names.length; i++) {
+            System.out.println(names[i]);
+        }
+
+        //4.字符串索引越界:StringIndexOutOfBoundsException
+        String s = "abc";
+//        System.out.println(s.charAt(4)); //返回指定索引位置的字符
+        System.out.println(s.substring(3)); //大于字符串长度才睡出错
+    }
+}
+
+```
+
+## 5.常见错误 - 3
+
+```java
+package chapter06;
+
+public class Java05_Exception {
+    public static void main(String[] args) {
+
+        //TODO - 异常
+        //5.格式化异常:NumberFormatException
+//        String s = "a123";
+//        Integer i = Integer.parseInt(s);
+//
+//        System.out.println(i);
+
+        //6.类型转换错误:ClassCastException
+        Object obj = new User5();
+        if (obj instanceof Emp5) { //判断对象是不是特定类型的实例
+            Emp5 emp = (Emp5) obj;
+        }
+    }
+    
+}
+
+class User5 {
+
+}
+
+class Emp5 {
+
+}
+```
+
+## 6.转换异常
+
+```java
+package chapter06;
+
+public class Java07_Exception {
+    public static void main(String[] args) throws Exception {
+
+        //TODO - 异常
+        User8 user8 = new User8();
+
+        int i = 10;
+        int j = 0;
+        
+        try {
+            user8.test(i, j);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+}
+
+class User8 {
+    //异常转换
+    //如果方法中可能会出现问题,那么需要声明,告诉其他人,这个方法可能会出现问题
+    //此时需要使用关键字throws
+    //如果程序中需要手动抛出异常对象,那么需要使用throw关键字,然后new出异常对象
+    public void test(int i, int j) throws Exception {
+        try {
+            System.out.println(i / j);
+        } catch (ArithmeticException e) {
+            throw new Exception();
+        }
+
+    }
+}
+```
+
+## 7.自定义异常
+
+```java
+package chapter06;
+
+import netscape.security.UserTarget;
+
+public class Java08_Exception {
+    public static void main(String[] args) throws Exception {
+
+        //TODO - 异常
+        String account = "admin";
+        String password = "admin";
+
+        try {
+            login(account, password);
+        } catch (AccountException accountException) {
+            System.out.println("账号不正确,需要重新修正");
+        } catch (PasswordException passwordException) {
+            System.out.println("密码不正确,需要重新修正");
+        } catch (LoginException loginException) {
+            System.out.println("其他登录的相关错误,需要确认");
+        }
+    }
+
+    public static void login(String account, String password) throws LoginException {
+        if (!"admin".equals(account)) {
+            throw new AccountException("账号不正确");
+        }
+        if (!"admin".equals(password)) {
+            throw new PasswordException("密码不正确");
+        }
+        System.out.println("登录成功");
+    }
+
+}
+
+class AccountException extends LoginException {
+    public AccountException(String massage) {
+        super(massage);
+    }
+}
+
+class PasswordException extends LoginException {
+    public PasswordException(String massage) {
+        super(massage);
+    }
+}
+
+//TODO 自定义异常
+class LoginException extends Exception {
+    public LoginException(String massage) {
+        super(massage);
+    }
+}
+```
+
+
+
+# 八、集合
+
+## 1.介绍
+
+```java
+package chapter07;
+
+public class Java01_Collection {
+    public static void main(String[] args) {
+
+        //TODO 集合
+        //生活中也有集合的概念，是一个动词
+
+        //Java中的集合是一个名词，数据的一种容器，用于容纳数据
+        //Java提供了完整的集合框架
+
+        //TODO 问题:什么时候需要一个容纳数据的容器,也就是集合对象?
+        // Java集合框架中就包含了对不确定个数的数据处理的集合类
+
+        //TODO 问题:如果只是为了容纳数据,可以是直接使用数组,为什么要学习集合?
+        // 数组使用起来不方便,在数据的个数不确定的场合,数组使用起来不是很方便
+
+        //TODO 总结 : 对不确定的有关系的数据进行相同的逻辑处理的场合,使用集合是一个不错的选择
+
+        //TODO 根据数据的不同,Java的集合分为两大体系:
+        //1.单一数据体系 : Collection接口定义了相关的规则
+        //2.成对出现的数据体系 : Collection接口定义了相关的规则
+        //  所谓的成对的数据,就是两个数据有关系,可以根据第一个数据关联到第二个数据
+        //  也称之为键值对数据 , [ 123123(身份证号) , 张三 ] => [ key , value ]
+
+
+    }
+}
+
+```
+
+## 2.常用接口和类
+
+```java
+package chapter07;
+
+public class Java02_Collection {
+    public static void main(String[] args) {
+
+        //TODO 集合
+        //1. Collection接口
+        //  常用子接口:
+        //  List : 列表,按照插入顺序保存数据(第一个往里放,第一个取出来的就是它),数据可以重复的
+        //      具体的实现类: ArrayList,LinkedList
+        //  Set : 集,无序保存,数据不能重复
+        //      具体的实现类: HashSet
+        //  Queue : 队列,先进先出
+        //      具体的实现类: ArrayBlockingQueue
+
+        //2. Map接口
+        //      具体的实现类: HashMap,Hashtable
+
+
+    }
+}
+
+```
+
+## 3.ArrayList - 基本操作
+
+```java
+package chapter07;
+
+import java.util.ArrayList;
+
+public class Java03_Collection_List {
+    public static void main(String[] args) {
+
+        //TODO 集合 - Collection - List
+        //          ArrayList : Array + List
+        //TODO List : 列表,清单
+        //  按照数据插入顺序进行存储
+        //TODO Array : 数组,阵列
+
+        //TODO 创建第一个集合对象: ArrayList
+        ArrayList list = new ArrayList(3); //Alt + 回车: 自动包含      ctrl + p: 显示该方法参数列表
+        //1.不需要传递构造参数,直接new就可以,底层数组为空数组
+        //2.构造参数需要传递一个int类型的值,用于设定底层数组的长度
+        //3.构造参数需要传递一个Collection集合类型的值,用于将其他集合中的数据放置在当前集合中
+
+        //TODO 增加数据
+        // add方法可以增加数据,只要将数据作为参数传递到add方法即可
+        // 添加数据时,如果集合中没有任何数据,那么底层会创建长度为10的数组
+
+        //TODO 使用ArrayList的情况下，使用指定大小构造器，扩容后容量会变为指定大小的 1.5 倍
+
+        list.add("zhangsan");
+        list.add("zhangsan");
+        list.add("wangwu");
+        list.add("zhaoliu");
+        //TODO 访问集合中的数据
+        //获取集合中的条数
+        System.out.println(list.size());
+        //获取指定位置的数据,可以采用索引的方式
+        System.out.println(list.get(1));
+        //遍历集合中的数据
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("遍历集合中的数据:" + list.get(i));
+        }
+        //TODO 如果循环遍历集合数据时,那么可以采用特殊的for循环
+        //for (循环对象:集合)
+        for (Object obj : list) {
+            System.out.println("特殊遍历集合中的数据:" + obj);
+        }
+
+        //TODO 修改数据
+        //将指定位置的数据进行修改,set方法需要传递两个参数,第一个参数表示数据的位置,第二个参数表示要修改的值
+        //这个方法会返回结果,返回的就是更新前的值
+        Object oldVal = list.set(1, "lisi");
+        System.out.println("修改前的值:" + oldVal);
+
+        //TODO 删除数据
+        //将指定位置的数据进行删除,remove方法需要传递一个参数,这个参数表示要删除的数据的位置
+        //这个方法会返回结果,返回的就是删除的值
+        Object removeVal = list.remove(1);
+        System.out.println("删除的值:" + removeVal);
+
+        //TODO 打印集合对象
+        System.out.println(list);
+
+        System.out.println("main方法执行完毕");
+
+    }
+}
+
+```
+
+## 4.ArrayList - 常用方法
+
+```java
+package chapter07;
+
+import java.util.ArrayList;
+
+public class Java04_Collection_List_ArrayList {
+    public static void main(String[] args) {
+
+        //TODO 集合 - Collection - List
+        //ArrayList的常用方法
+        ArrayList list = new ArrayList();
+
+        list.add("zhangsan");
+        list.add("lisi");
+        list.add("wangwu");
+        list.add("zhangsan");
+        list.add("zhangsan");
+
+        //add方法可以传递2个参数,第一个参数表示数据增加的位置(索引),第二个参数表示数据
+        //list.add(1, "zhaoliu");
+
+        ArrayList otherlist = new ArrayList();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.addAll(otherlist);
+
+        //size方法表示集合内部数据的数量
+        System.out.println(list.size());
+        //清空集合中的数据
+        //list.clear();
+        //删除指定集合中的数据
+        list.removeAll(otherlist);
+        //判断集合中的数据是否为空
+        System.out.println(list.isEmpty());
+
+        //用于判断集合中时候存在某条数据,返回布尔类型的值
+        System.out.println(list.contains("zhangsan"));
+        //用于获取数据在索引中的第一个位置,如果数据不存在,那么返回-1
+        System.out.println(list.indexOf("zhangsan"));
+        System.out.println(list.lastIndexOf("zhangsan"));
+
+        //转换成数组
+        Object[] array = list.toArray();
+
+        //复制新集合
+        Object clone = list.clone();
+        ArrayList list1 = (ArrayList) clone;
+
+        System.out.println(list);
+        System.out.println(list1);
+
+    }
+}
+
+```
+
+## 5.Linkedlist - 基本操作
+
+```java
 
 ```
 
