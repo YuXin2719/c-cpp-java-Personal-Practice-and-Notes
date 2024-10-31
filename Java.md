@@ -3779,6 +3779,479 @@ public class Java04_Collection_List_ArrayList {
 ## 5.Linkedlist - 基本操作
 
 ```java
+package chapter07;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+public class Java05_Collection_List_LinkedList {
+    public static void main(String[] args) {
+
+        //TODO 集合 - Collection - List
+        //LinkedList : Linked(连接) + List
+        //构建集合对象
+        LinkedList list = new LinkedList();
+
+        //增加第一个数据
+        list.add("zhangsan");
+        list.add("lisi");
+        list.add("wangwu");
+//        list.addFirst("lisi");
+//        list.add(1, "wangwu");
+
+        //TODO 获取数据
+//        System.out.println(list.getFirst());
+//        System.out.println(list.getLast());
+
+        //TODO 获取数据（遍历数据）
+//        System.out.println(list.get(1));
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.println(list.get(i));
+//        }
+//
+//        for (Object o : list) {
+//            System.out.println(o);
+//        }
+
+        //修改数据
+//        list.set(1,"zhaoliu");
+        
+        //删除数据
+        list.remove("zhangsan");
+
+        //打印集合的数据
+        System.out.println(list);
+
+
+    }
+}
+
+```
+
+## 6.Linkedlist - 常用方法
+
+```java
+package chapter07;
+
+import java.util.LinkedList;
+
+public class Java05_Collection_List_LinkedList_1 {
+    public static void main(String[] args) {
+
+        //TODO 集合 - Collection - List
+        //LinkedList : Linked(连接) + List
+        //构建集合对象
+        LinkedList list = new LinkedList();
+
+        //追加数据
+        list.add("zhangsan");
+        list.add("lisi");
+        list.add("wangwu");
+
+        //向指定的位置增加数据
+//        list.add(1, "zhaoliu");
+//        list.addFirst("1");
+//        list.addLast("2");
+//
+//        LinkedList list1 = new LinkedList();
+//        list.add("zhangsan1");
+//        list.add("lisi2");
+//        list.add("wangwu3");
+//        list.addAll(list1);
+//
+//        System.out.println(list.remove("1"));
+//        System.out.println(list.remove()); //删除第一个
+//        list.removeFirst();
+//        list.removeLast();
+//        list.remove(1);
+
+        System.out.println(list.size());
+        System.out.println(list.isEmpty());
+//        list.clear();
+//        list.contains("1");
+//        list.element(); //获取第一个数据
+//        list.indexOf("");
+//        list.lastIndexOf("");
+        list.push("aaa"); //添加数据到第一个
+        System.out.println(list.pop()); //弹出第一个数据(删除链表内部的数据同时,外部获取到)
+
+        System.out.println(list);
+
+
+    }
+}
+
+```
+
+## 7.泛型 - 介绍
+
+```java
+package chapter07;
+
+import javax.jws.soap.SOAPBinding;
+import java.util.ArrayList;
+
+public class Java06_Collection {
+    public static void main(String[] args) {
+
+        //TODO 集合 - Collection
+        //泛型语法
+        //<>内约束存放的数据类型
+        ArrayList<Person6> list = new ArrayList();
+
+//        Person6 user6 = new User6(); //左边限制使用场景,右边限制使用的方法
+//        user6.testUser();
+//        user6.testPerson();
+
+        Person6 person6 = new Person6();
+        User6 user6 = new User6();
+
+        list.add(person6);
+//        list.add(user6);
+
+//        list.remove(0);
+
+        //从集合中获取的对象类型为object
+//        Object o = list.get(0);
+        //如果想要执行对象的方法,那么需要进行强制类型转换
+//        if (o instanceof Person6) {
+//            Person6 p = (Person6) o;
+//            p.testPerson();
+//        }
+        Person6 p = list.get(0);
+        p.testPerson();
+
+
+    }
+}
+
+class Person6 {
+    public void testPerson() {
+        System.out.println("Person...");
+    }
+}
+
+class User6 {
+    public void testUser() {
+        System.out.println("user...");
+    }
+}
+```
+
+## 8.泛型 - 基本使用
+
+```java
+package chapter07;
+
+import java.util.ArrayList;
+
+public class Java07_Collection_Generic {
+    public static void main(String[] args) {
+
+        //TODO 集合 - Collection
+        //泛型语法
+        //TODO 泛型和类型的区别
+        //用于约束外部对象的使用场景,就是类型
+        //用于约束内部对象的使用场景,就是泛型
+        //有时,也把泛型称之为类型参数
+        MyContainer<User7> myContainer = new MyContainer();
+//        myContainer.data = new Object();
+
+        //TODO 虽然User7是Object的子类,但是这里不能传入User7的对象,因为
+        // 1.类型存在多态的使用
+        // 2.泛型没有多态
+//        test(myContainer);
+
+    }
+
+    public static void test(MyContainer<Object> myContainer) {
+        System.out.println(myContainer);
+    }
+}
+
+//TODO 容器类
+//这里的C类似参数,数据data暂时没有被确定类型,使用的时候传入的什么类型这里的data就是什么类型
+class MyContainer<C> {
+    public C data;
+}
+
+class User7 {
+
+}
+```
+
+## 9.比较器
+
+```java
+package chapter07;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+
+public class Java08_Collection_Sort {
+    public static void main(String[] args) {
+
+        //TODO 集合 - Collection
+        //Sort 排序
+        ArrayList list = new ArrayList();
+        list.add(1);
+        list.add(3);
+        list.add(2);
+
+        //1, 3, 2 => 3, 1, 2 => 3, 2, 1
+        //3, 2, 1
+
+        //排序需要传递一个实现了比较器接口的对象
+        list.sort(new NumberComparator());
+
+        System.out.println(list);
+
+    }
+}
+
+class NumberComparator implements Comparator<Integer> { //ctrl + o: 选择需要重写的方法
+    @Override
+    public int compare(Integer o1, Integer o2) {
+        //TODO 如果第一个数比第二个数要大,那么返回结果为正数,表示升序
+//        return o1 - o2;
+        //TODO 如果第一个数比第二个数要小,那么返回结果为负数,表示降序
+//        return o2 - o1;
+        //TODO 如果第一个数比第二个数一样大,那么返回结果为0
+        return 0;
+    }
+}
+
+```
+
+## 10.ArrayList和LinkedList的对比
+
+1. 增加第一条数据，LinkedList会比ArrayList快
+2. 增加第二条数据，ArrayList会比LinkedList快
+3. 增加第三条数据，ArrayList会比LinkedList快
+4. 增加第四条数据（超过容量），LinkedList会比ArrayList快
+5. 插入数据，LinkedList会比ArrayList快
+6. 查询数据时，根据索引查询数据，ArrayList更快。如果没有索引的话，两个List没有本质区别
+7. （LinkedLink实际上是没有索引的，他里面的索引实际上是顺序号）
+
+## 11.HashSet
+
+```java
+package chapter07;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
+
+public class Java09_Collection_Set {
+    public static void main(String[] args) {
+
+        //TODO 集合 - Collection - set
+        //HashSet : Hash + Set
+        //Hash : 哈希算法,散列算法(严格意义上不可逆)
+        // (哈希算法计算同一个值的结果是固定的,假设用哈希计算A结果为2,再次计算A结果还是2)
+        // 所以我们可以往HashSet放重复的数据,但是存储的数据不会有重复的,例如往HashSet内放两次A,但是最后HashSet内只存一个A
+        //ArrayList : 数组(有容量这个参数)
+        //LinkedList : 链表(没有容量这个参数)
+        HashSet set = new HashSet(); //底层确实是数组,但是Hash算法导致数据放入数组的时候顺序被打乱
+        //TODO 增加数据
+        set.add("zhangsan");
+        set.add("zhangsan");
+        set.add("lisi");
+        set.add("wangwu");
+
+        //TODO 修改数据(实际上没有直接修改的方法,只能先删除再增加)
+
+        //TODO 删除数据
+        set.remove("wangwu");
+
+        //TODO 查询数据(没有对应的查询方式,得不到数据的索引,经过hash计算后也不知道数据位置.但是可以遍历)
+        for (Object o : set) {
+            System.out.println(o);
+        }
+
+        System.out.println(set);
+
+
+    }
+}
+
+
+```
+
+## 12.HashSet - 常用方法
+
+```java
+package chapter07;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+
+public class Java09_Collection_Set_1 {
+    public static void main(String[] args) {
+
+        //TODO 集合 - Collection - set
+        HashSet set = new HashSet();
+
+        ArrayList List = new ArrayList();
+        List.add("zhangsan");
+        List.add("lisi");
+        List.add("wangwu");
+        set.addAll(List);
+
+        Object[] array = set.toArray();
+        System.out.println(set.isEmpty());
+//        set.clear();
+        System.out.println(set.contains("zhangsan"));
+        System.out.println(set.size());
+        Object clone = set.clone();
+        System.out.println(clone);
+
+        System.out.println(set);
+
+    }
+}
+
+
+```
+
+## 13.HashSet - 重复数据
+
+```java
+package chapter07;
+
+import javax.jws.soap.SOAPBinding;
+import java.util.HashSet;
+
+public class Java09_Collection_Set_2 {
+    public static void main(String[] args) {
+
+        //TODO 集合 - Collection - set
+        //HashSet 底层数据结构为 数组 + 链表
+
+        HashSet set = new HashSet();
+
+        User9 user1 = new User9();
+        user1.id = 1001;
+        user1.name = "zhangsan";
+        System.out.println(user1.hashCode()); //hashCode值可以类比为内存地址,user1和user2内存地址不一样,所以这里hash算法认为是两个不同的对象
+
+        User9 user2 = new User9();
+        user2.id = 1001;
+        user2.name = "wangwu";
+        System.out.println(user2.hashCode());
+
+        User9 user3 = new User9();
+        user3.id = 1002;
+        user3.name = "lisi";
+        System.out.println(user3.hashCode());
+
+        set.add(user1);
+        set.add(user2);
+        set.add(user3);
+
+        System.out.println(set);
+
+    }
+}
+
+class User9 {
+    public int id;
+    public String name;
+
+    @Override
+    //类似于内存地址
+    public int hashCode() {
+        return id;
+    }
+
+    @Override
+    //判断两个对象的属性是否完全相同
+    public boolean equals(Object obj) {
+        if (obj instanceof User9) {
+            User9 otherUser = (User9) obj;
+            if (otherUser.id == this.id) {
+                if (otherUser.name.equals(this.name)) {
+                    return true;
+                }
+            }
+            return false;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "User[" + id + "," + name + "]";
+    }
+}
+```
+
+## 14.Queue
+
+```java
+package chapter07;
+
+import java.util.ArrayList;
+import java.util.concurrent.ArrayBlockingQueue;
+
+public class Java10_Collection_Queue {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 集合 - Collection - Queue
+        //ArrayBlockingQueue : Array + Blocking(阻塞,堵住) + Queue
+        ArrayBlockingQueue queue = new ArrayBlockingQueue(3); //底层数组容量,这里意味着最多放三条数据
+        //add方法如果增加不了数据,直接发生错误
+//        queue.add("zhangsan");
+//        queue.add("lisi");
+//        queue.add("wangwu");
+//        queue.add("zhaoliu"); //发生错误,Queue full(满了)
+
+//        queue.put("zhangsan");
+//        System.out.println("第一个人挂号");
+//        queue.put("lisi");
+//        System.out.println("第二个人挂号");
+//        queue.put("wangwu");
+//        System.out.println("第三个人挂号");
+//        //三个数据已满,之后的数据被阻塞
+//        queue.put("zhaoliu");
+//        System.out.println("第四个人挂号");
+
+        boolean zhangsan = queue.offer("zhangsan"); //返回boolean类型表示数据是否放入成功
+        System.out.println(zhangsan);
+        boolean lisi = queue.offer("lisi");
+        System.out.println(lisi);
+        boolean wangwu = queue.offer("wangwu");
+        System.out.println(wangwu);
+        boolean zhaoliu = queue.offer("zhaoliu");
+        System.out.println(zhaoliu);
+
+//        System.out.println(queue.poll()); //poll从集合中取出数据(取最先放入的那个数据),取出后集合内就没有取出的数据了
+//        System.out.println(queue.poll());
+//        System.out.println(queue.poll());
+//        System.out.println(queue.poll());
+
+        System.out.println(queue.take());
+        System.out.println(queue.take());
+        System.out.println(queue.take());
+        //三个数据已经全部取出,这时处于阻塞状态,等新的数据进入还会继续取出
+        System.out.println(queue.take());
+
+//        queue.size();
+//        queue.isEmpty();
+//        queue.clear();
+//        queue.contains();
+
+        System.out.println(queue);
+
+    }
+}
+
+```
+
+## 15.HashMap
+
+```java
 
 ```
 

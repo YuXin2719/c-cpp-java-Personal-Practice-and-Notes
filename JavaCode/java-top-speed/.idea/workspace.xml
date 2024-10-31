@@ -7,8 +7,7 @@
     <list default="true" id="9a933fb7-e81d-400a-939d-9a620121f28b" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/../../Java.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-top-speed/chapter06/Java04_Exception.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-top-speed/chapter06/Java04_Exception.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chapter06/Java04_Exception.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chapter06/Java04_Exception.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter07/Java05_Collection_List_LinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chapter07/Java05_Collection_List_LinkedList.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +43,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/c.---c.---java-exercise/JavaCode/java-top-speed/src/chapter06",
+    "last_opened_file_path": "E:/c.---c.---java-exercise/JavaCode/java-top-speed/src/chapter07",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "应用程序.Java01_Exception.executor": "Run",
     "应用程序.Java01_HelloWorld.executor": "Run",
@@ -74,9 +73,12 @@
     "应用程序.Java04_Operator_2.executor": "Run",
     "应用程序.Java04_Operator_3.executor": "Run",
     "应用程序.Java04_Operator_4.executor": "Run",
+    "应用程序.Java05_Collection_List_LinkedList.executor": "Run",
+    "应用程序.Java05_Collection_List_LinkedList_1.executor": "Run",
     "应用程序.Java05_Exception.executor": "Run",
     "应用程序.Java05_FlowControl.executor": "Run",
     "应用程序.Java05_FlowControl_1.executor": "Run",
+    "应用程序.Java06_Collection.executor": "Run",
     "应用程序.Java06_FlowControl_test.executor": "Run",
     "应用程序.Java06_Object_Date.executor": "Run",
     "应用程序.Java06_Object_Method.executor": "Run",
@@ -86,6 +88,8 @@
     "应用程序.Java07_Object_Method_Param (2).executor": "Run",
     "应用程序.Java07_Object_Method_Param.executor": "Run",
     "应用程序.Java07_Object_Method_Param_1.executor": "Run",
+    "应用程序.Java08_Collection_Sort (1).executor": "Run",
+    "应用程序.Java08_Collection_Sort.executor": "Run",
     "应用程序.Java08_Exception.executor": "Run",
     "应用程序.Java08_Object_Date_Util (1).executor": "Run",
     "应用程序.Java08_Object_Date_Util (2).executor": "Run",
@@ -98,7 +102,11 @@
     "应用程序.Java08_Object_Static_2 (1).executor": "Run",
     "应用程序.Java08_Object_Static_2 (2).executor": "Run",
     "应用程序.Java08_Object_Static_2.executor": "Run",
+    "应用程序.Java09_Collection_Set.executor": "Run",
+    "应用程序.Java09_Collection_Set_1.executor": "Run",
+    "应用程序.Java09_Collection_Set_2.executor": "Run",
     "应用程序.Java09_Object.executor": "Run",
+    "应用程序.Java10_Collection_Queue.executor": "Run",
     "应用程序.Java10_Object_Import.executor": "Run",
     "应用程序.Java11_Object_Instance (1).executor": "Run",
     "应用程序.Java11_Object_Instance.executor": "Run",
@@ -143,6 +151,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\c.---c.---java-exercise\JavaCode\java-top-speed\src\chapter07" />
       <recent name="E:\c.---c.---java-exercise\JavaCode\java-top-speed\src\chapter06" />
       <recent name="E:\c.---c.---java-exercise\JavaCode\java-top-speed\src\chapter05" />
       <recent name="E:\c.---c.---java-exercise\JavaCode\java-top-speed\src\chapter04" />
@@ -155,9 +164,9 @@
       <recent name="chapter03" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.Java04_Collection_List_ArrayList">
-    <configuration name="Java03_Collection_List" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter07.Java03_Collection_List" />
+  <component name="RunManager" selected="应用程序.Java10_Collection_Queue">
+    <configuration name="Java08_Collection_Sort (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter07.Java08_Collection_Sort" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
@@ -169,8 +178,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java04_Collection_List_ArrayList" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter07.Java04_Collection_List_ArrayList" />
+    <configuration name="Java09_Collection_Set" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter07.Java09_Collection_Set" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
@@ -182,12 +191,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java04_Exception" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter06.Java04_Exception" />
+    <configuration name="Java09_Collection_Set_1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter07.Java09_Collection_Set_1" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chapter06.*" />
+          <option name="PATTERN" value="chapter07.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -195,12 +204,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java05_Exception" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter06.Java05_Exception" />
+    <configuration name="Java09_Collection_Set_2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter07.Java09_Collection_Set_2" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chapter06.*" />
+          <option name="PATTERN" value="chapter07.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -208,12 +217,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java08_Exception" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter06.Java08_Exception" />
+    <configuration name="Java10_Collection_Queue" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter07.Java10_Collection_Queue" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chapter06.*" />
+          <option name="PATTERN" value="chapter07.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -223,11 +232,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.Java04_Collection_List_ArrayList" />
-        <item itemvalue="应用程序.Java03_Collection_List" />
-        <item itemvalue="应用程序.Java08_Exception" />
-        <item itemvalue="应用程序.Java05_Exception" />
-        <item itemvalue="应用程序.Java04_Exception" />
+        <item itemvalue="应用程序.Java10_Collection_Queue" />
+        <item itemvalue="应用程序.Java09_Collection_Set_2" />
+        <item itemvalue="应用程序.Java09_Collection_Set_1" />
+        <item itemvalue="应用程序.Java09_Collection_Set" />
+        <item itemvalue="应用程序.Java08_Collection_Sort (1)" />
       </list>
     </recent_temporary>
   </component>
