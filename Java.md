@@ -4251,6 +4251,371 @@ public class Java10_Collection_Queue {
 
 ## 15.HashMap
 
+**底层结构：数组 + 单向链表（采用红黑二叉树）**
+
+<img src="image-20241101130540210.png" alt="image-20241101130540210" style="zoom:50%;" />
+
+```java
+package chapter07;
+
+import java.util.HashMap;
+
+public class Java11_Collection_Map {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 集合 - Map
+        //HashMap ： Hash + Map
+        //数据存储是无序的
+        //由于也使用的Hash算法,所以不能放重复数据,Hash算法会根据<K,V>键值对的Key来判断数据是否相同,相同的数据会直接覆盖原数据
+        HashMap map = new HashMap();
+
+        //添加数据:put
+        //修改数据,put方法也可以修改数据,返回值就是被修改的值
+        map.put("zhangsan", "1");
+        System.out.println(map.put("zhangsan", "4"));
+        map.put("lisi", "2");
+        map.put("wangwu", "3");
+
+        //TODO 查询数据
+        System.out.println(map.get("zhangsan"));
+
+        //TODO 删除数据
+        map.remove("zhangsan");
+
+        System.out.println(map);
+
+    }
+}
+
+```
+
+## 16.HashMap - 常用方法
+
+```java
+package chapter07;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+public class Java11_Collection_Map_1 {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 集合 - Map
+        //HashMap ： Hash + Map
+        //数据存储是无序的
+        //由于也使用的Hash算法,所以不能放重复数据,Hash算法会根据<K,V>键值对的Key来判断数据是否相同,相同的数据会直接覆盖原数据
+        HashMap<String, String> map = new HashMap();
+
+        //添加数据 + 修改数据
+//        map.put("a", "0");
+//        Object oldVal = map.put("a", "1"); //返回旧的值,如果没有旧的值就返回空
+////        System.out.println(oldVal);
+//
+//        //添加数据
+//        map.putIfAbsent("b", "2");
+//        map.putIfAbsent("b", "3"); //该方法就是:如果b已经有数据了那就不会覆盖
+//
+//        //修改数据
+//        Object b = map.replace("c", "4"); //返回修改之前的值,且只会替换和修改,不会添加新的数据
+//        System.out.println(b);
+
+        map.clear();
+        map.put("zhangsan", "1");
+        map.put("lisi", "2");
+        map.put("wangwu", "3");
+
+        //TODO 获取map集合中所有的key
+//        Set set = map.keySet();
+//        for (Object o : set) {
+//            System.out.println(map.get(o));
+//        }
+//        System.out.println(map.containsKey("zhangsan"));
+//
+//        Collection values = map.values();
+//        map.containsValue("1");
+//
+//        System.out.println(map);
+
+        //TODO 获取键值对对象
+//        Set<Map.Entry<String, String>> entries = map.entrySet(); //Entry表示map中的一个键值对
+//        for (Map.Entry<String, String> entry : entries) {
+//            System.out.println(entry);
+//            System.out.println(entry.getKey() + "=" + entry.getValue()); //和上面这行输出的完全一样，一个意思
+//        }
+
+//        map.remove("zhangsan");
+        map.remove("zhangsan", "1"); //只有当zhangsan = 1时才会删除
+
+//        map.size();
+//        map.isEmpty();
+//        map.clear();
+//        map.clone();
+
+        System.out.println(map);
+
+    }
+}
+
+```
+
+## 17.Hashtable
+
+```java
+package chapter07;
+
+import java.util.HashMap;
+import java.util.Hashtable;
+
+public class Java11_Collection_Map_2 {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 集合 - Map
+        //Hashtable
+        Hashtable hashtable = new Hashtable();
+//        hashtable.put(null, null);
+        HashMap hashMap = new HashMap();
+        hashMap.put(null, null);
+//        hashtable.put();
+//        hashtable.get();
+//        hashtable.remove();
+        //TODO 1.底层实现方式不一样 : 继承的父类不一样
+        //TODO 2.底层结构的容量不同 : HashMap默认数组容量为16,Hashtable默认数组容量为11
+        //TODO 3.HashMap的K,V都可以为null,Hashtable的K,V不能为null
+        //TODO 4.HashMap的数据定位采用的Hash算法,但是Hashtable采用的就是hashcode
+        //TODO 5.HashMap的多线程性能较高,但是Hashtable较低(没有考虑)
+
+    }
+}
+
+```
+
+## 18.迭代器
+
+```java
+package chapter07;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
+
+public class Java11_Collection_Map_3 {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 集合 - Map
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        map.put("a", 1);
+        map.put("b", 2);
+        map.put("c", 3);
+
+        Set<String> keys = map.keySet();
+
+//        for (String key : keys) {
+//            if ("b".equals(key)) {
+//                map.remove(key);
+//            }
+//            System.out.println(map.get(key));
+//        }
+
+        //TODO 迭代器
+        Iterator<String> iterator = keys.iterator();
+        //hasNext方法用于判断是否存在下一条数据
+        while (iterator.hasNext()) {
+            //获取下一条数据
+            String key = iterator.next();
+            if ("b".equals(key)) {
+                //remove方法只能对当前数据删除
+                iterator.remove();
+            }
+            System.out.println(map.get(key));
+        }
+
+
+    }
+}
+
+```
+
+## 19.工具类
+
+```java
+package chapter07;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class Java12_Collection_Util {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 集合 - Arrays
+        int[] is = {3, 5, 1, 2, 4};
+        int[] is1 = {1, 2, 3, 4, 5};
+        int[] is2 = {1, 2, 3, 4, 5, 6};
+
+        //静态方法可以直接使用
+        System.out.println(Arrays.toString(is));
+        System.out.println(is);
+
+        //构建集合的同时传入数据
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+
+        //排序(默认为升序)
+        Arrays.sort(is);
+        System.out.println(Arrays.toString(is));
+
+        //二分查找法,必须是排序后的数组,下面是查找5所在的位置
+        System.out.println(Arrays.binarySearch(is, 5));
+
+        //数组的比较,相同的位置每个值相等就是true
+        System.out.println(Arrays.equals(is2, is1));
+
+
+    }
+}
+
+```
+
+## 20.问题汇总（报错）
+
+```java
+package chapter07;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+
+public class Java13_Collection_Exception {
+    public static void main(String[] args) {
+
+        //TODO 集合 - Exception
+        //容量 : 不能小于0
+        ArrayList list = new ArrayList(10);
+        list.add("a");
+        list.add("b");
+        list.add("c");
+
+        //如果访问的集合是数组,那么索引的范围就是0到数组长度-1
+        //如果访问的集合是list,那么索引的范围就是0到数据长度-1
+//        System.out.println(list.get(3));
+
+        //NoSuchElementException : 没有这样的元素
+        LinkedList list1 = new LinkedList();
+        list1.add("a");
+        System.out.println(list1.getFirst());
+        
+        HashMap map = new HashMap();
+        map.put("a", "1");
+        map.put("b", "2");
+        map.put("c", "3");
+
+        //HashMap一但循环遍历时,增加或删除数据就会发生错误
+        for (Object o : map.keySet()) {
+            if ("b".equals(o)) {
+//                map.put("d", "4");
+            }
+            System.out.println(map.get(o));
+        }
+
+
+    }
+}
+
+```
+
+
+
+# 九、IO
+
+## 1.数据流处理
+
+```java
+package chapter08;
+
+public class Java01_IO {
+    public static void main(String[] args) {
+
+        //TODO Java 数据 + 流(转)操作
+        //数据从哪里来,到哪里去
+        //TODO IO
+        //I : Input, 输入(In)
+        //O : Output, 输出(Out)
+        //stream : 流转
+
+    }
+}
+
+```
+
+## 2.文件流
+
+```java
+package chapter08;
+
+import java.io.File;
+
+public class Java02_IO_File {
+    public static void main(String[] args) throws Exception {
+
+        //TODO Java IO - 文件流
+
+        //TODO File : 文件类型(文件,文件夹),属于java.io包
+        //创建文件对象,使用文件路径关联系统文件
+        String filePath = "E:\\c.---c.---java-exercise\\JavaCode\\java-top-speed\\data";
+        File file = new File(filePath);
+        System.out.println(file);
+        //文件对象的操作
+        //TODO 判断当前的文件对象是否为文件(确认不是文件夹)
+        System.out.println(file.isFile());
+        //TODO 判断当前的文件对象是否为文件夹(确认不是文件)
+        System.out.println(file.isDirectory());
+        //TODO 判断文件对象是否存在关联(指向的文件是否存在)
+        System.out.println(file.exists());
+
+        if (file.exists()) {
+            //TODO 文件对象存在的情况
+            System.out.println("文件对象存在");
+            if (file.isFile()) {
+                System.out.println("文件对象关联的是一个文件");
+                System.out.println(file.getName()); //文件名称
+                System.out.println(file.length()); //文件大小
+                System.out.println(file.lastModified()); //最后修改时间
+                System.out.println(file.getAbsolutePath()); //当前文件的绝对路径
+            } else if (file.isDirectory()) {
+                System.out.println("文件对象关联的是一个文件夹");
+                System.out.println(file.getName()); //文件夹名称
+                System.out.println(file.lastModified()); //最后修改时间
+                System.out.println(file.getAbsolutePath()); //当前文件夹的绝对路径
+
+                String[] list = file.list(); //当前目录下的每一个文件的名称
+                System.out.println("文件夹中的文件:");
+                for (String s : list) {
+                    System.out.println(s);
+                }
+
+                System.out.println("文件夹中的文件对象:");
+                File[] files = file.listFiles();
+                for (File file1 : files) {
+                    System.out.println(file1);
+                }
+
+            }
+        } else {
+            //TODO 文件对象不存在的情况
+            System.out.println("文件对象不存在,没有关联成功");
+            //TODO 创建多级文件目录
+//            file.mkdirs(); //mk表示创建,dir表示目录,s代表可以创建多级目录
+            //TODO 创建新文件
+//            file.createNewFile();
+        }
+
+    }
+}
+
+```
+
+## 3.文件复制
+
 ```java
 
 ```
