@@ -7,10 +7,7 @@
     <list default="true" id="9a933fb7-e81d-400a-939d-9a620121f28b" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/../../Java.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-top-speed/chapter07/Java10_Collection_Queue.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-top-speed/chapter07/Java10_Collection_Queue.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../cppCode/对象的初始化和清理/.vs/对象的初始化和清理/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../../cppCode/对象的初始化和清理/.vs/对象的初始化和清理/v17/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../cppCode/对象的初始化和清理/.vs/对象的初始化和清理/v17/Browse.VC.db" beforeDir="false" afterPath="$PROJECT_DIR$/../../cppCode/对象的初始化和清理/.vs/对象的初始化和清理/v17/Browse.VC.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../cppCode/对象的初始化和清理/.vs/对象的初始化和清理/v17/ipch/AutoPCH/c70d65270e743f72/纯虚函数和抽象类.ipch" beforeDir="false" afterPath="$PROJECT_DIR$/../../cppCode/对象的初始化和清理/.vs/对象的初始化和清理/v17/ipch/AutoPCH/c70d65270e743f72/纯虚函数和抽象类.ipch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/word.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/word.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +60,7 @@
     "应用程序.Java03_Collection_List.executor": "Run",
     "应用程序.Java03_Exception.executor": "Run",
     "应用程序.Java03_FlowControl.executor": "Run",
+    "应用程序.Java03_IO_File_Copy.executor": "Run",
     "应用程序.Java03_Object.executor": "Run",
     "应用程序.Java03_Object_Test.executor": "Run",
     "应用程序.Java03_Object_Test_1.executor": "Run",
@@ -71,6 +69,7 @@
     "应用程序.Java04_Collection_List_ArrayList.executor": "Run",
     "应用程序.Java04_Exception.executor": "Run",
     "应用程序.Java04_FlowControl_test.executor": "Run",
+    "应用程序.Java04_IO_File_Copy_Buffer.executor": "Run",
     "应用程序.Java04_Object_String.executor": "Run",
     "应用程序.Java04_Object_String_1.executor": "Run",
     "应用程序.Java04_Object_String_2.executor": "Run",
@@ -82,8 +81,10 @@
     "应用程序.Java05_Exception.executor": "Run",
     "应用程序.Java05_FlowControl.executor": "Run",
     "应用程序.Java05_FlowControl_1.executor": "Run",
+    "应用程序.Java05_IO_File_Copy_String.executor": "Run",
     "应用程序.Java06_Collection.executor": "Run",
     "应用程序.Java06_FlowControl_test.executor": "Run",
+    "应用程序.Java06_IO_File_Copy_String_1.executor": "Run",
     "应用程序.Java06_Object_Date.executor": "Run",
     "应用程序.Java06_Object_Method.executor": "Run",
     "应用程序.Java07_Object_Date.executor": "Run",
@@ -174,7 +175,7 @@
       <recent name="chapter04" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.Java02_IO_File">
+  <component name="RunManager" selected="应用程序.Java06_IO_File_Copy_String_1">
     <configuration name="Java02_IO_File" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="chapter08.Java02_IO_File" />
       <module name="java-top-speed" />
@@ -188,12 +189,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java11_Collection_Map_2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter07.Java11_Collection_Map_2" />
+    <configuration name="Java03_IO_File_Copy" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter08.Java03_IO_File_Copy" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chapter07.*" />
+          <option name="PATTERN" value="chapter08.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -201,12 +202,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java11_Collection_Map_3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter07.Java11_Collection_Map_3" />
+    <configuration name="Java04_IO_File_Copy_Buffer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter08.Java04_IO_File_Copy_Buffer" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chapter07.*" />
+          <option name="PATTERN" value="chapter08.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -214,12 +215,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java12_Collection_Util" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter07.Java12_Collection_Util" />
+    <configuration name="Java05_IO_File_Copy_String" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter08.Java05_IO_File_Copy_String" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chapter07.*" />
+          <option name="PATTERN" value="chapter08.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -227,12 +228,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java13_Collection_Exception" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter07.Java13_Collection_Exception" />
+    <configuration name="Java06_IO_File_Copy_String_1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter08.Java06_IO_File_Copy_String_1" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chapter07.*" />
+          <option name="PATTERN" value="chapter08.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -242,11 +243,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.Java06_IO_File_Copy_String_1" />
+        <item itemvalue="应用程序.Java05_IO_File_Copy_String" />
+        <item itemvalue="应用程序.Java03_IO_File_Copy" />
+        <item itemvalue="应用程序.Java04_IO_File_Copy_Buffer" />
         <item itemvalue="应用程序.Java02_IO_File" />
-        <item itemvalue="应用程序.Java13_Collection_Exception" />
-        <item itemvalue="应用程序.Java12_Collection_Util" />
-        <item itemvalue="应用程序.Java11_Collection_Map_3" />
-        <item itemvalue="应用程序.Java11_Collection_Map_2" />
       </list>
     </recent_temporary>
   </component>

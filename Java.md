@@ -4617,6 +4617,213 @@ public class Java02_IO_File {
 ## 3.文件复制
 
 ```java
+package chapter08;
+
+import java.io.*;
+
+public class Java03_IO_File_Copy {
+    public static void main(String[] args) {
+
+        //TODO Java IO - 文件复制
+
+        //TODO 数据源文件对象
+        File srcfile = new File("E:\\c.---c.---java-exercise\\JavaCode\\java-top-speed\\data\\word.txt");
+        //TODO 数据目的地文件对象(自动生成文件)
+        File destfile = new File("E:\\c.---c.---java-exercise\\JavaCode\\java-top-speed\\data\\word.txt.copy");
+
+        //TODO 文件输入流(管道对象)
+        //TODO 文件输出流(管道对象)
+        FileInputStream in = null;
+        FileOutputStream out = null;
+        try {
+            in = new FileInputStream(srcfile);
+            out = new FileOutputStream(destfile);
+
+            //TODO 打开阀门,流转数据(输入)
+            int data = -1;
+            //TODO 打开阀门,流转数据(输出)
+            out.write(data);
+
+            //TODO 问题1 : 代码重复性比较强
+            //TODO 问题2 : 多读数据
+//            data = in.read();
+//            out.write(data);
+//
+//            data = in.read();
+//            out.write(data);
+//
+//            data = in.read();
+//            out.write(data);
+//
+//            data = in.read();
+//            out.write(data);
+//
+//            //TODO 如果文件数据已经全部读取完毕后,那么再去读取数据,读取的结果就是-1,表示无效(结尾)
+//            data = in.read();
+//            if (data != -1) {
+//                out.write(data);
+//            }
+////            System.out.println(data); //这里data是-1
+            while ((data = in.read()) != -1) {
+                out.write(data);
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            if (out != null) {
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+
+
+    }
+}
 
 ```
 
+## 4.缓冲流
+
+```java
+package chapter08;
+
+import java.io.*;
+
+public class Java04_IO_File_Copy_Buffer {
+    public static void main(String[] args) {
+
+        //TODO Java IO - 文件复制 - 缓冲
+
+        //TODO 数据源文件对象
+        File srcfile = new File("E:\\c.---c.---java-exercise\\JavaCode\\java-top-speed\\data\\word.txt");
+        //TODO 数据目的地文件对象(自动生成文件)
+        File destfile = new File("E:\\c.---c.---java-exercise\\JavaCode\\java-top-speed\\data\\word.txt.copy");
+
+        //TODO 文件输入流(管道对象)
+        //TODO 文件输出流(管道对象)
+        FileInputStream in = null;
+        FileOutputStream out = null;
+
+        //TODO 缓冲输入流(管道对象)
+        //TODO 缓冲输出流(管道对象)
+        BufferedInputStream buffin = null;
+        BufferedOutputStream buffout = null;
+
+        //TODO 缓冲区(水桶)
+        byte[] cache = new byte[1024];
+
+        try {
+            in = new FileInputStream(srcfile);
+            out = new FileOutputStream(destfile);
+
+            buffin = new BufferedInputStream(in);
+            buffout = new BufferedOutputStream(out);
+
+            //TODO 打开阀门,流转数据(输入)
+            int data = -1;
+
+            while ((data = buffin.read(cache)) != -1) {
+                buffout.write(cache, 0, data); //从缓冲区的0开始写,然后把data全部写完(意味着缓冲区没满也可以将装进去的一部分数据写出去)
+                //最后只循环1次,Java03中的循环写入需要循环5次
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (buffin != null) {
+                try {
+                    buffin.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            if (buffout != null) {
+                try {
+                    buffout.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+
+
+    }
+}
+
+```
+
+## 5.字符流
+
+```java
+package chapter08;
+
+import java.io.*;
+
+public class Java06_IO_File_Copy_String_1 {
+    public static void main(String[] args) {
+
+        //TODO Java IO - 文件复制 - 字符串
+
+        //TODO 数据源文件对象
+        File srcfile = new File("E:\\c.---c.---java-exercise\\JavaCode\\java-top-speed\\data\\word.txt");
+        //TODO 数据目的地文件对象(自动生成文件)
+        File destfile = new File("E:\\c.---c.---java-exercise\\JavaCode\\java-top-speed\\data\\word.txt.copy");
+
+        //TODO 字符输入流(管道对象)
+        BufferedReader reader = null;
+        //TODO 字符输出流(管道对象)
+        PrintWriter writer = null; //打印输出流
+        try {
+            reader = new BufferedReader(new FileReader(srcfile)); //通过字符的方式读取文件
+            writer = new PrintWriter(destfile);
+
+            //TODO 打开阀门,流转数据(输入)
+            //读取文件中的一行数据(字符串)
+            String line = null;
+
+            StringBuilder ss = new StringBuilder();
+
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+                writer.println(line);
+            }
+            //刷写数据
+            writer.flush(); //把内部缓冲区的数据全部强制输出到目的地
+
+            //Unicode编码
+            //byte => -128 ~ 127
+            //ascii码 => 0 ~ 127
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            if (writer != null) {
+                writer.close();
+            }
+        }
+
+
+    }
+}
+
+```
+
+## 6.
