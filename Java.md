@@ -4826,4 +4826,827 @@ public class Java06_IO_File_Copy_String_1 {
 
 ```
 
-## 6.
+## 6.序列化
+
+```java
+package chapter08;
+
+import java.io.*;
+
+public class Java07_IO_Object {
+    public static void main(String[] args) {
+
+        //TODO Java IO - 文件复制 - 序列化 & 反序列化
+
+        //TODO 数据文件对象
+        File datafile = new File("E:\\c.---c.---java-exercise\\JavaCode\\java-top-speed\\data\\obj.det");
+
+        //TODO 对象输出流(管道对象)
+        ObjectOutputStream objectOut = null;
+        FileOutputStream out = null;
+
+        //TODO 对象输入流
+        ObjectInputStream objectIn = null;
+        FileInputStream in = null;
+        try {
+            //Java中只有增加了特殊标记的类,才能在写文件时进行序列化操作
+            //这里的标记其实就是一个接口 Serializable
+//            User user = new User();
+//            objectOut.writeObject(user);
+//            objectOut.flush();
+
+            //TODO 从文件中读取数据转换成对象
+            in = new FileInputStream(datafile);
+            objectIn = new ObjectInputStream(in);
+            Object o = objectIn.readObject();
+            System.out.println(o);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (objectOut != null) {
+                try {
+                    objectOut.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+        }
+
+
+    }
+}
+
+class User implements Serializable {
+
+}
+
+```
+
+## 7.常见异常
+
+```java
+package chapter08;
+
+import java.io.*;
+
+public class Java08_IO_Exception {
+    public static void main(String[] args) {
+
+        //TODO Java IO
+        //FileNotFoundException
+        FileInputStream in = null;
+        //ClassNotFoundException, NotSerializableException
+        ObjectInputStream objectIn = null;
+        ObjectOutputStream objOut = null;
+
+        try {
+            in = new FileInputStream("xxx");
+
+            in.read();
+            objOut.writeObject();
+            objectIn.readObject();
+        } catch (Exception e) {
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+
+
+    }
+}
+
+```
+
+
+
+# 十、线程
+
+## 1.线程中的进程
+
+1. 咱们自己的程序就是一个进程
+2. 进程的名字就是执行的类的名字
+
+## 2.进程中的线程
+
+```java
+package chapter09;
+
+public class Java01_Thread {
+    public static void main(String[] args) {
+
+        //TODO 线程
+        //Thread是线程类
+        //currentThread 方法用于获取当前正在运行的线程
+        //getName 方法用于获取线程的名称
+        //main方法运行在main线程中
+        System.out.println(Thread.currentThread().getName());
+
+
+    }
+}
+
+```
+
+1. Java程序在运行的时候默认就会产生一个进程
+2. 这个进程会有一个主线程
+3. 代码都在主线程中执行
+
+## 3.自己的第一个线程
+
+```java
+package chapter09;
+
+public class Java01_Thread {
+    public static void main(String[] args) {
+
+        //TODO 线程
+        //Thread是线程类
+        //currentThread 方法用于获取当前正在运行的线程
+        //getName 方法用于获取线程的名称
+
+        //TODO 创建线程
+//        Thread t = new Thread();
+        MyThread t = new MyThread();
+
+        //TODO 启动线程
+        t.start();
+
+        //main方法运行在main线程中
+        System.out.println(Thread.currentThread().getName());
+    }
+}
+
+//TODO 声明自定义线程类
+class MyThread extends Thread {
+    //重写运行指令
+
+    @Override
+    public void run() {
+        System.out.println("MyThread : " + Thread.currentThread().getName());
+    }
+}
+```
+
+## 4.线程的生命周期
+
+<img src="image-20241105220808393.png" alt="image-20241105220808393" style="zoom: 50%;" />
+
+## 5.线程执行方式（串行和并发）
+
+```java
+package chapter09;
+
+public class Java02_Thread {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 线程 - 执行方式(串行,并发)
+        //串行执行:多个线程连接成串,然后按照顺序执行
+        //并发执行:多个线程是独立的,谁抢到了CPU的执行权,谁就能执行
+
+        MyThread1 t1 = new MyThread1();
+        MyThread2 t2 = new MyThread2();
+
+        t1.start();
+        t2.start();
+
+        //将线程连接成串
+        t1.join();
+        t2.join();
+
+        System.out.println("main线程执行完毕");
+    }
+}
+
+//TODO 第一个线程
+class MyThread1 extends Thread {
+    //重写运行指令
+
+    @Override
+    public void run() {
+        System.out.println("MyThread-1 : " + Thread.currentThread().getName());
+    }
+}
+
+//TODO 第二个线程
+class MyThread2 extends Thread {
+    //重写运行指令
+
+    @Override
+    public void run() {
+        System.out.println("MyThread-2 : " + Thread.currentThread().getName());
+    }
+}
+```
+
+## 6.线程休眠
+
+```java
+package chapter09;
+
+public class Java03_Thread {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 线程 - 休眠
+        //休眠3秒钟
+        while (true) {
+            Thread.sleep(3000); //单位:毫秒
+            System.out.println("main线程执行完毕");
+        }
+
+    }
+}
+
+```
+
+## 7.工作
+
+```java
+package chapter09;
+
+public class Java04_Thread_Run {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 线程 - 运行
+
+//        MyThread3 t3 = new MyThread3();
+//        t3.start();
+//
+//        MyThread4 t4 = new MyThread4();
+//        t4.start();
+
+//        MyThread5 t5 = new MyThread5("t5");
+//        MyThread5 t55 = new MyThread5("t55");
+//
+//        t5.start();
+//        t55.start();
+
+        //TODO 构建线程对象时,可以只把逻辑传递给这个对象
+        //    传递逻辑时,需要遵循规则:() -> { 逻辑 }
+        Thread t6 = new Thread(() -> {
+            System.out.println("线程执行1");
+        });
+
+        t6.start();
+
+        Thread t7 = new Thread(() -> {
+            System.out.println("线程执行2");
+        });
+
+        t7.start();
+
+        //TODO 构建线程对象时,可以传递实现了Runnable接口的类的对象,一般使用匿名类
+        Thread t8 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("t8线程执行");
+            }
+        });
+
+        t8.start();
+
+        System.out.println("main线程执行");
+
+    }
+}
+
+//TODO 自定义线程
+//1.继承线程类(父类)
+//2.重学run方法
+class MyThread3 extends Thread {
+    @Override
+    public void run() {
+        System.out.println("t3 线程执行");
+    }
+}
+
+class MyThread4 extends Thread {
+    @Override
+    public void run() {
+        System.out.println("t4 线程执行");
+    }
+}
+
+class MyThread5 extends Thread {
+    private String threadName;
+
+    public MyThread5(String name) {
+        threadName = name;
+    }
+
+    @Override
+    public void run() {
+        System.out.println(threadName + " 线程执行");
+    }
+}
+```
+
+## 8.线程池
+
+```java
+package chapter09;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class Java05_Thread_Pool {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 线程 - 线程池
+        //所谓的线程池,其实就是线程对象的容器
+        //可以根据需要,在启动时,创建一个或者多个线程对象
+        //Java中有4中比较常见的线程池
+        //1.创建固定数量的线程对象
+        //  ExecutorService是线程服务对象
+//        ExecutorService executorService = Executors.newFixedThreadPool(3);
+        //2.根据需求动态创建线程
+//        ExecutorService executorService = Executors.newCachedThreadPool(); //Cached : 缓存
+        //3.单一线程(方便顺序执行)
+//        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        //4.定时调度线程(每个线程在什么时候执行可以去定义它)
+        ExecutorService executorService = Executors.newScheduledThreadPool(3);
+
+
+        for (int i = 0; i < 5; i++) {
+            executorService.submit(new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println(Thread.currentThread().getName());
+                }
+            });
+        }
+
+    }
+}
+
+```
+
+## 9.同步
+
+```java
+package chapter09;
+
+import com.sun.webkit.ThemeClient;
+
+import javax.swing.plaf.TableHeaderUI;
+import java.util.Hashtable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class Java06_Thread_Syn {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 线程 - 同步
+        //synchronized - 同步关键字
+        //多个线程访问同步方法时,只能一个一个访问,同步操作
+//        new Hashtable<>(); //同步类型的,安全
+        //synchronized关键字还可以修饰代码块,称之为同步代码块
+        /*
+        synchronized( 用于同步的对象 ){
+            处理逻辑
+        }
+
+         */
+        Num num = new Num();
+
+        User user = new User(num);
+        user.start();
+
+        Bank bank = new Bank(num);
+        bank.start();
+
+    }
+}
+
+class Num {
+
+}
+
+class Bank extends Thread {
+    private Num num;
+
+    public Bank(Num num) {
+        this.num = num;
+    }
+
+    public void run() {
+
+        synchronized (num) {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("9:00,开门,开始叫号");
+            num.notifyAll(); //用于唤醒在对象监视器上等待的所有线程
+        }
+
+    }
+}
+
+class User extends Thread {
+    //    public synchronized void test() {
+//
+//    }
+    private Num num;
+
+    public User(Num num) {
+        this.num = num;
+    }
+
+    public void run() {
+
+        synchronized (num) {
+            System.out.println("我是号码1,银行还没开门,我需要等一会儿");
+            try {
+                num.wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("叫到我的号了,该我办业务了");
+        }
+
+    }
+}
+```
+
+## 10.阻塞 - wait和sleep
+
+```java
+package chapter09;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class Java07_Thread_Blocking {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 线程 - 阻塞
+        //wait & sleep
+        //1.名字
+        //  wait : 等待
+        //  sleep : 休眠
+        //2.从属关系
+        //  wait : Object, 成员方法(每个对象都有而且都能用,但是用法有区别)
+        //  sleep : Thread, 静态方法(只跟这个Thread类有关系,跟别的无关)
+        //3.使用方式
+        //  wait : 只能使用在同步代码中
+        //  sleep : 可以在任意的地方使用
+        //4.阻塞时间
+        // wait : 超时时间(会发生错误)
+        // sleep : 休眠时间(不会发生错误)
+        //5.同步处理
+        //  wait : 如果执行wait方法,那么其他线程有机会执行当前的同步操作
+        //  sleep : 如果执行sleep方法,那么其他线程是没有有机会执行当前的同步操作
+        
+    }
+}
+
+```
+
+## 11.线程安全问题
+
+```java
+package chapter09;
+
+public class Java08_Thread_Safe {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 线程安全
+        //所谓的线程安全问题,其实就是多个线程并发执行时,修改了共享内存中共享对象的属性,导致的数据冲突问题
+
+        //线程创建了栈
+        //对象创建了堆
+
+        User7 user = new User7();
+
+        Thread t1 = new Thread(() -> {
+            user.name = "zhangsan";
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println(user.name);
+        });
+
+        Thread t2 = new Thread(() -> {
+            user.name = "lisi";
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println(user.name);
+        });
+        t1.start();
+        t2.start();
+
+        System.out.println("主线程执行完毕");
+
+    }
+}
+
+class User7 {
+    public String name;
+}
+```
+
+# 十一、反射
+
+## 1.镜中的自己
+
+```java
+package chapter10;
+
+public class Java01_Reflect {
+    public static void main(String[] args) {
+        //TODO 反射
+
+        //多态
+        User user = new Child();
+        user.test1();
+//        user.test2();
+
+        //类对象(把编译后的字节码文件当成对象)
+        Class<? extends User> aClass = user.getClass();
+
+    }
+}
+
+class User {
+    public void test1() {
+        System.out.println("test1...");
+    }
+}
+
+class Child extends User {
+    public void test2() {
+        System.out.println("test2...");
+    }
+}
+```
+
+## 2.字节码
+
+```java
+package chapter10;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+
+public class Java01_Reflect {
+    public static void main(String[] args) throws Exception {
+        //TODO 反射
+
+        //多态
+        User user = new Child();
+        user.test1();
+//        user.test2();
+
+        //类对象(把编译后的字节码文件当成对象)
+        Class<? extends User> aClass = user.getClass();
+
+        //TODO 获取类的名称
+        System.out.println(aClass.getName()); //获取类的完整名称(包含包名)
+        System.out.println(aClass.getSimpleName()); //获取类的名称
+        System.out.println(aClass.getPackage().getName()); //获取类的包的名称
+
+        //TODO 获取类的父类
+        Class<?> superclass = aClass.getSuperclass();
+        System.out.println(superclass);
+
+        //TODO 获取类的接口
+        Class<?>[] interfaces = aClass.getInterfaces();
+        System.out.println(interfaces.length);
+
+        //TODO 获取类的属性
+        Field f = aClass.getField("xxxxx"); //根据属性名称获取属性(获取的是public访问权限的属性,其他权限的属性无法取到)
+        Field f1 = aClass.getDeclaredField("xxxxx"); //所有权限的属性都可以取到
+
+        Field[] fields = aClass.getFields(); //获取全部public权限的属性
+        Field[] declaredFields = aClass.getDeclaredFields(); //获取所有权限的所有属性
+
+        //TODO 获取类的方法
+        Method method = aClass.getMethod("test2"); //获取public权限的某个方法
+        aClass.getDeclaredMethod("test2"); //获取所有权限的某个方法
+
+        Method[] methods = aClass.getMethods(); //获取全部public权限的方法
+        Method[] declaredMethods = aClass.getDeclaredMethods(); //获取全部权限的所有方法
+
+        //TODO 构造方法
+        Constructor<? extends User> constructor = aClass.getConstructor(); //返回一个public构造方法对象
+        Constructor<?>[] constructors = aClass.getConstructors(); //返回所有public构造方法对象
+        Constructor<? extends User> declaredConstructor = aClass.getDeclaredConstructor(); //返回一个构造方法对象
+        Constructor<?>[] declaredConstructors = aClass.getDeclaredConstructors(); //返回所有构造方法对象
+
+        //TODO 获取权限(修饰符) : 多个修饰符会融合成一个int值
+        int modifiers = aClass.getModifiers();
+        boolean aPrivate = Modifier.isPrivate(modifiers); //通过Modifier的方法判断这个int值是什么访问权限
+    }
+}
+
+class User {
+    public void test1() {
+        System.out.println("test1...");
+    }
+}
+
+class Child extends User {
+    public void test2() {
+        System.out.println("test2...");
+    }
+}
+```
+
+## 3.类加载器
+
+```java
+package chapter10;
+
+public class Java02_Reflect_ClassLoader {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 反射 - 类加载器
+        //加载类
+        //Java中的类主要分为3种:
+        //1.Java核心类库中的类:String,Object
+        //2.JVM软件开发商
+        //3.自己写的类,User,Child
+        //类加载器也有3种
+        //1.BootClassLoader : 启动类加载器(加载类时,采用操作系统平台语言实现)
+        //2.PlatformClassLoader : 平台类加载器
+        //3.AppClassLoader : 应用类加载器
+
+        //TODO 获取类的信息
+        Class<Student> studentClass = Student.class;
+        //获取类的加载器对象
+        //应用类加载器
+        ClassLoader classLoader = studentClass.getClassLoader();
+        System.out.println(classLoader);
+        System.out.println(classLoader.getParent()); //当前类加载器的上一级 : 平台类加载器
+        System.out.println(classLoader.getParent().getParent()); //当前类加载器的上一级 : 核心类加载器
+
+        Class<String> StringClass = String.class;
+        //获取类的加载器对象
+        //启动类加载器
+        ClassLoader classLoader1 = StringClass.getClassLoader();
+        System.out.println(classLoader1);
+
+        //加载Java核心类库 > 平台类库 > 自己的类
+    }
+}
+
+class Student {
+
+}
+```
+
+## 4.练习
+
+```java
+package chapter10;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+public class Java03_Reflect_Test {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 反射 - 练习
+        //员工的登录功能
+
+        //declaredConstructor 构造方法对象
+        Class empClass = Emp.class;
+        Constructor declaredConstructor = empClass.getDeclaredConstructor();
+        //构建对象
+        Object emp = declaredConstructor.newInstance(); //构建实例
+
+        //获取对象的属性
+        Field account = empClass.getField("account");
+        Field password = empClass.getField("password");
+
+        //给emp对象的属性赋值
+        account.set(emp, "admin");
+        password.set(emp, "admin");
+
+        //获取登录方法
+        Method login = empClass.getMethod("login");
+
+        //调用方法
+        Object result = login.invoke(emp);
+
+        System.out.println(result);
+
+    }
+}
+
+//员工
+class Emp {
+    public String account;
+    public String password;
+
+    public boolean login() {
+        if ("admin".equals(account) && ("admin".equals(password))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+```
+
+## 5.常见异常
+
+```java
+package chapter10;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+public class Java04_Reflect_Exception {
+    public static void main(String[] args) throws Exception {
+
+        //TODO 反射 - 练习
+        //员工的登录功能
+
+        //1.ClassNotFoundException,异常:类找不到
+        //2.NoSuchMethodException,异常:方法找不到,没有方法
+        //3.IllegalArgumentException,异常:参数异常
+        //4.NoSuchFieldException,异常:没有属性
+        //5.IllegalAccessException,异常:访问权限异常
+        //6.InvocationTargetException,异常:调用目标异常
+
+        //declaredConstructor 构造方法对象
+//        Class empClass = Emp.class; //用类型获取类型信息
+//        Class<? extends Emp> empClass = new Emp().getClass(); //也是用来获取类型信息的
+        Class<?> empClass = Class.forName("chapter10.Emp"); //用字符串获取类型信息,和上面的作用没有本质区别
+
+        Constructor declaredConstructor = empClass.getDeclaredConstructor();
+        //构建对象
+        Object emp = declaredConstructor.newInstance(); //构建对象实例
+
+        //获取对象的属性
+        Field account = empClass.getField("account");
+        Field password = empClass.getField("password");
+
+        //给emp对象的属性赋值
+        account.set(emp, "admin");
+        password.set(emp, "admin");
+
+        //获取登录方法
+        Method login = empClass.getMethod("login");
+
+        //调用方法
+        Object result = login.invoke(emp);
+
+        System.out.println(result);
+
+    }
+}
+
+//员工
+class Emp4 {
+    public String account;
+    public String password;
+
+    public boolean login() {
+        if ("admin".equals(account) && ("admin".equals(password))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+```
+
+# 十二、（补充）特殊文件
+
+## 1.特殊文件、日志文件概述
+
+### ①属性文件.properties
+
+1. 属性文件的内容一般都是一些键值对信息，每行都是一个键值对
+2. 属性晚间的后缀：一般都是.properties结尾的
+
+例如：
+
+```java
+admin=123456
+liergouzi=小花
+zhangsan=666888
+lisi=iloveu
+全蛋儿=1314520
+```
+

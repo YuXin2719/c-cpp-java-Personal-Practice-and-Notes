@@ -7,7 +7,6 @@
     <list default="true" id="9a933fb7-e81d-400a-939d-9a620121f28b" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/../../Java.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/word.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/word.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,12 +42,18 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/c.---c.---java-exercise/JavaCode/java-top-speed/src/chapter07",
+    "last_opened_file_path": "E:/c.---c.---java-exercise/JavaCode/java-top-speed/src/chapter10",
+    "project.structure.last.edited": "项目",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "应用程序.Java01_Exception.executor": "Run",
     "应用程序.Java01_HelloWorld.executor": "Run",
     "应用程序.Java01_Object (1).executor": "Run",
     "应用程序.Java01_Object.executor": "Run",
+    "应用程序.Java01_Reflect (1).executor": "Run",
+    "应用程序.Java01_Reflect.executor": "Run",
+    "应用程序.Java01_Thread.executor": "Run",
     "应用程序.Java01_variable.executor": "Run",
     "应用程序.Java02_Exception.executor": "Run",
     "应用程序.Java02_FlowControl.executor": "Run",
@@ -57,6 +62,8 @@
     "应用程序.Java02_Object_1.executor": "Run",
     "应用程序.Java02_Object_2 (1).executor": "Run",
     "应用程序.Java02_Object_2.executor": "Run",
+    "应用程序.Java02_Reflect_ClassLoader.executor": "Run",
+    "应用程序.Java02_Thread.executor": "Run",
     "应用程序.Java03_Collection_List.executor": "Run",
     "应用程序.Java03_Exception.executor": "Run",
     "应用程序.Java03_FlowControl.executor": "Run",
@@ -66,6 +73,8 @@
     "应用程序.Java03_Object_Test_1.executor": "Run",
     "应用程序.Java03_Object_Test_2.executor": "Run",
     "应用程序.Java03_Object_Test_3.executor": "Run",
+    "应用程序.Java03_Reflect_Test.executor": "Run",
+    "应用程序.Java03_Thread.executor": "Run",
     "应用程序.Java04_Collection_List_ArrayList.executor": "Run",
     "应用程序.Java04_Exception.executor": "Run",
     "应用程序.Java04_FlowControl_test.executor": "Run",
@@ -76,17 +85,22 @@
     "应用程序.Java04_Operator_2.executor": "Run",
     "应用程序.Java04_Operator_3.executor": "Run",
     "应用程序.Java04_Operator_4.executor": "Run",
+    "应用程序.Java04_Reflect_Exception.executor": "Run",
+    "应用程序.Java04_Thread_Run.executor": "Run",
     "应用程序.Java05_Collection_List_LinkedList.executor": "Run",
     "应用程序.Java05_Collection_List_LinkedList_1.executor": "Run",
     "应用程序.Java05_Exception.executor": "Run",
     "应用程序.Java05_FlowControl.executor": "Run",
     "应用程序.Java05_FlowControl_1.executor": "Run",
     "应用程序.Java05_IO_File_Copy_String.executor": "Run",
+    "应用程序.Java05_Thread_Pool.executor": "Debug",
     "应用程序.Java06_Collection.executor": "Run",
     "应用程序.Java06_FlowControl_test.executor": "Run",
     "应用程序.Java06_IO_File_Copy_String_1.executor": "Run",
     "应用程序.Java06_Object_Date.executor": "Run",
     "应用程序.Java06_Object_Method.executor": "Run",
+    "应用程序.Java06_Thread_Syn.executor": "Run",
+    "应用程序.Java07_IO_Object.executor": "Run",
     "应用程序.Java07_Object_Date.executor": "Run",
     "应用程序.Java07_Object_Date_Test.executor": "Run",
     "应用程序.Java07_Object_Method_Param (1).executor": "Run",
@@ -96,6 +110,7 @@
     "应用程序.Java08_Collection_Sort (1).executor": "Run",
     "应用程序.Java08_Collection_Sort.executor": "Run",
     "应用程序.Java08_Exception.executor": "Run",
+    "应用程序.Java08_IO_Exception.executor": "Run",
     "应用程序.Java08_Object_Date_Util (1).executor": "Run",
     "应用程序.Java08_Object_Date_Util (2).executor": "Run",
     "应用程序.Java08_Object_Date_Util (3).executor": "Run",
@@ -107,6 +122,7 @@
     "应用程序.Java08_Object_Static_2 (1).executor": "Run",
     "应用程序.Java08_Object_Static_2 (2).executor": "Run",
     "应用程序.Java08_Object_Static_2.executor": "Run",
+    "应用程序.Java08_Thread_Safe.executor": "Run",
     "应用程序.Java09_Collection_Set.executor": "Run",
     "应用程序.Java09_Collection_Set_1.executor": "Run",
     "应用程序.Java09_Collection_Set_2.executor": "Run",
@@ -162,26 +178,27 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\c.---c.---java-exercise\JavaCode\java-top-speed\src\chapter10" />
+      <recent name="E:\c.---c.---java-exercise\JavaCode\java-top-speed\src\chapter09" />
+      <recent name="E:\c.---c.---java-exercise\JavaCode\java-top-speed\src\chapter08" />
       <recent name="E:\c.---c.---java-exercise\JavaCode\java-top-speed\src\chapter07" />
       <recent name="E:\c.---c.---java-exercise\JavaCode\java-top-speed\src\chapter06" />
-      <recent name="E:\c.---c.---java-exercise\JavaCode\java-top-speed\src\chapter05" />
-      <recent name="E:\c.---c.---java-exercise\JavaCode\java-top-speed\src\chapter04" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="chapter09" />
       <recent name="chapter08" />
       <recent name="chapter07" />
       <recent name="chapter06" />
       <recent name="chapter05" />
-      <recent name="chapter04" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.Java06_IO_File_Copy_String_1">
-    <configuration name="Java02_IO_File" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter08.Java02_IO_File" />
+  <component name="RunManager" selected="应用程序.Java04_Reflect_Exception">
+    <configuration name="Java01_Reflect (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter10.Java01_Reflect" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chapter08.*" />
+          <option name="PATTERN" value="chapter10.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -189,12 +206,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java03_IO_File_Copy" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter08.Java03_IO_File_Copy" />
+    <configuration name="Java01_Reflect" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter10.Java01_Reflect" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chapter08.*" />
+          <option name="PATTERN" value="chapter10.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -202,12 +219,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java04_IO_File_Copy_Buffer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter08.Java04_IO_File_Copy_Buffer" />
+    <configuration name="Java02_Reflect_ClassLoader" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter10.Java02_Reflect_ClassLoader" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chapter08.*" />
+          <option name="PATTERN" value="chapter10.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -215,12 +232,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java05_IO_File_Copy_String" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter08.Java05_IO_File_Copy_String" />
+    <configuration name="Java03_Reflect_Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter10.Java03_Reflect_Test" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chapter08.*" />
+          <option name="PATTERN" value="chapter10.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -228,12 +245,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Java06_IO_File_Copy_String_1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chapter08.Java06_IO_File_Copy_String_1" />
+    <configuration name="Java04_Reflect_Exception" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter10.Java04_Reflect_Exception" />
       <module name="java-top-speed" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chapter08.*" />
+          <option name="PATTERN" value="chapter10.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -243,11 +260,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.Java06_IO_File_Copy_String_1" />
-        <item itemvalue="应用程序.Java05_IO_File_Copy_String" />
-        <item itemvalue="应用程序.Java03_IO_File_Copy" />
-        <item itemvalue="应用程序.Java04_IO_File_Copy_Buffer" />
-        <item itemvalue="应用程序.Java02_IO_File" />
+        <item itemvalue="应用程序.Java04_Reflect_Exception" />
+        <item itemvalue="应用程序.Java03_Reflect_Test" />
+        <item itemvalue="应用程序.Java02_Reflect_ClassLoader" />
+        <item itemvalue="应用程序.Java01_Reflect" />
+        <item itemvalue="应用程序.Java01_Reflect (1)" />
       </list>
     </recent_temporary>
   </component>
