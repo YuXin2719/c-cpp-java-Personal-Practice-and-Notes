@@ -5631,22 +5631,251 @@ class Emp4 {
 }
 ```
 
-# 十二、（补充）特殊文件
+# 十二、（补充）特殊文件、日志文件概述
 
 ## 1.特殊文件、日志文件概述
 
-### ①属性文件.properties
+### ①普通文件.txt
 
-1. 属性文件的内容一般都是一些键值对信息，每行都是一个键值对
-2. 属性晚间的后缀：一般都是.properties结尾的
+1. 普通的属性文件、里面的内容可以随便写，格式随意！
+
+### ②属性文件.properties
+
+1. 属性文件的内容一般都是一些键值对信息，每行都是一个键值对（键不可重复）
+2. 属性文件的后缀：一般都是.properties结尾的
 
 例如：
 
-```java
+```properties
 admin=123456
 liergouzi=小花
 zhangsan=666888
 lisi=iloveu
 全蛋儿=1314520
 ```
+
+### ③XML文件.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!--这是注释,以下是XML文件的内容,都是开始标签和结尾标签的形式-->
+<!--XML文件的后缀,一般都是,xml-->
+<users>
+    <user id="1">
+        <name>admin</name>
+        <password>123456</password>
+    </user>
+    <user id="2">
+        <name>liergou</name>
+        <password>小花</password>
+    </user>
+    <user id="3">
+        <name>全蛋儿</name>
+        <password>1314520</password>
+    </user>
+</users>
+```
+
+## 2.为什么要用这些特殊文件？
+
+### ①存储多个用户的：用户名，密码
+
+**普通文件**
+
+```
+admin=123abzzhangsan=23232lisi=23244
+		全蛋儿=1314520
+```
+
+**属性文件（推荐）**
+
+```properties
+admin=123zbz
+zhangsan=23232
+lisi=23244
+全蛋儿=1314520
+```
+
+**XML文件（推荐）**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+    <user id="1">
+        <name>admin</name>
+        <password>123456</password>
+    </user>
+    <user id="2">
+        <name>liergou</name>
+        <password>小花</password>
+    </user>
+    <user id="3">
+        <name>全蛋儿</name>
+        <password>1314520</password>
+    </user>
+</users>
+```
+
+### ②存储多个用户的：用户名、密码、家乡、性别
+
+**属性文件**
+
+```properties
+name=张无忌
+password=minmin
+address=光明顶
+sex=男
+name1=赵敏
+password2=wuji
+address2=光明顶
+sex3=女
+```
+
+**XML文件（推荐）**
+
+1. 存储有关系的数据，作为系统的配置文件
+2. 作为信息进行传输
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+    <user id="1">
+        <name>张无忌</name>
+        <password>minmin</password>
+        <address>光明顶</address>
+        <sex>男</sex>
+
+    <user id="2">
+    <name>赵敏</name>
+    <password>wuji</password>
+    <address>光明顶</address>
+    <sex>女</sex>
+    ...
+</users>
+```
+
+## 3.这些特殊文件，我们主要学什么？
+
+1. 了解他们的特点、作用
+2. 学习使用程序读取他们里面的数据
+3. 学习使用程序把数据存储到这些文件里
+
+## 4.日志文件
+
+把程序运行的信息，记录到文件中，方便程序员定位bug、并了解程序的执行情况等
+
+# 十三、Properties属性文件
+
+**特点：**
+
+1. 都只能是键值对
+2. 键不能重复
+3. 文件后缀一般是.properties结尾的
+
+<img src="image-20241108215722368.png" alt="image-20241108215722368" style="zoom:50%;" />
+
+**properties**
+
+- 是一个Map集合（键值对集合），但是我们一般不会当集合使用
+- ==核心作用：Properties是用来代表属性文件的，通过Properties可以读写属性文件里的内容==
+
+
+
+**使用Properties==读取==属性文件里的键值对数据**
+
+| 构造器              | 说明                                 |
+| ------------------- | ------------------------------------ |
+| public Properties() | 用于构建Properties集合对象（空容器） |
+
+
+
+| 常用方法                                     | 说明                                          |
+| -------------------------------------------- | --------------------------------------------- |
+| public void ==load(InputStream is)==         | 通过字节输入流，读取属性文件里的键值对数据    |
+| public void ==load(Reader reader)==          | 通过字符输入流，读取属性文件里的键值对数据    |
+| public String ==getProperty(String key)==    | 根据键获取值（其实就是get方法的效果）（常用） |
+| public ==Set<String> stringPropertyNames()== | 获取全部键的集合（其实就是keySet方法的效果）  |
+
+```java
+package 配置文件;
+
+//TODO 目标:掌握使用Perperties类读取属性文件中的键值对信息
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Properties;
+import java.util.Set;
+
+public class PropertiesTest1 {
+    public static void main(String[] args) throws Exception {
+        //1.创建一个propertise的对象出来(键值对集合,空容器)
+        Properties properties = new Properties();
+        System.out.println(properties);
+
+        //2.开始加载属性文件中的键值对数据到properties对象中去
+        properties.load(new FileReader("src/users.properties"));
+        System.out.println(properties);
+
+        //3.根据键取值
+        System.out.println(properties.getProperty("赵敏"));
+        System.out.println(properties.getProperty("张无忌"));
+
+        //4.遍历全部的键和值
+        Set<String> keys = properties.stringPropertyNames();
+        for (String key : keys) {
+            String value = properties.getProperty(key);
+            System.out.println(key + "---->" + value);
+        }
+
+        properties.forEach((k, v) -> {
+            System.out.println(k + "---->" + v);
+        });
+    }
+}
+
+```
+
+
+
+**使用Properties把键值对数据==写出==到属性文件里去**
+
+| 构造器            | 说明                                 |
+| ----------------- | ------------------------------------ |
+| public Properties | 用于构建Properties集合对象（空容器） |
+
+
+
+| 常用方法                                               | 说明                                                         |
+| ------------------------------------------------------ | ------------------------------------------------------------ |
+| public Object ==setProperty(String key,String value)== | 保存键值对数据到Properties对象中去，其中value是备注信息，随便填 |
+| public void ==store(OutputStream os,String comments)== | 把键值对数据，通过字节输出流写出到属性文件里去               |
+| public void ==store(Writer w,String comments)==        | 把键值对数据，通过字符输出流写出到属性文件里去               |
+
+```java
+package 配置文件;
+
+//TODO 目标:掌握把键值对数据存入到属性文件中去
+
+import java.io.FileWriter;
+import java.util.Properties;
+
+public class PropertiesTest2 {
+    public static void main(String[] args) throws Exception {
+        //1.创建Properties对象出来,先用它存储一些键值对数据
+        Properties properties = new Properties();
+        properties.setProperty("张无忌", "minmin");
+        properties.setProperty("殷素素", "cuishan");
+        properties.setProperty("张翠山", "susu");
+
+        //2.把Properties对象中的键值对数据存入到属性文件中去
+        //  方法执行完成后会自动关闭管道,不需要手动关闭
+        properties.store(new FileWriter("src/users2.properties"), "i saved many users!"); //相对路径/绝对路径，注释
+    }
+}
+
+```
+
+# 十四、Properties案例
+
+
 
