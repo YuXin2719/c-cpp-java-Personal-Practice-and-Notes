@@ -6,9 +6,9 @@
 
 # 一、java基础常识
 
-![屏幕截图 2023-04-28 164539](E:\c.---c.---java-exercise\photo\屏幕截图 2023-04-28 164539.png)
+![屏幕截图 2023-04-28 164539](photo/屏幕截图 2023-04-28 164539.png)
 
-<img src="image-20240925214630883.png" alt="image-20240925214630883" style="zoom:67%;" />
+<img src="photo/image-20240925214630883.png" alt="image-20240925214630883" style="zoom:67%;" />
 
 - JDK：java编程环境
 - JRE：java运行环境
@@ -514,7 +514,7 @@ public class Java02_FlowControl {
 
 ### ②特殊的分支结构
 
-<img src="image-20240928104924518.png" alt="image-20240928104924518" style="zoom:67%;" />
+<img src="photo/image-20240928104924518.png" alt="image-20240928104924518" style="zoom:67%;" />
 
 ```java
 package chapter03;
@@ -980,7 +980,7 @@ class Sdudent {
 User04 user = new User04();
 ```
 
-<img src="image-20240929193516378.png" alt="image-20240929193516378" style="zoom:67%;" />
+<img src="photo/image-20240929193516378.png" alt="image-20240929193516378" style="zoom:67%;" />
 
 1. **栈：方法，属性**
 2. **堆：对象**
@@ -1464,7 +1464,7 @@ class User11 {
 
 **实际上是对象和对象之间的继承关系，如果是静态类之间的继承，那其中的静态属性就没什么意义了，具体举例详见 -> 33.作用域**
 
-<img src="image-20240929234419004.png" alt="image-20240929234419004" style="zoom: 67%;" />
+<img src="photo/image-20240929234419004.png" alt="image-20240929234419004" style="zoom: 67%;" />
 
 ```java
 package chapter04;
@@ -1536,7 +1536,7 @@ class Child1 extends Parent1 {
 
 ## 15.继承、构造方法
 
-<img src="image-20240930125043588.png" alt="image-20240930125043588" style="zoom: 67%;" />
+<img src="photo/image-20240930125043588.png" alt="image-20240930125043588" style="zoom: 67%;" />
 
 ```java
 package chapter04;
@@ -2511,7 +2511,7 @@ class User01 extends Person01 {
 
 ## 2.数组
 
-<img src="image-20241007202132447.png" alt="image-20241007202132447" style="zoom: 67%;" />
+<img src="photo/image-20241007202132447.png" alt="image-20241007202132447" style="zoom: 67%;" />
 
 ```java
 package chapter05;
@@ -2573,9 +2573,9 @@ class User02 {
 
 **数组实际上记录了对数据的引用（可以是对象）**
 
-<img src="image-20241007211301576.png" alt="image-20241007211301576" style="zoom:67%;" />
+<img src="photo/image-20241007211301576.png" alt="image-20241007211301576" style="zoom:67%;" />
 
-<img src="image-20241007212609964.png" alt="image-20241007212609964" style="zoom:67%;" />
+<img src="photo/image-20241007212609964.png" alt="image-20241007212609964" style="zoom:67%;" />
 
 ```java
 package chapter05;
@@ -4253,7 +4253,7 @@ public class Java10_Collection_Queue {
 
 **底层结构：数组 + 单向链表（采用红黑二叉树）**
 
-<img src="image-20241101130540210.png" alt="image-20241101130540210" style="zoom:50%;" />
+<img src="photo/image-20241101130540210.png" alt="image-20241101130540210" style="zoom:50%;" />
 
 ```java
 package chapter07;
@@ -4996,7 +4996,7 @@ class MyThread extends Thread {
 
 ## 4.线程的生命周期
 
-<img src="image-20241105220808393.png" alt="image-20241105220808393" style="zoom: 50%;" />
+<img src="photo/image-20241105220808393.png" alt="image-20241105220808393" style="zoom: 50%;" />
 
 ## 5.线程执行方式（串行和并发）
 
@@ -5631,15 +5631,21 @@ class Emp4 {
 }
 ```
 
+
+
 # 十二、（补充）特殊文件、日志文件概述
+
+
 
 ## 1.特殊文件、日志文件概述
 
-### ①普通文件.txt
+**①普通文件.txt**
 
 1. 普通的属性文件、里面的内容可以随便写，格式随意！
 
-### ②属性文件.properties
+
+
+**②属性文件.properties**
 
 1. 属性文件的内容一般都是一些键值对信息，每行都是一个键值对（键不可重复）
 2. 属性文件的后缀：一般都是.properties结尾的
@@ -5654,7 +5660,9 @@ lisi=iloveu
 全蛋儿=1314520
 ```
 
-### ③XML文件.xml
+
+
+**③XML文件.xml**
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -5676,9 +5684,11 @@ lisi=iloveu
 </users>
 ```
 
+
+
 ## 2.为什么要用这些特殊文件？
 
-### ①存储多个用户的：用户名，密码
+**①存储多个用户的：用户名，密码**
 
 **普通文件**
 
@@ -5716,7 +5726,9 @@ lisi=23244
 </users>
 ```
 
-### ②存储多个用户的：用户名、密码、家乡、性别
+
+
+**②存储多个用户的：用户名、密码、家乡、性别**
 
 **属性文件**
 
@@ -5764,7 +5776,13 @@ sex3=女
 
 把程序运行的信息，记录到文件中，方便程序员定位bug、并了解程序的执行情况等
 
+
+
 # 十三、Properties属性文件
+
+
+
+## 十三、Properties概述
 
 **特点：**
 
@@ -5772,7 +5790,7 @@ sex3=女
 2. 键不能重复
 3. 文件后缀一般是.properties结尾的
 
-<img src="image-20241108215722368.png" alt="image-20241108215722368" style="zoom:50%;" />
+<img src="photo/image-20241108215722368.png" alt="image-20241108215722368" style="zoom:50%;" />
 
 **properties**
 
@@ -5875,7 +5893,667 @@ public class PropertiesTest2 {
 
 ```
 
-# 十四、Properties案例
+
+
+## 十四、Properties案例
+
+**如果我们要修改的属性文件的后缀是txt该怎么办**
+
+```java
+package 配置文件;
+
+import javax.sound.sampled.Port;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.Properties;
+
+public class PropertiesTest3 {
+    public static void main(String[] args) throws Exception {
+        //TODO 目标:读取属性文件,判断是否存在李方,存在年龄改成18
+        // users.txt里面就是一个一个的键值对,那他就是属性文件,无所谓什么后缀的
+
+        //1.加载属性文件的键值对到程序中来
+        Properties properties = new Properties(); //{}
+
+        //2.开始加载
+        properties.load(new FileReader("src/users.txt"));
+
+        //3.判断是否包含李方这个键
+        if (properties.containsKey("李方")) {
+            properties.setProperty("李方", "18");
+        }
+
+        //4.把Properties对象的键值对数据重新写入到属性文件中去
+        properties.store(new FileWriter("src/users.txt"), "success!");
+    }
+}
+
+```
+
+**注意：下方是txt文件**
+
+```
+#success!
+#Sat Nov 09 11:58:23 CST 2024
+郭芙=18
+黄蓉=45
+郭靖=50
+尹志平=30
+李方=18
+小龙女=38
+杨过=21
+```
 
 
 
+# 十四、XML文件
+
+
+
+## 1.XML概述
+
+XML（全称EXtensible Markup Language，可拓展标记语言）
+
+- 本质是一种数据的格式，可以用来存储复杂的数据结构，和数据关系
+
+**特点：**
+
+1. XML中的 "<标签名>" 称为一个标签或一个元素，一般是成对出现的
+2. XML中的标签可以自己定义（可拓展），但必须正确的嵌套
+3. XML中只能有一个根标签
+4. XML中的标签可以有属性
+5. 如果一个文件中放置的是XML格式的数据，这个文件就是XML文件，==后缀一般写成xml==
+
+
+
+**XML的创建**
+
+- 就是创建一个XML类型的文件，要求文件的后缀必须使用xml，如hello_world.xml
+
+
+
+**IDEA创建XML文件**
+
+<img src="photo/image-20241109121516549.png" alt="image-20241109121516549" style="zoom:50%;" />
+
+
+
+**XML的语法规则**
+
+- XML文件的后缀名为：==xml==，文档声明必须是==第一行==
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+verson：XML默认的版本号码、该属性必须存在
+encoding：本XML文件的编码
+```
+
+- XML中可以定义注释信息：`<!-- 注释内容 -->`
+- ==XML中书写“<”、“&”等，可能会出现冲突，导致报错，此时可以用以下特殊字符替代==
+
+```xml
+&lt;	<	小于
+&gt;	>	大于
+&amp;	&	和号
+&apos;	'	单引号
+&quot;	"	引号
+```
+
+- XML中可以写一个交叫CDATA的数据区：`<![CDATA[ ...内容... ]]>`，==里面的内容可以随便写==
+
+
+
+**示例XML文件**
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<!--注释:以上抬头声明必须放在第一行,必须有-->
+<!--version表示我们现在使用的xml格式标准,encoding是声明xml使用的文件编码是什么-->
+<!--根标签只能有一个-->
+<users>
+    <user id="1">
+        <name>张无忌</name>
+        <sex>男</sex>
+        <地址>光明顶</地址>
+        <password>minmin</password>
+        <data>3&lt;2&amp;&amp;5&gt;4</data>
+        <!--以下的数据区里可以随便写-->
+        <data1>
+            <![CDATA[
+            3 < 2 && 5 > 4
+            ]]>
+        </data1>
+    </user>
+    <user id="2">
+        <name>敏敏</name>
+        <sex>女</sex>
+        <地址>光明顶</地址>
+        <password>wuji</password>
+        <data>3&lt;2&amp;&amp;5&gt;4</data>
+        <data1>
+            <![CDATA[
+            3 < 2 && 5 > 4
+            ]]>
+        </data1>
+    </user>
+</users>
+```
+
+
+
+**XML的作用和应用场景**
+
+- 本质是一种数据格式，可以存储复杂的数据结构，和数据关系
+- **应用场景：**经常用来作为系统的配置文件；或者作为一种特殊的数据结构，在网络中传输
+
+<img src="photo/image-20241109124307518.png" alt="image-20241109124307518" style="zoom: 50%;" />
+
+
+
+## 2.XML的解析
+
+
+
+**解析XML文件**
+
+- ==使用程序读取XML文件中的数据==
+  注意：程序员不需要自己写原始的IO流代码来解析XML，难度较大！也相当繁琐！
+  其实，有很多开源的，好用的，解析XML的框架，==最知名的是：Dom4j（第三方开发的）==
+
+
+
+**使用Dom4j解析出XML文件**
+
+**需求**：使用Dom4j把一个XML文件的数据进行解析
+
+**分析**：
+
+1. 下载Dom4j框架，官网下载
+2. 在项目中创建一个文件夹：lib
+3. 将dom4j-2.1.3jar文件复制到lib文件夹中
+4. 再jar文件上点右键，选择Add as Library -> 点击OK
+5. 在类中导包使用
+
+
+
+**特点：**Dom4j是一种自上而下的解析方法，我们必须拿到Document整个文档，然后拿到根目录，一直逐级往下
+
+**Dom4j解析XML文件的思想：文档对象模型**
+
+<img src="photo/image-20241109142055062.png" alt="image-20241109142055062" style="zoom:50%;" />
+
+
+
+**Dom4j解析XML-得到Document对象**
+
+- SAXReader：Dom4j提供的构造器，可以认为是代表整个Dom4j框架
+
+| 构造器/方法                          | 说明                      |
+| ------------------------------------ | ------------------------- |
+| public SAXReader                     | 构建Dom4j的解析器对象     |
+| public Document read(String url)     | 把XML文件读成Document对象 |
+| public Document read(InputStream is) | 通过字节输入流读取XML文件 |
+
+- Document
+
+| 方法名                   | 说明           |
+| ------------------------ | -------------- |
+| Element getRootElement() | 获取根元素对象 |
+
+
+
+**示例代码：**
+
+```java
+package 配置文件;
+
+//TODO 目标:掌握使用Don4j框架解析XML文件
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+
+public class Dom4jTest1 {
+    public static void main(String[] args) throws Exception {
+        //1.创建一个Dom4j框架提供的解析起对象
+        SAXReader saxReader = new SAXReader();
+
+        //2.使用saxReader对象需要解析的XML文件读成一个Document对象
+        Document document = saxReader.read("src/特殊文件/helloworld.xml");
+
+        //3.从文件对象中解析XML文件的全部数据了
+        Element root = document.getRootElement();
+        System.out.println(root.getName());
+    }
+}
+
+```
+
+
+
+## 3.XML的解析2
+
+**Element提供的方法**
+
+| 方法名                                    | 说明                                                         |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| public String getName()                   | 得到元素名字                                                 |
+| public List<Element> elements()           | 得到当前元素下的全部子元素                                   |
+| public <Element> elements(String name)    | 得到当前元素下指定名字的子元素返回集合                       |
+| public Element element(String name)       | 得到当前元素下指定名字的子元素，如果有很多名字相同的返回第一个 |
+| public String attributeValue(String name) | 通过属性名直接得到属性值                                     |
+| public String elementText(子元素名)       | 得到指定名称的子元素的文本                                   |
+| public String getText()                   | 得到文本                                                     |
+
+
+
+**示例：**
+
+```java
+package 配置文件;
+
+//TODO 目标:掌握使用Don4j框架解析XML文件
+
+import org.dom4j.Attribute;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+
+import java.util.List;
+
+public class Dom4jTest1 {
+    public static void main(String[] args) throws Exception {
+        //1.创建一个Dom4j框架提供的解析起对象
+        SAXReader saxReader = new SAXReader();
+
+        //2.使用saxReader对象需要解析的XML文件读成一个Document对象
+        Document document = saxReader.read("src/特殊文件/helloworld.xml");
+
+        //3.从文件对象中解析XML文件的全部数据了
+        Element root = document.getRootElement();
+        System.out.println(root.getName());
+
+        //4.获取根元素下的全部一级子元素
+//        List<Element> elements = root.elements();
+        //获取指定名字的子元素
+        List<Element> elements = root.elements("user");
+        for (Element element : elements) {
+            System.out.println(element.getName());
+        }
+
+        //5.获取当前元素下的某个子元素
+        Element people = root.element("people");
+        System.out.println(people.getText());
+
+        //如果下面有很多子元素user,默认获取第一个
+        Element user = root.element("user");
+        System.out.println(user.elementText("name"));
+
+        //6.获取元素的属性信息
+        System.out.println(user.attributeValue("id"));
+        Attribute id = user.attribute("id");
+        System.out.println(id.getName());
+        System.out.println(id.getValue());
+
+        List<Attribute> attributes = user.attributes();
+        for (Attribute attribute : attributes) {
+            System.out.println(attribute.getName() + "=" + attribute.getValue());
+        }
+
+        //7.如何获取全部的文本内容:获取当前元素下的子元素文本值
+        System.out.println(user.elementText("name"));
+        System.out.println(user.elementText("地址"));
+        System.out.println(user.elementText("password"));
+
+        Element data = user.element("data");
+        System.out.println(data.getText());
+        System.out.println(data.getTextTrim()); //取出文本并且取去除前后空格
+    }
+}
+
+```
+
+
+
+## 4.XML的生成
+
+如何使用程序把数据写出到XML文件中去？（但是现在几乎不用了）
+
+不建议使用Dom4j做
+
+**推荐直接把程序中的数据拼接成XML格式，然后用IO流写出去！**
+
+
+
+**示例：**
+
+```java
+package 特殊文件;
+
+//TODO 目标:如何使用程序把数据写出到XML文件中去
+/*
+<?xml version="1.0" encoding="UTF-8" ?>
+<book>
+    <name>从入门到跑路</name>
+    <author>dlei</author>
+    <price>999.9</price>
+</book>
+ */
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Dom4jTest2 {
+    public static void main(String[] args) {
+        //1.使用一个Stringbuilder对象来拼接XML格式的数据
+        StringBuilder sb = new StringBuilder();
+        sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n");
+        sb.append("<book>\r\n");
+        sb.append("\t<name>").append("从入门到跑路").append("</name>\r\n");
+        sb.append("\t<author>").append("dlei").append("</author>\r\n");
+        sb.append("\t<price>").append("999.9").append("</price>\r\n");
+        sb.append("</book>\r\n");
+
+        //放在小括号内自动关闭
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("src/特殊文件/book.xml"))) {
+            bw.write(sb.toString());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+
+```
+
+
+
+## 5.补充知识：约束XML文件的编写[了解]
+
+**什么是约束XML文件的书写？**
+
+- ==就是限制XML文件只能按照某种格式进行书写==
+
+**约束文档**
+
+- 专门用来限制xml书写格式的文档，比如：限制标签、属性应该怎么写
+
+**约束文档的分类**
+
+- ==DTD文档==
+- Schema文档
+
+**注意：**
+
+1. XML==可以==约束XML文件的编写
+2. ==不能==约束具体的**数据类型**
+
+
+
+==这里不是重点复习内容，所以笔记相对简洁！==
+
+<img src="photo/image-20241109162348110.png" alt="image-20241109162348110" style="zoom:50%;" />
+
+<img src="photo/image-20241109162739675.png" alt="image-20241109162739675" style="zoom:50%;" />
+
+
+
+<img src="photo/image-20241109163128758.png" alt="image-20241109163128758" style="zoom:50%;" />
+
+<img src="photo/image-20241109165301656.png" alt="image-20241109165301656" style="zoom:50%;" />
+
+
+
+# 十五、日志技术
+
+## 1.概述
+
+**什么是日志？**
+
+- 希望系统能记住某些数据是被谁操作的，比如被谁删除了
+- 想分析用户浏览系统的具体情况，以便挖掘用户的具体喜好
+- ==当系统开发中或者上线后出现了bug，崩溃了，该通过什么去分析、定位bug==
+
+**日志**
+
+- 好比生活中的日记，可以记录生活中的点点滴滴
+- 程序中的日志，通常就是一个文件，里面记录的是程序运行过程中的各种信息
+
+
+
+**目前记录日志的方案**
+
+```java
+    public static void test(String number){
+        try{
+            int result=Integer.parseInt(number);
+            System.out.println("输入的数字为"+result);
+        }catch (NumberFormatException e){
+            System.out.println("输入的数字有误,请输入一个整数");
+        }
+    }
+```
+
+**输出语句的弊端**
+
+- 日志会展示在控制台
+- 不能更方便的将日志记录到其他的位置（文件，数据库）
+- 想取消日志，需要修改源代码才能完成
+
+
+
+**日志技术**
+
+- 可以将系统执行的信息，方便的记录到指定的位置（控制台、文件中、数据库中）
+- 可以随时以开关的形式控制日志的启停，无需侵入到源代码中去进行修改
+
+
+
+## 2.日志技术的体系、Logback日志框架的概述
+
+**日志技术的体系结构**
+
+- ==日志框架：==牛人或者第三方公司已经做好的实现代码，后来者直接就可以拿去使用
+- ==日志接口：==设计日志框架的一套标准，日志框架需要实现这些接口
+- ==注意1：==因为Commons Logging接口不满意，有人就搞了SLF4J；因为对Log4j的性能不满意，有人就搞了Logback
+- **==注意2：Logback==是基于==slf4j==的日志规范实现的框架**
+
+<img src="photo/image-20241109192021039.png" alt="image-20241109192021039" style="zoom:50%;" />
+
+**Logback日志框架官方网站：**`https://logback.qos.ch/index.html`
+
+**Logback日志框架有以下几个模块：**
+
+<img src="photo/image-20241109193229009.png" alt="image-20241109193229009" style="zoom:50%;" />
+
+**想使用Logback日志框架，至少需要再项目中整合如下三个模块：**
+
+1. ==slf4j-api：日志接口==
+2. logback-core
+3. logback-classic
+
+
+
+## 3.Logback快速入门
+
+**需求**
+
+- 使用Logback日志框架，记录系统的运行信息
+
+**实现步骤**
+
+1. 导入Logback框架到项目中去
+
+   slf4j-api、logback-core、logback-classic
+
+2. 将Logback框架的核心配置文件==logback.xml==直接拷贝到src目录下（必须是src下）
+
+3. 创建Logback框架提供的Logger对象，然后用Logger对象调用其提供的方法就可以记录系统的日志信息
+   `public static final Logger LOGGER = LoggerFactory.getLogger("类名");`
+
+
+
+**示例：**
+
+```java
+package 配置文件;
+
+//TODO 目标:掌握LogBack日志框架的使用
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class LogBackTest {
+    //创建一个Logger日志对象
+    public static final Logger LOGGER = LoggerFactory.getLogger("LogBackTest");
+
+    public static void main(String[] args) {
+
+        try {
+            LOGGER.info("chu法方法开始执行~~~"); //info用于记录一些正常的程序执行信息
+            chu(10, 0);
+            LOGGER.info("chu法方法执行成功~~~");
+        } catch (Exception e) {
+            LOGGER.error("chu法方法执行失败了,出现了bug~~~");
+        }
+    }
+
+    public static void chu(int a, int b) {
+        LOGGER.debug("参数a:" + a);
+        LOGGER.debug("参数b:" + b);
+        int c = a / b;
+        LOGGER.info("结果是:" + c);
+    }
+}
+
+```
+
+**log文件：**（多次测试会一直记录多次测试会一直记录）
+
+```
+2024-11-09 20:36:08.265 [main] INFO  LogBackTest - chu法方法开始执行~~~
+2024-11-09 20:36:08.267 [main] DEBUG LogBackTest - 参数a:10
+2024-11-09 20:36:08.268 [main] DEBUG LogBackTest - 参数b:0
+2024-11-09 20:36:08.268 [main] ERROR LogBackTest - chu法方法执行失败了,出现了bug~~~
+2024-11-09 20:41:21.325 [main] INFO  LogBackTest - chu法方法开始执行~~~
+2024-11-09 20:41:21.329 [main] DEBUG LogBackTest - 参数a:10
+2024-11-09 20:41:21.329 [main] DEBUG LogBackTest - 参数b:0
+2024-11-09 20:41:21.329 [main] ERROR LogBackTest - chu法方法执行失败了,出现了bug~~~
+```
+
+
+
+==注意：==对Logback日志框架的控制，==都是通过其核心配置文件logback.xml来实现的==
+
+
+
+## 4.Logback的核心配置文件详解
+
+==核心配置文件logback.xml==
+
+- 对Logback日志框架进行控制的
+
+**日志的输出位置、输出格式的设置**
+
+- 通常可以设置2个输出日志的位置：==一个是控制台、一个是系统文件中==
+
+```xml
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+```
+
+```xml
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+```
+
+**开启日志（ALL），取消日志（OFF）**
+
+```xml
+    <root level="ALL">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+```
+
+
+
+**示例：**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--
+        CONSOLE ：表示当前的日志信息是可以输出到控制台的。
+    -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <!--输出流对象 默认 System.out 改为 System.err-->
+        <target>System.out</target>
+        <encoder>
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度
+                %msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] %c [%thread] : %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- File是输出的方向通向文件的 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+        <!--日志输出路径-->
+        <file>E:\c.---c.---java-exercise\JavaCode\java-top-speed\src\日志文件\ittheima-data.log</file>
+        <!--指定日志文件拆分和压缩规则-->
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--通过指定压缩文件名称，来确定分割文件方式-->
+            <fileNamePattern>
+                E:/c.---c.---java-exercise/JavaCode/java-top-speed/src/日志文件/itheima-data-%i-%d{yyyy-MM-dd}-.log.gz
+            </fileNamePattern>
+            <!--文件拆分大小-->
+            <maxFileSize>1MB</maxFileSize>
+        </rollingPolicy>
+    </appender>
+
+    <!--
+
+    level:用来设置打印级别，大小写无关：TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF
+   ， 默认debug
+    <root>可以包含零个或多个<appender-ref>元素，标识这个输出位置将会被本日志级别控制。
+    -->
+    <root level="ALL">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>
+```
+
+
+
+## 5.Logback设置日志级别
+
+**什么是日志级别？**
+
+- 日志级别指的是日志信息的类型，日志都会分级别，常见的日志级别如下（==优先级依次升高==）：
+
+| 日志级别 | 说明                                                         |
+| -------- | ------------------------------------------------------------ |
+| trace    | 追踪，指明程序运行轨迹                                       |
+| debug    | 调试，实际应用中一般将其作为最低等级，而 trace 则很少使用    |
+| info     | 输出重要的运行信息，数据连接、网络连接、IO操作等等，使用较多 |
+| warn     | 警告信息，可能会发生问题，使用较多                           |
+| error    | 错误信息，使用较多                                           |
+
+**为什么要学习日志级别？**
+
+```xml
+    <root level="info">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+```
+
+- 只有日志级别是==大于或者等于核心配置文件配置的日志级别==，才会被记录，否则不记录

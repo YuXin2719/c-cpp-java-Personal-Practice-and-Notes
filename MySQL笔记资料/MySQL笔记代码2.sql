@@ -1,0 +1,18 @@
+select * from player where level>1 and level<5;
+select * from player where exp>1 and exp<5;
+select * from player where exp>1 and exp<5 or level>1 and level<5;
+select * from player where exp>1 and (exp<5 or level>1) and level<5;
+select * from player where level not in(1,3,5);
+select * from player where level between 1 and 10;
+select * from player where name like '王%';
+select * from player where name like '%王%';
+select * from player where name like '王_';
+select * from player where name regexp '^王.$';
+select * from player where name regexp '王';
+select * from player where name regexp '[王张]';
+select * from player where name regexp '王|张';
+select * from player where email is null;
+select * from player where email is not null;
+select * from player where email <=> null;
+select * from player where email is null or email='';
+select * from player order by level;
