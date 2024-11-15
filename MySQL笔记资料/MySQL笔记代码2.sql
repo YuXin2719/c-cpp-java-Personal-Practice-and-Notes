@@ -16,3 +16,17 @@ select * from player where email is not null;
 select * from player where email <=> null;
 select * from player where email is null or email='';
 select * from player order by level;
+select * from player order by level desc;
+select * from player order by level desc,exp asc;
+select * from player order by 5 desc;
+select count(*) from player;
+select avg(level) from player;
+select sex,count(*) from player group by sex;
+select level,count(*) from player group by level;
+select level,count(*) from player group by level having count(level)>4;
+select level,count(*) from player group by level having count(level)>4 order by count(level) desc;
+select substr(name,1,1),count(*) from player group by substr(name,1,1) having count(substr(name,1,1))>=5 order by count(substr(name,1,1)) desc limit 3,3;
+select distinct sex from player;
+select * from player where level between 1 and 3
+except
+select * from player where exp between 1 and 3;
