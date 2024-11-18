@@ -14,19 +14,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
@@ -34,12 +26,24 @@
               "Title": "osTest.cpp",
               "DocumentMoniker": "E:\\c.---c.---java-exercise\\cppCode\\\u9875\u5F0F\u865A\u62DF\u5B58\u50A8\u7BA1\u7406\u4E2D\u7684\u5730\u5740\u8F6C\u6362\u548C FIFO \u9875\u9762\u8C03\u5EA6\u7B97\u6CD5\u6A21\u62DF\\osTest.cpp",
               "RelativeDocumentMoniker": "osTest.cpp",
-              "ToolTip": "E:\\c.---c.---java-exercise\\cppCode\\\u9875\u5F0F\u865A\u62DF\u5B58\u50A8\u7BA1\u7406\u4E2D\u7684\u5730\u5740\u8F6C\u6362\u548C FIFO \u9875\u9762\u8C03\u5EA6\u7B97\u6CD5\u6A21\u62DF\\osTest.cpp*",
-              "RelativeToolTip": "osTest.cpp*",
-              "ViewState": "AgIAABUBAAAAAAAAAAAowBsBAAAgAAAAAAAAAA==",
+              "ToolTip": "E:\\c.---c.---java-exercise\\cppCode\\\u9875\u5F0F\u865A\u62DF\u5B58\u50A8\u7BA1\u7406\u4E2D\u7684\u5730\u5740\u8F6C\u6362\u548C FIFO \u9875\u9762\u8C03\u5EA6\u7B97\u6CD5\u6A21\u62DF\\osTest.cpp",
+              "RelativeToolTip": "osTest.cpp",
+              "ViewState": "AgIAABcBAAAAAAAAAAAQwCoBAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-11-02T07:25:36.308Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             }
           ]
         }

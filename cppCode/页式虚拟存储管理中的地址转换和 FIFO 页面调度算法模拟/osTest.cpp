@@ -107,7 +107,7 @@ void initial()
     page_table[0].flag = 1;
     page_table[0].memoryBlock = 5;
     page_table[0].diskLocation = 11;
-    page_table[0].modifyFlag = 1; // 初始化页号0的修改标志为1，表示已修改过（初始状态下就有修改情况）
+    page_table[0].modifyFlag = 0;
     // 第1页的初始化设置
     page_table[1].flag = 1;
     page_table[1].memoryBlock = 8;
