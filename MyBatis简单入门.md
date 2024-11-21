@@ -137,7 +137,7 @@ pom.xml文件内容
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.46</version>
+            <version>8.0.33</version>
         </dependency>
         <!--Junit 单元测试-->
         <dependency>
@@ -218,7 +218,7 @@ mybatis-config.xml文件内容
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <!--数据库连接信息-->
-                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
                 <property name="url" value="jdbc:mysql:///mybatis?useSSL=false"/>
                 <property name="username" value="root"/>
                 <property name="password" value="admin"/>
@@ -227,7 +227,7 @@ mybatis-config.xml文件内容
     </environments>
     <mappers>
         <!--加载sql映射文件-->
-        <mapper resource="UserMapper.xml"/>
+        <mapper resource="com/itheima/mapper/UserMapper.xml"/>
     </mappers>
 </configuration>
 ```
@@ -386,6 +386,8 @@ E:\JDK8\bin\java.exe "-javaagent:D:\IntelliJ IDEA Community Edition 2024.1\lib\i
 
 # 三、Mapper 代理开发
 
+Mappers：映射器
+
 - 目的
 
   - 解决原生方式中的硬编码
@@ -406,6 +408,364 @@ E:\JDK8\bin\java.exe "-javaagent:D:\IntelliJ IDEA Community Edition 2024.1\lib\i
 
 
 
+1.resources目录下这么创建文件目录，然后把UserMapper放到com/itheima/mapper目录下就可以和UserMapper编译后的文件存在一个目录中了
+
+<img src="photo/image-20241121105028660.png" alt="image-20241121105028660" style="zoom:50%;" />
+
+效果如下
+
+<img src="photo/image-20241121105238855.png" alt="image-20241121105238855" style="zoom:50%;" />
+
+
+
+2.将UserMapper的配置文件的命名空间改成Mapper接口的全限定名
+
+<img src="photo/image-20241121105519293.png" alt="image-20241121105519293" style="zoom:50%;" />
+
+
+
+3.在Mapper接口中定义方法，方法名就是SQL映射文件中sql语句的id，上例中就是selectAll，并且保持参数类型和返回值类型一致
+
+<img src="photo/image-20241121105923438.png" alt="image-20241121105923438" style="zoom:50%;" />
+
+
+
+记得改一下mybatis-config配置文件中sql映射文件的路径
+
+<img src="photo/image-20241121110110219.png" alt="image-20241121110110219" style="zoom:50%;" />
+
+
+
+4.然后我们就可以开始编码了，我们在com.itheima包下整个MyBatisDemo2.java
+
+```java
+package com.itheima;
+
+import com.itheima.mapper.UserMapper;
+import com.itheima.pojo.User;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+
+//TODO MyBatis代理开发
+public class MyBatisDemo2 {
+    public static void main(String[] args) throws IOException {
+        //1.加载MyBatis的核心配置文件,获取 SqlSessionFactory
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+        //2.获取SqlSession对象,用它来执行sql
+        SqlSession sqlSession=sqlSessionFactory.openSession();
+
+        //3.执行sql
+//        List<Object> users = sqlSession.selectList("test.selectAll");
+        //3.1 获取UserMapper接口的代理对象
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        List<User> users = userMapper.selectAll();
+
+        System.out.println(users);
+
+        //4.释放资源
+        sqlSession.close();
+
+    }
+}
+
+```
+
+
+
 **细节：如果Mapper接口名称和SQL映射文件名称相同，并在同一目录下，则可以使用包扫描的方式简化SQL映射文件的加载**
 
 <img src="photo/image-20241119225430416.png" alt="image-20241119225430416" style="zoom:50%;" />
+
+<img src="photo/image-20241121125345733.png" alt="image-20241121125345733" style="zoom:50%;" />
+
+这样写系统会自动把com.itheima.mapper路径下的接口对应的xml配置文件全部一起扫描进来，就不用我们自己一个一个手动加载sql映射文件了
+
+
+
+# 四、MyBatis 核心配置文件
+
+MyBatis 核心配置文件详解
+
+MyBatis 核心配置文件的顶层结构如下：
+
+<img src="photo/image-20241121140807070.png" alt="image-20241121140807070" style="zoom: 50%;" />
+
+- 类型别名（typeAliases）
+
+  ```xml
+  <typeAliases>
+  	<package name="com.itheima.pojo"/>
+  </typeAliases>
+  ```
+
+  配置好类型别名就意味着下图位置（结果类型）只需要写类名即可（不用区分大小写）
+
+  <img src="photo/image-20241121141248358.png" alt="image-20241121141248358" style="zoom:50%;" />
+
+  
+
+  **细节：配置各个标签时，需要遵守前后顺序**
+
+
+
+核心配置文件更新后：
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <typeAliases>
+        <package name="com.itheima.pojo"/>
+    </typeAliases>
+
+    <!--
+    enviroments : 配置数据库连接环境信息,可以配置多个enviroment,通过default属性切换不同的enviroment
+    -->
+    <environments default="development">
+        <environment id="development">
+            <!--事务的管理方式-->
+            <transactionManager type="JDBC"/>
+            <!--数据库连接池-->
+            <dataSource type="POOLED">
+                <!--数据库连接信息-->
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql:///mybatis?useSSL=false"/>
+                <property name="username" value="root"/>
+                <property name="password" value="admin"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!--加载sql映射文件-->
+        <!--        <mapper resource="com/itheima/mapper/UserMapper.xml"/>-->
+
+        <!--Mapper代理方式-->
+        <package name="com.itheima.mapper"/>
+    </mappers>
+</configuration>
+```
+
+
+
+# 五、配置文件完成增删改查
+
+## 1.MyBatis 案例 - 环境准备
+
+**完成品牌数据的增删改查操作**
+
+产品原型样式：
+
+<img src="photo/image-20241121215036432.png" alt="image-20241121215036432" style="zoom:50%;" />
+
+- 要完成的功能列表清单：
+  1. 查询
+     - 查询所有数据
+     - 查看详情
+     - 条件查询
+  2. 添加
+  3. 修改
+     - 修改全部字段
+     - 修改动态字段
+  4. 删除
+     - 删除一个
+     - 批量删除
+
+
+
+**准备环境**
+
+- 数据库表 tb-brand
+- 实体类 Brand
+- 测试用例
+- 安装 MyBatisX 插件
+
+
+
+1.导入数据库表
+
+```sql
+-- 删除tb_brand表
+drop table if exists tb_brand;
+-- 创建tb_brand表
+create table tb_brand
+(
+    -- id 主键
+    id           int primary key auto_increment,
+    -- 品牌名称
+    brand_name   varchar(20),
+    -- 企业名称
+    company_name varchar(20),
+    -- 排序字段
+    ordered      int,
+    -- 描述信息
+    description  varchar(100),
+    -- 状态：0：禁用  1：启用
+    status       int
+);
+-- 添加数据
+insert into tb_brand (brand_name, company_name, ordered, description, status)
+values ('三只松鼠', '三只松鼠股份有限公司', 5, '好吃不上火', 0),
+       ('华为', '华为技术有限公司', 100, '华为致力于把数字世界带入每个人、每个家庭、每个组织，构建万物互联的智能世界', 1),
+       ('小米', '小米科技有限公司', 50, 'are you ok', 1);
+
+
+SELECT * FROM tb_brand;
+```
+
+<img src="photo/image-20241121220130885.png" alt="image-20241121220130885" style="zoom:50%;" />
+
+
+
+2.准备实体类 Brand，放入项目的pojo包中
+
+```java
+package com.itheima.pojo;
+
+/**
+ * 品牌
+ *
+ * alt + 鼠标左键：整列编辑
+ *
+ * 在实体类中，基本数据类型建议使用其对应的包装类型
+ */
+
+public class Brand {
+    // id 主键
+    private Integer id;
+    // 品牌名称
+    private String brandName;
+    // 企业名称
+    private String companyName;
+    // 排序字段
+    private Integer ordered;
+    // 描述信息
+    private String description;
+    // 状态：0：禁用  1：启用
+    private Integer status;
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public Integer getOrdered() {
+        return ordered;
+    }
+
+    public void setOrdered(Integer ordered) {
+        this.ordered = ordered;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Brand{" +
+                "id=" + id +
+                ", brandName='" + brandName + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", ordered=" + ordered +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                '}';
+    }
+}
+
+```
+
+
+
+3.写一个测试用例
+
+<img src="photo/image-20241121224204699.png" alt="image-20241121224204699" style="zoom:50%;" />
+
+
+
+4.安装 **MyBatisX 插件**
+
+- **MyBatisX **是一款基于 IDEA 的快速开发插件，为**效率**而生
+
+- 主要功能：
+
+  - XML 和 接口方法 相互跳转
+  - 根据接口方法生成 statement
+
+- 安装：
+
+  <img src="photo/image-20241121223314473.png" alt="image-20241121223314473" style="zoom:50%;" />
+
+
+
+## 2.查询 - 查询所有&结果映射
+
+**查询 - 查询所有数据**
+
+<img src="photo/image-20241121224538486.png" alt="image-20241121224538486" style="zoom:50%;" />
+
+1. 编写接口方法：Mapper接口
+
+   ```java
+   List<Brand> selectAll();
+   ```
+
+   - 参数：无
+   - 结果：List\<Brand>
+
+2. 编写SQL语句：
+
+   SQL映射文件：
+
+   ```xml
+   <select id="selectAll" resultType="brand">
+   	select * from tb_brand;
+   </select>
+   ```
+
+3. 执行方法
+
