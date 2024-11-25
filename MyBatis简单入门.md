@@ -767,5 +767,593 @@ public class Brand {
    </select>
    ```
 
-3. 执行方法
+3. 执行方法，编写测试用例
 
+   注意存放位置
+
+   <img src="photo/image-20241122091823194.png" alt="image-20241122091823194" style="zoom:50%;" />
+
+   ```java
+   package com.itheima.test;
+   
+   import com.itheima.mapper.BrandMapper;
+   import com.itheima.pojo.Brand;
+   import org.apache.ibatis.io.Resources;
+   import org.apache.ibatis.session.SqlSession;
+   import org.apache.ibatis.session.SqlSessionFactory;
+   import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+   import org.junit.Test;
+   
+   import java.io.IOException;
+   import java.io.InputStream;
+   import java.util.List;
+   
+   public class MyBatisTest {
+   
+       @Test
+       public void testSelectAll() throws Exception {
+           //1.获取SqlSessionFactory,加载MyBatis的核心配置文件
+           String resource = "mybatis-config.xml";
+           InputStream inputStream = Resources.getResourceAsStream(resource);
+           SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+   
+           //2.获取SqlSession对象
+           SqlSession sqlSession = sqlSessionFactory.openSession();
+   
+           //3.获取Mapper接口的代理对象
+           BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
+   
+           //4.执行方法
+           List<Brand> brands = brandMapper.selectAll();
+           System.out.println(brands);
+   
+           //5.释放资源
+           sqlSession.close();
+   
+       }
+   }
+   
+   ```
+
+
+
+**总结：MyBatis完成操作需要几步？**
+
+==三步：编写接口方法 -> 编写SQL -> 执行方法==
+
+
+
+**小问题：数据库表的字段名称 和 实体类的属性名称 不一样，则不能自动封装数据**，按刚才的BrandMapper文件brand_name和brandName无法对应上，最后结果查询不出来，我们该如何解决？
+
+<img src="photo/image-20241122110527959.png" alt="image-20241122110527959" style="zoom:50%;" />
+
+解决方法如下：
+
+1. **起别名**：在SQL语句中，对不一样的列名起别名，别名和实体类属性名一样，* 可以定义\<sql>片段，提升复用性
+2. **resultMap**：定义\<resultMap>完成不一致的属性名和列名的映射
+
+示例BrandMapper.xml配置文件：
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace:名称空间
+-->
+<mapper namespace="com.itheima.mapper.BrandMapper">
+
+    <!--
+    数据库表的字段名称 和 实体类的属性名称 不一样,则不能自动封装数据
+        * 起别名 : 对不一样的列名起别名,让别名和实体类的属性名一样
+            * 缺点 : 每次查询都要定义一次别名
+                * 使用 sql片段 解决问题
+                    *缺点 : 不灵活
+        * resultMap:
+            1.定义<resultMap>标签
+            2.在<select>标签中,使用resultMap属性替换resultType属性
+    -->
+    <!--
+    id:唯一标识
+    type:映射的类型,支持别名
+    -->
+    <!--自动完成别名映射-->
+    <resultMap id="brandResultMap" type="brand">
+        <!--
+        id:完成主键字段的映射
+            column:表的列名
+            property:实体类的属性名
+        result:完成一般字段的映射
+            column:表的列名
+            property:实体类的属性名
+        -->
+        <result column="brand_name" property="brandName"/>
+        <result column="company_name" property="companyName"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="brandResultMap">
+        select * from tb_brand;
+    </select>
+
+    <!--
+        sql片段
+    -->
+    <!--    <sql id="brand_column">-->
+    <!--        id,brand_name as brandName,company_name as companyName,ordered,description,status-->
+    <!--    </sql>-->
+
+    <!--    <select id="selectAll" resultType="brand">-->
+    <!--        select-->
+    <!--        <include refid="brand_column"/>-->
+    <!--        from tb_brand;-->
+    <!--    </select>-->
+
+    <!--    <select id="selectAll" resultType="brand">-->
+    <!--        select * from tb_brand;-->
+    <!--    </select>-->
+
+</mapper>
+```
+
+
+
+## 3.查询 - 查看详情
+
+**查询 - 查看详情**
+
+<img src="photo/image-20241122113719235.png" alt="image-20241122113719235" style="zoom:50%;" />
+
+1. 编写接口方法：Mapper接口
+
+   ```java
+   Brand selectById(int id);
+   ```
+
+   - 参数：id
+   - 结果：Brand
+
+2. 编写SQL语句：SQL映射文件
+
+   ```xml
+   <select id="selectById" parameterType="int" resultType="brand">
+   	select * from tb_brand where id=#{id};
+   </select>
+   ```
+
+3. 执行方法，测试
+
+
+
+配置文件代码：
+
+```xml
+    <!--
+    * 参数占位符:
+        1.#{}:会将其替换为 ?,为了防止SQL注入
+        2.${}:直接拼接SQL,会存在SQL注入问题
+                TODO 所以最好使用 #{}
+        3.使用时机:
+            * 参数传递的时候:#{}
+            * 表名或者列名不固定的情况下:${} (不常用)
+
+    * 参数类型: parameterType:可以省略(一般也没人写)
+    * 特殊字符的处理:
+        1.转义字符:需要替换的符号比较少的时候可以用,例如 < 就需要替换成 &lt;
+        2.CDATA区:如下演示,当替换的字符较多时,全部放到CDATA区就可以了
+    -->
+    <!--    <select id="selectByIdBrand" resultMap="brandResultMap">-->
+    <!--        select * from tb_brand where id=#{id};-->
+    <!--    </select>-->
+
+    <select id="selectByIdBrand" resultMap="brandResultMap">
+        select * from tb_brand where id
+        <![CDATA[
+            <
+        ]]>
+        #{id};
+    </select>
+```
+
+
+
+测试代码：
+
+```java
+    @Test
+    public void testSelectById() throws Exception {
+        //接收参数
+        int id=1;
+
+        //1.获取SqlSessionFactory,加载MyBatis的核心配置文件
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+        //2.获取SqlSession对象
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        //3.获取Mapper接口的代理对象
+        BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
+
+        //4.执行方法
+        Brand brand = brandMapper.selectByIdBrand(id);
+        System.out.println(brand);
+
+        //5.释放资源
+        sqlSession.close();
+
+    }
+```
+
+
+
+**总结：**
+
+1. 参数占位符
+   1. **#{}**：执行SQL时，会将#{}占位符替换为？，将来自动设置参数值
+   2. **${}**：拼接SQL语句时使用，会存在SQL注入问题
+   3. 使用时机：
+      - 参数传递，都使用#{}
+      - 如果要对表名、列名进行动态设置，只能使用${}进行sql拼接
+2. parameterType：
+   - 用于设置参数类型，该参数可以省略
+3. SQL语句中特殊字符的处理：
+   - 转义字符
+   - \<![CDATA[ 内容 ]]>
+
+
+
+## 4.查询 - 条件查询
+
+**查询 - 多条件查询**
+
+<img src="photo/image-20241122123307070.png" alt="image-20241122123307070" style="zoom:50%;" />
+
+1. 编写接口方法：Mapper接口
+
+   - 参数：所有查询条件
+   - 结果List\<Brand>
+
+   接收参数有三种不同的方式
+
+   ```java
+   List<Brand> selectByCondition(@Param("status")int status,@Param("companyName")String companyName,@Param("brandName")String brandName);
+   
+   List<Brand> selectByCondition(Brand brand);
+   
+   List<Brand> selectByCondition(Map map);
+   ```
+
+2. 编写SQL语句：SQL映射文件
+
+   ```xml
+   <select id="selectByCondition" resultMap="brandResultMap">
+       select *
+       from tb_brand
+       where
+       	status = #{status}
+       	and company_name like #{companyName}
+       	and brand_name like #{brandName}
+   </select>
+   ```
+
+3. 执行方法，测试
+
+
+
+**查询 - 多条件 - 动态条件查询**
+
+- SQL语句会随着用户的输入或者外部条件的变化而变化，我们称之为 **动态SQL**
+
+  ```xml
+  <select id="selectByCondition" resultMap="brandResultMap">
+  	select *
+  	from tb_brand
+  	where
+  	status = #{status}
+  	and company_name like #{companyName}
+  	and brand_name like #{brandName}
+  </select>
+  ```
+
+- MyBatis 对动态SQL有很强大的支撑：
+
+  - if
+  - choose(when,otherwise)
+  - trim(where,set)
+  - foreach
+
+
+
+**查询 - 单条件 - 动态条件查询**
+
+<img src="photo/image-20241122123903712.png" alt="image-20241122123903712" style="zoom:50%;" />
+
+- 从多个条件中选择一个
+
+  - choose(when,otherwise)：选择，类似于 Java 中的 switch 语句
+
+    ```xml
+    <select id="selectByConditionSingle" resultMap="brandResultMap">
+        select *
+        from tb_brand
+        where
+        <choose><!--类似于switch-->
+            <when test="status != null"><!--类似于case-->
+                status=#{status}
+            </when>
+            <when test="companyName != null and companyName != ''">
+                company_name like #{companyName}
+            </when>
+            <when test="brandName != null and brandName != ''">
+                brand_name like #{brandName}
+            </when>
+            <otherwise><!--类似于default-->
+                1 = 1
+            </otherwise>
+        </choose>
+    </select>
+    ```
+
+
+
+### ① 多条件查询
+
+我们先分析一下需要关注和完成的SQL任务：
+
+1. 条件表达式
+   - status = ？
+   - company_name like ？
+   - brand_name like ?
+2. 条件之间该如何连接
+   - and 连接
+   - select * from tb_brand where 开头
+
+
+
+**散装参数接收方式：**
+
+BrandMapper.xml 配置文件相关内容
+
+```xml
+    <!--
+    条件查询
+    -->
+    <select id="selectByCondition" resultMap="brandResultMap">
+        select *
+        from tb_brand
+        where
+        status = #{status}
+        and company_name like #{companyName}
+        and brand_name like #{brandName}
+    </select>
+```
+
+
+
+BrandMapper.java 接口文件相关内容
+
+```java
+    //TODO 条件查询
+    //  参数接收
+    //      1.散装参数：如果这个方法中有多个参数,需要使用@Param("SQL参数占位符名称")
+    //      2.对象参数
+    //      3.map集合参数
+    List<Brand> selectByCondition(@Param("status") int status, @Param("companyName")String companyName, @Param("brandName")String brandName);
+
+//    List<Brand> selectByCondition(Brand brand);
+
+//    List<Brand> selectByCondition(Map map);
+```
+
+
+
+MyBatisTest.java 测试文件相关内容
+
+```java
+    @Test
+    public void testSelectByCondition() throws Exception {
+        //接收参数
+        int status = 1;
+        String companyName = "华为";
+        String brandName = "华为";
+
+        //处理参数
+        companyName = "%" + companyName + "%";
+        brandName = "%" + brandName + "%";
+
+        //1.获取SqlSessionFactory,加载MyBatis的核心配置文件
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+        //2.获取SqlSession对象
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        //3.获取Mapper接口的代理对象
+        BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
+
+        //4.执行方法
+        List<Brand> brands = brandMapper.selectByCondition(status, companyName, brandName);
+        System.out.println(brands);
+
+        //5.释放资源
+        sqlSession.close();
+
+    }
+```
+
+
+
+**对象参数接收方式：**
+
+BrandMapper.java 接口文件相关内容
+
+```java
+    //TODO 条件查询
+    //  参数接收
+    //      1.散装参数 : 如果这个方法中有多个参数,需要使用@Param("SQL参数占位符名称")
+    //      2.对象参数 : 对象的属性名称要和参数占位符名称一致
+    //      3.map集合参数
+//    List<Brand> selectByCondition(@Param("status") int status, @Param("companyName")String companyName, @Param("brandName")String brandName);
+
+    List<Brand> selectByCondition(Brand brand);
+
+//    List<Brand> selectByCondition(Map map);
+```
+
+
+
+MyBatisTest.java 测试文件相关内容
+
+要点：封装对象
+
+```java
+    @Test
+    public void testSelectByCondition() throws Exception {
+        //接收参数
+        int status = 1;
+        String companyName = "华为";
+        String brandName = "华为";
+
+        //处理参数
+        companyName = "%" + companyName + "%";
+        brandName = "%" + brandName + "%";
+
+        //封装对象
+        Brand brand=new Brand();
+        brand.setStatus(status);
+        brand.setCompanyName(companyName);
+        brand.setBrandName(brandName);
+
+        //1.获取SqlSessionFactory,加载MyBatis的核心配置文件
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+        //2.获取SqlSession对象
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        //3.获取Mapper接口的代理对象
+        BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
+
+        //4.执行方法
+//        List<Brand> brands = brandMapper.selectByCondition(status, companyName, brandName);
+        List<Brand> brands = brandMapper.selectByCondition(brand);
+        System.out.println(brands);
+
+        //5.释放资源
+        sqlSession.close();
+
+    }
+```
+
+
+
+**Map集合参数接收方式：**
+
+BrandMapper.java 接口文件相关内容
+
+```java
+    //TODO 条件查询
+    //  参数接收
+    //      1.散装参数 : 如果这个方法中有多个参数,需要使用@Param("SQL参数占位符名称")
+    //      2.对象参数 : 对象的属性名称要和参数占位符名称一致
+    //      3.map集合参数
+//    List<Brand> selectByCondition(@Param("status") int status, @Param("companyName")String companyName, @Param("brandName")String brandName);
+
+//    List<Brand> selectByCondition(Brand brand);
+
+    List<Brand> selectByCondition(Map map);
+```
+
+
+
+MyBatisTest.java 测试文件相关内容
+
+重点：封装对象
+
+```java
+    @Test
+    public void testSelectByCondition() throws Exception {
+        //接收参数
+        int status = 1;
+        String companyName = "华为";
+        String brandName = "华为";
+
+        //处理参数
+        companyName = "%" + companyName + "%";
+        brandName = "%" + brandName + "%";
+
+        //封装对象
+//        Brand brand=new Brand();
+//        brand.setStatus(status);
+//        brand.setCompanyName(companyName);
+//        brand.setBrandName(brandName);
+
+        Map map = new HashMap();
+        map.put("status", status);
+        map.put("companyName", companyName);
+        map.put("brandName", brandName);
+
+        //1.获取SqlSessionFactory,加载MyBatis的核心配置文件
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+        //2.获取SqlSession对象
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        //3.获取Mapper接口的代理对象
+        BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
+
+        //4.执行方法
+//        List<Brand> brands = brandMapper.selectByCondition(status, companyName, brandName);
+//        List<Brand> brands = brandMapper.selectByCondition(brand);
+        List<Brand> brands = brandMapper.selectByCondition(map);
+        System.out.println(brands);
+
+        //5.释放资源
+        sqlSession.close();
+
+    }
+```
+
+
+
+**总结：SQL语句中有多个参数有几种方式？**
+
+1. **散装参数：**需要使用@Param("SQL中的参数占位符名称")
+2. **实体类封装参数：**只需要保证SQL中的参数名 和 实体类属性名对应上，即可设置成功
+3. **map集合：**只需要保证SQL中的参数名 和 map集合的键的名称对应上，即可设置成功
+
+
+
+### ②动态条件查询
+
+思考：用户输入条件时，是否所有条件都会填写？
+
+**查询 - 多条件 - 动态条件查询**
+
+- SQL语句会随着用户的输入或外部条件的变化而变化，我们称之为 **动态SQL**
+
+  ```xml
+  <select id="selectByCondition" resultMap="brandResultMap">
+  	select *
+      from tb_brand
+      where
+      	if(status != null)
+      		status = #{status}
+      	and company_name like #{companyName}
+      	and brand_name like #{brandName}
+  </select>
+  ```
+
+- MyBatis 对动态SQL有很强大的支撑
+
+  - if
+  - choose(when,otherwise)
+  - trim(where,set)
+  - foreach
