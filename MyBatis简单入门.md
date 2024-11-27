@@ -1357,3 +1357,205 @@ MyBatisTest.java 测试文件相关内容
   - choose(when,otherwise)
   - trim(where,set)
   - foreach
+
+
+
+BrandMapper.xml 配置文件相关内容
+
+```xml
+    <!--
+    动态条件查询
+        * if : 条件判断
+            * test : 逻辑表达式
+        * 问题 :
+            * 恒等式
+            * MyBatis提供的where标签 <where> 替换 where 关键字
+    -->
+    <select id="selectByCondition" resultMap="brandResultMap">
+        select *
+        from tb_brand
+        <!--where 1=1-->
+        <where>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="companyName != null and companyName != ''">
+                and company_name like #{companyName}
+            </if>
+            <if test="brandName != null and brandName != ''">
+                and brand_name like #{brandName}
+            </if>
+        </where>
+
+    </select>
+```
+
+
+
+**总结：动态SQL**
+
+**if**：用于判断参数是否有值，使用test属性进行条件判断
+
+- 存在的问题：第一个条件不需要逻辑判断符
+- 解决方案：
+  1. 使用恒等式让所有条件格式都一样
+  2. **\<where>**便签替换 where 关键字
+
+
+
+**查询 - 单条件 - 动态条件查询**
+
+- 从多个条件中选择一个
+  - choose(when,otherwise)：选择，类似于 Java 中的 switch 语句
+
+<img src="photo/image-20241126112804539.png" alt="image-20241126112804539" style="zoom:50%;" />
+
+```xml
+<select id="selectConditionSingle" resultMap="brandResultMap">
+	select *
+    from tb_band
+    where
+    <choose> <!--类似于switch-->
+        <when test="status != null"> <!--类似于case-->
+            status = #{status}
+        </when>
+        <when test="companyName != null and companyName != ''">
+        	company_name like #{companyName}
+        </when>
+        <when test="brandName != null and brandName != ''">
+        	brand_name like #{brandName}
+        </when>
+        <otherwise> <!--类似于default-->
+        	1 = 1
+        </otherwise>
+    </choose>
+</select>
+```
+
+或者使用 where 标签包括起来
+
+```xml
+    <select id="selectByConditionSingle" resultMap="brandResultMap">
+        select *
+        from tb_brand
+        <where>
+            <choose> <!--相当于switch-->
+                <when test="status != null"> <!--相当于case-->
+                    status = #{status}
+                </when>
+                <when test="companyName != null and companyName != ''">
+                    company_name like #{companyName}
+                </when>
+                <when test="brandName != null and brandName != ''">
+                    brand_name like #{brandName}
+                </when>
+            </choose>
+        </where>
+    </select>
+```
+
+
+
+测试代码：
+
+```java
+    @Test
+    public void testSelectByConditionSingle() throws Exception {
+        //接收参数
+        int status = 1;
+        String companyName = "华为";
+        String brandName = "华为";
+
+        //处理参数
+        companyName = "%" + companyName + "%";
+        brandName = "%" + brandName + "%";
+
+        //封装对象
+        Brand brand=new Brand();
+//        brand.setStatus(status);
+//        brand.setCompanyName(companyName);
+//        brand.setBrandName(brandName);
+
+        //1.获取SqlSessionFactory,加载MyBatis的核心配置文件
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+        //2.获取SqlSession对象
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        //3.获取Mapper接口的代理对象
+        BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
+
+        //4.执行方法
+//        List<Brand> brands = brandMapper.selectByCondition(status, companyName, brandName);
+//        List<Brand> brands = brandMapper.selectByCondition(brand);
+
+        List<Brand> brands = brandMapper.selectByConditionSingle(brand);
+        System.out.println(brands);
+
+        //5.释放资源
+        sqlSession.close();
+
+    }
+```
+
+
+
+## 5.添加 & 修改功能
+
+**添加**
+
+<img src="photo/image-20241126201224550.png" alt="image-20241126201224550" style="zoom:50%;" />
+
+1. 编写接口方法：Mapper接口
+
+   ```java
+   void add(Brand brand);
+   ```
+
+   - 参数：除了id之外的所有数据
+   - 结果：void
+
+2. 编写SQL语句：SQL映射文件
+
+   ```xml
+   <insert id="add">
+   	insert into tb_brand(brand_name,company_name,ordered,description,status)
+       values (#{brandName},#{companyName},#{ordered},#{description},#{status});
+   </insert>
+   ```
+
+3. 执行方法，测试
+
+   - MyBatis事务：
+     - openSession()：默认开启事务，进行增删改操作后需要使用 sqlSession.commit(); 手动提交事务
+     - openSession(true):可以设置为自动提交事务（关闭事务）
+
+
+
+**添加 - 主键返回**
+
+<img src="photo/image-20241126215702309.png" alt="image-20241126215702309" style="zoom:50%;" />
+
+在数据添加成功后，需要获取插入数据库数据的主键
+
+- 比如： 添加订单和订单项
+
+  1. 添加订单
+
+  2. 添加订单项，订单项中需要设置所属订单的id
+
+     ```xml
+     <insert id="addOrder" useGeneratedKeys="true" keyProperty="id">
+     	insert into tb_order (payment,payment_type,status)
+         values (#{payment},#{paymentType},#{status})
+     </insert>
+     ```
+
+     ```xml
+     <insert id="addOrderItem">
+     	insert into tb_order_item (goods_name,goods_price,count,order_id)
+         values (#{goodName},#{goodsPrice},#{count},#{orderId});
+     </insert>
+     ```

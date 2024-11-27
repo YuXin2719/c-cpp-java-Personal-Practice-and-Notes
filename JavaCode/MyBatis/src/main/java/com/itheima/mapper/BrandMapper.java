@@ -26,4 +26,10 @@ public interface BrandMapper {
 
     List<Brand> selectByCondition(Map map);
 
+    //TODO 单条件动态查询
+    List<Brand> selectByConditionSingle(Brand brand);
+
+    //TODO 添加
+    void add(Brand brand);
+
 }
