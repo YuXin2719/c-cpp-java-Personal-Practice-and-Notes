@@ -1,5 +1,11 @@
 # 一、MyBatis 简介
 
+**==！！建议搭配本笔记学习以下视频教程！！==**
+
+【黑马mybatis教程全套视频教程，2天Mybatis框架从入门到精通】 https://www.bilibili.com/video/BV1MT4y1k7wZ/?share_source=copy_web&vd_source=d9edc224153cc08d2737066e5ff7b890
+
+
+
 **什么是MyBatis？**
 
 - MyBatis是一款优秀的==持久层框架==，用于简化JDBC开发
@@ -1331,7 +1337,7 @@ MyBatisTest.java 测试文件相关内容
 
 
 
-### ②动态条件查询
+### ② 动态条件查询
 
 思考：用户输入条件时，是否所有条件都会填写？
 
@@ -1504,7 +1510,7 @@ BrandMapper.xml 配置文件相关内容
 
 ## 5.添加 & 修改功能
 
-**添加**
+### ① 添加
 
 <img src="photo/image-20241126201224550.png" alt="image-20241126201224550" style="zoom:50%;" />
 
@@ -1534,7 +1540,7 @@ BrandMapper.xml 配置文件相关内容
 
 
 
-**添加 - 主键返回**
+### ② 添加 - 主键返回
 
 <img src="photo/image-20241126215702309.png" alt="image-20241126215702309" style="zoom:50%;" />
 
@@ -1559,3 +1565,505 @@ BrandMapper.xml 配置文件相关内容
          values (#{goodName},#{goodsPrice},#{count},#{orderId});
      </insert>
      ```
+
+
+
+测试代码：
+
+```java
+    @Test
+    public void testAdd() throws Exception {
+        //接收参数
+        int status = 1;
+        String companyName = "波导手机";
+        String brandName = "波导";
+        String description ="手机中的战斗机";
+        int ordered=100;
+
+        //封装对象
+        Brand brand=new Brand();
+        brand.setStatus(status);
+        brand.setCompanyName(companyName);
+        brand.setBrandName(brandName);
+        brand.setDescription(description);
+        brand.setOrdered(ordered);
+
+        //1.获取SqlSessionFactory,加载MyBatis的核心配置文件
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+        //2.获取SqlSession对象
+//        SqlSession sqlSession = sqlSessionFactory.openSession();
+        SqlSession sqlSession = sqlSessionFactory.openSession(true); //传参:true是自动提交事务,false是手动提交事务
+
+        //3.获取Mapper接口的代理对象
+        BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
+
+        //4.执行方法
+        brandMapper.add(brand);
+
+        //手动提交事务
+//        sqlSession.commit();
+
+        //5.释放资源
+        sqlSession.close();
+
+    }
+```
+
+
+
+**主键返回总结：返回添加数据的主键**
+
+需要在BrandMapper.xml配置文件中配置参数
+
+```xml
+<insert useGeneratedKeys="true" keyProperty="id">
+```
+
+1. useGeneratedKeys：用于返回自动生成的主键值
+2. keyProperty：将自动生成的主键赋值给对象的某个属性
+
+完整配置代码如下：
+
+```xml
+    <insert id="add" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_brand (brand_name,company_name,ordered,description,status)
+        values(#{brandName},#{companyName},#{ordered},#{description},#{status});
+    </insert>
+```
+
+
+
+### ③ 修改 - 修改全部字段
+
+<img src="photo/image-20241128194029056.png" alt="image-20241128194029056" style="zoom:50%;" />
+
+1. 编写接口方法：Mapper接口
+
+   - 参数：所有数据
+   - 结果：void
+
+   ```java
+   void update(Brand brand);
+   ```
+
+2. 编写 SQL 语句：SQL映射文件
+
+   ```xml
+   <update id="update">
+   	update tb_brand
+       set brand_name = #{brandName},
+       	company_name = #{companyName},
+       	ordered = #{ordered},
+       	description = #{description},
+       	status = #{status}
+       where id = #{id};
+   </update>
+   ```
+
+3. 执行方法，测试
+
+
+
+测试代码：
+
+```java
+    @Test
+    public void testUpdate() throws Exception {
+        //接收参数
+        int status = 1;
+        String companyName = "波导手机";
+        String brandName = "波导";
+        String description ="波导手机,手机中的战斗机";
+        int ordered=200;
+        int id=11;
+
+        //封装对象
+        Brand brand=new Brand();
+        brand.setStatus(status);
+        brand.setCompanyName(companyName);
+        brand.setBrandName(brandName);
+        brand.setDescription(description);
+        brand.setOrdered(ordered);
+        brand.setId(id);
+
+        //1.获取SqlSessionFactory,加载MyBatis的核心配置文件
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+        //2.获取SqlSession对象
+//        SqlSession sqlSession = sqlSessionFactory.openSession();
+        SqlSession sqlSession = sqlSessionFactory.openSession(true); //传参:true是自动提交事务,false是手动提交事务
+
+        //3.获取Mapper接口的代理对象
+        BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
+
+        //4.执行方法
+        int count = brandMapper.update(brand);
+        System.out.println(count);
+
+        //手动提交事务
+//        sqlSession.commit();
+
+        //5.释放资源
+        sqlSession.close();
+
+    }
+```
+
+
+
+### ④ 修改 - 修改动态字段
+
+<img src="photo/image-20241128195608336.png" alt="image-20241128195608336" style="zoom:50%;" />
+
+1. 编写接口方法：Mapper接口
+
+   - 参数：部分数据，封装到对象中
+   - 结果：void
+
+2. 编写 SQL 语句：SQL映射文件
+
+   如果想修改密码，但是SQL语句如下的话，最后只传入了password一个值，其他的值就会被设置为null了，很不合适
+
+   ```xml
+   <update id="update">
+   	update tb_brand
+       set username = #{username},
+       	password = #{password},
+       	gender = #{gender},
+       	addr = #{addr}
+       where
+       	id = #{id};
+   </update>
+   ```
+
+   动态的修改资料：
+
+   ```xml
+   <update id="update">
+   	update tb_brand
+       <set>
+       	<if test="brandName != null and brandName != ''">
+           brand_name = #{brandName},
+           </if>
+           <if test="companyName != null and companyName != ''">
+           company_name = #{companyName},
+           </if>
+           <if test="ordered != null">
+           ordered = #{ordered},
+           </if>
+           <if test="description != null and description != ''">
+           description = #{description},
+           </if>
+           <if test="status != null">
+           status = #{status},
+           </if>
+       </set>
+       where id =#{id};
+   </update>
+   ```
+
+3. 执行方法，测试，测试方法同上
+
+
+
+## 6.删除
+
+### ① 删除一个
+
+<img src="photo/image-20241128202531418.png" alt="image-20241128202531418" style="zoom:50%;" />
+
+1. 编写接口方法：Mapper接口
+
+   - 参数：id
+   - 结果：void
+
+   ```java
+   void deleteById(int id);
+   ```
+
+2. 编写 SQL 语句：SQL映射文件
+
+   ```xml
+   <delete id="deleteById">
+   	delete from tb_brand where id = #{id};
+   </delete>
+   ```
+
+3. 执行方法，测试
+
+
+
+测试代码：
+
+```java
+    @Test
+    public void testDeleteById() throws Exception {
+        //接收参数
+        int id=11;
+
+        //1.获取SqlSessionFactory,加载MyBatis的核心配置文件
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+        //2.获取SqlSession对象
+//        SqlSession sqlSession = sqlSessionFactory.openSession();
+        SqlSession sqlSession = sqlSessionFactory.openSession(true); //传参:true是自动提交事务,false是手动提交事务
+
+        //3.获取Mapper接口的代理对象
+        BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
+
+        //4.执行方法
+        brandMapper.deleteById(id);
+
+        //手动提交事务
+//        sqlSession.commit();
+
+        //5.释放资源
+        sqlSession.close();
+
+    }
+```
+
+
+
+### ② 批量删除
+
+<img src="photo/image-20241128203325124.png" alt="image-20241128203325124" style="zoom:50%;" />
+
+1. 编写接口方法：Mapper接口
+
+   - 参数：id数组
+   - 结果：void
+
+   ```java
+   void deleteByIds(@Param("ids") int[] ids);
+   ```
+
+2. 编写 SQL 语句：SQL映射文件
+
+   以下写法的问号无法确定数量，所以该写法并不合适
+
+   ```xml
+   <delete id="deleteByIds">
+   	delete from tb_brand
+       where id in (?,?,?)
+   </delete>
+   ```
+
+   ```xml
+   <delete id="deleteByIds">
+   	delete from tb_brand
+       where id in
+       <foreach collection="ids" item="id" separator="," open="(" close=")">
+       #{id}
+       </foreach>
+   </delete>
+   ```
+
+   - collection：表示遍历哪个数组
+   - item：遍历出来的每一个元素
+
+3. 执行方法，测试
+
+
+
+测试代码：
+
+```java
+    @Test
+    public void testDeleteByIds() throws Exception {
+        //接收参数
+        int[] ids = {12, 13};
+
+        //1.获取SqlSessionFactory,加载MyBatis的核心配置文件
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+        //2.获取SqlSession对象
+//        SqlSession sqlSession = sqlSessionFactory.openSession();
+        SqlSession sqlSession = sqlSessionFactory.openSession(true); //传参:true是自动提交事务,false是手动提交事务
+
+        //3.获取Mapper接口的代理对象
+        BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
+
+        //4.执行方法
+        brandMapper.deleteByIds(ids);
+
+        //手动提交事务
+//        sqlSession.commit();
+
+        //5.释放资源
+        sqlSession.close();
+
+    }
+```
+
+
+
+## 5.MyBatis 参数传递
+
+MyBatis 接口方法中可以接收各种各样的参数，MyBatis底层对于这些参数进行不同的封装处理方式
+
+- 单个参数：
+
+  1. POJO类型（实体类）：直接使用，属性名 和 参数占位符 名称一致
+
+  2. Map集合：直接使用，键名 和 参数占位符 名称一致
+
+  3. Collection：封装为Map集合，推荐使用@Param注解替换Map集合中默认的arg键名
+
+     ```java
+     map.put("arg0",collection集合);
+     map.put("collection",collection集合);
+     ```
+
+  4. List：封装为Map集合，推荐使用@Param注解替换Map集合中默认的arg键名
+
+     ```java
+     map.put("arg0",list集合);
+     map.put("collection",list集合);
+     map.put("list",list集合);
+     ```
+
+  5. Array：封装为Map集合，推荐使用@Param注解替换Map集合中默认的arg键名
+
+     ```java
+     map.put("arg0",数组);
+     map.put("array",数组);
+     ```
+
+  6. 其他类型：直接使用
+
+- 多个参数：封装为Map集合，可以使用@Param注解，替换Map集合中默认的arg键名（param不会被修改）
+  系统默认如下
+
+  ```java
+  map.put("arg0",参数值1)
+  map.put("param1",参数值1)
+  map.put("arg1",参数值2)
+  map.put("param2",参数值2)
+  ```
+
+  
+
+  ```java
+  User select(@Param("username")String username,@Param("password")String password);
+  ```
+
+  ```xml
+  <select id="select" resultType="user">
+  	select *
+      from tb_user
+      where
+      	username = #{username}
+      and password = #{password};
+  </select>
+  ```
+
+
+
+**MyBatis提供了 ParamNameResolver 类来进行参数封装**
+
+
+
+测试代码：
+
+```java
+public class UserMapperTest {
+    @Test
+    public void testDeleteByIds() throws Exception {
+        //1.获取SqlSessionFactory,加载MyBatis的核心配置文件
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+        //2.获取SqlSession对象
+        SqlSession sqlSession = sqlSessionFactory.openSession(true); //传参:true是自动提交事务,false是手动提交事务
+
+        //3.获取Mapper接口的代理对象
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        //4.执行方法
+        String username="zhangsan";
+        String password="123";
+
+        User user = userMapper.select(username, password);
+
+        System.out.println(user);
+
+        //5.释放资源
+        sqlSession.close();
+
+    }
+}
+```
+
+
+
+**重点建议：将来都使用@Param注解来修改Map集合中默认的键名，并使用修改后的名称来获取值，这样可读性更高！**
+
+
+
+# 六、注解完成增删改查
+
+使用注解开发会比配置文件开发更加方便
+
+```java
+@Select("select * from tb_user where id = #{id}")
+public User selectById(int id);
+```
+
+- 查询：@Select
+- 添加：@Insert
+- 修改：@Update
+- 删除：@Delete
+
+
+
+**提示：**
+
+- 注解完成简单功能
+- 配置文件完成复杂功能
+
+
+
+> 使用注解来映射简单语句会使代码显得更加简洁，但对于稍微复杂一点的语句，Java 注解不仅力不从心，还会让你本就复杂的 SQL 语句更加混乱不堪。因此，如果你需要做一些很复杂的操作，最好使用 XML 来映射语句
+>
+> 选择何种方式来配置映射，以及认为是否应该要统一映射语句定义的形式，完全取决于你和你的团队。换句话说，永远不要拘泥于一种方式，你可以很轻松的在基于注解和 XML 的语句映射方式间自由移植和切换
+
+
+
+测试代码：
+
+```java
+    @Test
+    public void testSelectById() throws Exception {
+        //1.获取SqlSessionFactory,加载MyBatis的核心配置文件
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+        //2.获取SqlSession对象
+        SqlSession sqlSession = sqlSessionFactory.openSession(true); //传参:true是自动提交事务,false是手动提交事务
+
+        //3.获取Mapper接口的代理对象
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        //4.执行方法
+        User user = userMapper.selectById(1);
+
+        System.out.println(user);
+
+        //5.释放资源
+        sqlSession.close();
+
+    }
+```
+

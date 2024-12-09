@@ -12,7 +12,15 @@
     <select id="selectAll" resultType="user">
         select * from tb_user;
     </select>
-    <select id="selectById" resultType="user">
-        select * from tb_user where id=#{id};
+<!--    <select id="selectById" resultType="user">-->
+<!--        select * from tb_user where id=#{id};-->
+<!--    </select>-->
+
+    <select id="select" resultType="user">
+        select *
+        from tb_user
+        where
+        username = #{username}
+        and password = #{password};
     </select>
 </mapper>

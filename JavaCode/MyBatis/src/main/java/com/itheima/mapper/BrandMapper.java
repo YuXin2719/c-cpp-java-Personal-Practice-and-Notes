@@ -32,4 +32,13 @@ public interface BrandMapper {
     //TODO 添加
     void add(Brand brand);
 
+    //TODO 修改
+    int update(Brand brand);
+
+    //TODO 根据id删除
+    void deleteById(int id);
+
+    //TODO 批量删除
+    void deleteByIds(@Param("ids") int[] ids);
+
 }

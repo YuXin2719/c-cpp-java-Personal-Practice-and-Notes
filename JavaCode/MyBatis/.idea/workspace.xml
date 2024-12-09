@@ -7,10 +7,14 @@
     <list default="true" id="38a96911-1218-496d-b8e3-a5e6aab05679" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/itheima/mapper/BrandMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itheima/mapper/BrandMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/itheima/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itheima/mapper/UserMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/itheima/mapper/BrandMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/itheima/mapper/BrandMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/itheima/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/itheima/mapper/UserMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/itheima/test/MyBatisTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/itheima/test/MyBatisTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/itheima/mapper/BrandMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/itheima/mapper/BrandMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/itheima/mapper/BrandMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/itheima/mapper/BrandMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/itheima/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/itheima/mapper/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/itheima/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/itheima/mapper/UserMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/com/itheima/test/MyBatisTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/itheima/test/MyBatisTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../MyBatis简单入门.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../MyBatis简单入门.md" afterDir="false" />
     </list>
@@ -56,10 +60,16 @@
   "keyToString": {
     "JUnit.MyBatisTest.executor": "Run",
     "JUnit.MyBatisTest.testAdd.executor": "Run",
+    "JUnit.MyBatisTest.testAdd2.executor": "Run",
+    "JUnit.MyBatisTest.testDeleteById.executor": "Run",
+    "JUnit.MyBatisTest.testDeleteByIds.executor": "Run",
     "JUnit.MyBatisTest.testSelectAll.executor": "Run",
     "JUnit.MyBatisTest.testSelectByCondition.executor": "Run",
     "JUnit.MyBatisTest.testSelectByConditionSingle.executor": "Run",
     "JUnit.MyBatisTest.testSelectById.executor": "Run",
+    "JUnit.MyBatisTest.testUpdate.executor": "Run",
+    "JUnit.UserMapperTest.testDeleteByIds.executor": "Run",
+    "JUnit.UserMapperTest.testSelectById.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
@@ -92,8 +102,8 @@
       <recent name="com.itheima.pojo" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MyBatisTest.testAdd">
-    <configuration name="MyBatisTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.UserMapperTest.testSelectById">
+    <configuration name="MyBatisTest.testDeleteById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MyBatis" />
       <extension name="coverage">
         <pattern>
@@ -103,28 +113,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.itheima.test" />
       <option name="MAIN_CLASS_NAME" value="com.itheima.test.MyBatisTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MyBatisTest.testAdd" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MyBatis" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.itheima.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.itheima.test" />
-      <option name="MAIN_CLASS_NAME" value="com.itheima.test.MyBatisTest" />
-      <option name="METHOD_NAME" value="testAdd" />
+      <option name="METHOD_NAME" value="testDeleteById" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyBatisTest.testSelectByCondition" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MyBatisTest.testDeleteByIds" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MyBatis" />
       <extension name="coverage">
         <pattern>
@@ -134,13 +129,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.itheima.test" />
       <option name="MAIN_CLASS_NAME" value="com.itheima.test.MyBatisTest" />
-      <option name="METHOD_NAME" value="testSelectByCondition" />
+      <option name="METHOD_NAME" value="testDeleteByIds" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyBatisTest.testSelectByConditionSingle" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MyBatisTest.testUpdate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MyBatis" />
       <extension name="coverage">
         <pattern>
@@ -150,13 +145,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.itheima.test" />
       <option name="MAIN_CLASS_NAME" value="com.itheima.test.MyBatisTest" />
-      <option name="METHOD_NAME" value="testSelectByConditionSingle" />
+      <option name="METHOD_NAME" value="testUpdate" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyBatisTest.testSelectById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserMapperTest.testDeleteByIds" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MyBatis" />
       <extension name="coverage">
         <pattern>
@@ -165,7 +160,23 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.itheima.test" />
-      <option name="MAIN_CLASS_NAME" value="com.itheima.test.MyBatisTest" />
+      <option name="MAIN_CLASS_NAME" value="com.itheima.test.UserMapperTest" />
+      <option name="METHOD_NAME" value="testDeleteByIds" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserMapperTest.testSelectById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MyBatis" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.itheima.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.itheima.test" />
+      <option name="MAIN_CLASS_NAME" value="com.itheima.test.UserMapperTest" />
       <option name="METHOD_NAME" value="testSelectById" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -174,11 +185,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MyBatisTest.testAdd" />
-        <item itemvalue="JUnit.MyBatisTest.testSelectByConditionSingle" />
-        <item itemvalue="JUnit.MyBatisTest.testSelectByCondition" />
-        <item itemvalue="JUnit.MyBatisTest.testSelectById" />
-        <item itemvalue="JUnit.MyBatisTest" />
+        <item itemvalue="JUnit.UserMapperTest.testSelectById" />
+        <item itemvalue="JUnit.UserMapperTest.testDeleteByIds" />
+        <item itemvalue="JUnit.MyBatisTest.testDeleteByIds" />
+        <item itemvalue="JUnit.MyBatisTest.testDeleteById" />
+        <item itemvalue="JUnit.MyBatisTest.testUpdate" />
       </list>
     </recent_temporary>
   </component>
