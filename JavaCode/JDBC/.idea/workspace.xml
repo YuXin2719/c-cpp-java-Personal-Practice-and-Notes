@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14f0777f-408c-4ebc-9ce0-41d1048f28bc" name="更改" comment="" />
+    <list default="true" id="14f0777f-408c-4ebc-9ce0-41d1048f28bc" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/../MyBatis/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyBatis/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Spring简单入门.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Spring简单入门.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,39 +34,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
-    &quot;JUnit.BrandTest.testAdd.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.BrandTest.testDeleteById.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.BrandTest.testSelectAll.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.BrandTest.testUpdate.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JDBCDemo4_Statement.testDDL.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JDBCDemo4_Statement.testDML.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JDBCDemo5_ResultSet.testResult.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JDBCDemo5_ResultSet.testResultSet2.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JDBCDemo6_UserLogin.testLogin_Inject.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JDBCDemo6_UserLogin.testResultSet.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JDBCDemo7_PreparedStatement.testPreparedStatement.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JDBCDemo7_PreparedStatement.testPreparedStatement2.executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/c.---c.---java-exercise/JavaCode/JDBC/JDBC-Demo/src&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;全局库&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;应用程序.DruidDemo.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.JDBCDemo.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.JDBCDemo2_DriverManager.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.JDBCDemo3_Connection.executor&quot;: &quot;Run&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Downloaded.Files.Path.Enabled": "true",
+    "JUnit.BrandTest.testAdd.executor": "Run",
+    "JUnit.BrandTest.testDeleteById.executor": "Run",
+    "JUnit.BrandTest.testSelectAll.executor": "Run",
+    "JUnit.BrandTest.testUpdate.executor": "Run",
+    "JUnit.JDBCDemo4_Statement.testDDL.executor": "Run",
+    "JUnit.JDBCDemo4_Statement.testDML.executor": "Run",
+    "JUnit.JDBCDemo5_ResultSet.testResult.executor": "Run",
+    "JUnit.JDBCDemo5_ResultSet.testResultSet2.executor": "Run",
+    "JUnit.JDBCDemo6_UserLogin.testLogin_Inject.executor": "Run",
+    "JUnit.JDBCDemo6_UserLogin.testResultSet.executor": "Run",
+    "JUnit.JDBCDemo7_PreparedStatement.testPreparedStatement.executor": "Run",
+    "JUnit.JDBCDemo7_PreparedStatement.testPreparedStatement2.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/c.---c.---java-exercise/JavaCode/JDBC/JDBC-Demo/src",
+    "project.structure.last.edited": "全局库",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "应用程序.DruidDemo.executor": "Run",
+    "应用程序.JDBCDemo.executor": "Run",
+    "应用程序.JDBCDemo2_DriverManager.executor": "Run",
+    "应用程序.JDBCDemo3_Connection.executor": "Run"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\c.---c.---java-exercise\JavaCode\JDBC\JDBC-Demo\src" />

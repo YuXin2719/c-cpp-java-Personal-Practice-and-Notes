@@ -5,18 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="38a96911-1218-496d-b8e3-a5e6aab05679" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/../JDBC/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../JDBC/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itheima/mapper/BrandMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itheima/mapper/BrandMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itheima/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itheima/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/itheima/mapper/BrandMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/itheima/mapper/BrandMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/itheima/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/itheima/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/itheima/test/MyBatisTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/itheima/test/MyBatisTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/itheima/mapper/BrandMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/itheima/mapper/BrandMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/itheima/mapper/BrandMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/itheima/mapper/BrandMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/itheima/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/itheima/mapper/UserMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/itheima/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/itheima/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/itheima/test/MyBatisTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/itheima/test/MyBatisTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../MyBatis简单入门.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../MyBatis简单入门.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Spring简单入门.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Spring简单入门.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,33 +48,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.MyBatisTest.executor": "Run",
-    "JUnit.MyBatisTest.testAdd.executor": "Run",
-    "JUnit.MyBatisTest.testAdd2.executor": "Run",
-    "JUnit.MyBatisTest.testDeleteById.executor": "Run",
-    "JUnit.MyBatisTest.testDeleteByIds.executor": "Run",
-    "JUnit.MyBatisTest.testSelectAll.executor": "Run",
-    "JUnit.MyBatisTest.testSelectByCondition.executor": "Run",
-    "JUnit.MyBatisTest.testSelectByConditionSingle.executor": "Run",
-    "JUnit.MyBatisTest.testSelectById.executor": "Run",
-    "JUnit.MyBatisTest.testUpdate.executor": "Run",
-    "JUnit.UserMapperTest.testDeleteByIds.executor": "Run",
-    "JUnit.UserMapperTest.testSelectById.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/c.---c.---java-exercise/JavaCode/MyBatis/src/main/resources/com/itheima/mapper",
-    "project.structure.last.edited": "模块",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "应用程序.MyBatisDemo.executor": "Run",
-    "应用程序.MyBatisDemo2.executor": "Run"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.MyBatisTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MyBatisTest.testAdd.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MyBatisTest.testAdd2.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MyBatisTest.testDeleteById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MyBatisTest.testDeleteByIds.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MyBatisTest.testSelectAll.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MyBatisTest.testSelectByCondition.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MyBatisTest.testSelectByConditionSingle.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MyBatisTest.testSelectById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MyBatisTest.testUpdate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserMapperTest.testDeleteByIds.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserMapperTest.testSelectById.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/c.---c.---java-exercise/JavaCode/MyBatis/src/main/resources/com/itheima/mapper&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;应用程序.MyBatisDemo.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.MyBatisDemo2.executor&quot;: &quot;Run&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\c.---c.---java-exercise\JavaCode\MyBatis\src\main\resources\com\itheima\mapper" />
