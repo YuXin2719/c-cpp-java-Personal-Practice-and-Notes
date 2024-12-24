@@ -5,9 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="38a96911-1218-496d-b8e3-a5e6aab05679" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/../spring_03_bean_instance/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../JDBC/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../JDBC/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TYUTShiXi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TYUTShiXi/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TYUTShiXi/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TYUTShiXi/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TYUTShiXi/src/main/java/cn/tlrj/util/QuShu.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TYUTShiXi/src/main/java/cn/tlrj/util/QuShu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TYUTShiXi/target/classes/cn/tlrj/util/QuShu.class" beforeDir="false" afterPath="$PROJECT_DIR$/../TYUTShiXi/target/classes/cn/tlrj/util/QuShu.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Spring简单入门.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Spring简单入门.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

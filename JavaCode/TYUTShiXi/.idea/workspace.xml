@@ -5,9 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a5b126a-ee60-4067-a6d7-53d6913e2162" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/../spring_03_bean_instance/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../JDBC/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../JDBC/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MyBatis/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyBatis/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MyBatis/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyBatis/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/tlrj/util/QuShu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/tlrj/util/QuShu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/tlrj/util/QuShu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/tlrj/util/QuShu.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Spring简单入门.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Spring简单入门.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,17 +43,24 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "应用程序.QuShu.executor": "Run"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.TYUTShiXi [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.TYUTShiXi [compile].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;应用程序.QuShu.executor&quot;: &quot;Run&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\c.---c.---java-exercise\JavaCode\TYUTShiXi\src\main\java\cn\tlrj\util" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="QuShu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cn.tlrj.util.QuShu" />

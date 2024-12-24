@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--1.导入spring的坐标spring-context，对应版本是5.2.10 RELEASE-->
+
+    <!--2.配置bean-->
+    <!--bean标签表示配置bean-->
+    <!--id属性表示给bean起名字-->
+    <!--class属性表示给bean定义类型-->
+
+    <bean id="bookDao" class="com.itheima.dao.impl.BookDaoImpl">
+        <property name="array">
+            <array>
+                <value>100</value>
+                <value>200</value>
+                <value>300</value>
+            </array>
+        </property>
+        <property name="list">
+            <list>
+                <value>itcast</value>
+                <value>itheima</value>
+                <value>boxuegu</value>
+            </list>
+        </property>
+        <property name="set">
+            <set>
+                <value>itcast</value>
+                <value>itheima</value>
+                <value>boxuegu</value>
+                <value>boxuegu</value>
+            </set>
+        </property>
+        <property name="map">
+            <map>
+                <!--entry：实体-->
+                <entry key="country" value="china"/>
+                <entry key="province" value="henan"/>
+                <entry key="city" value="kaifeng"/>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="country">china</prop>
+                <prop key="province">henan</prop>
+                <prop key="city">kaifeng</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

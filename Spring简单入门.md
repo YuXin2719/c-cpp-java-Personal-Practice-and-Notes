@@ -381,3 +381,1041 @@ public class BookServiceImpl implements BookService {
 
 # 八、bean 实例化
 
+**bean是如何创建的**
+
+**实例化 bean的三种方式**
+
+
+
+- bean本质上就是对象，创建bean使用构造方法完成
+
+
+
+## 1.构造方法（常用）
+
+- 提供可访问的构造方法
+
+  ```java
+  public class BookDaoImpl implements BookDao {
+  
+      public BookDaoImpl() {
+          System.out.println("book dao constructor is running ...");
+      }
+  
+      public void save(){
+          System.out.println("book dao save ...");
+      }
+  }
+  ```
+
+- 配置
+
+  ```xml
+  <bean id="bookDao" class="com.itheima.dao.impl.BookDaoImpl"/>
+  ```
+
+- 无参构造方法如果不存在，将抛出异常**BeanCreationException**
+
+
+
+## 2.静态工厂（了解）
+
+- 静态工厂
+
+  ```java
+  public class OrderDaoFactory {
+      public static OrderDao getOrderDao(){
+          System.out.println("factory setup ...");
+          return new OrderDaoImpl();
+      }
+  }
+  ```
+
+- 配置
+
+  ```xml
+  <bean id="orderDao" class="com.itheima.factory.OrderDaoFactory" factory-method="getOrderDao"/>
+  ```
+
+
+
+
+# 九、bean 实例化 - 实例工厂与FactoryBean
+
+## 1.实例工厂（了解）
+
+- 实例工厂
+
+  ```java
+  public class UserDaoFactory {
+      public UserDao getUserDao(){
+          return new UserDaoImpl();
+      }
+  }
+  
+  ```
+
+- 配置
+
+  ```xml
+  <!--方式三：使用实例工厂实例化bean-->
+      <bean id="userFactory" class="com.itheima.factory.UserDaoFactory"/>
+      <bean id="userDao" factory-method="getUserDao" factory-bean="userFactory"/>
+  ```
+
+  <img src="photo/image-20241216110305901.png" alt="image-20241216110305901" style="zoom:50%;" />
+
+
+
+## 2.FactoryBean（==实用方法==）
+
+- FactoryBean
+
+  ```java
+  public class UserDaoFactoryBean implements FactoryBean<UserDao> {
+  //代替原始实例工厂中创建对象的方法
+      @Override
+      public UserDao getObject() throws Exception {
+          return new UserDaoImpl();
+      }
+  //确认对象的类型
+      @Override
+      public Class<?> getObjectType() {
+          return UserDao.class; //给一个UserDao的字节码
+      }
+  
+      @Override
+      public boolean isSingleton() { //规定创建的是否为单例对象，true就是创建单例对象，false就是创建非单例对象
+          //一般不重写这个方法，默认为单例对象
+          return true;
+      }
+  }
+  ```
+
+- 配置
+
+  ```xml
+  <!--！！重要方式！！-->
+  <!--方式四（方式三的进阶版）：使用FactoryBean实例化Bean-->
+      <bean id="userDao" class="com.itheima.factory.UserDaoFactoryBean"/>
+  ```
+
+
+
+
+**实例化bean的三种方式**
+
+- **构造方法（常用）**
+- 静态工厂（了解）
+- 实例工厂（了解）
+  - **FactoryBean（实用）**
+
+
+
+# 十、bean 生命周期
+
+**bean生命周期控制**
+
+
+
+- 生命周期：从创建到消亡的完整过程
+- bean生命周期：bean从创建到销毁的整体过程
+- bean生命周期控制：在bean创建后到小会前做的一些事情
+
+
+
+- 提供生命周期控制方法
+
+  ```java
+  public class BookDaoImpl implements BookDao {
+      public void save(){
+          System.out.println("book dao save ...");
+      }
+      //表示bean初始化对应的操作
+      public void init(){
+          System.out.println("init...");
+      }
+      //表示bean销毁前对应的操作
+      public void destory(){
+          System.out.println("destory...");
+      }
+  }
+  ```
+
+- 配置生命周期控制方法
+
+  ```xml
+  <bean id="bookDao" name="dao" class="com.itheima.dao.impl.BookDaoImpl" init-method="init" destroy-method="destory"/>
+  ```
+
+
+
+**接口控制（了解）**
+
+- 实现InitializingBean，DisposableBean接口
+
+  ```java
+  public class BookServiceImpl implements BookService, InitializingBean, DisposableBean {
+      //5.删除业务层中使用new的方式创建的dao对象
+      private BookDao bookDao;
+  
+      public void save() {
+          System.out.println("book service save ...");
+          bookDao.save();
+      }
+  
+      //6.提供对应的set方法
+      public void setBookDao(BookDao bookDao) {
+          System.out.println("set ...");
+          this.bookDao = bookDao;
+      }
+  
+      @Override
+      public void destroy() throws Exception {
+          System.out.println("service destory");
+      }
+  
+      @Override
+      public void afterPropertiesSet() throws Exception { //在属性设置之后运行
+          System.out.println("service init");
+      }
+  }
+  ```
+
+
+
+**经历的阶段**
+
+- 初始化容器
+  1. 创建对象（内存分配）
+  2. 执行构造方法
+  3. 执行属性注入（set操作）
+  4. **执行bean初始化方法**
+- 使用bean
+  1. 执行业务操作
+- 关闭/销毁容器
+  1. **执行bean销毁方法**
+
+
+
+**bean销毁时机**
+
+- 容器关闭前触发bean的销毁
+
+- 关闭容器方式：
+
+  - 手工关闭容器
+
+    **ClassPathXmlApplicationContext**接口**close()**操作
+
+  - 注册关闭钩子，在虚拟机退出前先关闭容器再退出虚拟机
+
+    **ClassPathXmlApplicationContext**接口**registerShutdownHook()**操作
+
+  ```java
+  public class AppForLifeCycle {
+      public static void main(String[] args) {
+          ClassPathXmlApplicationContext ctx=new ClassPathXmlApplicationContext("applicationContext.xml");
+  //        ctx.registerShutdownHook(); //注册关闭钩子 - 容器在启动以后如果要关闭Java虚拟机将先关闭容器，关闭钩子在任何时间都可以注册，但是close放在前面会提前关闭，比较暴力
+  
+          BookDao bookDao = (BookDao) ctx.getBean("bookDao");
+          bookDao.save();
+          ctx.close();
+      }
+  }
+  ```
+
+
+
+
+1. bean生命周期控制
+   1. 配置
+      - init-method
+      - destory-method
+   2. 接口（了解）
+      - InitializingBean
+      - DisposavleBean
+   3. 关闭容器
+      - ConfigurableApplicationContext
+        - close()
+        - registerShutdownHook()
+
+
+
+# 十一、依赖注入方式
+
+- 思考：向一个类中传递数据的方式有几种？
+  - 普通方法（set方法）
+  - 构造方法
+- 思考：依赖注入描述了在容器中建立bean和bean之间依赖关系的过程，如果bean运行需要的是数字和字符串呢？
+  - 引用类型
+  - 简单类型（基本数据类型和String）
+- 依赖注入方式
+  - setter注入
+    - 简单类型
+    - **引用类型**
+  - 构造器注入
+    - 简单类型
+    - 引用类型
+
+
+
+## 1.setter注入——引用类型
+
+- 在bean中定义引用类型属性并提供可访问的**set**方法
+
+  ```java
+  public class BookServiceImpl implements BookService{
+      private BookDao bookDao;
+  
+      //6.提供对应的set方法
+      public void setBookDao(BookDao bookDao) {
+          System.out.println("set ...");
+          this.bookDao = bookDao;
+      }
+  ```
+
+- 配置中使用**property**标签**ref**属性注入引用类型对象
+
+  ```xml
+      <bean id="bookDao" name="dao" class="com.itheima.dao.impl.BookDaoImpl" init-method="init" destroy-method="destory"/>
+  
+      <!--逗号,分号,空格 分隔都可以-->
+      <bean id="bookService" name="service service2 bookEbi" class="com.itheima.service.impl.BookServiceImpl">
+          <!--7.配置service和dao的关系-->
+          <!--property标签表示配置当前bean的属性-->
+          <!--name属性表示配置哪一个具体的属性-->
+          <!--ref属性表示配置哪一个bean-->
+          <property name="bookDao" ref="bookDao"/>
+      </bean>
+  ```
+
+
+
+## 2.setter注入——简单类型
+
+- 在bean中定义引用类型属性并提供可访问的**set**方法
+
+  ```java
+  public class BookDaoImpl implements BookDao {
+  
+      private int connectionNum;
+      private String databaseName;
+  
+      public void setConnectionNum(int connectionNum) {
+          this.connectionNum = connectionNum;
+      }
+  
+      public void setDatabaseName(String databaseName) {
+          this.databaseName = databaseName;
+      }
+  
+      public void save(){
+          System.out.println("book dao save ..."+databaseName+","+connectionNum);
+      }
+  }
+  ```
+
+- 配置中使用**property**标签**value**属性注入简单类型数据
+
+  ```xml
+      <bean id="bookDao" name="dao" class="com.itheima.dao.impl.BookDaoImpl">
+          <property name="databaseName" value="mysql"/>
+          <property name="connectionNum" value="10"/>
+      </bean>
+  ```
+
+
+
+## 3.构造器注入——引用类型（了解）
+
+- 在bean中定义引用类型属性并提供可访问的**构造**方法
+
+  ```java
+  public class BookServiceImpl implements BookService {
+      //5.删除业务层中使用new的方式创建的dao对象
+      private BookDao bookDao;
+      private UserDao userDao;
+  
+      public void save() {
+          System.out.println("book service save ...");
+          bookDao.save();
+          userDao.save();
+      }
+  
+      public BookServiceImpl(BookDao bookDao, UserDao userDao) {
+          this.bookDao = bookDao;
+          this.userDao = userDao;
+      }
+  }
+  ```
+
+- 配置中使用**constructor-arg**标签**ref**属性注入引用类型对象
+
+  ```xml
+          <bean id="bookDao" name="dao" class="com.itheima.dao.impl.BookDaoImpl">
+              <constructor-arg name="databaseName" value="mysql"/>
+              <constructor-arg name="connectionNum" value="10"/>
+          </bean>
+          <bean id="userDao" class="com.itheima.dao.impl.UserDaoImpl"/>
+  
+          <!--逗号,分号,空格 分隔都可以-->
+          <bean id="bookService" name="service service2 bookEbi" class="com.itheima.service.impl.BookServiceImpl">
+              <!--7.配置service和dao的关系-->
+              <!--property标签表示配置当前bean的属性-->
+              <!--name属性表示配置哪一个具体的属性-->
+              <!--ref属性表示配置哪一个bean-->
+  
+      <!--这里的bookDao是构造函数的形参变量名，和代码耦合度较高-->
+      <constructor-arg name="bookDao" ref="bookDao"/>
+      <constructor-arg name="userDao" ref="userDao"/>
+          </bean>
+  ```
+
+  
+
+## 4.构造器注入——简单类型（了解）
+
+- 在bean中定义引用类型属性并提供可访问的**set**方法
+
+  ```java
+  public class BookDaoImpl implements BookDao {
+      private String databaseName;
+      private int connectionNum;
+  
+      public BookDaoImpl(String databaseName, int connectionNum) {
+          this.databaseName = databaseName;
+          this.connectionNum = connectionNum;
+      }
+  
+      public void save(){
+          System.out.println("book dao save ..."+databaseName+","+connectionNum);
+      }
+  }
+  ```
+
+- 配置中使用**constructor-arg**标签**value**属性注入简单类型数据
+
+  ```xml
+          <bean id="bookDao" name="dao" class="com.itheima.dao.impl.BookDaoImpl">
+              <constructor-arg name="databaseName" value="mysql"/>
+              <constructor-arg name="connectionNum" value="10"/>
+          </bean>
+  ```
+
+  
+
+## 5.构造器注入——参数适配（了解）
+
+- 配置中使用**constructor-arg**标签**type**属性设置按形参类型注入
+
+  ```xml
+          <bean id="bookDao" name="dao" class="com.itheima.dao.impl.BookDaoImpl">
+              <constructor-arg type="java.lang.String" value="mysql"/>
+              <constructor-arg type="int" value="10"/>
+          </bean>
+  ```
+
+- 配置中使用**constructor-arg**标签**index**属性设置按形参位置注入
+
+  ```xml
+      <bean id="bookDao" name="dao" class="com.itheima.dao.impl.BookDaoImpl">
+          <constructor-arg index="0" value="mysql"/>
+          <constructor-arg index="1" value="10"/>
+      </bean>
+  ```
+
+  
+
+## 6.依赖注入方式选择
+
+1. 强制依赖使用构造器进行，使用setter注入有概率不进行注入导致null对象出现
+2. 可选依赖使用setter注入进行，灵活性强
+3. Spring框架倡导使用构造器，第三方框架内部大多数采用构造器注入的方式进行数据初始化，相对严谨
+4. 如果有必要可以两者同时使用，使用构造器注入完成强制依赖的注入，使用setter注入完成可选依赖的注入
+5. 实际开发过程中还要根据实际情况分析，如果受控对象没有提供setter就必须使用构造器注入
+6. **自己开发的模块推荐使用setter注入**
+
+
+
+**小结**
+
+1. 依赖注入方式
+   - setter注入
+     - 简单类型
+     - 引用类型
+   - 构造器注入
+     - 简单类型
+     - 引用类型
+2. 依赖注入方式选择
+   - 推荐使用setter注入
+   -  第三方技术根据情况选择
+
+
+
+# 十二、依赖自动装配
+
+- IoC容器根据bean所依赖的资源在容器中自动查找并注入到bean中的过程称为自动装配
+- 自动装配的方式
+  - **按类型（常用）**
+  - 按名称
+  - 按构造方法
+  - 不启用自动装配
+
+
+
+- 配置中使用**bean**标签**autowire**属性设置自动装配的类型：按类型 byType，按名称 byName
+
+  ```xml
+      <bean id="bookDao" class="com.itheima.dao.impl.BookDaoImpl"/>
+      <bean id="bookService" class="com.itheima.service.impl.BookServiceImpl" autowire="byType"/>
+  ```
+
+
+
+- 自动装配用于引用类型依赖注入，不能对简单类型进行操作
+- 使用按类型装配时（byType）必须保障容器中相同类型的bean唯一，推荐使用
+- 使用按名称装配时（byName）必须保障容器中具有指定名称的bean，因变量名和配置耦合，不推荐使用
+- 自动装配优先级低于setting注入与构造器注入，同时出现时自动装配配置失效
+
+
+
+小结：
+
+1. 自动装配概念
+2. 自动装配类型
+
+
+
+# 十三、集合注入
+
+- 数组
+- List
+- Set
+- Map
+- Properties
+
+
+
+- 注入**数组**对象
+
+  ```xml
+          <property name="array">
+              <array>
+                  <value>100</value>
+                  <value>200</value>
+                  <value>300</value>
+              </array>
+          </property>
+  ```
+
+- 注入**List**对象（重点）
+
+  ```xml
+          </property>
+          <property name="list">
+              <list>
+                  <value>itcast</value>
+                  <value>itheima</value>
+                  <value>boxuegu</value>
+              </list>
+          </property>
+  ```
+
+- 注入**Set**对象
+
+  ```xml
+          <property name="set">
+              <set>
+                  <value>itcast</value>
+                  <value>itheima</value>
+                  <value>boxuegu</value>
+                  <value>boxuegu</value>
+              </set>
+          </property>
+  ```
+
+- 注入**Map**对象（重点）
+
+  ```xml
+          <property name="map">
+              <map>
+                  <!--entry：实体-->
+                  <entry key="country" value="china"/>
+                  <entry key="province" value="henan"/>
+                  <entry key="city" value="kaifeng"/>
+              </map>
+          </property>
+  ```
+
+- 注入**Properties**对象
+
+  ```xml
+          <property name="properties">
+              <props>
+                  <prop key="country">china</prop>
+                  <prop key="province">henan</prop>
+                  <prop key="city">kaifeng</prop>
+              </props>
+          </property>
+  ```
+
+  
+
+**小结：**
+
+1. 注入集合
+
+
+
+# 案例：数据源对象管理
+
+**第三方资源配置管理**
+
+- 导入druid坐标
+
+  ```xml
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid</artifactId>
+        <version>1.1.16</version>
+      </dependency>
+  ```
+
+- 配置数据源对象作为spring管理的bean
+
+  ```xml
+      <!--管理DruidDataSource对象-->
+      <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+          <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+          <property name="url" value="jdbc:mysql://localhost:3306/game"/>
+          <property name="username" value="root"/>
+          <property name="password" value="admin"/>
+      </bean>
+  ```
+
+
+
+小结：
+
+1. spring管理第三方资源
+   - DruidDataSource
+   - ComboPooledDataSource
+
+
+
+# 十四、加载 properties 文件
+
+**加载properties配置信息**
+
+- 开启context命名空间
+
+  ```xml
+  <?xml version="1.0" encoding="UTF-8"?>
+  <beans xmlns="http://www.springframework.org/schema/beans"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:context="http://www.springframework.org/schema/context"
+         xsi:schemaLocation="
+         http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd
+         ">
+  </beans>
+  ```
+
+  <img src="photo/image-20241219173408258.png" alt="image-20241219173408258" style="zoom: 50%;" />
+
+- 使用context命名空间，加载指定properties文件
+
+  ```xml
+      <context:property-placeholder location="jdbc.properties"/>
+  ```
+
+- 使用 ${} 读取加载的属性值
+
+  ```xml
+      <property name="name" value="${jdbc.driver}"/>
+  ```
+
+- 不加载系统文件
+
+  ```xml
+      <context:property-placeholder location="jdbc.properties" system-properties-mode="NEVER"/>
+  ```
+
+- 加载多个properties文件
+
+  ```xml
+      <context:property-placeholder location="jdbc.properties,jdbc2.properties"/>
+  ```
+
+- 加载所有properties文件
+
+  ```xml
+      <context:property-placeholder location="*.properties"/>
+  ```
+
+- 加载properties文件==**标准格式**==
+
+  ```xml
+      <context:property-placeholder location="classpath:*.properties"/>
+  ```
+
+- 从类路径或者jar包中搜索并加载properties文件
+
+  ```xml
+      <context:property-placeholder location="classpath*:*.properties"/>
+  ```
+
+  
+
+**小结：**
+
+1. 加载properties配置文件信息
+2. 开启命名空间方式
+
+
+
+# 十五、容器
+
+**创建容器**
+
+**获取bean**
+
+**容器类层次结构**
+
+**BeanFactory**
+
+
+
+## 1.创建容器
+
+- 方式一：类路径加载配置文件
+
+  ```java
+  ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+  ```
+
+- 方式二：文件路径加载配置文件
+
+  ```java
+  ApplicationContext ctx = new FileSystemXmlApplicationContext("E:\\c.---c.---java-exercise\\JavaCode\\spring_10_container\\src\\main\\resources\\applicationContext.xml");
+  ```
+
+- 加载多个配置文件(不管是哪种配置方式，都可以同时写很多个"bean"进去，同时加载多个配置文件)
+
+  ```java
+  ApplicationContext ctx = new ClassPathXmlApplicationContext("bean1.xml","bean2.xml");
+  ```
+
+
+
+## 2.获取bean
+
+- 方式一：使用bean名称获取
+
+  ```java
+  BookDao bookDao = (BookDao) ctx.getBean("bookDao");
+  ```
+
+- 方式二：使用bean名称获取并指定类型（和方式一意义相同）
+
+  ```java
+  BookDao bookDao=ctx.getBean("bookDao", BookDao.class);
+  ```
+
+- 方式三：使用bean类型获取（要求容器中这个类型的bean只能有一个，多个的话会报错）
+
+  ```java
+  BookDao bookDao = ctx.getBean(BookDao.class);
+  ```
+
+
+
+## 3.容器类层次结构图
+
+<img src="photo/image-20241224175331684.png" alt="image-20241224175331684" style="zoom:50%;" />
+
+
+
+## 4.BeanFactory初始化（了解）
+
+- 类路径加载配置文件
+
+  ```java
+  Resource resources=new ClassPathResource("applicationContext.xml");
+  BeanFactory bf = new XmlBeanFactory(resources);
+  BookDao bookDao = bf.getBean(BookDao.class);
+  bookDao.save();
+  ```
+
+- BeanFactory创建完毕后，所有的bean均为延迟加载
+
+
+
+**小结**
+
+1. 创建容器（2种）
+   - ClassPathXmlApplicationContext
+   - FileSystemXmlApplicationContext
+2. 获取bean（3种）
+3. 容器类层次结构
+4. BeanFactory
+
+
+
+# 十六、核心容器总结
+
+**容器相关**
+
+**bean相关**
+
+**依赖注入相关**
+
+
+
+## 1.容器相关
+
+- **BeanFactory**是IoC容器的**顶层接口**，初始化BeanFactory对象时，加载的bean延迟加载
+- **ApplicationContext**接口是Spring容器的**核心接口**，初始化时bean立即加载
+- **ApplicationContext**接口提供**基础**的bean操作相关方法，通过**其他接口拓展**其功能
+- **ApplicationContext**接口**常用初始化类**
+  - ClassPathXmlApplicationContext（常用）
+  - FileSystemXmlApplicationContext（很少使用）
+
+
+
+## 2.bean相关
+
+```xml
+<bean
+      id="bookDao"										bean的ID
+      name="dao bookDaoImpl daoImpl"					bean别名
+      class="com.itheima.dao.impl.BookDaoImpl"			bean类型，静态工厂类，FactoryBean类
+      scope="singleton"									控制bean的实例数量（默认单例）
+      init-method="init"								生命周期初始化方法
+      init-method="destroy"								生命周期销毁方法
+      autowire="byType"									自动装配类型
+      factory-method="getInstence"						bean工厂方法，应用于静态工厂或实例工厂
+      factory-bean="com.itheima.factory.BookDaoFactory"	实例工厂bean
+      lazy-init="true"									控制bean延迟加载
+      />
+```
+
+
+
+## 3.依赖注入相关
+
+```xml
+<bean id="bookService" class="com.itheima.service.impl.BookServiceImpl">
+	<constructor-arg name="bookDao" ref="bookDao"/>						构造器注入引用类型
+	<constructor-arg name="userDao" ref="userDao"/>
+    <constructor-arg name="msg" ref="WARN"/>							构造器注入简单类型
+    <constructor-arg name="java.long.String" index="3" value="WARN"/>	类型匹配与索引匹配
+    
+    <!--重点！-->
+    <property name="bookDao" ref="bookDao"/>							setter注入引用类型
+    <property name="userDao" ref="userDao"/>
+    <property name="msg" ref="WARN"/>									setter注入简单类型
+    
+    <property name="names">												setter注入集合类型
+    	<list>															list集合
+        	<value>itcast</value>										集合注入简单类型
+            <ref bean="dataSource"/>									集合注入引用类型
+        </list>
+    </property>
+</bean>
+```
+
+
+
+**小结**
+
+1. 容器相关
+2. bean相关
+3. 依赖注入相关
+
+
+
+# 十七、注解开发
+
+**注解开发定义bean**
+
+**纯注解开发**
+
+
+
+## 1.注解开发定义bean
+
+- 使用@Component定义bean（@Component后括号内指定名称，未指定名称的bean需要在使用时加载class按照类型访问）
+
+  ```java
+  @Component("bookDao")
+  public class BookDaoImpl implements BookDao {
+  }
+  @Component
+  public class BookServiceImpl implements BookService {
+  }
+  ```
+
+  ```java
+  public class App {
+      public static void main(String[] args) {
+          ApplicationContext ctx=new ClassPathXmlApplicationContext("applicationContext.xml");
+          BookDao bookDao = (BookDao) ctx.getBean("bookDao");
+          System.out.println(bookDao);
+  
+          BookService bookService=ctx.getBean(BookService.class);
+          System.out.println(bookService);
+      }
+  }
+  ```
+
+- 核心配置文件中通过组件扫描加载bean
+
+  ```xml
+  <context:component-scan base-package="com.itheima"/>
+  ```
+
+
+
+- Spring提供@Component注解的三个衍生注解（以下注解和Component功能完全一样，只是名字不同方便分辨）
+
+  - @Controller：用于表现层bean定义
+  - @Service：用于业务层bean定义
+  - @Repository：用于数据层bean定义
+
+  ```java
+  @Repository("bookDao")
+  public class BookDaoImpl implements BookDao {
+  }
+  @Service
+  public class BookServiceImpl implements BookService {
+  }
+  ```
+
+
+
+## 2.纯注解开发
+
+- Spring3.0升级了纯注解开发模式，使用Java类替代配置文件，开启了Spring快速开发赛道
+
+- Java类代替Spring核心配置文件
+
+  ```xml
+  <?xml version="1.0" encoding="UTF-8"?>
+  <beans xmlns="http://www.springframework.org/schema/beans"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:context="http://www.springframework.org/schema/context"
+         xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+      
+          <context:component-scan base-package="com.itheima"/>
+  
+  </beans>
+  ```
+
+  ```java
+  @Configuration
+  @ComponentScan("com.itheima")
+  public class SpringConfig {
+  }
+  ```
+
+  <img src="photo/image-20241224215600246.png" alt="image-20241224215600246" style="zoom:50%;" />
+
+- @Configuration注解用于设定当前类为配置类
+
+- @ComponentScan注解用于设定扫描路径，此注解只能添加一次，多个数据请用数组格式
+
+  ```java
+  @ComponentScan({"com.itheima.service","com.itheima.dao"})
+  ```
+
+- 读取Spring核心配置文件初始化容器对象切换为读取Java配置类初始化容器对象
+
+  ```java
+  //加载配置文件初始化容器
+  ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+  //加载配置类初始化容器
+  ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
+  ```
+
+  
+
+**小结**
+
+1. 定义bean
+   - @Component
+     - @Controller
+     - @Service
+     - @Repository
+   - \<context:component-scan/>
+2. 纯注解开发
+   - @Configuration
+   - @ComponentScan
+   - AnnotationConfigApplicationContext
+
+
+
+# 十八、bean 管理
+
+**bean作用范围**
+
+**bean生命周期**
+
+
+
+## 1.bean作用范围
+
+- 使用@Scope定义bean作用范围
+
+  ```java
+  @Repository
+  @Scope("singleton")
+  public class BookDaoImpl implements BookDao {
+  }
+  ```
+
+
+
+## 2.bean生命周期
+
+- 使用@PostConstruct、@PreDestroy定义bean生命周期
+
+  ```java
+  @Repository
+  @Scope("singleton")
+  public class BookDaoImpl implements BookDao {
+      public void save(){
+          System.out.println("book dao save ...");
+      }
+  
+      @PostConstruct //构造方法后
+      public void init(){
+          System.out.println("init ...");
+      }
+  
+      @PreDestroy //彻底销毁前
+      public void destroy(){
+          System.out.println("destory ...");
+      }
+  }
+  ```
+
+  
+
+**总结**
+
+1. bean作用范围
+   - @Scope
+2. bean生命周期
+   - @PostConstruct
+   - @PreDestroy
+
+
+
+# 十九、依赖注入
+
+**自动装配**

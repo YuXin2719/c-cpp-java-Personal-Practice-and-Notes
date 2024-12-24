@@ -8,7 +8,7 @@ import com.ghgande.j2mod.modbus.util.SerialParameters;
 public class QuShu {
     public static void main(String[] args) {
         SerialParameters params = new SerialParameters();
-        params.setPortName("COM8"); // 设置串口名称，根据实际情况修改
+        params.setPortName("COM11"); // 设置串口名称，根据实际情况修改
         params.setBaudRate(9600); // 设置波特率
         params.setDatabits(8); // 设置数据位
         params.setParity("None"); // 设置校验位
@@ -31,11 +31,14 @@ public class QuShu {
                 Register[] registerValues = master.readMultipleRegisters(unitId, ref, count);
                 //0   气体值
                 //1   状态     1(<20  5   20~49  6 >=50
+                Thread.sleep(1000);
 
                 System.out.println("状态码" + registerValues[0]+"========"+"设备阈值:"+registerValues[1]);
+                JdbcUtil.update("insert into test values(null,'设备1',?,?)",registerValues[0].getValue(),registerValues[1].getValue());
             }
         } catch (ModbusException e) {
             e.printStackTrace();
+
         } catch (Exception exception) {
             exception.printStackTrace();
         } finally {

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--1.导入spring的坐标spring-context，对应版本是5.2.10 RELEASE-->
+
+    <!--2.配置bean-->
+    <!--bean标签表示配置bean-->
+    <!--id属性表示给bean起名字-->
+    <!--class属性表示给bean定义类型-->
+
+    <bean id="bookDao" name="dao" class="com.itheima.dao.impl.BookDaoImpl">
+        <property name="databaseName" value="mysql"/>
+        <property name="connectionNum" value="10"/>
+    </bean>
+    <bean id="userDao" class="com.itheima.dao.impl.UserDaoImpl"/>
+
+    <!--逗号,分号,空格 分隔都可以-->
+    <bean id="bookService" name="service service2 bookEbi" class="com.itheima.service.impl.BookServiceImpl">
+        <!--7.配置service和dao的关系-->
+        <!--property标签表示配置当前bean的属性-->
+        <!--name属性表示配置哪一个具体的属性-->
+        <!--ref属性表示配置哪一个bean-->
+        <property name="bookDao" ref="bookDao"/>
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+</beans>
