@@ -1419,3 +1419,265 @@ public class BookServiceImpl implements BookService {
 # 十九、依赖注入
 
 **自动装配**
+
+
+
+- 使用@Autowired注解开启自动装配模式（按类型）
+
+  ```java
+  @Service
+  public class BookServiceImpl implements BookService {
+      @Autowired //按类型自动装配/如果有多个实现类，按名称自动装配（按照变量名查找）
+  
+      private BookDao bookDao;
+  
+      public void save() {
+          System.out.println("book service save ...");
+          bookDao.save();
+      }
+  }
+  ```
+
+- 注意：自动装配基于反射设计创建对象并暴力反射对应属性为私有属性初始化数据，因此无需提供setter方法
+
+- 注意：自动装配建议使用无参构造方法创建对象（默认），如果不提供对应构造方法，请提供唯一的构造方法
+
+
+
+- 使用@Qualifier注解开启指定名称装配bean
+
+  ```java
+  @Service
+  public class BookServiceImpl implements BookService {
+      @Autowired //按类型自动装配/按名称自动装配
+      @Qualifier("bookDao") //指定名称装配，本注解必须依赖上面的Autowired
+  
+      private BookDao bookDao;
+  
+  }
+  ```
+
+- 注意：@Qualifier注解无法单独使用，必须配合@Autowired注解使用
+
+
+
+- 使用@Value实现简单类型注入
+
+  ```java
+  @Repository("bookDao")
+  public class BookDaoImpl implements BookDao {
+  
+      @Value("itheima")
+      private String name;
+  
+  }
+  ```
+
+  
+
+- 使用@PropertySource注解加载properties文件
+
+  ```java
+  @Configuration
+  @ComponentScan("com.itheima")
+  @PropertySource("classpath:jdbc.properties") //classpath: 可以不写
+  public class SpringConfig {
+  }
+  ```
+
+- 注意：路径仅支持单一文件配置，多文件请使用数组格式配置，不允许使用通配符*
+
+
+
+**小结**
+
+1. 自动装配
+   - @Autowired
+   - @Qualifier
+   - @Value
+2. 读取properties文件
+   - @PropertySource
+
+
+
+# 二十、第三方 bean 管理
+
+**第三方bean管理**
+
+**第三方bean依赖注入**
+
+
+
+## 1.第三方bean管理
+
+- 使用@Bean配置第三方bean（有些像工厂模式，重点：@Bean，一个方法，返回值就是我们需要的bean）
+
+  ```java
+  @Configuration
+  public class SpringConfig {
+      //1.定义一个方法获得要管理的对象
+      //2.添加@Bean，表示当前方法的返回值是一个bean
+      @Bean
+      public DataSource dataSource(){
+          DruidDataSource ds = new DruidDataSource();
+          ds.setDriverClassName("com.mysql.jdbc.driver");
+          ds.setUrl("jdbc:mysql://localhost:3306/db1");
+          ds.setUsername("root");
+          ds.setPassword("admin");
+          return ds;
+      }
+  }
+  ```
+
+  
+
+- 使用独立的配置类管理第三方bean
+
+  ```java
+  public class JdbcConfig {
+      //1.定义一个方法获得要管理的对象
+      //2.添加@Bean，表示当前方法的返回值是一个bean
+      @Bean
+      public DataSource dataSource(){
+          DruidDataSource ds = new DruidDataSource();
+          ds.setDriverClassName("com.mysql.jdbc.driver");
+          ds.setUrl("jdbc:mysql://localhost:3306/db1");
+          ds.setUsername("root");
+          ds.setPassword("admin");
+          return ds;
+      }
+  }
+  ```
+
+- 将独立的配置类加入核心配置
+
+- 方式一：导入式**（推荐使用）**
+
+  ```java
+  public class JdbcConfig {
+      //1.定义一个方法获得要管理的对象
+      //2.添加@Bean，表示当前方法的返回值是一个bean
+      @Bean
+      public DataSource dataSource(){
+          DruidDataSource ds = new DruidDataSource();
+  		//相关配置
+          return ds;
+      }
+  }
+  ```
+
+- 使用@Import注解手动加入配置类到核心配置，此注解只能添加一次，多个数据请用数组格式
+
+  ```java
+  @Configuration
+  @Import(JdbcConfig.class)
+  public class SpringConfig {
+  }
+  ```
+
+- 方式二：扫描式
+
+  ```java
+  @Configuration
+  public class JdbcConfig {
+      //1.定义一个方法获得要管理的对象
+      //2.添加@Bean，表示当前方法的返回值是一个bean
+      @Bean
+      public DataSource dataSource(){
+          DruidDataSource ds = new DruidDataSource();
+  		//相关配置
+          return ds;
+      }
+  }
+  ```
+
+- 使用@ComponentScan注解扫描配置类所在的包，加载对应的配置类信息
+
+  ```java
+  @Configuration
+  @ComponentScan("com.itheima.config")
+  public class SpringConfig {
+  }
+  ```
+
+
+
+## 2.第三方bean依赖注入
+
+- 简单类型依赖注入
+
+  ```java
+  public class JdbcConfig {
+      //1.定义一个方法获得要管理的对象
+      //2.添加@Bean，表示当前方法的返回值是一个bean
+  
+      @Value("com.mysql.jdbc.driver")
+      private String driver;
+      @Value("jdbc:mysql://localhost:3306/db1")
+      private String url;
+      @Value("root")
+      private String username;
+      @Value("admin")
+      private String password;
+  
+      @Bean
+      public DataSource dataSource(){
+          DruidDataSource ds = new DruidDataSource();
+          ds.setDriverClassName(driver);
+          ds.setUrl(url);
+          ds.setUsername(username);
+          ds.setPassword(password);
+          return ds;
+      }
+  }
+  ```
+
+  
+
+- 引用类型依赖注入
+
+  ```java
+      @Bean
+      public DataSource dataSource(BookDao bookDao){ //扫描容器按类型自动装配
+          System.out.println(bookDao);
+          DruidDataSource ds = new DruidDataSource();
+          //属性设置
+          return ds;
+      }
+  ```
+
+- 引用类型注入只需要为bean定义方法设置形参即可，容器会根据类型自动装配对象
+
+
+
+**小结**
+
+1. 第三方bean管理
+   - @Bean
+2. 第三方bean依赖注入
+   - 引用类型：方法形参
+   - 简单类型：成员变量
+
+
+
+# 二十一、注解开发总结
+
+**XML配置与注解配置比较**
+
+| 功能           | XML配置                                                      | 注解                                                         |
+| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 定义bean       | bean标签<br />    id属性<br />    class属性                  | @Component<br />    @Controller<br />    ==@Service==<br />    @Repository<br />==@ComponentScan== |
+| 设置依赖注入   | setter注入（Set方法）<br />    引用/简单<br />构造器注入（构造方法）<br />    引用/简单<br />自动装配 | ==@Autowired==<br />    @Qualifier<br />@Value               |
+| 配置第三方bean | bean标签<br />静态工厂、实例工厂、FactoryBean                | ==@Bean==                                                    |
+| 作用范围       | scope属性                                                    | @Scope                                                       |
+| 生命周期       | 标准接口<br />    init-method<br />    destroy-method        | @PostContructor<br />@PreDestroy                             |
+
+
+
+**小结**
+
+1. XML配置与注解配置比较
+
+
+
+# 二十二、Spring整合MyBatis
