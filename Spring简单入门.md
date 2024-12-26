@@ -1681,3 +1681,165 @@ public class BookServiceImpl implements BookService {
 
 
 # 二十二、Spring整合MyBatis
+
+- MyBatis程序核心对象分析
+
+  ```java
+  //1.创建SqlSessionFactoryBuilder对象
+  SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
+  //2.加载SqlMapConfig.xml配置文件
+  InputStream inputStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+  //3.创建SqlSessionFactory对象
+  SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBuilder.build(inputStream);
+  //4.获取SqlSession
+  SqlSession sqlSession = sqlSessionFactory.openSession();
+  //5.执行SqlSession对象执行查询，获取结果User
+  AccountDao accountDao = sqlSession.getMapper(AccountDao.class);
+  
+  Account ac = accountDao.findById(2);
+  System.out.println(ac);
+  
+  //6.释放资源
+  sqlSession.close();
+  ```
+
+  <img src="photo/image-20241226123314598.png" alt="image-20241226123314598" style="zoom:50%;" />
+
+  **其中最重要的对象就是：==SqlSessionFactory==**
+
+
+
+- 整合MyBatis（干掉下方的配置文件，用Bean代替）
+
+  ```xml
+  <?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE configuration
+          PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+          "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  <configuration>
+  
+      <properties resource="jdbc.properties">
+      </properties>
+      <typeAliases>
+          <package name="com.itheima.domain"/>
+      </typeAliases>
+  
+      <environments default="mysql">
+          <environment id="mysql">
+              <transactionManager type="JDBC"/>
+              <dataSource type="POOLED">
+                  <property name="driver" value="${jdbc.driver}"/>
+                  <property name="url" value="${jdbc.url}"/>
+                  <property name="username" value="${jdbc.username}"/>
+                  <property name="password" value="${jdbc.password}"/>
+              </dataSource>
+          </environment>
+      </environments>
+      <mappers>
+          <package name="com.itheima.dao"/>
+      </mappers>
+  </configuration>
+  ```
+
+  <img src="photo/image-20241226124847998.png" alt="image-20241226124847998" style="zoom:50%;" />
+
+  **替换如下：**
+
+  <img src="photo/image-20241226165413720.png" alt="image-20241226165413720" style="zoom:50%;" />
+
+  <img src="photo/image-20241226165613697.png" alt="image-20241226165613697" style="zoom:50%;" />
+
+
+
+**小结**：
+
+1. 整合MyBatis
+   - SqlSessionFactoryBean
+   - MapperScannerConfigurer
+
+
+
+# 二十三、整合JUnit
+
+- 使用Spring整合JUnit专用的类加载器
+
+  ```java
+  @RunWith(SpringJUnit4ClassRunner.class)
+  @ContextConfiguration(classes = SpringConfig.class)
+  public class AccountServiceTest {
+  
+      @Autowired
+      private AccountService accountService;
+  
+      @Test
+      public void testFindById() {
+          System.out.println(accountService.findById(1));
+      }
+  
+      @Test
+      public void testFindAll() {
+          System.out.println(accountService.findAll());
+      }
+  }
+  ```
+
+  
+
+**小结**
+
+1. 整合JUnit（重点掌握使用以下两个注解）
+   - @RunWith(SpringJUnit4ClassRunner.class)
+   - @ContextConfiguration
+
+
+
+# 二十四、AOP简介
+
+**AOP核心概念**
+
+**AOP作用**
+
+
+
+- AOP（Aspect Oriented Programming）面向切口编程，一种编程范式，指导开发者如何组织程序结构
+  - OOP（Object Oriented Programming）面向对象编程
+- 作用：在不惊动原始设计的基础上为其进行功能增强
+- Spring理念：无入侵式/无侵入式
+
+
+
+## 1.AOP核心概念
+
+```java
+@Repository
+public class BookDaoImpl implements BookDao {
+    public void save() {
+        //记录程序当前执行（开始时间）
+        Long startTime = System.currentTimeMillis();
+        //业务执行万次
+        for (int i = 0; i < 10000; i++) {
+            System.out.println("book dao save ...");
+        }
+        //记录程序当前执行（结束时间）
+        Long endTime = System.currentTimeMillis();
+        //计算时间差
+        Long totalTime = endTime - startTime;
+        System.out.println("执行万次业务消耗时间：" + totalTime + "ms");
+    }
+
+    public void update(){
+        System.out.println("book dao update ...");
+    }
+
+    public void delete(){
+        System.out.println("book dao delete ...");
+    }
+
+    public void select(){
+        System.out.println("book dao select ...");
+    }
+
+}
+```
+
+<img src="photo/image-20241226230519824.png" alt="image-20241226230519824" style="zoom:50%;" />
