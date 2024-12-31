@@ -1801,6 +1801,8 @@ public class BookServiceImpl implements BookService {
 
 
 
+## 1.AOP概念与作用
+
 - AOP（Aspect Oriented Programming）面向切口编程，一种编程范式，指导开发者如何组织程序结构
   - OOP（Object Oriented Programming）面向对象编程
 - 作用：在不惊动原始设计的基础上为其进行功能增强
@@ -1808,7 +1810,7 @@ public class BookServiceImpl implements BookService {
 
 
 
-## 1.AOP核心概念
+## 2.AOP核心概念
 
 ```java
 @Repository
@@ -1843,3 +1845,119 @@ public class BookDaoImpl implements BookDao {
 ```
 
 <img src="photo/image-20241226230519824.png" alt="image-20241226230519824" style="zoom:50%;" />
+
+
+
+- 连接点（JoinPoint）：程序执行过程中的任意位置，粒度为执行方法、抛出异常、设置变量等
+  - 在SpringAOP中，理解为方法的执行
+- 切入点（Pointcut）：匹配连接点的式子
+  - 在SpringAOP中，一个切入点可以只描述一个具体方法，也可以匹配多个方法
+    - 一个具体方法：com.itheima.dao包下的BookDao接口中的无形参无返回值的save方法
+    - 匹配多个方法：所有的save方法、所有的get开头的方法、所有以Dao结尾的接口中的任意方法、所有带有一个参数的方法（相当于匹配的规则）
+- 通知（Advice）：在切入点处执行的操作，也就是共性功能
+  - 在SpringAOP中，功能最终以方法的形式呈现
+- 通知类：定义通知的类
+- 切面（Aspect）：描述通知与切入点的对应关系
+
+
+
+**小结：**
+
+1. AOP概念与作用
+2. AOP核心概念
+   - 连接点（JoinPoint）
+   - 切入点（Pointcut）
+   - 通知（Advice）
+   - 通知类
+   - 切面（Aspect）
+
+
+
+# 二十五、AOP入门案例
+
+**AOP入门案例思路分析**
+
+**AOP入门案例实现**
+
+
+
+## 1.AOP入门案例思路分析
+
+案例设定：测定接口执行效率
+
+简化设定：在接口执行前输出当前系统时间
+
+开发模式：XML or **注解**
+
+思路分析：
+
+1. 导入坐标（pom.xml）
+2. 制作连接点方法（原始操作，Dao接口与实现类）
+3. 制作共性功能（通知类与通知）
+4. 定义切入点
+5. 绑定切入点与通知关系（切面）
+
+
+
+## 2.AOP入门案例实现（注解版）
+
+1. 导入AOP相关坐标
+
+   ```xml
+         <dependency>
+             <groupId>org.aspectj</groupId>
+             <artifactId>aspectjweaver</artifactId>
+             <version>1.9.4</version>
+         </dependency>
+   ```
+
+   说明：spring-context坐标依赖spring-aop坐标
+
+   <img src="photo/image-20241228114858561.png" alt="image-20241228114858561" style="zoom:50%;" />
+
+2. 定义dao接口与实现类
+
+   ```java
+   public interface BookDao {
+       public void save();
+       public void update();
+   }
+   
+   ```
+
+   ```java
+   @Repository
+   public class BookDaoImpl implements BookDao {
+       public void save() {
+           System.out.println(System.currentTimeMillis());
+           System.out.println("book dao save ...");
+       }
+   
+       public void update(){
+           System.out.println("book dao update ...");
+       }
+   
+   }
+   ```
+
+3. 定义通知类，制作通知
+
+   ```java
+   public class MyAdvice {
+       public void method() {
+           System.out.println(System.currentTimeMillis());
+       }
+   }
+   ```
+
+4. 定义切入点
+
+   ```java
+   public class MyAdvice {
+       @Pointcut("execution(void com.itheima.dao.BookDao.update())") //定义好切入点
+       private void pt() {}
+   }
+   ```
+
+   说明：切入点定义依托一个不具有实际意义的方法进行，即无参数，无返回值，方法体无实际逻辑
+

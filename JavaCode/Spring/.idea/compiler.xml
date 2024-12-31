@@ -16,6 +16,7 @@
         <module name="spring_14_annotation_third_bean_manager" />
         <module name="spring_12_annotation_bean_manager" />
         <module name="spring_15_spring_mybatis" />
+        <module name="spring_18_aop_quickstart" />
         <module name="spring_06_di_constructor" />
         <module name="spring_02_base_config" />
         <module name="spring_17_aop_demo" />
