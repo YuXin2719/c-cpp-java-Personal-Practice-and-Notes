@@ -1,0 +1,237 @@
+﻿  测试代码.cpp
+E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7): error C2679: 二元“<<”: 没有找到接受“overloaded-function”类型的右操作数的运算符(或没有可接受的转换)
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(486,39):
+      可能是“std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::basic_streambuf<char,std::char_traits<char>> *)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::basic_streambuf<char,std::char_traits<char>> *)”: 无法将参数 2 从“overloaded-function”转换为“std::basic_streambuf<char,std::char_traits<char>> *”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(454,39):
+      或    “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(const void *)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(const void *)”: 无法将参数 2 从“overloaded-function”转换为“const void *”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(436,39):
+      或    “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(long double)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(long double)”: 无法将参数 2 从“overloaded-function”转换为“long double”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(418,39):
+      或    “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(double)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(double)”: 无法将参数 2 从“overloaded-function”转换为“double”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(400,39):
+      或    “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(float)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(float)”: 无法将参数 2 从“overloaded-function”转换为“float”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(382,39):
+      或    “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned __int64)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned __int64)”: 无法将参数 2 从“overloaded-function”转换为“unsigned __int64”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(364,39):
+      或    “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(__int64)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(__int64)”: 无法将参数 2 从“overloaded-function”转换为“__int64”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(346,39):
+      或    “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned long)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned long)”: 无法将参数 2 从“overloaded-function”转换为“unsigned long”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(328,39):
+      或    “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(long)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(long)”: 无法将参数 2 从“overloaded-function”转换为“long”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(309,39):
+      或    “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned int)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned int)”: 无法将参数 2 从“overloaded-function”转换为“unsigned int”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(283,39):
+      或    “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(int)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(int)”: 无法将参数 2 从“overloaded-function”转换为“int”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(264,39):
+      或    “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned short)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned short)”: 无法将参数 2 从“overloaded-function”转换为“unsigned short”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(230,39):
+      或    “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(short)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(short)”: 无法将参数 2 从“overloaded-function”转换为“short”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(212,39):
+      或    “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(bool)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(bool)”: 无法将参数 2 从“overloaded-function”转换为“bool”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(206,39):
+      或    “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::ios_base &(__cdecl *)(std::ios_base &))”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::ios_base &(__cdecl *)(std::ios_base &))”: 无法将参数 2 从“overloaded-function”转换为“std::ios_base &(__cdecl *)(std::ios_base &)”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              在匹配目标类型的范围内没有具有该名称的函数
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(200,39):
+      或    “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::basic_ios<char,std::char_traits<char>> &(__cdecl *)(std::basic_ios<char,std::char_traits<char>> &))”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::basic_ios<char,std::char_traits<char>> &(__cdecl *)(std::basic_ios<char,std::char_traits<char>> &))”: 无法将参数 2 从“overloaded-function”转换为“std::basic_ios<char,std::char_traits<char>> &(__cdecl *)(std::basic_ios<char,std::char_traits<char>> &)”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              在匹配目标类型的范围内没有具有该名称的函数
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(195,39):
+      或    “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::basic_ostream<char,std::char_traits<char>> &(__cdecl *)(std::basic_ostream<char,std::char_traits<char>> &))”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::basic_ostream<char,std::char_traits<char>> &(__cdecl *)(std::basic_ostream<char,std::char_traits<char>> &))”: 无法将参数 2 从“overloaded-function”转换为“std::basic_ostream<char,std::char_traits<char>> &(__cdecl *)(std::basic_ostream<char,std::char_traits<char>> &)”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              在匹配目标类型的范围内没有具有该名称的函数
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(900,32):
+      或    “std::basic_ostream<char,std::char_traits<char>> &std::operator <<<char,std::char_traits<char>>(std::basic_ostream<char,std::char_traits<char>> &,_Elem)”
+          with
+          [
+              _Elem=char
+          ]
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<char,std::char_traits<char>> &std::operator <<<char,std::char_traits<char>>(std::basic_ostream<char,std::char_traits<char>> &,_Elem)”: 无法将参数 2 从“overloaded-function”转换为“_Elem”
+          with
+          [
+              _Elem=char
+          ]
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(857,32):
+      或    “std::basic_ostream<char,std::char_traits<char>> &std::operator <<<char,std::char_traits<char>>(std::basic_ostream<char,std::char_traits<char>> &,const _Elem *)”
+          with
+          [
+              _Elem=char
+          ]
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<char,std::char_traits<char>> &std::operator <<<char,std::char_traits<char>>(std::basic_ostream<char,std::char_traits<char>> &,const _Elem *)”: 无法将参数 2 从“overloaded-function”转换为“const _Elem *”
+          with
+          [
+              _Elem=char
+          ]
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(1088,32):
+      或    “std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::error_code &)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+          “初始化”: 无法从“overloaded-function”转换为“const std::error_code &”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              原因如下: 无法从“overloaded-function”转换为“const std::error_code”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              “std::error_code::error_code”: 没有重载函数可以转换所有参数类型
+                  E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\system_error(256,1):
+                  可能是“std::error_code::error_code(std::error_code &&)”
+                      E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+                      “std::error_code::error_code(std::error_code &&)”: 无法将参数 1 从“overloaded-function”转换为“std::error_code &&”
+                          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+                          原因如下: 无法从“overloaded-function”转换为“std::error_code”
+                          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+                          转换要求第二个用户定义的转换运算符或构造函数
+                  E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\system_error(256,1):
+                  或    “std::error_code::error_code(const std::error_code &)”
+                      E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+                      “std::error_code::error_code(const std::error_code &)”: 无法将参数 1 从“overloaded-function”转换为“const std::error_code &”
+                          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+                          原因如下: 无法从“overloaded-function”转换为“const std::error_code”
+                          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+                          转换要求第二个用户定义的转换运算符或构造函数
+                  E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\system_error(171,5):
+                  或    “std::error_code::error_code(int,const std::error_category &) noexcept”
+                      E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+                      “std::error_code::error_code”: 函数不接受 1 个参数
+                  E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\system_error(169,5):
+                  或    “std::error_code::error_code(void) noexcept”
+                      E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+                      “std::error_code::error_code”: 函数不接受 1 个参数
+                  E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\system_error(174,5):
+                  或    “std::error_code::error_code(_Enum) noexcept”
+                  E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+                  尝试匹配参数列表“(overloaded-function)”时
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(1011,9):
+      或    “_Ostr &&std::operator <<(_Ostr &&,const _Ty &)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “_Ostr &&std::operator <<(_Ostr &&,const _Ty &)”: 无法推导“_Ty”的 模板 参数
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(953,31):
+      或    “std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,unsigned char)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+          “初始化”: 无法从“overloaded-function”转换为“unsigned char”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(947,31):
+      或    “std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,const unsigned char *)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+          “初始化”: 无法从“overloaded-function”转换为“const unsigned char *”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(942,31):
+      或    “std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,signed char)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+          “初始化”: 无法从“overloaded-function”转换为“signed char”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(936,31):
+      或    “std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,const signed char *)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+          “初始化”: 无法从“overloaded-function”转换为“const signed char *”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(819,31):
+      或    “std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,char)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+          “初始化”: 无法从“overloaded-function”转换为“char”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(774,31):
+      或    “std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,const char *)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+          “初始化”: 无法从“overloaded-function”转换为“const char *”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(738,32):
+      或    “std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,char)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+          “初始化”: 无法从“overloaded-function”转换为“char”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\ostream(694,32):
+      或    “std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const char *)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+          “初始化”: 无法从“overloaded-function”转换为“const char *”
+              E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,15):
+              上下文不允许消除重载函数的歧义
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\memory(3761,32):
+      或    “std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::unique_ptr<_Ty2,_Dx2> &)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::unique_ptr<_Ty2,_Dx2> &)”: 无法推导“_Yty”的 模板 参数
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::unique_ptr<_Ty2,_Dx2> &)”: 无法推导“_Dx”的 模板 参数
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\memory(1979,32):
+      或    “std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::shared_ptr<_Ty> &)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::shared_ptr<_Ty> &)”: 无法推导“_Ty”的 模板 参数
+      E:\vs\vs2022\VC\Tools\MSVC\14.42.34433\include\xstring(3419,32):
+      或    “std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::basic_string<_Elem,_Traits,_Alloc> &)”
+          E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+          “std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::basic_string<_Elem,_Traits,_Alloc> &)”: 无法推导“_Alloc”的 模板 参数
+      E:\c.---c.---java-exercise\cppCode\C++基础练习\测试代码.cpp(11,7):
+      尝试匹配参数列表“(std::basic_ostream<char,std::char_traits<char>>, overloaded-function)”时
+  

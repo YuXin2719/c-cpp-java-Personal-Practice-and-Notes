@@ -1,6 +1,12 @@
+**==！！！特别注意！！！==**
+
+**本笔记==仅包含 初识Spring 到 AOP入门案例== 的内容，即视频内 Spring01 - Spring30 的内容**
+
+**剩余的一点内容由于时间关系笔者没空写，以后补全**
+
 # 一、Spring 课程介绍
 
-**==！！建议搭配本笔记学习以下视频教程！！==**
+==建议搭配 本笔记 学习以下 **视频教程**==
 
 【黑马Spring框架视频教程，全面深入解读Spring源码】 https://www.bilibili.com/video/BV18F411c7eL/?share_source=copy_web&vd_source=d9edc224153cc08d2737066e5ff7b890
 
@@ -1961,3 +1967,57 @@ public class BookDaoImpl implements BookDao {
 
    说明：切入点定义依托一个不具有实际意义的方法进行，即无参数，无返回值，方法体无实际逻辑
 
+5. 绑定切入点与通知关系，并指定通知添加到原始连接点的具体执行**位置**
+
+   ```java
+   public class MyAdvice {
+       @Pointcut("execution(void com.itheima.dao.BookDao.update())") //定义好切入点
+       private void pt() {
+       }
+   
+       @Before("pt()") //把切入点和通知绑定好，通过方法名
+       public void method() {
+           System.out.println(System.currentTimeMillis());
+       }
+   }
+   ```
+
+6. 定义通知类受Spring容器管理，并定义当前类为切面类
+
+   ```java
+   @Component //告诉spring来加载我
+   @Aspect //告诉spring这个东西是用来做aop的
+   public class MyAdvice {
+       @Pointcut("execution(void com.itheima.dao.BookDao.update())") //定义好切入点
+       private void pt() {
+       }
+   
+       @Before("pt()") //把切入点和通知绑定好，通过方法名
+       public void method() {
+           System.out.println(System.currentTimeMillis());
+       }
+   }
+   ```
+
+7. 开启Spring对AOP注解驱动支持
+
+   ```java
+   @Configuration
+   @ComponentScan("com.itheima")
+   @EnableAspectJAutoProxy //告诉spring我这里有用注解开发的东西，启动了我们注解开发里的@Aspect
+   public class SpringConfig {
+   }
+   ```
+
+   
+
+**小结：**
+
+1. AOP入门案例思路分析
+2. 实现AOp入门案例
+
+
+
+------
+
+**==实在实在不好意思，由于时间关系，本笔记在这里就要暂时结束了==**
