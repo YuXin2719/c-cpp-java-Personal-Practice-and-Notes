@@ -1,0 +1,5 @@
+﻿  hello.cpp
+E:\c.---c.---java-exercise\cppCode\C++进阶练习\hello.cpp(9,7): error C2601: “sayHello”: 本地函数定义是非法的
+      E:\c.---c.---java-exercise\cppCode\C++进阶练习\hello.cpp(5,1):
+      此行有一个“{”没有匹配项
+  

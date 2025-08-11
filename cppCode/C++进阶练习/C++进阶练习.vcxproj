@@ -129,8 +129,8 @@
   <ItemGroup>
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="new操作符.cpp" />
-    <ClCompile Include="point.h" />
     <ClCompile Include="point.cpp" />
+    <ClCompile Include="point.h" />
     <ClCompile Include="struct和class的区别.cpp" />
     <ClCompile Include="全局区.cpp" />
     <ClCompile Include="函数占位参数.cpp" />

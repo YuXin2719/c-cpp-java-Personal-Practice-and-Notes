@@ -6,7 +6,7 @@
 using namespace std;
 
 ////点和圆关系案例
-//// 点类
+////点类
 //class Point
 //{
 //public:
@@ -37,7 +37,7 @@ using namespace std;
 //	int m_X;
 //	int m_Y;
 //};
-
+//
 ////圆类
 //class Circle
 //{

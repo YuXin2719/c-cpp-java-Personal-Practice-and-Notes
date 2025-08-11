@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e16f3df-b6f9-4719-9f6f-3bee00cce94b" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Spring简单入门.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Spring简单入门.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-top-speed/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java-top-speed/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,6 +201,14 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409" />
+        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-IU-252.23892.409" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
@@ -231,6 +238,8 @@
       <workItem from="1735355549198" duration="5333000" />
       <workItem from="1735816559403" duration="2045000" />
       <workItem from="1735916615700" duration="595000" />
+      <workItem from="1738913445808" duration="41000" />
+      <workItem from="1754926224587" duration="8000" />
     </task>
     <servers />
   </component>

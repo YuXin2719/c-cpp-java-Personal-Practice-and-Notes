@@ -84,10 +84,10 @@
     <ClCompile Include="point.h">
       <Filter>头文件</Filter>
     </ClCompile>
-    <ClCompile Include="point.cpp">
+    <ClCompile Include="Circle.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Circle.cpp">
+    <ClCompile Include="point.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

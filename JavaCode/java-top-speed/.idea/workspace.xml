@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a933fb7-e81d-400a-939d-9a620121f28b" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Java.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-top-speed.iml" beforeDir="false" afterPath="$PROJECT_DIR$/java-top-speed.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-top-speed/users.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-top-speed/users2.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/users.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/特殊文件/users.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/users2.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/特殊文件/users2.properties" afterDir="false" />
-    </list>
+    <list default="true" id="9a933fb7-e81d-400a-939d-9a620121f28b" name="更改" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,151 +35,158 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/c.---c.---java-exercise/JavaCode/java-top-speed/src/chapter10",
-    "project.structure.last.edited": "库",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.web.browsers",
-    "应用程序.Dom4jTest1.executor": "Run",
-    "应用程序.Dom4jTest2.executor": "Run",
-    "应用程序.Java01_Exception.executor": "Run",
-    "应用程序.Java01_HelloWorld.executor": "Run",
-    "应用程序.Java01_Object (1).executor": "Run",
-    "应用程序.Java01_Object.executor": "Run",
-    "应用程序.Java01_Reflect (1).executor": "Run",
-    "应用程序.Java01_Reflect.executor": "Run",
-    "应用程序.Java01_Thread.executor": "Run",
-    "应用程序.Java01_variable.executor": "Run",
-    "应用程序.Java02_Exception.executor": "Run",
-    "应用程序.Java02_FlowControl.executor": "Run",
-    "应用程序.Java02_IO_File.executor": "Run",
-    "应用程序.Java02_Object.executor": "Run",
-    "应用程序.Java02_Object_1.executor": "Run",
-    "应用程序.Java02_Object_2 (1).executor": "Run",
-    "应用程序.Java02_Object_2.executor": "Run",
-    "应用程序.Java02_Reflect_ClassLoader.executor": "Run",
-    "应用程序.Java02_Thread.executor": "Run",
-    "应用程序.Java03_Collection_List.executor": "Run",
-    "应用程序.Java03_Exception.executor": "Run",
-    "应用程序.Java03_FlowControl.executor": "Run",
-    "应用程序.Java03_IO_File_Copy.executor": "Run",
-    "应用程序.Java03_Object.executor": "Run",
-    "应用程序.Java03_Object_Test.executor": "Run",
-    "应用程序.Java03_Object_Test_1.executor": "Run",
-    "应用程序.Java03_Object_Test_2.executor": "Run",
-    "应用程序.Java03_Object_Test_3.executor": "Run",
-    "应用程序.Java03_Reflect_Test.executor": "Run",
-    "应用程序.Java03_Thread.executor": "Run",
-    "应用程序.Java04_Collection_List_ArrayList.executor": "Run",
-    "应用程序.Java04_Exception.executor": "Run",
-    "应用程序.Java04_FlowControl_test.executor": "Run",
-    "应用程序.Java04_IO_File_Copy_Buffer.executor": "Run",
-    "应用程序.Java04_Object_String.executor": "Run",
-    "应用程序.Java04_Object_String_1.executor": "Run",
-    "应用程序.Java04_Object_String_2.executor": "Run",
-    "应用程序.Java04_Operator_2.executor": "Run",
-    "应用程序.Java04_Operator_3.executor": "Run",
-    "应用程序.Java04_Operator_4.executor": "Run",
-    "应用程序.Java04_Reflect_Exception.executor": "Run",
-    "应用程序.Java04_Thread_Run.executor": "Run",
-    "应用程序.Java05_Collection_List_LinkedList.executor": "Run",
-    "应用程序.Java05_Collection_List_LinkedList_1.executor": "Run",
-    "应用程序.Java05_Exception.executor": "Run",
-    "应用程序.Java05_FlowControl.executor": "Run",
-    "应用程序.Java05_FlowControl_1.executor": "Run",
-    "应用程序.Java05_IO_File_Copy_String.executor": "Run",
-    "应用程序.Java05_Thread_Pool.executor": "Debug",
-    "应用程序.Java06_Collection.executor": "Run",
-    "应用程序.Java06_FlowControl_test.executor": "Run",
-    "应用程序.Java06_IO_File_Copy_String_1.executor": "Run",
-    "应用程序.Java06_Object_Date.executor": "Run",
-    "应用程序.Java06_Object_Method.executor": "Run",
-    "应用程序.Java06_Thread_Syn.executor": "Run",
-    "应用程序.Java07_IO_Object.executor": "Run",
-    "应用程序.Java07_Object_Date.executor": "Run",
-    "应用程序.Java07_Object_Date_Test.executor": "Run",
-    "应用程序.Java07_Object_Method_Param (1).executor": "Run",
-    "应用程序.Java07_Object_Method_Param (2).executor": "Run",
-    "应用程序.Java07_Object_Method_Param.executor": "Run",
-    "应用程序.Java07_Object_Method_Param_1.executor": "Run",
-    "应用程序.Java08_Collection_Sort (1).executor": "Run",
-    "应用程序.Java08_Collection_Sort.executor": "Run",
-    "应用程序.Java08_Exception.executor": "Run",
-    "应用程序.Java08_IO_Exception.executor": "Run",
-    "应用程序.Java08_Object_Date_Util (1).executor": "Run",
-    "应用程序.Java08_Object_Date_Util (2).executor": "Run",
-    "应用程序.Java08_Object_Date_Util (3).executor": "Run",
-    "应用程序.Java08_Object_Date_Util.executor": "Run",
-    "应用程序.Java08_Object_Static (1).executor": "Run",
-    "应用程序.Java08_Object_Static.executor": "Run",
-    "应用程序.Java08_Object_Static_1 (1).executor": "Run",
-    "应用程序.Java08_Object_Static_1.executor": "Run",
-    "应用程序.Java08_Object_Static_2 (1).executor": "Run",
-    "应用程序.Java08_Object_Static_2 (2).executor": "Run",
-    "应用程序.Java08_Object_Static_2.executor": "Run",
-    "应用程序.Java08_Thread_Safe.executor": "Run",
-    "应用程序.Java09_Collection_Set.executor": "Run",
-    "应用程序.Java09_Collection_Set_1.executor": "Run",
-    "应用程序.Java09_Collection_Set_2.executor": "Run",
-    "应用程序.Java09_Object.executor": "Run",
-    "应用程序.Java10_Collection_Queue.executor": "Run",
-    "应用程序.Java10_Object_Import.executor": "Run",
-    "应用程序.Java11_Collection_Map.executor": "Run",
-    "应用程序.Java11_Collection_Map_1.executor": "Run",
-    "应用程序.Java11_Collection_Map_2.executor": "Run",
-    "应用程序.Java11_Collection_Map_3.executor": "Run",
-    "应用程序.Java11_Object_Instance (1).executor": "Run",
-    "应用程序.Java11_Object_Instance.executor": "Run",
-    "应用程序.Java12_Collection_Util.executor": "Run",
-    "应用程序.Java12_Object_Extends.executor": "Run",
-    "应用程序.Java12_Object_Extends_1 (1).executor": "Run",
-    "应用程序.Java12_Object_Extends_1 (2).executor": "Run",
-    "应用程序.Java12_Object_Extends_1.executor": "Run",
-    "应用程序.Java12_Object_Extends_2 (1).executor": "Run",
-    "应用程序.Java12_Object_Extends_2 (2).executor": "Run",
-    "应用程序.Java12_Object_Extends_2.executor": "Run",
-    "应用程序.Java13_Collection_Exception.executor": "Run",
-    "应用程序.Java13_Object.executor": "Run",
-    "应用程序.Java14_Object.executor": "Run",
-    "应用程序.Java14_Object_1.executor": "Run",
-    "应用程序.Java14_Object_2.executor": "Run",
-    "应用程序.Java15_Object (1).executor": "Run",
-    "应用程序.Java15_Object (2).executor": "Run",
-    "应用程序.Java15_Object (3).executor": "Run",
-    "应用程序.Java15_Object.executor": "Run",
-    "应用程序.Java15_Object_1 (1).executor": "Run",
-    "应用程序.Java15_Object_1 (2).executor": "Run",
-    "应用程序.Java15_Object_1 (3).executor": "Run",
-    "应用程序.Java15_Object_1 (4).executor": "Run",
-    "应用程序.Java15_Object_1 (5).executor": "Run",
-    "应用程序.Java15_Object_1.executor": "Run",
-    "应用程序.Java16_Object_Recursion.executor": "Run",
-    "应用程序.Java19_Object.executor": "Run",
-    "应用程序.Java20_Object.executor": "Run",
-    "应用程序.Java21_Object_Abstract.executor": "Run",
-    "应用程序.Java22_Object (1).executor": "Run",
-    "应用程序.Java22_Object (2).executor": "Run",
-    "应用程序.Java22_Object.executor": "Run",
-    "应用程序.Java23_Object_Enum.executor": "Run",
-    "应用程序.Java24_Object (1).executor": "Run",
-    "应用程序.Java24_Object.executor": "Run",
-    "应用程序.Java25_Object.executor": "Run",
-    "应用程序.Java26_Object (1).executor": "Run",
-    "应用程序.Java26_Object (2).executor": "Run",
-    "应用程序.Java26_Object (3).executor": "Run",
-    "应用程序.Java26_Object (4).executor": "Run",
-    "应用程序.Java26_Object.executor": "Run",
-    "应用程序.LogBackTest.executor": "Run",
-    "应用程序.PropertiesTest1.executor": "Run",
-    "应用程序.PropertiesTest2.executor": "Run",
-    "应用程序.PropertiesTest3.executor": "Run"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/c.---c.---java-exercise/JavaCode/java-top-speed/src/chapter10&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;项目&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
+    &quot;应用程序.Dom4jTest1.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Dom4jTest2.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java01_Exception.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java01_HelloWorld.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java01_Object (1).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java01_Object.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java01_Reflect (1).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java01_Reflect.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java01_Thread.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java01_variable.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java02_Exception.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java02_FlowControl.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java02_IO_File.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java02_Object.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java02_Object_1.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java02_Object_2 (1).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java02_Object_2.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java02_Reflect_ClassLoader.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java02_Thread.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java03_Collection_List.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java03_Exception.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java03_FlowControl.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java03_IO_File_Copy.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java03_Object.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java03_Object_Test.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java03_Object_Test_1.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java03_Object_Test_2.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java03_Object_Test_3.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java03_Reflect_Test.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java03_Thread.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java04_Collection_List_ArrayList.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java04_Exception.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java04_FlowControl_test.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java04_IO_File_Copy_Buffer.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java04_Object_String.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java04_Object_String_1.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java04_Object_String_2.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java04_Operator_2.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java04_Operator_3.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java04_Operator_4.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java04_Reflect_Exception.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java04_Thread_Run.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java05_Collection_List_LinkedList.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java05_Collection_List_LinkedList_1.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java05_Exception.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java05_FlowControl.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java05_FlowControl_1.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java05_IO_File_Copy_String.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java05_Thread_Pool.executor&quot;: &quot;Debug&quot;,
+    &quot;应用程序.Java06_Collection.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java06_FlowControl_test.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java06_IO_File_Copy_String_1.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java06_Object_Date.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java06_Object_Method.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java06_Thread_Syn.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java07_IO_Object.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java07_Object_Date.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java07_Object_Date_Test.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java07_Object_Method_Param (1).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java07_Object_Method_Param (2).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java07_Object_Method_Param.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java07_Object_Method_Param_1.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java08_Collection_Sort (1).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java08_Collection_Sort.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java08_Exception.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java08_IO_Exception.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java08_Object_Date_Util (1).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java08_Object_Date_Util (2).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java08_Object_Date_Util (3).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java08_Object_Date_Util.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java08_Object_Static (1).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java08_Object_Static.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java08_Object_Static_1 (1).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java08_Object_Static_1.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java08_Object_Static_2 (1).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java08_Object_Static_2 (2).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java08_Object_Static_2.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java08_Thread_Safe.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java09_Collection_Set.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java09_Collection_Set_1.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java09_Collection_Set_2.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java09_Object.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java10_Collection_Queue.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java10_Object_Import.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java11_Collection_Map.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java11_Collection_Map_1.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java11_Collection_Map_2.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java11_Collection_Map_3.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java11_Object_Instance (1).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java11_Object_Instance.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java12_Collection_Util.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java12_Object_Extends.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java12_Object_Extends_1 (1).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java12_Object_Extends_1 (2).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java12_Object_Extends_1.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java12_Object_Extends_2 (1).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java12_Object_Extends_2 (2).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java12_Object_Extends_2.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java13_Collection_Exception.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java13_Object.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java14_Object.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java14_Object_1.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java14_Object_2.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java15_Object (1).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java15_Object (2).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java15_Object (3).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java15_Object.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java15_Object_1 (1).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java15_Object_1 (2).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java15_Object_1 (3).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java15_Object_1 (4).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java15_Object_1 (5).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java15_Object_1.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java16_Object_Recursion.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java19_Object.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java20_Object.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java21_Object_Abstract.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java22_Object (1).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java22_Object (2).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java22_Object.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java23_Object_Enum.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java24_Object (1).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java24_Object.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java25_Object.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java26_Object (1).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java26_Object (2).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java26_Object (3).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java26_Object (4).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Java26_Object.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.LogBackTest.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.PropertiesTest1.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.PropertiesTest2.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.PropertiesTest3.executor&quot;: &quot;Run&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\c.---c.---java-exercise\JavaCode\java-top-speed\src\chapter10" />
@@ -278,13 +277,21 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.LogBackTest" />
         <item itemvalue="应用程序.PropertiesTest3" />
+        <item itemvalue="应用程序.PropertiesTest2" />
+        <item itemvalue="应用程序.LogBackTest" />
         <item itemvalue="应用程序.Dom4jTest2" />
         <item itemvalue="应用程序.Dom4jTest1" />
-        <item itemvalue="应用程序.PropertiesTest2" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409" />
+        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-IU-252.23892.409" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -294,7 +301,25 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1727272659976</updated>
+      <workItem from="1754873051122" duration="1157000" />
+      <workItem from="1754874318902" duration="126000" />
+      <workItem from="1754874582533" duration="386000" />
+      <workItem from="1754875651905" duration="88000" />
+      <workItem from="1754875862489" duration="38000" />
+      <workItem from="1754875911605" duration="75000" />
+      <workItem from="1754876083346" duration="11000" />
+      <workItem from="1754877298125" duration="78000" />
+      <workItem from="1754877391528" duration="186000" />
+      <workItem from="1754877590340" duration="34000" />
+      <workItem from="1754877633757" duration="189000" />
+      <workItem from="1754877838156" duration="75000" />
+      <workItem from="1754879274424" duration="4000" />
+      <workItem from="1754926037419" duration="125000" />
+      <workItem from="1754926172769" duration="2000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
