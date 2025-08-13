@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>16.0</VCProjectVersion>
+    <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d77d9cc1-9c7b-4cb7-8a3b-44799c6eb139}</ProjectGuid>
-    <RootNamespace>对象的初始化和清理</RootNamespace>
+    <ProjectGuid>{d71da452-7409-4b0c-9767-15bbaf7c5ff7}</ProjectGuid>
+    <RootNamespace>文件</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -93,8 +93,6 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -121,49 +119,12 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="const修饰成员函数.cpp" />
-    <ClCompile Include="this指针概念.cpp" />
-    <ClCompile Include="全局函数做友元.cpp" />
-    <ClCompile Include="关系运算符重载.cpp" />
-    <ClCompile Include="函数调用运算符重载.cpp" />
-    <ClCompile Include="初始化列表.cpp" />
-    <ClCompile Include="加号运算符重载.cpp" />
-    <ClCompile Include="多态基本概念.cpp" />
-    <ClCompile Include="多态案例一-计算机类.cpp" />
-    <ClCompile Include="多态案例三-电脑组装.cpp" />
-    <ClCompile Include="多态案例二-制作饮品.cpp" />
-    <ClCompile Include="多继承语法.cpp" />
-    <ClCompile Include="左移运算符重载.cpp" />
-    <ClCompile Include="成员函数做友元.cpp" />
-    <ClCompile Include="成员变量和成员函数分开存储.cpp" />
-    <ClCompile Include="拷贝构造函数调用时机.cpp" />
-    <ClCompile Include="构造函数和析构函数.cpp" />
-    <ClCompile Include="构造函数的分类和调用.cpp" />
-    <ClCompile Include="构造函数调用规则.cpp" />
-    <ClCompile Include="模版.cpp" />
-    <ClCompile Include="深拷贝和浅拷贝.cpp" />
-    <ClCompile Include="空指针访问成员函数.cpp" />
-    <ClCompile Include="类做友元.cpp" />
-    <ClCompile Include="类对象作为类成员.cpp" />
-    <ClCompile Include="纯虚函数和抽象类.cpp" />
-    <ClCompile Include="继承中构造和析构顺序.cpp" />
-    <ClCompile Include="继承中的对象模型.cpp" />
-    <ClCompile Include="继承同名成员处理方式.cpp" />
-    <ClCompile Include="继承同名静态成员处理方式.cpp" />
-    <ClCompile Include="继承方式.cpp" />
-    <ClCompile Include="继承的基本语法.cpp" />
-    <ClCompile Include="菱形继承.cpp" />
-    <ClCompile Include="虚析构和纯虚析构.cpp" />
-    <ClCompile Include="赋值运算符重载.cpp" />
-    <ClCompile Include="递增运算符重载.cpp" />
-    <ClCompile Include="静态对象-静态成员变量.cpp" />
-    <ClCompile Include="静态成员-静态成员函数.cpp" />
+    <ClCompile Include="文本文件-写文件.cpp" />
+    <ClCompile Include="模板.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

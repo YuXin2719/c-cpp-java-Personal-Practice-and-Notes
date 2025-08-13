@@ -5010,5 +5010,605 @@ int main()
 **示例：**
 
 ```c++
+#include <iostream>
+using namespace std;
+
+//纯虚函数和抽象类
+class Base
+{
+public:
+	//纯虚函数
+	//只要有一个纯虚函数，这个类就是抽象类
+	//抽象类的特点：
+	//1.不能实例化对象
+	//2.抽象类的子类 必须重写父类的纯虚函数，否则也属于抽象类
+	virtual void func() = 0;
+};
+
+class Son :public Base {
+public:
+	virtual void func() {
+		cout << "Son func" << endl;
+	}
+};
+
+void test01() {
+	//Base b; //抽象类无法实例化对象
+	//new Base; //抽象类无法实例化对象
+
+	//Son s; //子类必须重写父类的纯虚函数，否则无法实例化对象
+
+	Base* b = new Son; //可以通过父类指针指向子类对象
+	b->func(); //调用子类的重写函数
+
+}
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 4.7.4 多态案例二-制作饮品
+
+**案例描述：**
+
+制作饮品的大致流程为：煮水 - 冲泡 - 倒入杯中 - 加入辅料
+
+
+
+利用多态技术实现本案例，提供抽象制作饮品基类，提供子类制作咖啡和茶叶
+
+
+
+![image-20250813191055980](https://gitee.com/YuXinHome/blogimg/raw/master/img/image-20250813191055980.png)
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+using namespace std;
+
+//多态案例二-制作饮品
+class AbstractDrinking {
+public:
+	//煮水
+	virtual void boilWater() = 0;
+
+	//冲泡
+	virtual void brew() = 0;
+
+	//倒入杯中
+	virtual void pourInCup() = 0;
+
+	//添加配料
+	virtual void addCondiments() = 0;
+
+	//制作饮品
+	void makeDrink() {
+		boilWater();
+		brew();
+		pourInCup();
+		addCondiments();
+	}
+
+};
+
+//制作咖啡
+class Coffee : public AbstractDrinking {
+public:
+	void boilWater() override {
+		cout << "煮水" << endl;
+	}
+	void brew() override {
+		cout << "冲泡咖啡" << endl;
+	}
+	void pourInCup() override {
+		cout << "倒入杯中" << endl;
+	}
+	void addCondiments() override {
+		cout << "添加糖和牛奶" << endl;
+	}
+};
+
+//制作茶
+class Tea : public AbstractDrinking {
+public:
+	void boilWater() override {
+		cout << "煮水" << endl;
+	}
+	void brew() override {
+		cout << "冲泡茶叶" << endl;
+	}
+	void pourInCup() override {
+		cout << "倒入杯中" << endl;
+	}
+	void addCondiments() override {
+		cout << "添加枸杞" << endl;
+	}
+};
+
+//制作函数
+void doWork(AbstractDrinking* drink) {
+	if (drink != nullptr) {
+		drink->makeDrink();
+		delete drink; //释放内存
+	}
+}
+
+void test01() {
+	//制作咖啡
+	doWork(new Coffee);
+
+	cout << "------------------------" << endl;
+
+	//制作茶
+	doWork(new Tea);
+}
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 4.7.5 虚析构和纯虚析构
+
+
+
+多态使用时，如果子类中有属性开辟到堆区，那么父类指针在释放时无法调用到子类的析构代码
+
+
+
+解决方式：讲父类中的析构函数改为**虚析构**或者**纯虚析构**
+
+
+
+虚析构和纯虚析构共性：
+
+- 可以解决父类指针释放子类对象
+- 都需要有具体的函数实现
+
+虚析构和纯虚析构区别：
+
+- 如果是纯虚析构，该类属于抽象类，无法实例化对象
+- 纯虚析构必须**类内声明，类外实现**
+
+
+
+虚析构语法：
+
+`virtual ~类名(){}`
+
+纯虚析构语法：
+
+`virtual ~类名() = 0;`
+
+`类名::~类名(){}`
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+using namespace std;
+
+//虚析构和纯虚析构
+
+class Animal {
+public:
+	Animal() {
+		cout << "Animal构造函数调用" << endl;
+	}
+
+	//利用虚析构函数，确保子类的析构函数被调用
+	//virtual ~Animal() {
+	//	cout << "Animal析构函数调用" << endl;
+	//}
+
+	//纯虚析构 需要声明，也需要实现
+	//有了纯虚析构之后，这个类就变成了抽象类，不能实例化
+	virtual ~Animal() = 0;
+
+	//纯虚函数
+	virtual void speak() = 0;
+
+};
+
+Animal::~Animal() {
+	cout << "Animal纯虚析构函数调用" << endl;
+}
+
+class Cat : public Animal {
+public:
+
+	Cat(string name) {
+		cout << "Cat构造函数调用" << endl;
+		m_name = new string(name);
+	}
+
+	virtual void speak() override {
+		cout << *m_name << "小猫在说话" << endl;
+	}
+
+	~Cat() {
+		if (m_name != NULL) {
+			delete m_name;
+			m_name = NULL;
+		}
+		cout << "Cat析构函数调用" << endl;
+	}
+
+	string* m_name;
+};
+
+void test01() {
+	Animal* a = new Cat("Tom");
+	a->speak(); //调用Cat的speak函数
+	//父类指针在析构的时候 不会调用子类的析构函数，导致子类的资源没有释放
+	delete a; //释放内存
+}
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+总结：
+
+1. 虚析构或者纯虚析构就是用来解决通过父类指针释放子类对象
+2. 如果子类中没有堆区数据，可以不写虚析构或者纯虚析构
+3. 拥有纯虚析构函数的类也是抽象类
+
+
+
+#### 4.7.6 多态案例三-电脑组装
+
+
+
+**案例描述：**
+
+
+
+电脑主要组成部件为CPU（用于计算），显卡（用于显示），内存条（用于存储）
+
+将每个零件封装出抽象基类，并且提供不同的厂商生产不同的零件，例如Intel厂商和Lenovo厂商
+
+创建电脑类提供让电脑工作的函数，并且调用每个零件工作的接口
+
+测试时组装三台不同的电脑进行工作
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+using namespace std;
+
+//抽象不同零件的类
+//抽象CPU类
+class CPU {
+public:
+	//抽象计算函数
+	virtual void calculate() = 0;
+};
+
+//抽象显卡类
+class GPU {
+public:
+	//抽象显示函数
+	virtual void display() = 0;
+};
+
+//抽象内存类
+class RAM {
+public:
+	//抽象存储函数
+	virtual void store() = 0;
+};
+
+//电脑类
+class Computer {
+public:
+	//构造函数
+	Computer(CPU* cpu, GPU* gpu, RAM* ram) : cpu(cpu), gpu(gpu), ram(ram) {}
+	//组装电脑,工作函数
+	void assemble() {
+		cpu->calculate();
+		gpu->display();
+		ram->store();
+	}
+	//析构函数,释放三个电脑零件的内存
+	~Computer() {
+		if (cpu != nullptr) {
+			delete cpu;
+			cpu = nullptr;
+		}
+		if (gpu != nullptr) {
+			delete gpu;
+			gpu = nullptr;
+		}
+		if (ram != nullptr) {
+			delete ram;
+			ram = nullptr;
+		}
+	}
+private:
+	CPU* cpu; // CPU指针
+	GPU* gpu; // GPU指针
+	RAM* ram; // RAM指针
+};
+
+//具体厂商
+//IntelCPU厂商
+class IntelCPU : public CPU {
+public:
+	void calculate() override {
+		cout << "Intel CPU is calculating." << endl;
+	}
+};
+
+//IntelGPU厂商
+class IntelGPU : public GPU {
+public:
+	void display() override {
+		cout << "Intel GPU is displaying." << endl;
+	}
+};
+
+//IntelRAM厂商
+class IntelRAM : public RAM {
+public:
+	void store() override {
+		cout << "Intel RAM is storing." << endl;
+	}
+};
+
+//LenovoCPU厂商
+class LenovoCPU : public CPU {
+public:
+	void calculate() override {
+		cout << "Lenovo CPU is calculating." << endl;
+	}
+};
+
+//LenovoGPU厂商
+class LenovoGPU : public GPU {
+public:
+	void display() override {
+		cout << "Lenovo GPU is displaying." << endl;
+	}
+};
+
+//LenovoRAM厂商
+class LenovoRAM : public RAM {
+public:
+	void store() override {
+		cout << "Lenovo RAM is storing." << endl;
+	}
+};
+
+void test01() {
+	//第一台电脑零件
+	CPU* intelCpu = new IntelCPU(); //如果IntelCPU定义了默认构造函数，两者等价（C++中）
+	GPU* intelGpu = new IntelGPU();
+	RAM* intelRam = new IntelRAM();
+
+	cout << "组装第一台电脑" << endl;
+	//组装第一台电脑
+	Computer* computer1 = new Computer(intelCpu, intelGpu, intelRam);
+	computer1->assemble();
+	//释放第一台电脑的内存
+	delete computer1;
+
+	cout << "------------------------" << endl;
+	cout << "组装第二台电脑" << endl;
+	//第二台电脑组装
+	Computer* computer2 = new Computer(new LenovoCPU(), new LenovoGPU(), new LenovoRAM());
+	computer2->assemble();
+	//释放第二台电脑的内存
+	delete computer2;
+
+	cout << "------------------------" << endl;
+	cout << "组装第三台电脑" << endl;
+	//第三台电脑组装
+	Computer* computer3 = new Computer(new LenovoCPU(), new IntelGPU(), new LenovoRAM());
+	computer3->assemble();
+	//释放第三台电脑的内存
+	delete computer3;
+}
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+## 五、文件操作
+
+
+
+程序运行时产生的数据都属于临时数据，程序一旦运行结束都会被释放
+
+通过**文件可以将数据持久化**
+
+C++中对文件操作需要包含头文件 ==\<fstream>==
+
+
+
+文件类型分为两种：
+
+1. **文本文件：**文件以文本的ASCII码形式存储在计算机中
+2. **二进制文件：**文件以文本的二进制形式存储在计算机中，用户一般不能直接读懂它们
+
+
+
+操作文件的三大类：
+
+1. ofstream：写操作
+2. ifstream：读操作
+3. fstream：读写操作
+
+
+
+### 5.1 文本文件
+
+#### 5.1.1 写文件
+
+写文件步骤如下：
+
+1. 包含头文件
+
+   #include \<fstream>
+
+2. 创建流对象
+
+   ofstream ofs;
+
+3. 打开文件
+
+   ofs.open("文件路径",打开方式);
+
+4. 写数据
+
+   ofs << "写入的数据";
+
+5. 关闭文件
+
+   ofs.close();
+
+
+
+文件打开方式：
+
+| **打开方式** | **解释**                   |
+| ------------ | -------------------------- |
+| **ios::in**  | 为读文件而打开文件         |
+| **ios::out** | 为写文件而打开文件         |
+| ios::ate     | 初始位置：文件末尾         |
+| ios::app     | 追加方式写文件             |
+| ios::trunc   | 如果文件存在先删除，在创建 |
+| ios::binary  | 二进制方式                 |
+
+**注意：**文件打开方式可以配合使用，利用|操作符
+
+**例如：**用二进制方式写文件`ios::binary | ios::out`
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+using namespace std;
+#include <fstream> //包含头文件fstream
+
+//文本文件 写文件
+
+void test01() {
+	//1.包含头文件 fstream
+
+	//2.创建流对象
+	ofstream ofs; //创建输出流对象
+
+	//3.打开文件
+	ofs.open("test.txt", ios::out); //打开文件，指定打开方式为写模式
+
+	//4.判断文件是否打开成功
+	if (!ofs.is_open()) {
+		cout << "文件打开失败" << endl;
+		return; //如果打开失败，直接返回
+	}
+
+	//5.写数据到文件
+	ofs << "hello world" << endl; //向文件写入数据
+
+	//6.关闭文件
+	ofs.close(); //关闭文件流
+}
+
+int main()
+{
+
+	test01(); //调用函数执行写文件操作
+
+	system("pause");
+	return 0;
+}
+```
+
+总结：
+
+- 文件操作必须包含头文件 fstream
+- 读文件可以利用 ofstream，或者fstream类
+- 打开文件时需要指定操作文件的路径（相对路径绝对路径都可以）（不指定路径就创建在当前工作目录下），以及打开方式
+- 利用<<可以向文件中写数据
+- 操作完毕，要关闭文件
+
+
+
+#### 5.1.2 读文件
+
+读文件和写文件步骤相似，但是读取方式相对于比较多
+
+
+
+读文件步骤如下：
+
+1. 包含头文件
+
+   #include \<fstream>
+
+2. 创建流对象
+
+   ifstream ifs;
+
+3. 打开文件并判断文件是否打开成功
+
+   ifs.open("文件路径",打开方式);
+
+4. 读数据
+
+   四种方式读取
+
+5. 关闭文件
+
+   ifs.close();
+
+
+
+**示例：**
+
+```c++
 
 ```
+

@@ -111,10 +111,19 @@
     <ClCompile Include="多态基本概念.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="多态案例一 - 计算机类.cpp">
+    <ClCompile Include="多态案例一-计算机类.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="纯虚函数和抽象类.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="多态案例二-制作饮品.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="虚析构和纯虚析构.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="多态案例三-电脑组装.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
