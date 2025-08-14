@@ -5609,6 +5609,999 @@ int main()
 **示例：**
 
 ```c++
+#include <iostream>
+using namespace std;
+#include <fstream>
+#include <string>
+
+//文本文件 读文件
+void test01() {
+	//1.包含头文件
+
+	//2.创建输入流对象
+	ifstream ifs;
+
+	//3.打开文件
+	ifs.open("test.txt", ios::in);
+
+	//4.判断文件是否打开成功
+	if (!ifs.is_open()) {
+		cout << "文件打开失败" << endl;
+		return;
+	}
+
+	//5.读数据
+	////	第一种方式
+	//char buf[1024] = { 0 };
+	//while (ifs >> buf) {
+	//	cout << buf << endl;
+	//}
+
+	////	第二种方式
+	//char buf2[1024] = { 0 };
+	//while (ifs.getline(buf2, sizeof(buf2))) {
+	//	cout << buf2 << endl;
+	//}
+
+	//	第三种方式
+	string str;
+	while (getline(ifs, str)) {
+		cout << str << endl;
+	}
+
+	//  第四种方式
+	//char c;
+	//while ((c = ifs.get()) != EOF) { //EOF是文件结束符 end of file
+	//	cout << c;
+	//}
+
+	//6.关闭文件
+	ifs.close();
+}
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+总结：
+
+- 读文件可以利用 fstream，或者fstream类
+- 利用is_open函数可以判断文件是否打开成功
+- close  关闭文件
+
+
+
+### 5.2 二进制文件
+
+以二进制的方式对文件进行读写操作
+
+打开方式要指定为 ==ios::binary==
+
+
+
+#### 5.2.1 写文件
+
+二进制方式写文件主要利用流对象调用成员函数write
+
+函数原型：`ostream& write(const char* buffer,int len);`
+
+参数解释：字符指针buffer指向内存 中一段存储空间，len是读写的字节数
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+using namespace std;
+#include <fstream>
+
+//二进制文件  写文件
+class Person {
+public:
+	char name[64];
+	int age;
+};
+
+void test01() {
+	//1.包含头文件
+	//2.创建文件流对象
+	ofstream ofs("person.txt", ios::out | ios::binary);
+
+	//3.打开文件
+	//ofs.open("person.txt", ios::out | ios::binary);
+
+	//4.写文件
+	Person p = { "Tom", 20 };
+	ofs.write((const char*)&p, sizeof(Person));
+
+	//5.关闭文件
+	ofs.close();
+}
+
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+总结：
+
+- 文件输出流对象 可以通过write函数，以二进制方式写数据
+
+
+
+#### 5.2.2 读文件
+
+二进制方式读文件主要利用流对象调用成员函数read
+
+函数原型：`istream& read(char* buffer,int len);`
+
+参数解释：字符指针buffer指向内存中一段存储空间，len是读写的字符数
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+using namespace std;
+#include <fstream>
+
+class Person {
+public:
+	char m_Name[64];
+	int m_Age;
+};
+
+//二进制文件  读文件
+void test01() {
+	//1.包含头文件
+
+	//2.创建文件流对象
+	ifstream ifs;
+
+	//3.打开文件,判断是否打开成功
+	ifs.open("person.txt", ios::in | ios::binary);
+	if (!ifs.is_open()) {
+		cout << "打开文件失败" << endl;
+		return;
+	}
+
+	//4.读数据
+	Person p;
+	while (ifs.read((char*)&p, sizeof(Person))) {
+		cout << "姓名: " << p.m_Name << " 年龄: " << p.m_Age << endl;
+	}
+
+	//5.关闭文件
+	ifs.close();
+}
+
+int main()
+{
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+- 文件输入流对象 可以通过read函数，以二进制方式读数据
+
+
+
+# 职工管理系统
+
+## 1、管理系统需求
+
+职工管理系统可以用来管理公司内所有员工的信息
+
+本教程主要利用C++来实现一个基于多态的职工管理系统
+
+
+
+公司中职工分为三类：普通员工、经理、老板，显示信息时，需要显示职工编号、职工姓名、职工岗位、以及职责
+
+普通员工职责：完成经理交给的任务
+
+经理职责：完成老板交给的任务，并下发任务给员工
+
+老板职责：管理公司所有事务
+
+
+
+管理系统中需要实现的功能如下：
+
+- 退出管理系统：退出当前管理系统
+- 增加职工信息：实现批量添加职工功能，将信息录入到文件中，职工信息为：职工编号、姓名、部门编号
+- 显示职工信息：显示公司内部所有职工信息
+- 删除离职员工：按照编号删除指定职工
+- 修改职工信息：按照编号修改职工个人信息
+- 查找职工信息：按照职工的编号或者姓名进行查找相关人员信息
+- 按照编号排序：按照职工编号，进行排序，排序规则由用户指定
+- 清空所有文档：清空文件中记录的所有职工信息（清空前需要再次确认，防止误删）
+
+系统界面效果图如下：
+
+![image-20250814110023093](https://gitee.com/YuXinHome/blogimg/raw/master/img/image-20250814110023093.png)
+
+
+
+## 2、创建项目
+
+- 创建新项目
+- 添加文件
+
+
+
+## 3、创建管理类
+
+管理类负责的内容如下：
+
+- 与用户的沟通菜单界面
+- 对职工增删改查的操作
+- 与文件的读写交互
+
+### 3.1 创建文件
+
+在头文件和源文件的文件夹下分别创建workerManager.h和workerManager.cpp文件
+
+### 3.2 头文件实现
+
+在workerManager.h中设计管理类
+
+代码如下：
+
+```c++
+#pragma once
+#include<iostream>
+using namespace std;
+
+class WorkerManager {
+public:
+	WorkerManager();
+	~WorkerManager();
+};
+```
+
+### 3.3 源文件实现
+
+在workerManager.cpp中将构造和析构函数补全
+
+```c++
+#include "workerManager.h"
+
+WorkerManager::WorkerManager() {
+
+}
+
+WorkerManager::~WorkerManager() {
+
+}
+```
+
+
+
+## 4、菜单功能
+
+功能描述：与用户的沟通界面
+
+### 4.1 添加成员函数
+
+在管理类workerManager.h中添加成员函数`void Show_Menw();`
+
+```c++
+#pragma once
+#include<iostream>
+using namespace std;
+
+class WorkerManager {
+public:
+	WorkerManager();
+	~WorkerManager();
+
+	//显示菜单
+	void Show_Menu();
+};
+```
+
+
+
+### 4.2 菜单功能实现
+
+在管理类workerManager.cpp中实现Show_Menw()函数
+
+```c++
+#include "workerManager.h"
+
+WorkerManager::WorkerManager() {
+
+}
+
+WorkerManager::~WorkerManager() {
+
+}
+
+//显示菜单
+void WorkerManager::Show_Menu() {
+	cout << "**********************************" << endl;
+	cout << "******* 欢迎使用职工管理系统 *****" << endl;
+	cout << "********* 0.退出管理程序 *********" << endl;
+	cout << "********* 1.增加职工信息 *********" << endl;
+	cout << "********* 2.显示职工信息 *********" << endl;
+	cout << "********* 3.删除离职职工 *********" << endl;
+	cout << "********* 4.修改职工信息 *********" << endl;
+	cout << "********* 5.查找职工信息 *********" << endl;
+	cout << "********* 6.按照编号排序 *********" << endl;
+	cout << "********* 7.清空所有文档 *********" << endl;
+	cout << "**********************************" << endl;
+}
+```
+
+
+
+### 4.3 测试菜单功能
+
+在职工管理系统.cpp中测试菜单功能
+
+代码：
+
+```c++
+#include<iostream>
+using namespace std;
+#include"workerManager.h"
+
+int main() {
+	WorkerManager wm;
+	wm.Show_Menu();
+	system("pause");
+	return 0;
+}
+```
+
+运行效果如图：
+
+![image-20250814112611183](https://gitee.com/YuXinHome/blogimg/raw/master/img/image-20250814112611183.png)
+
+
+
+## 5、退出功能
+
+### 5.1 提供功能接口
+
+在main函数中提供分支选择，提供每个功能接口
+
+代码：
+
+```c++
+#include<iostream>
+using namespace std;
+#include"workerManager.h"
+
+int main() {
+	WorkerManager wm;
+	int choice = 0;
+	while (true) {
+		//展示菜单
+		wm.Show_Menu();
+		cout << "请输入您的选择：";
+		cin >> choice;
+
+		switch (choice) {
+		case 0:
+			cout << "欢迎下次使用！" << endl;
+			return 0; //退出程序
+		case 1:
+			cout << "增加职工信息" << endl;
+			// 这里可以添加增加职工信息的代码
+			break;
+		case 2:
+			cout << "显示职工信息" << endl;
+			// 这里可以添加显示职工信息的代码
+			break;
+		case 3:
+			cout << "删除离职职工" << endl;
+			// 这里可以添加删除离职职工的代码
+			break;
+		case 4:
+			cout << "修改职工信息" << endl;
+			// 这里可以添加修改职工信息的代码
+			break;
+		case 5:
+			cout << "查找职工信息" << endl;
+			// 这里可以添加查找职工信息的代码
+			break;
+		case 6:
+			cout << "按照编号排序" << endl;
+			// 这里可以添加按照编号排序的代码
+			break;
+		case 7:
+			cout << "清空所有文档" << endl;
+			// 这里可以添加清空所有文档的代码
+			break;
+		default:
+			system("cls"); // 清屏
+			break;
+		}
+	}
+}
+```
+
+
+
+### 5.2 实现退出功能
+
+在workerManager.h中提供退出系统的成员函数`void exitSystem();`
+
+在workerManager.cpp中提供具体实现
+
+```c++
+//退出系统
+void WorkerManager::ExitSystem() {
+	cout << "欢迎下次使用！" << endl;
+	system("pause");
+	exit(0);
+}
+```
+
+
+
+### 5.3 测试功能
+
+在main函数分支 0 选项中，调用退出程序接口
+
+![image-20250814113704996](https://gitee.com/YuXinHome/blogimg/raw/master/img/image-20250814113704996.png)
+
+
+
+## 6、创建职工类
+
+### 6.1 创建职工抽象类
+
+职工分类：普通员工、经理、老板
+
+将三种职工抽象到一个类（worker）中，利用多态管理不同职工种类
+
+职工属性：职工编号、职工姓名、职工所在部门编号
+
+职工行为：岗位职责信息描述，获取岗位名称
+
+
+
+头文件文件夹下 创建文件worker.h 文件并且添加如下代码：
+
+```c++
+#pragma once
+#include <iostream>
+#include <string>
+using namespace std;
+
+//职工分类：普通员工、经理、老板
+//将三种职工抽象到一个类（worker）中，利用多态管理不同职工种类
+//职工属性：职工编号、职工姓名、职工所在部门编号
+//职工行为：岗位职责信息描述，获取岗位名称
+
+//抽象类：Worker
+class Worker {
+public:
+	//显示个人信息
+	virtual void ShowInfo() = 0; // 纯虚函数，强制派生类实现
+	//获取岗位名称
+	virtual string GetDeptName() = 0; // 纯虚函数，强制派生类实现
+
+	int m_Id; //职工编号
+	string m_Name; //职工姓名
+	int m_DeptId; //职工所在部门编号
+};
+```
+
+
+
+### 6.2 创建普通员工类
+
+普通员工类**继承**职工抽象类，并重写父类中纯虚函数
+
+在头文件和源文件的文件夹下分别创建`employee.h`和`employee.cpp`文件
+
+
+
+employee.h代码如下：
+
+```c++
+#pragma once
+#include<iostream>
+using namespace std;
+#include"worker.h"
+
+//员工类
+class Employee : public Worker {
+public:
+	Employee(int id, string name, int did); // 构造函数
+	virtual void ShowInfo(); // 显示个人信息
+	virtual string GetDeptName(); // 获取岗位名称
+};
+```
+
+employee.cpp代码如下：
+
+```c++
+#include "employee.h"
+
+// 构造函数
+Employee::Employee(int id, string name, int did) {
+	m_Id = id;
+	m_Name = name;
+	m_DeptId = did;
+}
+
+// 显示个人信息
+void Employee::ShowInfo() {
+	cout << "职工编号：" << m_Id << endl;
+	cout << "职工姓名：" << m_Name << endl;
+	cout << "职工部门：" << GetDeptName() << endl;
+	cout << "岗位职责：完成经理交给的任务" << endl;
+}
+
+// 获取岗位名称
+string Employee::GetDeptName() {
+	return "普通员工";
+}
+```
+
+
+
+### 6.3 创建经理类
+
+经理类**继承**职工抽象类，并重写父类的纯虚函数，和普通员工类似
+
+在头文件和源文件的文件夹下分别创建`manager.h`和m`anager.cpp`文件
+
+
+
+manager.h中代码如下：
+
+```c++
+#pragma once
+#include <iostream>
+using namespace std;
+#include "worker.h"
+
+//经理类
+class Manager : public Worker {
+public:
+	Manager(int id, string name, int did); // 构造函数
+	virtual void ShowInfo(); // 显示个人信息
+	virtual string GetDeptName(); // 获取岗位名称
+};
+```
+
+manager.cpp中代码如下：
+
+```c++
+#include"manager.h"
+
+Manager::Manager(int id, string name, int did) {
+	m_Id = id;
+	m_Name = name;
+	m_DeptId = did;
+}
+
+void Manager::ShowInfo() {
+	cout << "职工编号：" << m_Id << endl;
+	cout << "职工姓名：" << m_Name << endl;
+	cout << "职工部门：" << GetDeptName() << endl;
+	cout << "岗位职责：管理本部门员工" << endl;
+}
+
+string Manager::GetDeptName() {
+	return "经理";
+}
+
+```
+
+
+
+### 6.4 创建老板类
+
+老板类**继承**职工抽象类，并重写父类的纯虚函数，和普通员工类似
+
+在头文件和源文件的文件夹下分别创建boss.h和boss.cpp文件
+
+
+
+boss.h中代码如下 ：
+
+```c++
+#pragma once
+#include <iostream>
+using namespace std;
+#include "worker.h"
+
+//老板类
+class Boss : public Worker {
+public:
+	Boss(int id, string name, int did); // 构造函数
+	virtual void ShowInfo(); // 显示个人信息
+	virtual string GetDeptName(); // 获取岗位名称
+};
+```
+
+boss.cpp中代码如下：
+
+```c++
+#include"boss.h"
+
+Boss::Boss(int id, string name, int did) {
+	m_Id = id;
+	m_Name = name;
+	m_DeptId = did;
+}
+
+void Boss::ShowInfo() {
+	cout << "职工编号：" << m_Id << endl;
+	cout << "职工姓名：" << m_Name << endl;
+	cout << "职工部门：" << GetDeptName() << endl;
+	cout << "岗位职责：管理公司所有事务" << endl;
+}
+
+string Boss::GetDeptName() {
+	return "老板";
+}
+```
+
+
+
+### 6.5 测试多态
+
+在职工管理系统.cpp中添加测试函数，并且运行能够产生多态
+
+
+
+测试代码如下：
+
+```c++
+//测试添加职工信息
+void test() {
+	//创建职工对象
+	Worker* worker1 = new Employee(1, "张三", 1);
+	Worker* worker2 = new Manager(2, "李四", 2);
+	Worker* worker3 = new Boss(3, "王五", 3);
+	//显示职工信息
+	worker1->ShowInfo();
+	worker2->ShowInfo();
+	worker3->ShowInfo();
+	//释放内存
+	delete worker1;
+	delete worker2;
+	delete worker3;
+}
+```
+
+
+
+## 7、增加职工
+
+功能描述：批量添加职工，并且保存到文件中
+
+### 7.1 功能分析
+
+分析：
+
+用户在批量创建时，可能会创建不同种类的职工
+
+如果想将所有不同种类的员工都放入到一个数组中，可以将所有员工的指针维护到一个数组中
+
+如果想在程序中维护这个不定长度的数组，可以将数组创建到堆区，并利用Worker**的指针维护
+
+![image-20250814192657395](https://gitee.com/YuXinHome/blogimg/raw/master/img/image-20250814192657395.png)
+
+
+
+### 7.2 功能实现
+
+在WorkerManager.h头文件中添加成员属性 代码：
+
+```c++
+	//记录文件中的人数个数
+	int m_EmpNum; // 当前职工人数
+	//员工数组的指针
+	Worker** m_EmpArray; // 动态数组指针，用于存储职工对象
+```
+
+
+
+在WorkerManager构造函数中初始化属性
+
+```c++
+WorkerManager::WorkerManager() {
+	m_EmpNum = 0; // 初始化职工人数为0
+	m_EmpArray = nullptr; // 初始化职工数组指针为nullptr
+}
+```
+
+
+
+在WorkerManager.h中添加成员函数
+
+```c++
+	//增加职工信息
+	void Add_Emp();
+```
+
+
+
+在WorkerManager.cpp中实现该函数
+
+```c++
+//增加职工信息,如果是第一次添加职工信息，就需要创建文件,如果不是第一次添加，就在文件末尾添加数据
+void WorkerManager::Add_Emp() {
+	cout << "请输入添加职工的数量：" << endl;
+	int addNum = 0; // 记录添加职工的数量
+	cin >> addNum;
+	if (addNum > 0) {
+		//计算添加新职工后的总人数
+		int newSize = m_EmpNum + addNum;
+		//开辟新空间
+		Worker** newSpace = new Worker * [newSize];
+		//将原来空间下的数据拷贝到新空间下
+		if (m_EmpArray != nullptr) {
+			for (int i = 0; i < m_EmpNum; i++) {
+				newSpace[i] = m_EmpArray[i];
+			}
+		}
+		//批量添加新数据
+		for (int i = 0; i < addNum; i++) {
+			int id; // 职工编号
+			string name; // 职工姓名
+			int dSelect; // 职工岗位选择
+			cout << "请输入第 " << i + 1 << " 个新职工的编号：" << endl;
+			cin >> id;
+			cout << "请输入第 " << i + 1 << " 个新职工的姓名：" << endl;
+			cin >> name;
+			cout << "请输入第 " << i + 1 << " 个新职工的岗位：" << endl;
+			cout << "1.普通员工" << endl;
+			cout << "2.经理" << endl;
+			cout << "3.老板" << endl;
+			cin >> dSelect;
+			Worker* worker = nullptr;
+			switch (dSelect) {
+			case 1: // 普通员工
+				worker = new Employee(id, name, dSelect);
+				break;
+			case 2: // 经理
+				worker = new Manager(id, name, dSelect);
+				break;
+			case 3: // 老板
+				worker = new Boss(id, name, dSelect);
+				break;
+			default:
+				break;
+			}
+			//将创建的职工对象，保存到数组中
+			newSpace[m_EmpNum + i] = worker;
+		}
+		//释放原有空间
+		delete[] m_EmpArray;
+		//更改成员属性
+		m_EmpArray = newSpace;
+		m_EmpNum = newSize;
+		//提示添加成功
+		cout << "成功添加 " << addNum << " 名新职工！" << endl;
+	}
+	else {
+		cout << "输入的职工数量不合法！" << endl;
+	}
+	system("pause");
+	system("cls"); // 清屏
+}
+```
+
+
+
+## 8、文件交互 - 席文建
+
+功能描述：对文件进行读写
+
+再上一个添加功能中，我们只是将数据添加到了内存中，一旦程序结束就无法保存了
+
+因此文件管理类中需要一个与文件进行交互的功能，对文件进行读写操作
+
+
+
+### 8.1 设定文件路径
+
+首先我们将文件路径，在workerManager.h中添加宏常量，并且包含头文件fstream
+
+```c++
+#include<fstream>
+#define FILENAME "empFile.txt" // 定义文件名常量
+```
+
+
+
+### 8.2 成员函数声明
+
+在workerManager.h中类里添加成员函数`void save()`
+
+```c++
+	//保存文件
+	void save();
+```
+
+
+
+### 8.3 保存文件功能实现
+
+```c++
+//保存文件
+void WorkerManager::save() {
+	ofstream ofs(FILENAME, ios::out | ios::trunc); // 打开文件，清空内容
+	if (!ofs.is_open()) {
+		cout << "文件打开失败！" << endl;
+		return;
+	}
+	for (int i = 0; i < m_EmpNum; i++) {
+		ofs << m_EmpArray[i]->m_Id << " "
+			<< m_EmpArray[i]->m_Name << " "
+			<< m_EmpArray[i]->m_DeptId << endl;
+	}
+	ofs.close();
+	cout << "数据已保存到文件中！" << endl;
+}
+```
+
+
+
+## 9、文件交互 - 读文件
+
+功能描述：将文件中的内容读取到程序中
+
+虽然我们实现了添加职工后保存到文件的操作，但是每次开始运行程序，并没有将文件中的数据读取到程序中
+
+而我们的程序功能中还有清空文件的需求
+
+因此构造函数初始化数据的情况分为三种
+
+
+
+1. 第一次使用，文件未创建
+2. 文件存在，但是数据被用户清空
+3. 文件存在，并且保存职工的所有数据
+
+### 9.1 文件未创建
+
+在workerManager.h中添加新的成员属性m_FileIsEmpty标志文件是否为空
+
+```c++
+	//标志文件是否为空
+	bool m_FileIsEmpty; // 标志文件是否为空
+```
+
+
+
+修改workerManager.cpp中构造函数代码
+
+```c++
+WorkerManager::WorkerManager() {
+	ifstream ifs(FILENAME, ios::in); // 打开文件进行读取
+	if (!ifs.is_open()) { // 如果文件打开失败
+		cout << "文件不存在或打开失败！" << endl;
+		m_EmpNum = 0; // 初始化职工人数为0
+		m_EmpArray = nullptr; // 初始化职工数组指针为空
+		m_FileIsEmpty = true; // 文件为空标志为真
+		ifs.close(); // 关闭文件
+		return;
+	}
+}
+```
+
+
+
+### 9.2 文件存在且数据为空
+
+在workerManager.cpp中的构造函数追加代码：
+
+```c++
+	//2.文件存在，但是没有数据
+	char ch;
+	ifs >> ch; // 读取一个字符
+	if (ifs.eof()) { // 如果读取到文件末尾，说明文件为空
+		cout << "文件为空！" << endl;
+		m_EmpNum = 0; // 初始化职工人数为0
+		m_EmpArray = nullptr; // 初始化职工数组指针为空
+		m_FileIsEmpty = true; // 文件为空标志为真
+		ifs.close(); // 关闭文件
+		return;
+	}
+```
+
+
+
+我们发现文件不存在或者为空清空m_FileIsEmpty判断文件是否为空的标志都为真，那何时为假？
+
+成功添加职工后，应该更改文件不为空的标志
+
+在`void workerManager::Add_Emp()`成员函数中添加：
+
+```c++
+		m_FileIsEmpty = false; // 文件不为空
+```
+
+
+
+### 9.3 文件存在且保存职工数据
+
+#### 9.3.1 获取记录的职工人数
+
+在workerManager.h中添加成员函数`int get_EmpNum();`
+
+```c++
+	//统计人数
+	int get_EmpNum();
+```
+
+workerManager.cpp实现
+
+```c++
+//统计人数
+int WorkerManager::get_EmpNum() {
+	ifstream ifs(FILENAME, ios::in); // 打开文件进行读取
+	
+	int id;
+	string name;
+	int deptId;
+
+	int count = 0; // 统计职工人数
+
+	while (ifs >> id >> name >> deptId) { // 逐行读取职工信息
+		count++; // 每读取一行，人数加1
+	}
+	ifs.close(); // 关闭文件
+
+	return count; // 返回统计的职工人数
+}
+```
+
+在workerManager.cpp构造函数中继续追加代码：
+
+```c++
+	//3.文件存在且有数据
+	m_EmpNum = get_EmpNum(); // 统计职工人数
+	cout << "职工人数为：" << m_EmpNum << endl; //测试代码
+```
+
+
+
+#### 9.3.2 初始化数组
+
+根据职工数据和人数，初始化workerManager中的Worker** m_EmpArray指针
+
+
+
+在workerManager.h中添加成员函数`void init_Emp();`
+
+```c++
+
+```
+
+
+
+在workerManager.cpp中实现
+
+```c++
 
 ```
 

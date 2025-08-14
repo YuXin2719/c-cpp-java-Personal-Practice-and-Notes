@@ -123,7 +123,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="二进制文件-写文件.cpp" />
+    <ClCompile Include="二进制文件-读文件.cpp" />
     <ClCompile Include="文本文件-写文件.cpp" />
+    <ClCompile Include="文本文件-读文件.cpp" />
     <ClCompile Include="模板.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
