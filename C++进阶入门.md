@@ -6594,7 +6594,8 @@ int WorkerManager::get_EmpNum() {
 在workerManager.h中添加成员函数`void init_Emp();`
 
 ```c++
-
+	//初始化员工
+	void init_Emp();
 ```
 
 
@@ -6602,6 +6603,30 @@ int WorkerManager::get_EmpNum() {
 在workerManager.cpp中实现
 
 ```c++
+//初始化员工
+void WorkerManager::init_Emp() {
+	ifstream ifs(FILENAME, ios::in); // 打开文件进行读取
 
+	int id;
+	string name;
+	int deptId;
+
+	int index = 0; // 数组索引
+	while( ifs >> id >> name >> deptId) { // 逐行读取职工信息
+		Worker* worker = nullptr; // 创建职工对象指针
+		if (deptId == 1) {
+			worker = new Employee(id, name, deptId);
+		}
+		else if (deptId == 2) {
+			worker = new Manager(id, name, deptId);
+		}
+		else if (deptId == 3) {
+			worker = new Boss(id, name, deptId);
+		}
+		m_EmpArray[index++] = worker; // 将职工对象存入数组
+	}
+	ifs.close(); // 关闭文件
+	m_FileIsEmpty = false; // 文件为空标志为假
+}
 ```
 
