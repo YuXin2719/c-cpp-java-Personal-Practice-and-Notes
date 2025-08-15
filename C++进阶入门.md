@@ -6346,7 +6346,6 @@ WorkerManager::WorkerManager() {
 在WorkerManager.cpp中实现该函数
 
 ```c++
-//增加职工信息,如果是第一次添加职工信息，就需要创建文件,如果不是第一次添加，就在文件末尾添加数据
 void WorkerManager::Add_Emp() {
 	cout << "请输入添加职工的数量：" << endl;
 	int addNum = 0; // 记录添加职工的数量
@@ -6369,6 +6368,12 @@ void WorkerManager::Add_Emp() {
 			int dSelect; // 职工岗位选择
 			cout << "请输入第 " << i + 1 << " 个新职工的编号：" << endl;
 			cin >> id;
+			// 检查职工编号是否重复
+			if (IsExist(id) != -1) {
+				cout << "职工编号已存在，请重新输入！" << endl;
+				i--; // 重复当前循环
+				continue; // 跳过当前循环，重新输入
+			}
 			cout << "请输入第 " << i + 1 << " 个新职工的姓名：" << endl;
 			cin >> name;
 			cout << "请输入第 " << i + 1 << " 个新职工的岗位：" << endl;
@@ -6398,8 +6403,12 @@ void WorkerManager::Add_Emp() {
 		//更改成员属性
 		m_EmpArray = newSpace;
 		m_EmpNum = newSize;
+		m_FileIsEmpty = false; // 文件不为空
 		//提示添加成功
 		cout << "成功添加 " << addNum << " 名新职工！" << endl;
+
+		//添加成功后,保存到文件中
+		save();
 	}
 	else {
 		cout << "输入的职工数量不合法！" << endl;
@@ -6630,3 +6639,459 @@ void WorkerManager::init_Emp() {
 }
 ```
 
+
+
+在workerManager.cpp构造函数中追加代码
+
+```c++
+	//根据职工人数开辟空间
+	m_EmpArray = new Worker * [m_EmpNum]; // 动态分配职工数组空间
+	//初始化职工信息
+	init_Emp(); // 从文件中读取职工信息并初始化
+	// 测试代码
+	for (int i = 0; i < m_EmpNum; i++) {
+		cout << "职工编号：" << m_EmpArray[i]->m_Id
+			<< ", 姓名：" << m_EmpArray[i]->m_Name
+			<< ", 岗位：" << m_EmpArray[i]->GetDeptName() << endl;
+	}
+```
+
+
+
+## 10、显示员工
+
+功能描述：显示当前所有职工信息
+
+### 10.1 显示职工函数声明
+
+在workerManager.h中添加成员函数`void Show_Emp();`
+
+```c++
+	//显示职工
+	void Show_Emp();
+```
+
+
+
+### 10.2 显示职工函数实现
+
+在workerManager.cpp中实现成员函数`void Show_Emp();`
+
+```c++
+//显示职工
+void WorkerManager::Show_Emp() {
+	if (m_FileIsEmpty) {
+		cout << "文件不存在或记录为空！" << endl;
+	}
+	else {
+		for (int i = 0; i < m_EmpNum; i++) {
+			m_EmpArray[i]->ShowInfo(); // 调用职工的显示信息函数
+		}
+	}
+	system("pause");
+	system("cls"); // 清屏
+}
+```
+
+
+
+### 10.3 测试显示员工
+
+在main函数分支2选项中，调用显示职工接口
+
+测试时分别测试 文件为空和文件不为空 两种情况
+
+
+
+## 11、删除职工
+
+功能描述：按照职工的编号进行删除职工操作
+
+
+
+### 11.1 删除职工函数声明
+
+在workerManager.h中添加成员函数`void Del_Emp();`
+
+```c++
+	//删除职工
+	void Del_Emp();
+```
+
+
+
+### 11.2 职工是否存在函数声明
+
+很多功能都需要用到根据职工是否存在来进行操作比如：删除职工、修改职工、查找职工
+
+因此添加该函数以便后续调用
+
+在workerManager.h中添加成员函数`int IsExist(int id);`
+
+```c++
+	//按照职工编号判断职工是否存在，如果存在返回职工在数组中的位置，不存在返回-1
+	int IsExist(int id);
+```
+
+
+
+### 11.3 职工是否存在函数实现
+
+在workerManager.cpp中实现成员函数`int IsExist(int id);`
+
+```c++
+//职工是否存在
+int WorkerManager::IsExist(int id) {
+	int index = -1; // 记录职工在数组中的位置，默认不存在
+	for (int i = 0; i < m_EmpNum; i++) {
+		if (m_EmpArray[i]->m_Id == id) {
+			index = i; // 找到职工，记录位置
+			break;
+		}
+	}
+	return index; // 返回职工位置，-1表示不存在
+}
+```
+
+
+
+### 11.4 删除职工函数实现
+
+在workerManager.cpp中实现成员函数`void Del_Emp();`
+
+```c++
+//删除职工
+void WorkerManager::Del_Emp() {
+	if (m_FileIsEmpty) {
+		cout << "文件不存在或记录为空！" << endl;
+	}
+	else {
+		cout << "请输入要删除的职工编号：" << endl;
+		int id;
+		cin >> id;
+		int index = IsExist(id); // 判断职工是否存在
+		if (index != -1) { // 如果存在
+			for (int i = index; i < m_EmpNum - 1; i++) {
+				m_EmpArray[i] = m_EmpArray[i + 1]; // 将后面的职工前移
+			}
+			m_EmpNum--; // 职工人数减1
+			save(); // 保存到文件
+			cout << "删除成功！" << endl;
+		}
+		else {
+			cout << "职工不存在！" << endl;
+		}
+	}
+	system("pause");
+	system("cls"); // 清屏
+}
+```
+
+
+
+### 11.5 测试删除职工
+
+在main函数分支3选项中，调用删除员工接口
+
+测试1 - 删除不存在职工情况
+
+测试2 - 删除存在职工情况
+
+
+
+## 12、修改职工
+
+功能描述：能够按照职工的编号对职工信息进行修改并保存
+
+### 12.1 修改职工函数声明
+
+在workerManager.h中添加成员函数`void Mod_Emp();`
+
+```c++
+	//修改职工信息
+	void Mod_Emp();
+```
+
+
+
+### 12.2 修改职工函数实现
+
+在workerManager.cpp中实现成员函数`void Mod_Emp();`
+
+```c++
+void WorkerManager::Mod_Emp() {
+	if (m_FileIsEmpty) {
+		cout << "文件不存在或记录为空！" << endl;
+	}
+	else {
+		cout << "请输入要修改的职工编号：" << endl;
+		int id;
+		cin >> id;
+		int index = IsExist(id); // 判断职工是否存在
+		if (index != -1) { // 如果存在
+			int newId; // 新职工编号
+			string newName; // 新职工姓名
+			int dSelect; // 新职工岗位选择
+			cout << "请输入新的职工编号：" << endl;
+			cin >> newId;
+			// 检查新职工编号是否重复
+			if (IsExist(newId) != -1) {
+				cout << "职工编号已存在，请重新输入！" << endl;
+				system("pause");
+				return; // 退出修改
+			}
+			// 删除原有职工对象
+			delete m_EmpArray[index];
+			cout << "请输入新的职工姓名：" << endl;
+			cin >> newName;
+			cout << "请输入新的职工岗位：" << endl;
+			cout << "1.普通员工" << endl;
+			cout << "2.经理" << endl;
+			cout << "3.老板" << endl;
+			cin >> dSelect;
+			Worker* worker = nullptr;
+			switch (dSelect) {
+			case 1: // 普通员工
+				worker = new Employee(newId, newName, dSelect);
+				break;
+			case 2: // 经理
+				worker = new Manager(newId, newName, dSelect);
+				break;
+			case 3: // 老板
+				worker = new Boss(newId, newName, dSelect);
+				break;
+			default:
+				break;
+			}
+			m_EmpArray[index] = worker; // 更新职工信息
+			save(); // 保存到文件
+			cout << "修改成功！" << endl;
+		}
+		else {
+			cout << "职工不存在！" << endl;
+		}
+	}
+	system("pause");
+	system("cls"); // 清屏
+}
+```
+
+
+
+## 13、查找职工
+
+功能描述：提供两种查找职工方式，一种按照职工编号，一种按照职工姓名
+
+### 13.1 查找职工函数声明
+
+在workerManager.h中添加成员函数`void Find_Emp();`
+
+```c++
+	//查找职工信息
+	void Find_Emp(); // 查找职工信息
+```
+
+
+
+### 13.2 查找职工函数实现
+
+在workerManager.cpp中实现成员函数`void Find_Emp();`
+
+```c++
+//查找职工信息，提供两种方式：按编号查找和按姓名查找
+void WorkerManager::Find_Emp() {
+	if (m_FileIsEmpty) {
+		cout << "文件不存在或记录为空！" << endl;
+	}
+	else {
+		cout << "请选择查找方式：" << endl;
+		cout << "1.按职工编号查找" << endl;
+		cout << "2.按职工姓名查找" << endl;
+		int select = 0;
+		cin >> select;
+		if (select == 1) { // 按编号查找
+			cout << "请输入要查找的职工编号：" << endl;
+			int id;
+			cin >> id;
+			int index = IsExist(id); // 判断职工是否存在
+			if (index != -1) { // 如果存在
+				cout << "找到该职工，信息如下：" << endl;
+				m_EmpArray[index]->ShowInfo(); // 显示职工信息
+			}
+			else {
+				cout << "职工不存在！" << endl;
+			}
+		}
+		else if (select == 2) { // 按姓名查找
+			cout << "请输入要查找的职工姓名：" << endl;
+			string name;
+			cin >> name;
+			bool found = false; // 标志是否找到
+			for (int i = 0; i < m_EmpNum; i++) {
+				if (m_EmpArray[i]->m_Name == name) {
+					cout << "找到该职工，信息如下：" << endl;
+					m_EmpArray[i]->ShowInfo(); // 显示职工信息
+					found = true; // 找到标志设为真
+				}
+			}
+			if (!found) {
+				cout << "职工不存在！" << endl;
+			}
+		}
+		else {
+			cout << "输入选项有误，请重新选择！" << endl;
+		}
+	}
+	system("pause");
+	system("cls"); // 清屏
+}
+```
+
+
+
+### 13.3 测试查找职工
+
+在main函数分支5选项中，调用查找职工接口
+
+测试1 - 按照职工编号查找 - 查找不存在职工
+
+测试2 - 按照职工编号查找 - 查找存在职工
+
+测试3 - 按照职工姓名查找 - 查找不存在职工
+
+测试4 - 按照职工姓名查找 - 查找存在职工（如果出现重名，也一并显示，在文件中可以添加重名职工）
+
+
+
+## 14、排序
+
+功能描述：按照职工编号进行排序，排序的顺序有用户指定
+
+### 14.1 排序函数声明
+
+在workerManager.h中添加成员函数`void Sort_Emp();`
+
+```c++
+	//排序职工信息
+	void Sort_Emp(); // 按照职工编号排序职工信息
+```
+
+
+
+### 14.2 排序函数实现
+
+在workerManager.cpp中实现成员函数`void Sort_Emp();`
+
+```c++
+//排序职工信息，按照职工编号排序,提供升序和降序两种方式
+void WorkerManager::Sort_Emp() {
+	if (m_FileIsEmpty) {
+		cout << "文件不存在或记录为空！" << endl;
+		system("pause");
+		system("cls"); // 清屏
+	}
+	else {
+		cout << "请选择排序方式：" << endl;
+		cout << "1.升序" << endl;
+		cout << "2.降序" << endl;
+		int select = 0;
+		cin >> select;
+		for (int i = 0; i < m_EmpNum - 1; i++) {
+			for (int j = 0; j < m_EmpNum - i - 1; j++) {
+				if ((select == 1 && m_EmpArray[j]->m_Id > m_EmpArray[j + 1]->m_Id) ||
+					(select == 2 && m_EmpArray[j]->m_Id < m_EmpArray[j + 1]->m_Id)) {
+					//交换
+					Worker* temp = m_EmpArray[j];
+					m_EmpArray[j] = m_EmpArray[j + 1];
+					m_EmpArray[j + 1] = temp;
+				}
+			}
+		}
+		cout << "排序完成！" << endl;
+		Show_Emp(); // 显示排序后的职工信息
+	}
+}
+```
+
+
+
+### 14.3 测试排序功能
+
+请自行测试，注意文件为空的情况
+
+
+
+## 15、清空文件
+
+功能描述：将文件中记录数据清空
+
+
+
+### 15.1 清空函数声明
+
+在workerManager.h中添加成员函数`void Clean_File();`
+
+```c++
+	//清空文件
+	void Clean_File(); // 清空文件
+```
+
+
+
+### 15.2 清空函数实现
+
+在workerManager.cpp中实现成员函数`void Clean_File();`
+
+```c++
+//清空文件
+void WorkerManager::Clean_File() {
+	cout << "确认清空文件吗？" << endl;
+	cout << "1.确认" << endl;
+	cout << "2.取消" << endl;
+	int select = 0;
+	cin >> select;
+	if (select == 1) {
+		ofstream ofs(FILENAME, ios::trunc); // 以覆盖方式打开文件
+		ofs.close(); // 关闭文件
+		if (m_EmpArray != nullptr) {
+			for (int i = 0; i < m_EmpNum; i++) {
+				delete m_EmpArray[i]; // 释放职工对象内存
+			}
+			delete[] m_EmpArray; // 释放职工数组内存
+			m_EmpArray = nullptr; // 指针置空
+			m_EmpNum = 0; // 职工人数置0
+			m_FileIsEmpty = true; // 文件为空标志为真
+		}
+		cout << "文件已清空！" << endl;
+	}
+	else {
+		cout << "取消清空文件操作！" << endl;
+	}
+	system("pause");
+	system("cls"); // 清屏
+}
+```
+
+
+
+### 15.3 补充一下析构函数
+
+```c++
+//析构函数
+WorkerManager::~WorkerManager() {
+	//释放职工数组空间
+	if (m_EmpArray != nullptr) {
+		for (int i = 0; i < m_EmpNum; i++) {
+			delete m_EmpArray[i]; // 释放每个职工对象的内存
+		}
+		delete[] m_EmpArray; // 释放职工数组的内存
+		m_EmpArray = nullptr; // 指针置空
+	}
+}
+```
+
+
+
+### 15.4 测试清空文件
+
+自行测试，注意该功能慎用（企业中通常对数据逻辑隐藏，不做物理删除）

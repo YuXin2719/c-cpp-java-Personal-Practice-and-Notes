@@ -41,27 +41,28 @@ int main() {
 			break;
 		case 2:
 			cout << "显示职工信息" << endl;
-			// 这里可以添加显示职工信息的代码
+			wm.Show_Emp(); // 调用显示职工信息的函数
 			break;
-		case 3:
+		case 3: {
 			cout << "删除离职职工" << endl;
-			// 这里可以添加删除离职职工的代码
+			wm.Del_Emp(); // 调用删除职工的函数
 			break;
+		}
 		case 4:
 			cout << "修改职工信息" << endl;
-			// 这里可以添加修改职工信息的代码
+			wm.Mod_Emp(); // 调用修改职工信息的函数
 			break;
 		case 5:
 			cout << "查找职工信息" << endl;
-			// 这里可以添加查找职工信息的代码
+			wm.Find_Emp(); // 调用查找职工信息的函数
 			break;
 		case 6:
 			cout << "按照编号排序" << endl;
-			// 这里可以添加按照编号排序的代码
+			wm.Sort_Emp(); // 调用排序职工信息的函数
 			break;
 		case 7:
 			cout << "清空所有文档" << endl;
-			// 这里可以添加清空所有文档的代码
+			wm.Clean_File(); // 调用清空文件的函数
 			break;
 		default:
 			system("cls"); // 清屏
