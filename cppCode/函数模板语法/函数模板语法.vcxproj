@@ -128,6 +128,7 @@
     <ClCompile Include="03 函数模板案例.cpp" />
     <ClCompile Include="04 普通函数和函数模板的区别.cpp" />
     <ClCompile Include="05 普通函数和函数模板的调用规则.cpp" />
+    <ClCompile Include="06 模板的局限性.cpp" />
     <ClCompile Include="模板.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

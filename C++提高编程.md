@@ -389,6 +389,130 @@ int main() {
 
 **例如：**
 
+```c++
+template<typename T>
+void f(T a , T b) {
+	a = b;
+}
 ```
 
+在上述代码中提供的赋值操作，如果传入的a和b是一个数组，就无法实现了
+
+
+
+**再例如：**
+
+```c++
+template<typename T>
+void f(T a , T b) {
+	if(a>b) { ... }
+}
 ```
+
+在上述代码中，如果T的数据类型传入的是想Person这样的自定义数据类型，也无法正常运行
+
+
+
+因此C++为了解决这种问题，提供模版的重载，可以为这些**特定的类型**提供**具体化的模板**
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<string>
+
+//模版的局限性
+//模板不是万能的，有些特定的数据类型，需要用具体化的方式做特殊实现
+
+class Person {
+public:
+	Person(string name, int age) : name(name), age(age) {}
+	//姓名，年龄
+	string name;
+	int age;
+};
+
+//对比两个数据的函数
+template<typename T>
+bool compare(T& a, T& b) {
+	if (a == b) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+//利用具体化的方式，给Person类型做一个特殊实现
+template<>
+bool compare<Person>(Person& p1, Person& p2) { //<Person>可省略，因为编译器可以通过参数类型推导出来这个模板函数特化用于Person类型
+	if (p1.name == p2.name && p1.age == p2.age) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+void test02() {
+	Person p1("aaa", 10);
+	Person p2("bbb", 20);
+	//compare(p1, p2);//error,没有可用的==运算符重载
+	if (compare(p1, p2)) {
+		cout << "p1和p2相等" << endl;
+	}
+	else {
+		cout << "p1和p2不相等" << endl;
+	}
+}
+
+int main() {
+	test02();
+	system("pause");
+	return 0;
+}
+```
+
+总结：
+
+- 利用具体化的模板，可以解决自定义类型的通用化
+- 学习模板并不是为了写模版，而是能在STL中运用系统提供的模板
+
+
+
+### 1.3 类模板
+
+#### 1.3.1 类模板语法
+
+类模板作用：
+
+- 建立一个通用类，类中的成员数据类型可以不具体指定，用一个**虚拟的类型**来代表
+
+
+
+**语法：**
+
+```c++
+template<typename T>
+类
+```
+
+**解释：**
+
+template --- 声明创建模板
+
+typename --- 表明起后面的符号是一种数据类型，可以用class代替
+
+T --- 通用的数据类型，名称可以替换，通常为大写字母
+
+
+
+**示例：**
+
+```c++
+
+```
+

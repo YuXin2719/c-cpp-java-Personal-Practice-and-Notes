@@ -33,5 +33,8 @@
     <ClCompile Include="05 普通函数和函数模板的调用规则.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="06 模板的局限性.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
