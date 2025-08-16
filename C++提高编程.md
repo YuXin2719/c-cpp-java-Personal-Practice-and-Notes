@@ -513,6 +513,28 @@ T --- 通用的数据类型，名称可以替换，通常为大写字母
 **示例：**
 
 ```c++
+#include<iostream>
+using namespace std;
+#include<string>
 
+//类模板
+template<class NameType, class AgeType>
+class Person {
+public:
+	Person(NameType name, AgeType age) : name(name), age(age) {
+		cout << "Name: " << name << ", Age: " << age << endl;
+	}
+
+	NameType name;
+	AgeType age;
+};
+
+int main() {
+	Person<string, int> person("Alice", 30);
+
+	system("pause");
+	return 0;
+}
 ```
 
+总结：类模板和函数模版语法相似，在声明模板template后面加类，此类称为类模板
