@@ -21,5 +21,11 @@
     <ClCompile Include="01 类模板语法.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="02 类模板与函数模板的区别.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="03 类模板中成员函数创建时机.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
