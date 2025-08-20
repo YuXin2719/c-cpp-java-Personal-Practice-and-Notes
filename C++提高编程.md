@@ -1644,10 +1644,1639 @@ int main() {
 - `string& operator=(const char* s);` //char*类型字符串 赋值给当前字符串
 - `string& operator=(const char& s);` //把字符串s赋给当前字符串
 - `string& operator=(char c);` //把字符赋值给当前字符串
-- `string& assign(const cahr* s);` //把字符串s赋给当前字符串
-- `string& assign(const cahr* s,int n);` //把字符串s的前n个字符赋给当前字符串
-- `string& assign(const cahr& s);` //把字符串s赋给当前字符串
+- `string& assign(const char* s);` //把字符串s赋给当前字符串
+- `string& assign(const char* s,int n);` //把字符串s的前n个字符赋给当前字符串
+- `string& assign(const char& s);` //把字符串s赋给当前字符串
 - `string& assign(int n, char c);` //用n个字符c赋给当前字符串
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<string>
+
+//string的赋值操作
+//- `string& operator=(const char* s); ` //char*类型字符串 赋值给当前字符串
+//- `string& operator=(const char& s); ` //把字符串s赋给当前字符串
+//- `string& operator=(char c); ` //把字符赋值给当前字符串
+//- `string& assign(const char* s); ` //把字符串s赋给当前字符串
+//- `string& assign(const char* s, int n); ` //把字符串s的前n个字符赋给当前字符串
+//- `string& assign(const char& s); ` //把字符串s赋给当前字符串
+//- `string& assign(int n, char c); ` //用n个字符c赋给当前字符串
+
+void test01() {
+	string str1; //默认构造函数
+	str1 = "hello"; //char*类型字符串 赋值给当前字符串
+	cout << "str1: " << str1 << endl;
+
+	string str2; //默认构造函数
+	str2 = str1; //把字符串str1赋给当前字符串
+	cout << "str2: " << str2 << endl;
+
+	string str3; //默认构造函数
+	str3 = 'a'; //把字符'a'赋值给当前字符串
+	cout << "str3: " << str3 << endl;
+
+	string str4; //默认构造函数
+	str4.assign("world"); //把字符串"world"赋给当前字符串
+	cout << "str4: " << str4 << endl;
+
+	string str5; //默认构造函数
+	str5.assign("hello world", 5); //把字符串"hello world"的前5个字符赋给当前字符串
+	cout << "str5: " << str5 << endl;
+
+	string str6; //默认构造函数
+	str6.assign(str1); //把字符串str1赋给当前字符串
+	cout << "str6: " << str6 << endl;
+
+	string str7; //默认构造函数
+	str7.assign(5, 'x'); //用5个字符'x'赋给当前字符串
+	cout << "str7: " << str7 << endl;
+}
+
+int main() {
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+总结：
+
+string的赋值方式很多`operator=`这种方式比较实用
+
+
+
+#### 3.1.4 string字符串拼接
+
+**功能描述：**
+
+- 实现在字符串末尾拼接字符串
+
+
+
+**函数原型：**
+
+- `string& operator+=(const char* str);` //重载+=操作符
+- `string& operator+=(const char c);` //重载+=操作符
+- `string& operator+=(const string& str);` //重载+=操作符
+- `string& append(const char* s);` //把字符串s连接到当前字符串结尾
+- `string& append(const char* s,int n);` /把字符串s的前n个字符连接到当前字符串结尾
+- `string& append(const char& s);` 同operator+=(const string& str)
+- `string& append(const char& s, int pos, int n);` //把字符串s中从pos开始的n个字符连接到字符串结尾
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<string>
+
+//字符串拼接
+//- `string& operator+=(const char* str); ` //重载+=操作符
+//- `string& operator+=(const char c); ` //重载+=操作符
+//- `string& operator+=(const string & str); ` //重载+=操作符
+//- `string& append(const char* s); ` //把字符串s连接到当前字符串结尾
+//- `string& append(const char* s, int n); ` / 把字符串s的前n个字符连接到当前字符串结尾
+//- `string& append(const char& s); ` 同operator += (const string & str)
+//- `string& append(const char& s, int pos, int n); ` //把字符串s中从pos开始的n个字符连接到字符串结尾
+
+void test01() {
+	string str1 = "我";
+	str1 += "爱玩游戏";
+	cout << str1 << endl; // 输出: 我爱玩游戏
+
+	str1 += '!';
+	cout << str1 << endl; // 输出: 我爱玩游戏!
+
+	string str2 = "hello bro";
+	str1 += str2;
+	cout << str1 << endl; // 输出: 我爱玩游戏!你
+
+	string str3 = "编程";
+	str3.append("很有趣");
+	cout << str3 << endl; // 输出: 编程很有趣
+
+	str3.append("game", 2);
+	cout << str3 << endl; // 输出: 编程很有趣好玩
+
+	str3.append(str2);
+	cout << str3 << endl; // 输出: 编程很有趣好玩你
+
+	str3.append(str2, 6, 3); //参数含义: 从str2的第6个位置开始,取3个字符
+	cout << str3 << endl; // 输出: 编程很有趣好玩你好
+}
+
+int main() {
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+总结：字符串拼接的重载版本很多，初学阶段记住几种即可
+
+
+
+#### 3.1.5 string查找和替换
+
+**功能描述：**
+
+- 查找：查找指定字符串是否存在
+- 替换：在指定的位置替换字符串
+
+**函数原型：**
+
+- `int find(const string& str, int pos = 0) const;` //查找str第一次出现的位置，从pos开始查找
+- `int find(const char* s, int pos = 0) const;` //查找s第一次出现位置，从pos开始查找
+- `int find(const char* s, int pos, int n) const;` //从pos位置查找s的前n个字符第一次位置
+- `int find(const char c, int pos = 0) const;` //查找字符c第一次出现位置
+- `int rfind(const string& str, int pos = npos) const;` //查找str最后一次位置，送pos开始查找
+- `int rfind(const char* s, int pos = npos) const;` //查找s最后一次位置，从pos开始查找
+- `int rfind(const char* s, int pos, int n) const;` //从pos查找s的前n个字符最后一次位置
+- `int rfind(const char c, int pos = 0) const;` //查找字符c最后一次出现的位置
+- `string& replace(int pos, int n, const string& str);` //替换从pos开始n个字符为字符串str
+- `string& replace(int pos, int n, const char* s);` /替换从pos开始的n个字符为字符串s
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<string>
+
+//字符串查找和替换
+
+//1.查找
+void test01() {
+	string str = "hello world";
+	//查找字符串
+	int pos = str.find("world");
+	if (pos != string::npos) {
+		cout << "找到字符串 'world'，位置：" << pos << endl;
+	}
+	else {
+		cout << "未找到字符串 'world'" << endl;
+	}
+
+	//rfind 从后向前查找
+	pos = str.rfind("hello");
+	if (pos != string::npos) {
+		cout << "从后向前找到字符串 'hello'，位置：" << pos << endl;
+	}
+	else {
+		cout << "未找到字符串 'hello'" << endl;
+	}
+}
+
+//2.替换
+void test02() {
+	string str = "hello world";
+	//替换字符串
+	str.replace(6, 5, "C++"); //从位置6开始，替换5个字符为"C++"
+	cout << "替换后的字符串：" << str << endl;
+}
+
+int main() {
+	test01();
+	test02();
+	system("pause");
+	return 0;
+}
+```
+
+总结：
+
+- find查找是从左往后，rfind是从右往左
+- find找到字符串后返回查找的第一个字符位置，找不到返回-1
+- replace在替换时，要指定从哪个位置起，多少个字符，替换成什么样的字符串
+
+
+
+#### 3.1.6 string字符串比较
+
+**功能描述：**
+
+- 字符串之间的比较
+
+**比较方式：**
+
+- 字符串比较是按字符的ASCII码进行对比
+
+= 返回 0
+
+\> 返回 1
+
+< 返回 -1
+
+
+
+**函数原型：**
+
+- `int compare(const string& s) const;` //与字符串s比较
+- `int compare(const char* s)const;` //与字符串s比较
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<string>
+
+//字符串比较
+
+void test01() {
+	string str1 = "xello";
+	string str2 = "hello";
+
+	if (str1.compare(str2) == 0) {
+		cout << "str1和str2相等" << endl;
+	}
+	else if (str1.compare(str2) > 0) {
+		cout << "str1大于str2" << endl;
+	}
+	else {
+		cout << "str1小于str2" << endl;
+	}
+}
+
+int main() {
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+总结：字符串对比主要是用于比较两个字符串是否相等，判断谁大谁小的意义并不是很大
+
+
+
+#### 3.1.7 string字符存取
+
+
+
+string中单个字符存取方式有两种
+
+
+
+- `char& operator[] (int n);` //通过[]方式取字符
+- `char& at(int n);` //通过at方式获取字符
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<string>
+
+//字符存取
+void test01() {
+	string str = "hello world";
+
+	//1.通过[]访问单个字符
+	cout << str[0] << endl; //h
+	cout << str[1] << endl; //e
+	cout << str[2] << endl; //l
+	cout << str[3] << endl; //l
+	cout << str[4] << endl; //o
+
+	//通过at方式访问单个字符
+	cout << str.at(0) << endl; //h
+	cout << str.at(1) << endl; //e
+	cout << str.at(2) << endl; //l
+	cout << str.at(3) << endl; //l
+	cout << str.at(4) << endl; //o
+
+	//修改字符串中的字符
+	str[0] = 'H';
+	cout << str << endl; //Hello world
+	str.at(1) = 'E';
+	cout << str << endl; //HEllo world
+}
+
+int main() {
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+总结：string字符串中单个字符存取有两种方式，利用 [] 和 at
+
+
+
+#### 3.1.8 string插入和删除
+
+**功能描述：**
+
+- 对string字符串进行插入和删除字符操作
+
+**函数原型：**
+
+- `string& insert(int pos, const char* s);` //插入字符串
+- `string& insert(int pos, const string& str);` //插入字符串
+- `string& insert(int pos, int n, char c);` //在指定位置插入n个字符c
+- `string& insert(int pos, int n = npos);` //删除从pos开始的n个字符
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<string>
+
+//字符串 插入和删除
+void test01() {
+	string str1 = "hello";
+
+	//插入
+	str1.insert(1, "xx"); //在索引1的位置插入"xx"
+	cout << "str1 = " << str1 << endl;
+
+	//删除
+	str1.erase(1, 2); //从索引1的位置开始删除2个字符
+	cout << "str1 = " << str1 << endl;
+}
+
+int main() {
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+**总结：**插入和删除的起始下标都是从0开始
+
+
+
+#### 3.1.9 string子串
+
+**功能描述：**
+
+- 从字符串中获取想要的子串
+
+
+
+**函数原型：**
+
+- `string substr(int pos = 0, int n = npos)const;` //返回由pos开始的n个字符组成的字符串
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<string>
+
+//string求子串
+void test1() {
+	string str = "hello world";
+	string subStr = str.substr(0, 5); // 从索引0开始，长度为5
+	cout << subStr << endl; // 输出: hello
+}
+
+//实用操作
+void test2() {
+	string email = "zhangsan@sina.com";
+	//从邮件地址中获取用户名信息
+	int pos = email.find('@'); // 查找'@'的位置
+	if (pos != string::npos) { // 如果找到了
+		string username = email.substr(0, pos); // 截取从0到'@'的子串
+		cout << "Username: " << username << endl; // 输出用户名
+	}
+	else {
+		cout << "No '@' found in the email." << endl;
+	}
+}
+
+int main() {
+	test1();
+	test2();
+	system("pause");
+	return 0;
+}
+```
+
+**总结：**灵活的运用求子串功能，可以在实际开发中获取有效的信息
+
+
+
+### 3.2 vector容器
+
+
+
+#### 3.2.1 vector基本概念
+
+**功能：**
+
+- vector数据结构和**数组非常相似**，也成为**单端数组**
+
+
+
+**vector与普通数组区别：**
+
+- 不同之处在于数组是静态空间，而vector可以**动态扩展**
+
+
+
+**动态扩展：**
+
+- 并不是在原空间之后续接新空间，而是找更大的内存空间，然后将原数据拷贝到新空间，释放原空间
+
+![image-20250820100224949](https://gitee.com/YuXinHome/blogimg/raw/master/img/image-20250820100224949.png)
+
+- vector容器的迭代器是支持随机访问的迭代器
+
+
+
+#### 3.2.2 vector构造函数
+
+
+
+**功能描述：**
+
+- 创建vector容器
+
+
+
+**函数原型：**
+
+- `vector<T> v;` //采用模板实现类实现，默认构造函数
+- `vector(v.begin(),v.end());` //将 v[begin(),end()) 区间中的元素拷贝给本身
+- `vector(n, elem);` //构造函数将n个elem拷贝给本身
+- `vector(const vector& vec);` //拷贝构造函数
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+
+void printVector(const vector<int>& v) {
+	//const_iterator是一个只读迭代器，不能修改元素
+	for (vector<int>::const_iterator it = v.begin(); it != v.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+//vector容器构造
+void test01() {
+	//默认构造
+	vector<int> v1;
+	for (int i = 0; i < 10; i++) {
+		v1.push_back(i);
+	}
+	printVector(v1);
+
+	//n个elem的构造
+	vector<int> v2(10, 100);
+	printVector(v2);
+
+	//区间方式构造
+	vector<int> v3(v2.begin(), v2.end());
+	printVector(v3);
+
+	//拷贝构造
+	vector<int> v4(v3);
+	printVector(v4);
+
+}
+
+int main() {
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+**总结：**vector的多种构造方式没有可比性，灵活使用即可
+
+
+
+#### 3.2.3 vector赋值操作
+
+
+
+**功能描述：**
+
+1. 给vector容器进行赋值
+
+
+
+**函数原型：**
+
+- `vector& operator=(const vector& vec);` //重载等号操作符
+- `assign(beg, end);` //将[beg,end)区间中的数据拷贝赋值给本身
+- `assign(n, elem);` //将n个elem拷贝赋值给本身
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+
+void printVector(const vector<int>& v) {
+	for (auto it = v.begin(); it != v.end(); ++it) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+//vector赋值
+void test1() {
+	vector<int> v1;
+	for (int i = 0; i < 10; ++i) {
+		v1.push_back(i);
+	}
+	printVector(v1);
+	cout << endl;
+
+	//赋值 operator=
+	vector<int> v2;
+	v2 = v1;
+	printVector(v2);
+
+	//赋值 assign
+	vector<int> v3;
+	v3.assign(v1.begin(), v1.end()); //end是最后一位的下一位
+	printVector(v3);
+
+	//赋值 assign
+	vector<int> v4;
+	v4.assign(10, 100);
+	printVector(v4);
+}
+
+int main() {
+
+	test1();
+
+	system("pause");
+	return 0;
+}
+```
+
+总结：vector赋值方式比较简单，使用operator=，或者assign都可以
+
+
+
+#### 3.2.4 vector容器和大小
+
+**功能描述：**
+
+- 对vector容器的容量和大小操作
+
+
+
+**函数原型：**
+
+- `empty();` //判断容器是否为空
+- `capacity();` //容器的容量
+- `size();` //返回容器中元素的个数
+- `resize(int num);` //1.重新指定容器的长度为num，若容器变长，则以默认值填充新位置   2.如果容器变短，则末尾超出容器长度的元素被删除
+- `resize(int num, elem);` //1.重新指定容器的长度为num，若容器变长，则以elem值填充新位置   2.如果容器变短，则末尾超出容器长度的元素被删除
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+
+void printVector(const vector<int>& v) {
+	for (vector<int>::const_iterator it = v.begin(); it != v.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+//vector容器的容量和大小操作
+void test01() {
+	vector<int> v1;
+	for (int i = 0; i < 10; i++) {
+		v1.push_back(i);
+	}
+	printVector(v1);
+
+	//判断容器是否为空
+	if (v1.empty()) {
+		cout << "v1 is empty" << endl;
+	}
+	else {
+		cout << "v1 is not empty" << endl;
+		//获取容量
+		cout << "v1 capacity: " << v1.capacity() << endl;
+		//获取大小
+		cout << "v1 size: " << v1.size() << endl;
+	}
+
+	//重新指定大小
+	v1.resize(15, 100); //如果指定的大小大于原来大小，则以100填充新位置
+	printVector(v1);
+	cout << "v1 capacity: " << v1.capacity() << endl;
+	cout << "v1 size: " << v1.size() << endl;
+
+	v1.resize(5); //如果指定的大小小于原来大小，则多余元素被删除
+	printVector(v1);
+	cout << "v1 capacity: " << v1.capacity() << endl;
+	cout << "v1 size: " << v1.size() << endl;
+
+}
+
+int main() {
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+总结：
+
+- 判断是否为空 --- empty
+- 返回元素个数 --- size
+- 返回容器容量 --- capacity
+- 重新指定大小 --- resize
+
+
+
+#### 3.2.5 vector插入和删除
+
+**功能描述：**
+
+- 对vector容器进行插入、删除操作
+
+
+
+**函数原型：**
+
+- `push_back(ele);` //尾部插入元素ele
+- `pop_back();` //删除最后一个元素
+- `insert(const_iterator pos, ele);` //迭代器指向位置pos插入元素ele
+- `insert(const_iterator pos, int count, ele);` //迭代器指向位置pos插入count个元素ele
+- `erase(const_iterator pos);` //删除迭代器只想的元素
+- `erase(const_iterator start, const_iterator end);` //删除迭代器从start到end之间的元素
+- `clear();` //删除容器中所有的元素
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+
+//插入和删除元素
+/*
+- `push_back(ele);` //尾部插入元素ele
+- `pop_back();` //删除最后一个元素
+- `insert(const_iterator pos, ele);` //迭代器指向位置pos插入元素ele
+- `insert(const_iterator pos, int count, ele);` //迭代器指向位置pos插入count个元素ele
+- `erase(const_iterator pos);` //删除迭代器指向的元素
+- `erase(const_iterator start, const_iterator end);` //删除迭代器从start到end之间的元素
+- `clear();` //删除容器中所有的元素
+*/
+
+void printVector(const vector<int>& v) {
+	for (vector<int>::const_iterator it = v.begin(); it != v.end(); ++it) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+void test01() {
+	vector<int> v;
+	//尾部插入元素
+	v.push_back(10);
+	v.push_back(20);
+	v.push_back(30);
+	printVector(v); // 10 20 30
+
+	//删除最后一个元素
+	v.pop_back();
+	printVector(v); // 10 20
+
+	//迭代器指向位置pos插入元素ele
+	vector<int>::iterator it = v.begin();
+	v.insert(it, 100); //在第一个位置插入100
+	printVector(v); // 100 10 20
+
+	//迭代器指向位置pos插入count个元素ele
+	it = v.begin(); // 重新获取迭代器
+	v.insert(it, 2, 200); //在第一个位置插入两个200
+	printVector(v); // 200 200 100 10 20
+
+	//删除迭代器指向的元素
+	it = v.begin(); // 重新获取迭代器
+	v.erase(it);
+	printVector(v); // 200 100 10 20
+
+	//删除迭代器从start到end之间的元素
+	vector<int>::iterator start = v.begin();
+	vector<int>::iterator end = v.end();
+	v.erase(start, end);
+	printVector(v); // (空行)
+
+	//删除容器中所有的元素
+	v.push_back(10);
+	v.push_back(20);
+	v.push_back(30);
+	v.clear();
+	printVector(v); // (空行)
+}
+
+int main() {
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+总结：
+
+- 尾插 --- push_back
+- 尾删 --- pop_back
+- 插入 --- insert（位置迭代器）
+- 删除 --- erase（位置迭代器）
+- 清空 --- clear
+
+
+
+#### 3.2.6vector数据存取
+
+
+
+**功能描述：**
+
+- 对vector中的数据的存取操作
+
+
+
+**函数原型：**
+
+- `at(int idx);` //返回索引idx所指的数据
+- `operator[];` //返回索引idx所指的数据
+- `front();` //返回容器中第一个数据元素
+- `back();` //返回容器中最后一个数据元素
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+
+//vector容器 数据存取
+
+void test01() {
+	vector<int> v;
+	for (int i = 0; i < 10; i++) {
+		v.push_back(i);
+	}
+	//通过[]方式访问容器中的数据
+	for (int i = 0; i < v.size(); i++) {
+		cout << v[i] << " ";
+	}
+	cout << endl;
+	//通过at方式访问容器中的数据
+	for (int i = 0; i < v.size(); i++) {
+		cout << v.at(i) << " ";
+	}
+	cout << endl;
+	//获取第一个元素
+	cout << "第一个元素为：" << v.front() << endl;
+	//获取最后一个元素
+	cout << "最后一个元素为：" << v.back() << endl;
+}
+
+int main() {
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+总结：
+
+- 除了用迭代器获取vector容器中元素，[]和at都可以
+- front返回容器第一个元素
+- back返回容器最后一个元素
+
+
+
+##### 3.2.7 vector互换容器
+
+**功能描述：**
+
+- 实现两个容器内元素进行互换
+
+
+
+**函数原型：**
+
+- `swap(vec);` //将vec与本身的元素互换
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+
+//vector容器互换
+
+void printVector(const vector<int>& v) {
+	for (vector<int>::const_iterator it = v.begin(); it != v.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+//1.基本使用
+void test01() {
+	vector<int> v1;
+	for (int i = 0; i < 10; i++) {
+		v1.push_back(i);
+	}
+	cout << "v1容器内容：";
+	printVector(v1);
+
+	vector<int> v2;
+	for (int i = 10; i < 20; i++) {
+		v2.push_back(i);
+	}
+	cout << "v2容器内容：";
+	printVector(v2);
+
+	//交换容器内容
+	v1.swap(v2);
+	cout << "交换后：\n";
+	printVector(v1);
+	printVector(v2);
+}
+
+//2.实际用途
+//可以巧用swap函数收缩内存空间
+void test02() {
+	vector<int> v1;
+	for (int i = 0; i < 100000; i++) {
+		v1.push_back(i);
+	}
+	cout << "v1容器容量：" << v1.capacity() << endl;
+	//清空容器
+	v1.clear();
+	cout << "清空后v1容器容量：" << v1.capacity() << endl;
+	//收缩内存空间
+	vector<int>(v1).swap(v1);
+	cout << "收缩后v1容器容量：" << v1.capacity() << endl;
+}
+
+int main() {
+
+	test01();
+	test02();
+
+	system("pause");
+	return 0;
+}
+```
+
+总结：swap可以使两个容器互换，可以达到实用的收缩内存效果
+
+
+
+#### 3.2.8 vector预留空间
+
+**功能描述：**
+
+- 减少vector在动态扩展容量时的扩展次数
+
+
+
+**函数原型：**
+
+- `reserve(int len);` //容器预留len个元素长度，预留位置不初始化，元素不可访问
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+
+//vector容器 预留空间
+void test01() {
+	vector<int> v; //默认构造函数
+
+	//利用reserve函数预留空间
+	v.reserve(100000); //预留100000个空间
+
+	int num = 0; //统计开辟的次数
+	int* p = NULL; //指向vector的首地址
+	for (int i = 0; i < 100000; i++) {
+		v.push_back(i);
+		if (p != &v[0]) {
+			p = &v[0];
+			num++;
+		}
+	}
+	cout << "开辟次数：" << num << endl;
+}
+
+int main() {
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+总结：如果数据量较大，可以一开始利用reserve预留空间
+
+
+
+### 3.3 deque容器
+
+#### 3.3.1 deque容器基本概念
+
+
+
+**功能：**
+
+- 双端数组，可以对头端进行插入删除操作
+
+
+
+**deque与vector区别：**
+
+- vector对于头部的插入删除效率低，数据量越大，效率越低
+- deque相对而言，对头部的插入删除速度会比vector快
+- vector访问元素时的速度会比deque快，这和两者内部实现有关
+
+![image-20250820152100384](https://gitee.com/YuXinHome/blogimg/raw/master/img/image-20250820152100384.png)
+
+deque内部工作原理：
+
+deque内部有个**中控器**，维护每段缓冲区中的内容，缓冲区中存放真实数据
+
+中控器维护的是每个缓冲区的地址，使得使用deque时像一片连续的内存空间
+
+![image-20250820152523768](https://gitee.com/YuXinHome/blogimg/raw/master/img/image-20250820152523768.png)
+
+- deque容器的迭代器也是支持随机访问的
+
+
+
+#### 3.3.2 deque构造函数
+
+**功能描述：**
+
+- deque容器构造
+
+
+
+**函数原型：**
+
+- `deque<T> deqT;` //默认构造形式
+- `deque(beg, end);` //构造函数将[beg, end]区间中的元素拷贝给自身
+- `deque(n, elem);` //构造函数将n个elem拷贝给本身
+- `deque(const deque& deq);` //拷贝构造函数
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<deque>
+
+void printDeque(const deque<int>& d) {
+	for (deque<int>::const_iterator it = d.begin(); it != d.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+//deque容器 构造函数
+void test() {
+	deque<int> d1; //默认构造 无参构造
+	for (int i = 0; i < 10; i++) {
+		d1.push_back(i);
+	}
+	printDeque(d1);
+	deque<int> d2(d1); //拷贝构造
+	printDeque(d2);
+	deque<int> d3(d2.begin(), d2.end()); //区间构造
+	printDeque(d3);
+	deque<int> d4(10, 100); //n个elem
+	printDeque(d4);
+}
+
+int main() {
+	test();
+	system("pause");
+	return 0;
+}
+```
+
+**总结：**deque容器和vector容器的构造方式几乎一致，灵活使用即可
+
+
+
+#### 3.3.3 deque赋值操作
+
+
+
+**功能描述：**
+
+- 给deque容器进行赋值
+
+
+
+**函数原型：**
+
+- `deque& operator=(const deque& deq);` //重载等号操作符
+- `assign(beg, end);` //将[beg, end)区间这种的数据拷贝赋值给本身
+- `assign(n, elem);` //将n个elem拷贝赋值给本身
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<deque>
+
+//vector容器 赋值操作
+
+void print(deque<int>& dq) {
+	for (int i = 0; i < dq.size(); i++) {
+		cout << dq[i] << " ";
+	}
+	cout << endl;
+}
+
+void test01() {
+	deque<int> dq1;
+	for (int i = 0; i < 10; i++) {
+		dq1.push_back(i);
+	}
+	print(dq1);
+	deque<int> dq2;
+	dq2 = dq1; //赋值操作
+	print(dq2);
+	deque<int> dq3;
+	dq3.assign(dq1.begin(), dq1.end()); //区间赋值
+	print(dq3);
+	deque<int> dq4;
+	dq4.assign(10, 100); //重复赋值
+	print(dq4);
+}
+
+int main() {
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+总结：deque赋值操作也与vector相同，需熟练掌握
+
+
+
+#### 3.3.4 deque大小操作
+
+**功能描述：**
+
+- 对deque容器的大小进行操作
+
+
+
+**函数原型：**
+
+- `deque.empty();` //判断容器是否为空
+- `deque.size();` //返回容器中元素的个数
+- `deque.resize(num);` //1.重新指定容器的长度为num，若容器变长，则以默认值填充新位置    2.如果容器变短，则末尾超出容器长度的元素被删除
+- `deque.resize(num, elem);` //1.重新指定容器的长度为num，若容器变长，则以elem填充新位置    2.如果容器变短，则末尾超出容器长度的元素被删除
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<deque>
+
+//deque容器 大小操作
+
+void printDeque(deque<int>& d) {
+	for (int i = 0; i < d.size(); i++) {
+		cout << d[i] << " ";
+	}
+	cout << endl;
+}
+
+void test01() {
+	deque<int> d1;
+	for (int i = 0; i < 10; i++) {
+		d1.push_back(i);
+	}
+	printDeque(d1);
+
+	if (d1.empty()) {
+		cout << "d1 is empty" << endl;
+	}
+	else {
+		cout << "d1 is not empty" << endl;
+		cout << "d1 size: " << d1.size() << endl;
+	}
+
+	//重新指定大小
+	//d1.resize(15);
+	d1.resize(15, 100); //指定新大小为15，新增的元素值为100
+	printDeque(d1);
+	d1.resize(5);
+	printDeque(d1);
+}
+
+int main() {
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+总结：
+
+- deque没有容量的概念
+- 判断是否为空 --- empty
+- 返回元素个数 --- size
+- 重新指定个数 --- resize
+
+
+
+#### 3.3.5 deque插入和删除
+
+**功能描述：**
+
+- 向deque容器中插入和删除数据
+
+
+
+**函数原型：**
+
+两段插入操作：
+
+- `push_back(elem);` //在容器尾部添加一个数据
+- `push_front(elem);` //在容器头部插入一个数据
+- `pop_back();` //删除容器最后一个数据
+- `pop_front();` //删除容器第一个数据
+
+指定位置操作：
+
+- `insert(pos, elem);` //在pos位置插入一个elem元素的拷贝，返回新数据的位置
+- `insert(pos, n, elem);` //在pos位置插入n个elem数据，无返回值
+- `insert(pos, beg, elem);` //在pos位置插入[beg, end)区间的数据，无返回值
+- `clear();` //清空容器的所有数据
+- `erase(beg, end);` //删除[beg, end)区间的数据，返回下一个数据的位置
+- `erase(pos);` //删除pos位置的数据，返回下一个数据的位置
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<deque>
+
+void printDeque(const deque<int>& d) {
+	for (deque<int>::const_iterator it = d.begin(); it != d.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+//deque容器插入和删除
+void test01() {
+	deque<int> d;
+	//尾部插入
+	d.push_back(10);
+	d.push_back(20);
+	d.push_back(30);
+	printDeque(d);
+	//头部插入
+	d.push_front(100);
+	d.push_front(200);
+	d.push_front(300);
+	printDeque(d);
+	//尾部删除
+	d.pop_back();
+	printDeque(d);
+	//头部删除
+	d.pop_front();
+	printDeque(d);
+	//清空容器
+	d.clear();
+	printDeque(d);
+}
+
+void test02() {
+	deque<int> d;
+	//尾部插入
+	d.push_back(10);
+	d.push_back(20);
+	d.push_back(30);
+	//头部插入
+	d.push_front(100);
+	d.push_front(200);
+	d.push_front(300);
+	printDeque(d);
+	//insert插入
+	d.insert(d.begin(), 1000); //在头部插入1000
+	printDeque(d);
+	d.insert(d.begin(), 2, 1000); //在头部插入2个1000
+	printDeque(d);
+	//按照区间插入
+	deque<int> d2;
+	d2.push_back(10000);
+	d2.push_back(20000);
+	d2.push_back(30000);
+	d.insert(d.begin(), d2.begin(), d2.end()); //在头部插入d2的所有元素
+	printDeque(d);
+}
+
+void test03() {
+	deque<int> d;
+	//尾部插入
+	d.push_back(10);
+	d.push_back(20);
+	d.push_back(30);
+	//头部插入
+	d.push_front(100);
+	d.push_front(200);
+	d.push_front(300);
+	printDeque(d);
+	//erase删除
+	d.erase(d.begin()); //删除头部元素
+	printDeque(d);
+	d.erase(d.begin(), d.end() - 1); //删除除最后一个元素外的所有元素
+	printDeque(d);
+	//清空容器
+	d.clear();
+	printDeque(d);
+}
+
+int main() {
+	test01();
+	test02();
+	test03();
+	system("pause");
+	return 0;
+}
+```
+
+ 总结：
+
+- 插入和删除提供的位置是迭代器！
+- 尾插 --- push_back
+- 尾删 --- pop_back
+- 头插 --- push_front
+- 头删 --- pop_front
+
+
+
+#### 3.3.6 deque数据存取
+
+
+
+**功能描述：**
+
+- 对deque中的数据存取操作
+
+
+
+**函数原型：**
+
+- `at(int idx);` //返回索引idx所指的数据
+- `operator[];` //返回索引idx所指的数据
+- `front();` //返回容器中第一个数据元素
+- `back();` //返回容器中最后一个数据元素
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<deque>
+
+//deque容器数据存取
+void test01() {
+	deque<int> d1;
+	for (int i = 0; i < 10; i++) {
+		d1.push_back(i);
+	}
+	//遍历容器
+	for (deque<int>::iterator it = d1.begin(); it != d1.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+	//使用下标访问元素
+	for (int i = 0; i < d1.size(); i++) {
+		cout << d1[i] << " ";
+	}
+	cout << endl;
+	//使用at()访问元素
+	for (int i = 0; i < d1.size(); i++) {
+		cout << d1.at(i) << " ";
+	}
+	cout << endl;
+	//使用front()和back()访问首尾元素
+	cout << "首元素: " << d1.front() << endl;
+	cout << "尾元素: " << d1.back() << endl;
+}
+
+int main() {
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+总结：
+
+- 除了用迭代器获取deque容器中元素，[]和at也可以
+- front返回容器第一个元素
+- back返回容器最后一个元素
+
+
+
+#### 3.3.7 deque排序
+
+**功能描述：**
+
+- 利用算法实现对deque容器进行排序
+
+
+
+**算法：**
+
+- `sort(iterator beg, iterator end)` //对beg和end区间内元素进行排序
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<deque>
+#include<algorithm> //包含sort函数的头文件
+
+//deque容器排序
+void test01() {
+	deque<int> d;
+	d.push_back(10);
+	d.push_back(40);
+	d.push_back(50);
+	d.push_back(20);
+	d.push_back(30);
+	//使用sort函数对deque容器进行排序,默认是从小到大排序
+	//对于支持随机访问的迭代器的容器都可以使用sort算法
+	//vector、deque、array都可以使用sort算法
+	sort(d.begin(), d.end());
+	//输出排序后的结果
+	for (deque<int>::iterator it = d.begin(); it != d.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+int main() {
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+总结：sort算法非常实用，使用时包含头文件algorithm即可
+
+
+
+### 3.4 案例-评委打分
+
+
+
+#### 3.4.1 案例描述
+
+有5名选手：选手ABCDE，10个评委分别对每一名选手打分，去除最高分，去除评委中的最低分，取平均分
+
+
+
+#### 3.4.2 实现步骤
+
+1. 创造五名选手，放到vector中
+2. 遍历vector容器，取出来每一个选手，执行for循环，可以把10个评委打分存到deque容器中
+3. sort算法对deque容器中分数排序，去除最高和最低分
+4. deque容器遍历一遍，累加总分
+5. 获取平均分
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<deque>
+#include<algorithm>
+#include<vector>
+#include<string>
+#include<ctime>
+
+//有5名选手：选手ABCDE，10个评委分别对每一名选手打分，去除最高分，去除评委中的最低分，取平均分
+
+//选手类
+class Person {
+public:
+	string name;
+	int scores;
+	Person(string name, int scores) {
+		this->name = name;
+		this->scores = scores;
+	}
+};
+
+void createPersons(vector<Person>& persons) {
+	string nameSeed = "ABCDE";
+	for (int i = 0; i < 5; i++) {
+		string name = "选手";
+		name += nameSeed[i];
+		Person p(name, 0);
+		persons.push_back(p);
+	}
+}
+
+void setScores(vector<Person>& persons) {
+	//模拟10个评委打分
+	for (int i = 0; i < persons.size(); i++) {
+		deque<int> scores;
+		for (int j = 0; j < 10; j++) {
+			int score = rand() % 41 + 60; //60-100分
+			scores.push_back(score);
+		}
+		//输出每名选手的分数
+		cout << persons[i].name << "的分数为：";
+		for (int k = 0; k < scores.size(); k++) {
+			cout << scores[k] << " ";
+		}
+		cout << endl;
+		//去除最高分
+		sort(scores.begin(), scores.end());
+		scores.pop_back();
+		//去除最低分
+		scores.pop_front();
+		//计算平均分
+		int sum = 0;
+		for (int k = 0; k < scores.size(); k++) {
+			sum += scores[k];
+		}
+		persons[i].scores = sum / scores.size();
+	}
+}
+
+//显示每名选手的平均分
+void showScores(const vector<Person>& persons) {
+	cout << "选手平均分：" << endl;
+	for (vector<Person>::const_iterator it = persons.begin(); it != persons.end(); it++) {
+		cout << it->name << "的平均分为：" << it->scores << endl;
+	}
+}
+
+int main() {
+
+	//随机数种子
+	srand((unsigned int)time(NULL));
+
+	//1.创建5名选手
+	vector<Person> persons;
+	createPersons(persons);
+	//测试
+	//for (vector<Person>::iterator it = persons.begin(); it != persons.end(); it++) {
+	//	cout << "name:" << it->name << " scores:" << it->scores << endl;
+	//}
+
+	//2.给每名选手打分
+	setScores(persons);
+
+	//3.显示每名选手的平均分
+	showScores(persons);
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+### 3.5 stack容器
+
+#### 3.5.1 stack基本概念
+
+
+
+**概念：**stack是一种**先进后出**（First In Last Out，FILO）的数据结构，他只有一个出口
+
+![image-20250820190749482](https://gitee.com/YuXinHome/blogimg/raw/master/img/image-20250820190749482.png)
+
+栈中只有顶端的元素才可以被外界使用，因此**栈不允许有遍历行为**
+
+栈中进入数据称为 --- **入栈**`push`
+
+栈中弹出数据称为 --- **出栈**`pop`
+
+
+
+生活中的栈：
+
+![image-20250820192725408](https://gitee.com/YuXinHome/blogimg/raw/master/img/image-20250820192725408.png)
+
+
+
+#### 3.5.2 stack常用接口
+
+功能描述：栈容器常用的对外接口
+
+
+
+构造函数：
+
+- `stack<T> stk;` //stack采用模版类实现，stack对象的默认构造形式
+- `stack(const stack& stk);` //重载等号操作符
+
+赋值操作：
+
+- `stack& operator=(const stack& stk);` //重载等号操作符
+
+数据存取：
+
+- `push(elem);` //向栈顶添加元素
+- `pop();` //从栈顶移除第一个元素
+- `top();` //返回栈顶元素
+
+大小操作：
+
+- `empty();` //判断对战是否为空
+- `size();` //返回栈的大小
 
 
 
