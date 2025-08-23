@@ -15,25 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="01 函数对象基本使用.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
     <ClCompile Include="模板.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="01 map容器_构造和赋值.cpp">
+    <ClCompile Include="02 谓词_一元谓词.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="02 map容器_大小和交换.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="03 map容器_插入和删除.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="04 map容器_查找和统计.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="05 map容器_排序.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="06 map容器_案例_员工分组.cpp">
+    <ClCompile Include="03 谓词_二元谓词.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

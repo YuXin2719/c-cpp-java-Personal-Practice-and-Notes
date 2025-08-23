@@ -1567,6 +1567,10 @@ int main() {
 
 
 
+## 3 STL-常用容器
+
+### 3.1 string容器
+
 #### 3.1.1 string基本概念
 
 **本质：**
@@ -4579,6 +4583,686 @@ map和multimap**区别**：
 **示例：**
 
 ```c++
+#include<iostream>
+using namespace std;
+#include<map>
 
+//map容器的构造和赋值
+
+void printMap(const map<int, int>& m) {
+	//这里的auto是C++11引入的类型推断关键字，表示自动推断变量类型
+	//auto在这里会被推断为map<int, int>::const_iterator
+	for (auto it = m.begin(); it != m.end(); ++it) {
+		cout << "key: " << it->first << ", value: " << it->second << endl;
+	}
+}
+
+void test01() {
+	//1.默认构造,两个参数分别表示键值类型和值类型，会按照键值进行排序
+	map<int, int> m1;
+	m1.insert(pair<int, int>(1, 10));
+	m1.insert(pair<int, int>(2, 20));
+	m1.insert(pair<int, int>(3, 30));
+	m1.insert(pair<int, int>(4, 40));
+	m1.insert(pair<int, int>(5, 50));
+	printMap(m1);
+	//2.指定范围构造
+	map<int, int> m2(m1.begin(), m1.end());
+	printMap(m2);
+	//3.复制构造
+	map<int, int> m3(m2); //和 m3 = m2; 等价
+	printMap(m3);
+	//4.指定比较函数构造,less<int>是一个函数对象，表示使用小于号进行比较
+	map<int, int, less<int>> m4;
+	//5.指定比较函数和分配器构造,allocator是一个分配器，这里表示使用默认的内存分配器
+	map<int, int, less<int>, allocator<pair<const int, int>>> m5;
+}
+
+int main() {
+	test01();
+
+	system("pause");
+	return 0;
+}
 ```
+
+总结：map中所有元素都是成对出现，插入数据时要使用对组
+
+
+
+#### 3.9.3 map大小和交换
+
+**功能描述：**
+
+- 统计map容器大小以及交换map容器
+
+
+
+**函数原型：**
+
+- `size();` //返回容器中元素的数目
+- `empty();` //判断容器是否为空
+- `swap(st); `//交换两个集合容器
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<map>
+
+//map容器_大小和交换
+void test01() {
+	map<int, int>m1;
+	//插入数据
+	m1.insert(pair<int, int>(1, 10));
+	m1.insert(pair<int, int>(2, 20));
+	m1.insert(pair<int, int>(3, 30));
+	m1.insert(pair<int, int>(4, 40));
+	m1.insert(pair<int, int>(5, 50));
+	//通过size()函数获取容器中元素的个数
+	cout << "m1 size = " << m1.size() << endl;
+	//通过empty()函数判断容器是否为空
+	if (m1.empty()) {
+		cout << "m1为空" << endl;
+	}
+	else {
+		cout << "m1不为空" << endl;
+	}
+	//交换两个容器
+	map<int, int>m2;
+	m2.insert(pair<int, int>(10, 100));
+	m2.insert(pair<int, int>(20, 200));
+	cout << "交换前：" << endl;
+	cout << "m1 size = " << m1.size() << endl;
+	cout << "m2 size = " << m2.size() << endl;
+	m1.swap(m2);//交换
+	cout << "交换后：" << endl;
+	cout << "m1 size = " << m1.size() << endl;
+	cout << "m2 size = " << m2.size() << endl;
+}
+
+int main() {
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+总结：
+
+- 统计大小 --- size
+- 判断是否为空 --- empty
+- 交换容器 --- swap
+
+
+
+#### 3.9.4 map插入和删除
+
+**功能描述：**
+
+- map容器进行插入和删除数据
+
+
+
+**函数原型：**
+
+- `insert(elem);` //在容器中插入元素
+- `clear(); `//清除所有元素
+- `erase(pos); `//删除pos迭代器所指的元素，返回下一个元素的迭代器
+- `erase(beg, end);` //删除区间[beg,end)的所有元素，返回下一个元素的迭代器
+- `erase(key);` //删除容器中值为key的元素
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<map>
+
+//map容器的插入和删除
+
+void showMap(map<int, int>m) {
+	for (auto it = m.begin(); it != m.end(); ++it) {
+		cout << "key: " << it->first << ", value: " << it->second << endl;
+	}
+}
+
+void test01() {
+	map<int, int>m1;
+	//插入数据
+	//方式1
+	m1.insert(pair<int, int>(1, 10));
+	//方式2,推荐,自动类型推导
+	m1.insert(make_pair(2, 20));
+	//方式3,不推荐,效率低
+	m1.insert(map<int, int>::value_type(3, 30));
+	//方式4,利用下标插入,不建议
+	// 因为如果key存在,会覆盖原来的value,而且如果key不存在,会创建一个新的key,value默认值为0
+	// 用途,可以利用key访问到value
+	m1[4] = 40;
+	//遍历map
+	showMap(m1);
+
+	//删除元素
+	m1.erase(m1.begin());
+	m1.erase(2); //根据key删除
+	cout << "删除元素后：" << endl;
+	showMap(m1);
+	m1.erase(m1.begin(), m1.end()); //删除区间
+	cout << "区间删除元素后：" << endl;
+	showMap(m1);
+}
+
+int main() {
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+总结：
+
+- map插入方式很多，记住其一即可
+- 插入 --- insert
+- 删除 --- erase
+- 清空 --- clear
+
+
+
+#### 3.9.5 map查找和统计
+
+**功能描述：**
+
+- 对map容器进行查找数据以及统计数据
+
+**函数原型：**
+
+- `find(key);` //查找key是否存在，如果存在，返回该键的元素的迭代器，如果不存在，返回map.end();
+- `count(key);` //统计key的元素个数
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<map>
+
+//map容器_查找和统计
+void test01() {
+	map<int, int>m;
+	//插入数据
+	m.insert(pair<int, int>(1, 10));
+	m.insert(make_pair(2, 20));
+	m.insert(map<int, int>::value_type(3, 30));
+	m[4] = 40;
+	m[5] = 50;
+	//查找元素find(key)
+	map<int, int>::iterator pos = m.find(3);
+	if (pos != m.end()) {
+		cout << "找到元素 key = " << pos->first << " value = " << pos->second << endl;
+	}
+	else {
+		cout << "未找到元素" << endl;
+	}
+	//统计元素count(key)
+	//map不允许有重复key,所以统计结果要么是0要么是1
+	int num = m.count(3);
+	cout << "num = " << num << endl;
+}
+
+int main() {
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+总结：
+
+- 查找 --- find（返回的是迭代器）
+- 统计 --- count（对于map，结果为0或者1）
+
+
+
+#### 3.9.6 map容器排序
+
+**学习目标：**
+
+- map容器默认排序规则为 按照key值进行 从小到大的排序，掌握如何改变排序规则
+
+
+
+**主要技术点：**
+
+- 利用仿函数，可以改变排序规则
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<map>
+
+//map容器_排序
+
+//模板类
+template<class T>
+void showMap(T m) {
+	for (typename T::iterator it = m.begin(); it != m.end(); it++) {
+		cout << "key:" << it->first << " value:" << it->second << endl;
+	}
+}
+
+class myCompare {
+public:
+	bool operator()(int v1, int v2) const {
+		return v1 > v2;
+	}
+};
+
+void test01() {
+	map<int, int>m;
+	m.insert(pair<int, int>(1, 10));
+	m.insert(pair<int, int>(3, 30));
+	m.insert(pair<int, int>(2, 20));
+	m.insert(pair<int, int>(4, 40));
+	//map容器会自动排序
+	showMap(m);
+	cout << "------------------" << endl;
+	map<int, int, myCompare>m2;
+	m2.insert(pair<int, int>(1, 10));
+	m2.insert(pair<int, int>(3, 30));
+	m2.insert(pair<int, int>(2, 20));
+	m2.insert(pair<int, int>(4, 40));
+	showMap(m2);
+}
+
+int main() {
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+总结：
+
+- 利用仿函数可以指定map容器的排序规则
+- 对于自定义数据类型，map必须要指定排序规则，同set容器
+
+
+
+### 3.10 案例-员工分组
+
+#### 3.10.1 案例描述
+
+- 公司今天招聘了10个员工（ABCDEFGHIJ），10名员工进入公司后，需要指派员工在哪个部门工作
+- 员工信息有：姓名，工资组成；部门分为：策划、美术、研发
+- 随机给10名员工分配部门和公司
+- 通过multimap进行信息的插入 key（部门编号）value（员工）
+- 分部门显示员工信息
+
+
+
+#### 3.10.2 实现步骤
+
+1. 创建10名员工，放到vector中
+2. 遍历vector容器，取出每个员工，进行随机分组
+3. 分组后，将员工部门编号作为key，具体员工作为value，放入到multimap容器中
+4. 分部门显示员工信息
+
+
+
+**案例代码：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<map>
+#include<vector>
+#include<string>
+
+//map案例_员工分组
+/*
+- 公司今天招聘了10个员工（ABCDEFGHIJ），10名员工进入公司后，需要指派员工在哪个部门工作
+- 员工信息有：姓名，工资组成；部门分为：策划、美术、研发
+- 随机给10名员工分配部门和公司
+- 通过multimap进行信息的插入 key（部门编号）value（员工）
+- 分部门显示员工信息
+*/
+
+//1.定义员工类
+class Worker {
+public:
+	string m_Name;
+	int m_Salary; //工资
+	Worker(string name, int salary) {
+		this->m_Name = name;
+		this->m_Salary = salary;
+	}
+};
+
+void createWorker(vector<Worker>& v) {
+	string nameSeed = "ABCDEFGHIJ";
+	for (int i = 0; i < 10; i++) {
+		string name = "员工";
+		name += nameSeed[i];
+		int salary = rand() % 10000 + 10000; //10000-19999
+		Worker w(name, salary);
+		v.push_back(w);
+	}
+}
+
+void insertWorkerToMap(multimap<int, Worker>& m, vector<Worker>& v) {
+	for (vector<Worker>::iterator it = v.begin(); it != v.end(); it++) {
+		//随机分配部门
+		int deptId = rand() % 3; //0 1 2
+		m.insert(make_pair(deptId, *it));
+	}
+}
+
+void showWorkerByDeptId(multimap<int, Worker>& m, int deptId) {
+	//0策划 1美术 2研发
+	string deptName;
+	if (deptId == 0) {
+		deptName = "策划";
+	}
+	else if (deptId == 1) {
+		deptName = "美术";
+	}
+	else if (deptId == 2) {
+		deptName = "研发";
+	}
+	else
+	{
+		cout << "部门不存在" << endl;
+		return;
+	}
+	cout << deptName << "部门员工信息：" << endl;
+	multimap<int, Worker>::iterator it = m.find(deptId);
+	int count = m.count(deptId); //统计某个部门的人数
+	for (int i = 0; i < count; i++) {
+		cout << "姓名：" << it->second.m_Name << " 工资：" << it->second.m_Salary << endl;
+		it++;
+	}
+	cout << endl;
+}
+
+int main() {
+	//随机数种子
+	srand((unsigned int)time(NULL));
+
+	//2.创建10名员工,放到vector中
+	vector<Worker>v;
+	createWorker(v);
+
+	//3.创建multimap容器，员工信息插入到容器中
+	multimap<int, Worker>m; //key部门编号  value员工
+	insertWorkerToMap(m, v);
+
+	//4.分部门显示员工信息
+	for (int i = 0; i < 3; i++) {
+		showWorkerByDeptId(m, i);
+	}
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+## 4 STL-函数对象
+
+### 4.1 函数对象
+
+#### 4.1.1 函数对象概念
+
+**概念：**
+
+- 重载**函数调用操作符**的类，其对象常称为**函数对象**
+- **函数对象**使用重载的()时，行为类似函数调用，也称为**仿函数**
+
+**本质：**
+
+函数对象（仿函数）是一个**类**，不是一个函数
+
+
+
+#### 4.1.2 函数对象使用
+
+**特点：**
+
+- 函数对象在使用时，可以像普通函数那样调用，可以有参数，可以有返回值
+- 函数对象超出普通函数的概念，函数对象可以有自己的状态
+- 函数对象可以作为参数传递
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<string>
+
+//函数对象（仿函数）
+/*
+- 函数对象在使用时，可以像普通函数那样调用，可以有参数，可以有返回值
+- 函数对象超出普通函数的概念，函数对象可以有自己的状态
+- 函数对象可以作为参数传递
+*/
+
+//1.函数对象在使用时，可以像普通函数那样调用，可以有参数，可以有返回值
+//普通函数
+int add(int a, int b) {
+	return a + b;
+}
+//函数对象
+class Add {
+public:
+	int operator()(int a, int b) {
+		return a + b;
+	}
+};
+
+void test01() {
+	cout << add(10, 20) << endl;
+
+	Add add2;
+	cout << add2(10, 20) << endl;
+}
+
+//2.函数对象超出普通函数的概念，函数对象可以有自己的状态
+class myPrint {
+public:
+	myPrint() {
+		count = 0;
+	}
+	void operator()(string str) {
+		cout << str << endl;
+		count++;
+	}
+	int count; //内部状态
+};
+
+void test02() {
+	myPrint p;
+	p("hello world");
+	p("hello world");
+	cout << "p函数对象被调用了：" << p.count << "次" << endl;
+}
+
+//3.函数对象可以作为参数传递
+void doPrint(myPrint& p, string str) {
+	p(str);
+}
+
+void test03() {
+	myPrint p;
+	doPrint(p, "hello");
+	doPrint(p, "world");
+	cout << "p函数对象被调用了：" << p.count << "次" << endl;
+}
+
+int main() {
+	test01();
+	test02();
+	test03();
+	system("pause");
+	return 0;
+}
+```
+
+总结：
+
+- 仿函数写法非常灵活，可以作为参数进行传递
+
+
+
+### 4.2 谓词
+
+#### 4.2.1 谓词概念
+
+**概念：**
+
+- 返回bool类型的仿函数称为**谓词**
+- 如果operator()接受一个参数，那么叫做一元谓词
+- 如果operator()接受两个参数，那么叫做二元谓词
+
+
+
+#### 4.2.2 一元谓词
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<algorithm>
+
+//一元谓词
+//仿函数 返回值为bool类型
+class GreaterFive {
+public:
+	bool operator()(int val) {
+		return val > 5;
+	}
+};
+
+void test01() {
+	vector<int> v;
+	for (int i = 0; i < 10; i++) {
+		v.push_back(i);
+	}
+	//查找容器中大于5的数字
+	//GreaterFive是匿名对象
+	auto it = find_if(v.begin(), v.end(), GreaterFive());
+	while (it != v.end()) {
+		cout << *it << " ";
+		it++;
+		it = find_if(it, v.end(), GreaterFive());
+	}
+}
+
+int main() {
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+总结：参数只有一个的谓词，称为一元谓词
+
+
+
+#### 4.2.3 二元谓词
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<algorithm>
+
+//二元谓词
+class MyCompare {
+public:
+	bool operator()(int v1, int v2) {
+		return v1 > v2;
+	}
+};
+
+void showVec(vector<int>& v) {
+	for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+void test01() {
+	vector<int>v;
+	v.push_back(10);
+	v.push_back(30);
+	v.push_back(20);
+	v.push_back(50);
+	v.push_back(40);
+
+	cout << "升序：" << endl;
+	sort(v.begin(), v.end());
+	showVec(v);
+
+	//使用函数对象,改变排序规则,实现降序
+	cout << "降序：" << endl;
+	sort(v.begin(), v.end(), MyCompare());
+	showVec(v);
+}
+
+int main() {
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+总结：参数只有两个的谓词，称为二元谓词
+
+
+
+### 4.3 内建函数对象
+
+#### 4.3.1 内建函数对象意义
+
+**概念：**
+
+- STL内建了一些函数对象
+
+**分类：**
+
+- 算术仿函数
+- 关系仿函数
+- 逻辑仿函数
+
+**用法：**
+
+- 这些仿函数所产生的对象，用法和一般函数完全相同
+- 使用内建函数对象，需要引入头文件`#include<functional>`
+
+
+
+#### 4.3.2 算术仿函数
+
+**功能描述：**
 
