@@ -1,0 +1,170 @@
+﻿  speechManager.cpp
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1597,36): warning C4244: “参数”: 从“const _Kty”转换到“const _Ty”，可能丢失数据
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1597,36): warning C4244:         with
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1597,36): warning C4244:         [
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1597,36): warning C4244:             _Kty=double
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1597,36): warning C4244:         ]
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1597,36): warning C4244:         and
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1597,36): warning C4244:         [
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1597,36): warning C4244:             _Ty=int
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1597,36): warning C4244:         ]
+  (编译源文件“speechManager.cpp”)
+      E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1597,36):
+      模板实例化上下文(最早的实例化上下文)为
+          E:\c.---c.---java-exercise\cppCode\基于STL的演讲比赛流程系统\speechManager.cpp(161,9):
+          查看对正在编译的函数 模板 实例化“std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const double,int>>>> std::multimap<double,int,std::greater<int>,std::allocator<std::pair<const double,int>>>::insert<std::pair<double,int>,0>(_Valty &&)”的引用
+          with
+          [
+              _Valty=std::pair<double,int>
+          ]
+              E:\c.---c.---java-exercise\cppCode\基于STL的演讲比赛流程系统\speechManager.cpp(161,15):
+              请参阅 "SpeechManager::speechContest" 中对 "std::multimap<double,int,std::greater<int>,std::allocator<std::pair<const double,int>>>::insert" 的第一个引用
+          E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\map(566,22):
+          查看对正在编译的函数 模板 实例化“std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const double,int>>>> std::multimap<double,int,std::greater<int>,std::allocator<std::pair<const double,int>>>::emplace<_Ty>(_Ty &&)”的引用
+          with
+          [
+              _Ty=std::pair<double,int>
+          ]
+          E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\map(555,25):
+          查看对正在编译的函数 模板 实例化“std::pair<std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const double,int>>>>,bool> std::_Tree<std::_Tmap_traits<_Kty,_Ty,_Pr,_Alloc,true>>::emplace<std::pair<double,int>>(std::pair<double,int> &&)”的引用
+          with
+          [
+              _Kty=double,
+              _Ty=int,
+              _Pr=std::greater<int>,
+              _Alloc=std::allocator<std::pair<const double,int>>
+          ]
+          E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xtree(1048,30):
+          查看对正在编译的函数 模板 实例化“std::pair<std::_Tree_node<std::pair<const double,int>,std::_Default_allocator_traits<_Alloc>::void_pointer> *,bool> std::_Tree<std::_Tmap_traits<_Kty,_Ty,_Pr,_Alloc,true>>::_Emplace<std::pair<double,int>>(std::pair<double,int> &&)”的引用
+          with
+          [
+              _Alloc=std::allocator<std::pair<const double,int>>,
+              _Kty=double,
+              _Ty=int,
+              _Pr=std::greater<int>
+          ]
+          E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xtree(1029,24):
+          查看对正在编译的函数 模板 实例化“std::_Tree_find_result<std::_Tree_node<std::pair<const double,int>,std::_Default_allocator_traits<_Alloc>::void_pointer> *> std::_Tree<std::_Tmap_traits<_Kty,_Ty,_Pr,_Alloc,true>>::_Find_upper_bound<_Kty>(const _Keyty &) const”的引用
+          with
+          [
+              _Alloc=std::allocator<std::pair<const double,int>>,
+              _Kty=double,
+              _Ty=int,
+              _Pr=std::greater<int>,
+              _Keyty=double
+          ]
+          E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xtree(1609,17):
+          查看对正在编译的函数 模板 实例化“bool std::_Debug_lt_pred<const std::greater<int>&,const _Keyty&,const _Kty&>(_Pr,_Ty1,_Ty2) noexcept(<expr>)”的引用
+          with
+          [
+              _Keyty=double,
+              _Kty=double,
+              _Pr=const std::greater<int> &,
+              _Ty1=const double &,
+              _Ty2=const double &
+          ]
+  
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1597,29): warning C4244: “参数”: 从“const _Keyty”转换到“const _Ty”，可能丢失数据
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1597,29): warning C4244:         with
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1597,29): warning C4244:         [
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1597,29): warning C4244:             _Keyty=double
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1597,29): warning C4244:         ]
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1597,29): warning C4244:         and
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1597,29): warning C4244:         [
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1597,29): warning C4244:             _Ty=int
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1597,29): warning C4244:         ]
+  (编译源文件“speechManager.cpp”)
+  
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1590,77): warning C4244: “参数”: 从“const _Kty”转换到“const _Ty”，可能丢失数据
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1590,77): warning C4244:         with
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1590,77): warning C4244:         [
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1590,77): warning C4244:             _Kty=double
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1590,77): warning C4244:         ]
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1590,77): warning C4244:         and
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1590,77): warning C4244:         [
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1590,77): warning C4244:             _Ty=int
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1590,77): warning C4244:         ]
+  (编译源文件“speechManager.cpp”)
+      E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1590,77):
+      模板实例化上下文(最早的实例化上下文)为
+          E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1597,48):
+          查看指向正在编译的变量模板“const bool _Debug_lt_pred_order_check_noexcept<std::greater<int> const &,double const &,double const &,1>”的引用
+  
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1590,54): warning C4244: “参数”: 从“const _Kty”转换到“const _Ty”，可能丢失数据
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1590,54): warning C4244:         with
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1590,54): warning C4244:         [
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1590,54): warning C4244:             _Kty=double
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1590,54): warning C4244:         ]
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1590,54): warning C4244:         and
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1590,54): warning C4244:         [
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1590,54): warning C4244:             _Ty=int
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1590,54): warning C4244:         ]
+  (编译源文件“speechManager.cpp”)
+  
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1598,57): warning C4244: “参数”: 从“const _Kty”转换到“const _Ty”，可能丢失数据
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1598,57): warning C4244:         with
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1598,57): warning C4244:         [
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1598,57): warning C4244:             _Kty=double
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1598,57): warning C4244:         ]
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1598,57): warning C4244:         and
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1598,57): warning C4244:         [
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1598,57): warning C4244:             _Ty=int
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1598,57): warning C4244:         ]
+  (编译源文件“speechManager.cpp”)
+      E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1598,57):
+      模板实例化上下文(最早的实例化上下文)为
+          E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xtree(1029,24):
+          查看对正在编译的函数 模板 实例化“std::_Tree_find_result<std::_Tree_node<std::pair<const double,int>,std::_Default_allocator_traits<_Alloc>::void_pointer> *> std::_Tree<std::_Tmap_traits<_Kty,_Ty,_Pr,_Alloc,true>>::_Find_upper_bound<_Kty>(const _Keyty &) const”的引用
+          with
+          [
+              _Alloc=std::allocator<std::pair<const double,int>>,
+              _Kty=double,
+              _Ty=int,
+              _Pr=std::greater<int>,
+              _Keyty=double
+          ]
+          E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xtree(1609,17):
+          查看对正在编译的函数 模板 实例化“bool std::_Debug_lt_pred<const std::greater<int>&,const _Keyty&,const _Kty&>(_Pr,_Ty1,_Ty2) noexcept”的引用
+          with
+          [
+              _Keyty=double,
+              _Kty=double,
+              _Pr=const std::greater<int> &,
+              _Ty1=const double &,
+              _Ty2=const double &
+          ]
+  
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1598,50): warning C4244: “参数”: 从“const _Keyty”转换到“const _Ty”，可能丢失数据
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1598,50): warning C4244:         with
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1598,50): warning C4244:         [
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1598,50): warning C4244:             _Keyty=double
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1598,50): warning C4244:         ]
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1598,50): warning C4244:         and
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1598,50): warning C4244:         [
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1598,50): warning C4244:             _Ty=int
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1598,50): warning C4244:         ]
+  (编译源文件“speechManager.cpp”)
+  
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1602,13): warning C4244: “参数”: 从“const _Keyty”转换到“const _Ty”，可能丢失数据
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1602,13): warning C4244:         with
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1602,13): warning C4244:         [
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1602,13): warning C4244:             _Keyty=double
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1602,13): warning C4244:         ]
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1602,13): warning C4244:         and
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1602,13): warning C4244:         [
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1602,13): warning C4244:             _Ty=int
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1602,13): warning C4244:         ]
+  (编译源文件“speechManager.cpp”)
+  
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1602,13): warning C4244: “参数”: 从“const _Kty”转换到“const _Ty”，可能丢失数据
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1602,13): warning C4244:         with
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1602,13): warning C4244:         [
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1602,13): warning C4244:             _Kty=double
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1602,13): warning C4244:         ]
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1602,13): warning C4244:         and
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1602,13): warning C4244:         [
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1602,13): warning C4244:             _Ty=int
+E:\vs\vs2022\VC\Tools\MSVC\14.44.35207\include\xutility(1602,13): warning C4244:         ]
+  (编译源文件“speechManager.cpp”)
+  
+  基于STL的演讲比赛流程系统.vcxproj -> E:\c.---c.---java-exercise\cppCode\基于STL的演讲比赛流程系统\x64\Debug\基于STL的演讲比赛流程系统.exe

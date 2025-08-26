@@ -1,0 +1,7 @@
+﻿  05 常用查找算法_count.cpp
+  06 常用查找算法_count_if.cpp
+E:\c.---c.---java-exercise\cppCode\常用查找算法\06 常用查找算法_count_if.cpp(18,10): warning C4244: “初始化”: 从“__int64”转换到“int”，可能丢失数据
+E:\c.---c.---java-exercise\cppCode\常用查找算法\06 常用查找算法_count_if.cpp(46,10): warning C4244: “初始化”: 从“__int64”转换到“int”，可能丢失数据
+E:\c.---c.---java-exercise\cppCode\常用查找算法\06 常用查找算法_count_if.cpp(57,16): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
+  正在生成代码...
+  常用查找算法.vcxproj -> E:\c.---c.---java-exercise\cppCode\常用查找算法\x64\Debug\常用查找算法.exe

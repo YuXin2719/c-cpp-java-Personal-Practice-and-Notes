@@ -30,5 +30,11 @@
     <ClCompile Include="04 内建函数对象_算术仿函数.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="05 内建函数对象_关系仿函数.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="06 内建函数对象_逻辑仿函数.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

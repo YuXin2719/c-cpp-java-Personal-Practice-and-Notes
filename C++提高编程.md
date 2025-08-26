@@ -5309,3 +5309,2320 @@ int main() {
 
 总结：使用内建函数对象时，需要引入头文件 `#include <functional>`
 
+
+
+#### 4.3.3 关系仿函数
+
+**功能描述：**
+
+- 实现关系对比
+
+**仿函数原型：**
+
+- `template<class T> bool equal_to<T>` //等于
+- `template<class T> bool not_equal_to<T>` //不等于
+- `template<class T> bool greater<T>` //大于
+- `template<class T> bool greater_equal<T>` //大于等于
+- `template<class T> bool less<T>` //小于
+- `template<class T> bool less_equal<T>` //小于等于
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<string>
+#include<functional>
+#include<vector>
+#include<algorithm>
+
+//内建函数对象_关系仿函数
+
+void showVec(vector<int>& v) {
+	for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+//大于 greater
+void test01() {
+	vector<int>v;
+	v.push_back(10);
+	v.push_back(30);
+	v.push_back(20);
+	v.push_back(50);
+	v.push_back(40);
+	//默认是升序
+	sort(v.begin(), v.end());
+	showVec(v);
+	//降序
+	//greater<int>() 内建仿函数对象
+	sort(v.begin(), v.end(), greater<int>());
+	showVec(v);
+}
+
+int main() {
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+总结：关系仿函数中最常用的就是greater<>大于
+
+
+
+#### 4.3.4 逻辑仿函数
+
+**功能描述：**
+
+- 实现逻辑运算
+
+**函数原型：**
+
+- `template<class T> bool logical_and<T>` //逻辑与
+- `template<class T> bool logical_or<T>` //逻辑或
+- `template<class T> bool logical_not<T>` //逻辑非
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<functional> //内建函数对象头文件
+#include<algorithm> //算法头文件
+
+//内建函数对象_逻辑仿函数
+//逻辑非 logical_not
+void test01() {
+	vector<bool> v;
+	v.push_back(true);
+	v.push_back(false);
+	v.push_back(true);
+	v.push_back(false);
+
+	for (vector<bool>::iterator it = v.begin(); it != v.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+
+	//利用逻辑非,将容器v搬运到容器v2中,并取反
+	vector<bool> v2;
+	//开辟空间是必须的,否则会报错
+	v2.resize(v.size());
+	transform(v.begin(), v.end(), v2.begin(), logical_not<bool>());
+	for (vector<bool>::iterator it = v2.begin(); it != v2.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+int main() {
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+总结：逻辑仿函数实际应用较少，了解即可
+
+
+
+## 5 STL-常用算法
+
+
+
+**概述：**
+
+- 算法头文件由`<algorithm>` `<functional>` `<numeric>`组成
+- `<algorithm>`是所有STL头文件中最大的一个，范围涉及到比较、交换、查找、遍历操作、复制、修改等
+- `<functional>`体积很小，只包括几个在序列上面进行简单数学运算的函数模版
+- `<numeric>`定义了一些模版类，用以声明函数对象
+
+
+
+### 5.1 常用遍历算法
+
+**学习目标：**
+
+- 掌握常用的遍历算法
+
+**算法简介：**
+
+- `for_each` //遍历容器
+- `transform` //搬运容器到另一个容器中
+
+
+
+#### 5.1.1 for_each
+
+**功能描述：**
+
+- 实现遍历容器
+
+**函数原型：**
+
+- `for_each(iterator beg, iterator end, _func);`
+
+  //遍历算法 遍历容器元素
+
+  //beg 开始迭代器
+
+  //end 结束迭代器
+
+  // _func 函数或者函数对象
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<algorithm>
+
+//常用遍历算法_for_each
+
+//普通函数
+void myPrint(int val) {
+	cout << val << " ";
+}
+
+//仿函数
+class MyPrint {
+public:
+	void operator()(int val) {
+		cout << val << " ";
+	}
+};
+
+void test01() {
+	vector<int> v;
+	for (int i = 0; i < 10; i++) {
+		v.push_back(i);
+	}
+	//利用for和迭代器遍历容器
+	for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+	//利用STL提供的遍历算法_for_each
+	for_each(v.begin(), v.end(), [](int val) {
+		cout << val << " ";
+		}); //解释语法:[](int val){}; 这是一个匿名函数,没有名字,只能使用一次
+	cout << endl;
+	//使用自己写的普通函数遍历
+	for_each(v.begin(), v.end(), myPrint);
+	cout << endl;
+	//使用自己写的仿函数遍历
+	for_each(v.begin(), v.end(), MyPrint());
+	cout << endl;
+}
+
+int main() {
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+总结：for_each在实际开发中是最常用的遍历算法，需要熟练掌握。
+
+不过实际上企业中最常用的还是以下写法：
+
+```c++
+for (auto& element : v) {
+    cout << element << " ";
+}
+```
+
+
+
+#### 5.1.2 transform
+
+**功能描述：**
+
+- 搬运容器到另一个容器中
+
+**函数原型：**
+
+- `transform(iterator beg1, iterator end1, iterator beg2, _func);`
+
+  //beg1 源容器开始迭代器
+
+  //end1 源容器结束迭代器
+
+  //beg2 目标函数开始迭代器
+
+  //_func 函数或者函数对象
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<algorithm>
+
+//常用遍历算法_transform
+void test01() {
+	vector<int> v;
+	for (int i = 0; i < 10; i++) {
+		v.push_back(i);
+	}
+	//利用STL提供的变换算法_transform
+	vector<int> v2;
+	//back_inserter(v2) 适配器 将v2容器变为迭代器
+	//std::back_inserter会创建一个特殊的输出迭代器，当通过这个迭代器赋值时，会自动调用容器的 push_back()方法
+	//在算法操作中（如 transform, copy等），如果目标容器是空的或大小不足，比如在这里我们就没有给v2开辟空间,直接使用普通迭代器会导致未定义行为。back_inserter解决了这个问题。
+	transform(v.begin(), v.end(), back_inserter(v2), [](int val) {
+		return val * 2; //搬运期间还可以做逻辑运算
+		});
+	for (auto& it : v2) {
+		cout << it << " ";
+	}
+	cout << endl;
+}
+
+int main() {
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+总结：搬运的目标容器必须要提前开辟空间，否则无法正常搬运
+
+
+
+### 5.2 常用查找算法
+
+**学习目标：**
+
+- 掌握常用的查找算法
+
+
+
+**算法简介：**
+
+- `find` //查找元素
+- `find_if` //按条件查找元素
+- `adjacent_find` //查找相邻重复元素
+- `binary_search `//二分查找法（必须有序）
+- `count` //统计元素个数
+- `count_if` //按条件统计元素个数
+
+
+
+#### 5.2.1 find
+
+**功能描述：**
+
+- 查找指定元素，找到返回指定元素的迭代器，找不到返回结束迭代器end()
+
+
+
+**函数原型：**
+
+- `find(iterator beg, iterator end, value);`
+
+  //按值查找元素，找到返回指定位置迭代器，找不到返回结束迭代器位置
+
+  //beg 开始迭代器
+
+  //end 结束迭代器
+
+  //value 查找的元素
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<algorithm>
+#include<vector>
+#include<string>
+
+//常用查找算法_find
+
+//查找内置数据类型
+void test01() {
+	vector<int> v;
+	for (int i = 0; i < 10; i++) {
+		v.push_back(i);
+	}
+	//查找5
+	vector<int>::iterator it = find(v.begin(), v.end(), 5);
+	if (it == v.end()) {
+		cout << "未找到" << endl;
+	}
+	else {
+		cout << "找到元素：" << *it << endl;
+	}
+}
+
+//查找自定义数据类型
+class Person {
+public:
+	Person(string name, int age) {
+		this->name = name;
+		this->age = age;
+	}
+	string name;
+	int age;
+	//重载==号 让底层的find算法可以对Person类型进行查找
+	bool operator==(const Person& p) const {
+		if (this->name == p.name && this->age == p.age) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+};
+void test02() {
+	vector<Person> v;
+	Person p1("aaa", 10);
+	Person p2("bbb", 20);
+	Person p3("ccc", 30);
+	Person p4("ddd", 40);
+	v.push_back(p1);
+	v.push_back(p2);
+	v.push_back(p3);
+	v.push_back(p4);
+	//查找
+	//必须在Person类中重载==号
+	Person p("bbb", 20); //或者直接查找p2
+	vector<Person>::iterator it = find(v.begin(), v.end(), p);
+	if (it == v.end()) {
+		cout << "未找到" << endl;
+	}
+	else {
+		cout << "找到元素：" << it->name << "," << it->age << endl;
+	}
+}
+
+int main() {
+	test01();
+	test02();
+
+	system("pause");
+	return 0;
+}
+```
+
+总结：利用find可以在容器中找到指定的元素，返回值是**迭代器**
+
+
+
+#### 5.2.2 find_if
+
+**功能描述：**
+
+- 按照条件查找元素
+
+**函数原型：**
+
+- `find_if(iterator beg, iterator end, _Pred);`
+
+  //按值查找元素，找到返回指定位置迭代器，找不到返回结束迭代器位置
+
+  //beg 开始迭代器
+
+  //end 结束迭代器
+
+  //_Pred 函数或者谓词（返回bool类型的仿函数）
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<algorithm>
+#include<vector>
+#include<string>
+
+//常用查找算法_find_if
+
+//1.查找内置数据类型
+void test01() {
+	vector<int>v;
+	for (int i = 0; i < 10; i++) {
+		v.push_back(i);
+	}
+	//查找容器中第一个大于5的数字
+	vector<int>::iterator it = find_if(v.begin(), v.end(), [](int val) {
+		return val > 5;
+		});
+	if (it == v.end()) {
+		cout << "未找到" << endl;
+	}
+	else {
+		cout << "找到了，第一个大于5的数字为：" << *it << endl;
+	}
+}
+
+//2.查找自定义数据类型
+class Person {
+public:
+	Person(string name, int age) {
+		this->name = name;
+		this->age = age;
+	}
+	string name;
+	int age;
+};
+void test02() {
+	vector<Person>v;
+	Person p1("aaa", 10);
+	Person p2("bbb", 20);
+	Person p3("ccc", 30);
+	Person p4("ddd", 40);
+	v.push_back(p1);
+	v.push_back(p2);
+	v.push_back(p3);
+	v.push_back(p4);
+	//查找第一个年龄大于20的人
+	vector<Person>::iterator it = find_if(v.begin(), v.end(), [](Person p) {
+		return p.age > 20;
+		});
+	if (it == v.end()) {
+		cout << "未找到" << endl;
+	}
+	else {
+		cout << "找到了，第一个年龄大于20的人为：" << it->name << endl;
+	}
+}
+
+int main() {
+	test01();
+	test02();
+	system("pause");
+	return 0;
+}
+```
+
+
+
+#### 5.2.3 adjacent_find
+
+**功能描述：**
+
+- 查找相邻重复元素
+
+
+
+**函数原型：**
+
+- `adjacent_find(iterator beg, iterator end);`
+
+  //查找相邻重复元素，返回相邻元素的第一个位置的迭代器
+
+  //beg 开始迭代器
+
+  //end 结束迭代器
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<algorithm>
+
+//常用查找算法_adjacent_find
+void test01() {
+	vector<int>v;
+	v.push_back(1);
+	v.push_back(2);
+	v.push_back(3);
+	v.push_back(4);
+	v.push_back(4);
+	v.push_back(5);
+	v.push_back(6);
+	//查找相邻重复元素
+	vector<int>::iterator it = adjacent_find(v.begin(), v.end());
+	if (it == v.end()) {
+		cout << "没有找到相邻重复元素" << endl;
+	}
+	else {
+		//返回的是第一个相邻重复元素的迭代器
+		cout << "找到了相邻重复元素为：" << *it << endl;
+	}
+}
+
+int main() {
+
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+总结：面试题中如果出现查找相邻重复元素，记得用STL中的adjacent_find算法
+
+
+
+#### 5.2.4 binary_search
+
+**功能描述：**
+
+- **二分法**查找指定元素是否存在
+
+
+
+**函数原型：**
+
+- `bool binary_search(iterator beg, iterator end, value);`
+
+  //查找指定的元素，查到返回true，否则false
+
+  //注意：在**无序序列中不可用**
+
+  //beg 开始迭代器
+
+  //end 结束迭代器
+
+  //value 查找的元素
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<algorithm>
+
+//常用查找算法_binary_search
+void test01() {
+	vector<int>v;
+	for (int i = 0; i < 10; i++) {
+		v.push_back(i);
+	}
+	//查找5
+	//注意:容器必须是有序的,如果无序,结果不可预知
+	bool ret = binary_search(v.begin(), v.end(), 5);
+	if (ret) {
+		cout << "找到了" << endl;
+	}
+	else {
+		cout << "没找到" << endl;
+	}
+}
+
+int main() {
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+总结：二分查找法的效率很高，但是注意容器中的元素必须是有序序列
+
+
+
+#### 5.2.5 count
+
+**功能描述：**
+
+- 统计元素个数
+
+
+
+**函数原型：**
+
+- `count(iterator beg, iterator end, value);`
+
+  //统计元素出现的次数
+
+  //beg 开始迭代器
+
+  //end 结束迭代器
+
+  //value 统计的元素
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<algorithm>
+#include<string>
+
+//常用查找算法_count
+
+//1.统计内置数据类型
+void test01() {
+	vector<int>v;
+	v.push_back(10);
+	v.push_back(20);
+	v.push_back(30);
+	v.push_back(20);
+	v.push_back(40);
+	v.push_back(50);
+	//统计20的个数
+	int num = count(v.begin(), v.end(), 20);
+	cout << "20的个数为：" << num << endl;
+}
+
+//2.统计自定义数据类型
+class Person {
+public:
+	Person(string name, int age) {
+		this->m_Name = name;
+		this->m_Age = age;
+	}
+	string m_Name;
+	int m_Age;
+	bool operator==(const Person& p) const {
+		if (this->m_Age == p.m_Age) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+};
+void test02() {
+	vector<Person>v;
+	Person p1("aaa", 10);
+	Person p2("bbb", 20);
+	Person p3("ccc", 30);
+	Person p4("bbb", 20);
+	Person p5("eee", 50);
+	v.push_back(p1);
+	v.push_back(p2);
+	v.push_back(p3);
+	v.push_back(p4);
+	v.push_back(p5);
+	//统计年龄为20的人数
+	int num = count_if(v.begin(), v.end(), [](Person& p) {
+		return p.m_Age == 20;
+		});
+	cout << "年龄为20的人数为：" << num << endl;
+	//或者通过重载==号来实现
+	int num2 = count(v.begin(), v.end(), p2);
+	cout << "年龄为20的人数为：" << num2 << endl;
+}
+
+int main() {
+	test01();
+	test02();
+
+	system("pause");
+	return 0;
+}
+```
+
+总结：统计自定义数据类型时，需要配合重载`operator==`
+
+
+
+#### 5.2.6 count_if
+
+**功能描述：**
+
+- 按照条件统计元素个数
+
+**函数原型：**
+
+- `count_if(iterator beg,iterator end, _Pred);`
+
+  //按照条件统计元素出现次数
+
+  //beg 开始迭代器
+
+  //end 结束迭代器
+
+  //_Pred 谓词
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<algorithm>
+#include<string>
+
+//常用查找算法_count_if
+//统计内置数据类型
+void test01() {
+	vector<int> v;
+	v.push_back(10);
+	v.push_back(20);
+	v.push_back(30);
+	v.push_back(40);
+	v.push_back(50);
+	v.push_back(60);
+	//统计容器中大于30的元素个数
+	int num = count_if(v.begin(), v.end(), [](int val) {
+		return val > 30;
+		});
+	cout << "num = " << num << endl;
+	//或者通过仿函数统计
+	class Greater30 {
+		public:
+		bool operator()(int val) {
+			return val > 30;
+		}
+	};
+	num = count_if(v.begin(), v.end(), Greater30());
+	cout << "num = " << num << endl;
+}
+
+//统计自定义数据类型
+void test02() {
+	//创建学生类
+	class Student {
+	public:
+		Student(string name, int age) {
+			this->name = name;
+			this->age = age;
+		}
+		string name;
+		int age;
+	};
+	vector<Student> v;
+	Student s1("张三", 20);
+	Student s2("李四", 30);
+	Student s3("王五", 40);
+	Student s4("赵六", 50);
+	v.push_back(s1);
+	v.push_back(s2);
+	v.push_back(s3);
+	v.push_back(s4);
+	//统计年龄大于30的学生人数
+	int num = count_if(v.begin(), v.end(), [](Student s) {
+		return s.age > 30;
+		});
+	cout << "num = " << num << endl;
+	//或者通过仿函数统计
+	class Greater30 {
+	public:
+		bool operator()(Student s) {
+			return s.age > 30;
+		}
+	};
+	num = count_if(v.begin(), v.end(), Greater30());
+	cout << "num = " << num << endl;
+}
+
+int main() {
+	test01();
+	test02();
+	system("pause");
+	return 0;
+}
+```
+
+
+
+### 5.3 常用排序算法
+
+**学习目标：**
+
+- 掌握常用的排序算法
+
+**算法简介：**
+
+- `sort` //对容器内元素进行排序
+- `random_shuffle` //洗牌 指定范围内的元素随机调整次序
+- `merge` //容器元素合并，并存储到另一容器中
+- `reverse` //反转指定范围的元素
+
+
+
+#### 5.3.1 sort
+
+**功能描述：**
+
+- 对容器内元素进行排序
+
+
+
+**函数原型：**
+
+- `sort(iterator beg, iterator end, _Pred);`
+
+  //按值查找元素，找到返回指定位置迭代器，找不到返回结束位置迭代器
+
+  //beg 开始迭代器
+
+  //end 结束迭代器
+
+  //_Pred 谓词
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<algorithm>
+#include<functional>
+
+//常用排序算法_sort
+void test01() {
+	vector<int> arr = { 5, 2, 9, 1, 5, 6 };
+	sort(arr.begin(), arr.end());
+	for (auto i : arr) {
+		cout << i << " ";
+	}
+	cout << endl;
+	//for_each也可以实现排序后的遍历
+	for_each(arr.begin(), arr.end(), [](int val) {cout << val << " "; });
+	cout << endl;
+
+	//降序
+	sort(arr.begin(), arr.end(), greater<int>());
+	for_each(arr.begin(), arr.end(), [](int val) {cout << val << " "; });
+	cout << endl;
+}
+
+int main() {
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+**总结：**sort属于开发中最常用的算法之一，需熟练掌握
+
+
+
+#### 5.3.2 random_shuffle
+
+**功能描述：**
+
+- 洗牌 指定范围内的元素随机调整次序
+
+
+
+**函数原型：**
+
+- `random_shuffle(iterator beg, iterator end);`
+
+  //指定范围内的元素随机调整次序
+
+  //beg 开始迭代器
+
+  //end 结束迭代器
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<algorithm>
+#include<vector>
+
+//常用排序算法_random_shuffle
+void test01() {
+	vector<int> v;
+	for (int i = 0; i < 10; i++) {
+		v.push_back(i);
+	}
+	//随机打乱
+	//随机数种子
+	srand((unsigned int)time(NULL));
+	random_shuffle(v.begin(), v.end());
+	for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+int main() {
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+**总结：**random_shuffle洗牌算法比较实用，使用时记得加随机数种子
+
+
+
+#### 5.3.3 merge
+
+**功能描述：**
+
+- 两个容器元素合并，并存储到另一容器中
+
+
+
+**函数原型：**
+
+- `merge(iterator beg1, iterator end1, iterator beg2, iterator end2, iterator dest);`
+
+  //容器元素合并，并存储到另一容器中
+
+  //注意：两个容器必须是**有序的**
+
+  //beg1 容器1开始迭代器
+
+  //end1容器1结束迭代器
+
+  //beg2 容器2开始迭代器
+
+  //end2 容器2结束迭代器
+
+  //dest 目标容器开始迭代器
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<algorithm>
+#include<vector>
+
+//常用排序算法_merge
+void test01() {
+	vector<int>v1;
+	v1.push_back(10);
+	v1.push_back(30);
+	v1.push_back(50);
+	v1.push_back(70);
+	vector<int>v2;
+	v2.push_back(20);
+	v2.push_back(40);
+	v2.push_back(60);
+	v2.push_back(80);
+	vector<int>vTarget;
+	//目标容器必须开辟足够空间
+	vTarget.resize(v1.size() + v2.size());
+	//合并两个有序序列，前提是两个序列都是有序的
+	merge(v1.begin(), v1.end(), v2.begin(), v2.end(), vTarget.begin());
+	for (vector<int>::iterator it = vTarget.begin(); it != vTarget.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+int main() {
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+**总结：**merge合并的两个容器必须是有序序列
+
+
+
+#### 5.3.4 reverse
+
+**功能描述：**
+
+- 将容器内元素进行反转
+
+
+
+**函数原型：**
+
+- `reverse(iterator beg, iterator end);`
+
+  //反转指定范围的元素
+
+  //beg 开始迭代器
+
+  //end 结束迭代器
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<algorithm>
+#include<vector>
+
+//常用排序算法_reverse
+void test01() {
+	vector<int>v;
+	v.push_back(1);
+	v.push_back(3);
+	v.push_back(2);
+	v.push_back(5);
+	v.push_back(4);
+	//反转前
+	for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+	//反转后
+	reverse(v.begin(), v.end());
+	for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+int main() {
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+**总结：**reverse反转区间内元素，面试题可能涉及到
+
+
+
+### 5.4 常用拷贝和替换算法
+
+**学习目标：**
+
+- 掌握常用的拷贝和替换算法
+
+**算法简介：**
+
+- `copy` //容器内指定范围的元素拷贝到另一容器中
+- `replace` //将容器内指定范围的旧元素修改为新元素
+- `replace_if` //容器内指定范围满足条件的元素替换为新元素
+- `swap` //互换两个容器的元素
+
+
+
+#### 5.4.1 copy
+
+**功能描述：**
+
+- 容器内指定范围的元素拷贝到另一容器中
+
+
+
+**函数原型：**
+
+- `copy(iterator beg, iterator end, iterator dest);`
+
+  //指定源容器的起始位置迭代器和结束位置迭代器，拷贝到目标容器中
+
+  //beg 开始迭代器
+
+  //end 结束迭代器
+
+  //dest 目标起始迭代器
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<algorithm>
+#include<vector>
+
+//常用的拷贝和替换算法_copy
+void test01() {
+	vector<int>v;
+	for (int i = 0; i < 10; i++) {
+		v.push_back(i);
+	}
+	vector<int>v2;
+	v2.resize(v.size());
+	//拷贝
+	copy(v.begin(), v.end(), v2.begin());
+	for (vector<int>::iterator it = v2.begin(); it != v2.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+int main() {
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+**总结：**利用copy算法在拷贝时，目标容器记得提前开辟空间。其实一般直接使用等号赋值就行了，怎么好用怎么来，不要特地使用没必要的算法
+
+
+
+#### 5.4.2 replace
+
+**功能描述：**
+
+- 将容器内指定范围的旧元素修改为新元素
+
+
+
+**函数原型：**
+
+- `replace(iterator beg, iterator end, oldvalue, newvalue);`
+
+  //将区间内旧元素替换为新元素
+
+  //beg 开始迭代器
+
+  //end 结束迭代器
+
+  //oldvalue 旧元素
+
+  //newvalue 新元素
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<algorithm>
+#include<vector>
+
+//常用拷贝和替换算法_replace
+void test01() {
+	vector<int>v1;
+	for (int i = 0; i < 10; i++) {
+		v1.push_back(i);
+	}
+	for (vector<int>::iterator it = v1.begin(); it != v1.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+	//替换
+	//替换掉容器中所有的5，替换成50
+	replace(v1.begin(), v1.end(), 5, 50);
+	for (vector<int>::iterator it = v1.begin(); it != v1.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+int main() {
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+**总结：**replace会替换区间内满足条件的元素
+
+
+
+#### 5.4.3 replace_if
+
+**功能描述：**
+
+- 将区间内满足条件的元素，替换成指定元素
+
+
+
+**函数原型：**
+
+- `replace_if(iterator beg, iterator end, _Pred, newvalue);`
+
+  //beg 开始迭代器
+
+  //end 结束迭代器
+
+  //_Pred 谓词
+
+  //newvalue 替换的新元素
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<algorithm>
+#include<vector>
+
+//常见拷贝和替换算法_replace_if
+void test01() {
+	vector<int>v;
+	for (int i = 0; i < 10; i++) {
+		v.push_back(i);
+	}
+	for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+	//把容器中大于5的元素替换为100
+	replace_if(v.begin(), v.end(), [](int val) {
+		return val > 5;
+		}, 100);
+	for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+int main() {
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+**总结：**replace_if按条件查找，可以利用仿函数灵活筛选满足的条件
+
+
+
+#### 5.4.4 swap
+
+**功能描述：**
+
+- 互换两个容器的元素
+
+
+
+**函数原型：**
+
+- `swap(container c1, container c2);`
+
+  //互换两个容器的元素
+
+  //c1容器1
+
+  //c2容器2
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<algorithm>
+#include<vector>
+
+//常用拷贝和替换算法_swap
+void test01() {
+	vector<int>v1;
+	for (int i = 0; i < 10; i++) {
+		v1.push_back(i);
+	}
+	vector<int>v2;
+	for (int i = 10; i < 20; i++) {
+		v2.push_back(i);
+	}
+	cout << "交换前：" << endl;
+	for (vector<int>::iterator it = v1.begin(); it != v1.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+	for (vector<int>::iterator it = v2.begin(); it != v2.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+	v1.swap(v2);//交换
+	//或者swap(v1,v2);
+	cout << "交换后：" << endl;
+	for (vector<int>::iterator it = v1.begin(); it != v1.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+	for (vector<int>::iterator it = v2.begin(); it != v2.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+int main() {
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+**总结：**swap交换容器时，注意交换的容器要同种类型
+
+
+
+### 5.5 常用算术生成算法
+
+**学习目标：**
+
+- 掌握常用的算术生成算法
+
+**注意：**
+
+- 算数生成算法属于小型算法，使用时包含的头文件为`#include<numeric>`
+
+**算法简介：**
+
+- `accumulate` //计算容器元素累积总和
+- `fill` //向容器中添加元素
+
+
+
+#### 5.5.1 accumulate
+
+**功能描述：**
+
+- 计算区间内 容器元素累计总和
+
+
+
+**函数原型：**
+
+- `accumulate(iterator beg, iterator end, value);`
+
+  //计算容器元素累计总和
+
+  //beg 开始迭代器
+
+  //end 结束迭代器
+
+  //value 起始值
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<numeric> //包含accumulate头文件
+
+//常用算法生成算法accumulate
+void test01() {
+	vector<int>v;
+	for (int i = 0; i < 10; i++) {
+		v.push_back(i);
+	}
+	//计算容器内元素的和
+	//0是初始值,决定了计算结果数据类型
+	int sum = accumulate(v.begin(), v.end(), 0);//0表示初始值
+	cout << "sum=" << sum << endl;
+}
+
+int main() {
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+**总结：**accumulate使用时头文件注意是numeric，这个算法很实用
+
+
+
+#### 5.5.2 fill
+
+**功能描述：**
+
+- 向容器中填充指定的元素
+
+
+
+**函数原型：**
+
+- `fill(iterator beg, iterator end, value);`
+
+  //向容器中填充元素
+
+  //beg 开始迭代器
+
+  //end 结束迭代器
+
+  //value 填充的值
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<numeric>
+
+//常用算法生成算法 fill
+void test01() {
+	vector<int>v;
+	v.resize(10);
+	fill(v.begin(), v.end(), 100);
+	for (auto i : v) {
+		cout << i << " ";
+	}
+	cout << endl;
+}
+
+int main() {
+	test01();
+
+	system("pause");
+	return 0;
+}
+```
+
+**总结：**利用fill可以将容器区间内元素填充为指定的值，主要用于后期填充
+
+
+
+### 5.6 常用集合算法
+
+**学习目标：**
+
+- 掌握常用的集合算法
+
+
+
+**算法简介：**
+
+- `set_intersection` //求两个容器的交集
+- `set_union` //求两个容器的并集
+- `set_difference` //求两个容器的差集
+
+
+
+#### 5.6.1 set_intersection
+
+**功能描述：**
+
+- 求两个容器的交集
+
+
+
+**函数原型：**
+
+- `set_intersection(iterator beg1, iterator end1, iterator beg2, iterator end2, iteraotr dest);`
+
+  //求两个集合的交集
+
+  //**注意：两个集合必须是有序序列**
+
+  //beg1 容器1开始迭代器
+
+  //end1 容器1结束迭代器
+
+  //beg2 容器2开始迭代器
+
+  //end2 容器2结束迭代器
+
+  //dest 目标容器开始迭代器
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<algorithm>
+
+//常用集合算法_set_intersection
+void test01() {
+	vector<int>v1;
+	vector<int>v2;
+	vector<int>v3;
+	for (int i = 0; i < 10; i++) {
+		v1.push_back(i);
+		v2.push_back(i + 5);
+	}
+	//v1:0~9
+	//v2:5~14
+	//v3:5~9
+	//注意：使用集合算法，必须保证两个集合有序
+	sort(v1.begin(), v1.end());
+	sort(v2.begin(), v2.end());
+	//第一个参数：第一个集合的开始迭代器
+	//第二个参数：第一个集合的结束迭代器
+	//第三个参数：第二个集合的开始迭代器
+	//第四个参数：第二个集合的结束迭代器
+	//第五个参数：存储交集的容器的开始迭代器
+	//其中back_inserter(v3)表示从v3容器的尾部开始插入数据,底层是调用的push_back方法
+	//set_intersection的返回值是一个迭代器,指向最后一个元素(最后一个实际有用的元素,如果容器大小很大,其他填充的就是默认值)的下一个位置,如果需要使用这个返回值,可以用一个迭代器变量接收
+	set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), back_inserter(v3));
+	for (vector<int>::iterator it = v3.begin(); it != v3.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+int main() {
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+**总结：**
+
+- 求交集的两个集合必须是有序序列
+- 目标容器开辟空间需要从**两个容器中取最小值**
+- set_intersection返回值是交集中最后一个元素的位置
+
+
+
+#### 5.6.2 set_union
+
+**功能描述：**
+
+- 求两个容器的并集
+
+
+
+**函数原型：**
+
+- `set_union(iterator beg1, iterator end1, iterator beg2, iterator end2, iteraotr dest);`
+
+  //求两个集合的并集
+
+  //**注意：两个集合必须是有序序列**
+
+  //beg1 容器1开始迭代器
+
+  //end1 容器1结束迭代器
+
+  //beg2 容器2开始迭代器
+
+  //end2 容器2结束迭代器
+
+  //dest 目标容器开始迭代器
+
+
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<algorithm>
+
+//常用集合算法_set_union
+void test01() {
+	vector<int>v1;
+	vector<int>v2;
+	vector<int>v3;
+	v1.push_back(1);
+	v1.push_back(3);
+	v1.push_back(5);
+	v1.push_back(7);
+	v1.push_back(9);
+	v2.push_back(0);
+	v2.push_back(2);
+	v2.push_back(4);
+	v2.push_back(6);
+	v2.push_back(8);
+	//并集
+	//前提：两个集合必须是有序序列
+	//目标容器必须开辟空间，且空间要足够大
+	v3.resize(v1.size() + v2.size());
+	vector<int>::iterator itEnd = set_union(v1.begin(), v1.end(), v2.begin(), v2.end(), v3.begin());
+	for (vector<int>::iterator it = v3.begin(); it != itEnd; it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+int main() {
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+**总结：**
+
+- 求并集的两个集合必须是有序序列
+- 目标容器开辟空间大小需要**两个容器相加**
+- set_union返回值是并集中最后一个元素的位置
+
+
+
+#### 5.6.3 set_difference
+
+**功能描述：**
+
+- 求两个容器的差集
+
+
+
+**函数原型：**
+
+- `set_difference(iterator beg1, iterator end1, iterator beg2, iterator end2, iteraotr dest);`
+
+  //求两个集合的差集
+
+  //**注意：两个集合必须是有序序列**
+
+  //beg1 容器1开始迭代器
+
+  //end1 容器1结束迭代器
+
+  //beg2 容器2开始迭代器
+
+  //end2 容器2结束迭代器
+
+  //dest 目标容器开始迭代器
+  
+  
+
+**示例：**
+
+```c++
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<algorithm>
+
+//常用集合算法_set_difference
+void test01() {
+	vector<int>v1;
+	vector<int>v2;
+	vector<int>v3;
+	for (int i = 0; i < 10; i++) {
+		v1.push_back(i);
+		v2.push_back(i + 5);
+	}
+	//v1:0~9
+	//v2:5~14
+	//差集：0~4
+	//差集算法要求两个集合有序
+	sort(v1.begin(), v1.end());
+	sort(v2.begin(), v2.end());
+	//差集算法
+	//set_difference(起始位置1，结束位置1，起始位置2，结束位置2，存储位置);
+	//如果手动开辟空间
+	v3.resize(max(v1.size(), v2.size()));
+	vector<int>::iterator itEnd = set_difference(v1.begin(), v1.end(), v2.begin(), v2.end(), v3.begin());
+	cout << "v1和v2的差集为：";
+	for (vector<int>::iterator it = v3.begin(); it != itEnd; it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+	cout << "v2和v1的差集为：";
+	itEnd = set_difference(v2.begin(), v2.end(), v1.begin(), v1.end(), v3.begin());
+	for (vector<int>::iterator it = v3.begin(); it != itEnd; it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+
+int main() {
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+**总结：**
+
+- 求差集的两个集合必须是有序序列
+- 目标容器开辟空间需要从**两个容器取较大值**
+- set_difference返回值是差集中最后一个元素的位置
+
+
+
+# 基于STL的演讲比赛流程系统
+
+## 1、演讲比赛程序需求
+
+![image-20250826092546118](https://gitee.com/YuXinHome/blogimg/raw/master/img/image-20250826092546118.png)
+
+### 1.1 比赛规则
+
+- 学校举行一场演讲比赛，共有**12个人**参加，**比赛共两轮**，第一轮为淘汰赛，第二轮为决赛
+- 每名选手都有对应的**编号**，如10001~10012
+- 比赛方式：**分组比赛，每组6个人**
+- 第一轮分为两个小组，整体按照选手编号进行**抽签**后顺序演讲
+- 十个评委分别给每名选手打分，去除最高分和最低分，求的平均分为本轮选手的成绩
+- 当小组演讲完后，淘汰组内排名最后的三个选手，**前三名晋级**，进入下一轮比赛
+- 第二轮为决赛，**前三名胜出**
+- 每轮比赛之后需要**显示晋级选手的信息**
+
+
+
+### 1.2 程序功能
+
+- 开始演讲比赛：完成整届比赛的流程，每个比赛阶段需要给用户一个提示，用户按任意键后继续进入下一个阶段
+- 查看往届记录：查看之前比赛前三名结果，每次比赛都会记录到文件中，文件用.csv后缀名保存
+- 清空比赛记录：将文件中数据清空
+- 退出比赛程序：可以退出当前程序
+
+
+
+### 1.3 程序效果图
+
+![image-20250826094521128](https://gitee.com/YuXinHome/blogimg/raw/master/img/image-20250826094521128.png)
+
+
+
+## 2、项目创建
+
+正常创建新项目，不做演示
+
+
+
+## 3、创建管理类
+
+**功能描述：**
+
+- 提供菜单界面与用户交互
+- 对演讲比赛流程进行控制
+- 与文件的读写交互
+
+
+
+### 3.1 创建文件
+
+- 在头文件和源文件的文件夹下分别创建speechManager.h和speechManager.cpp文件
+
+
+
+### 3.2 头文件实现
+
+在speechManager.h中设计管理类
+
+代码如下：
+
+```c++
+#pragma once
+#include<iostream>
+using namespace std;
+
+//设计演讲管理类
+class SpeechManager
+{
+public:
+	SpeechManager(); //构造函数
+	~SpeechManager(); //析构函数
+	void showMenu(); //显示菜单
+	void exitSpeech(); //退出比赛程序
+};
+```
+
+
+
+### 3.3 源文件实现
+
+在speechManager.cpp中将构造和析构函数使用空实现补全
+
+```c++
+#include"speechManager.h"
+
+//构造函数
+speechManager::speechManager()
+{
+
+}
+
+//析构函数
+speechManager::~speechManager()
+{
+
+}
+
+```
+
+
+
+## 4、菜单功能
+
+功能描述：与用户的沟通界面
+
+### 4.1 添加成员函数
+
+在管理类speechManager.h中添加成员函数`void show_Menu();`
+
+
+
+### 4.2 菜单功能实现
+
+- 在管理类speechManager.cpp中实现show_Menu()函数
+
+```c++
+//展示菜单
+void SpeechManager::showMenu()
+{
+	cout << "*************************" << endl;
+	cout << "*****1.开始演讲比赛******" << endl;
+	cout << "*****2.查看往届记录******" << endl;
+	cout << "*****3.清空比赛记录******" << endl;
+	cout << "*****0.退出比赛程序******" << endl;
+	cout << "*************************" << endl;
+	cout << endl;
+}
+```
+
+
+
+### 4.3 测试菜单功能
+
+- 在演讲比赛流程管理系统.cpp中测试菜单功能
+
+代码：
+
+```c++
+#include<iostream>
+using namespace std;
+#include<iostream>
+#include"speechManager.h"
+
+int main() {
+	//创建管理类对象
+	SpeechManager sm;
+	//显示菜单界面
+	sm.showMenu();
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+## 5、退出功能
+
+功能描述：实现退出程序
+
+### 5.1 提供功能结构
+
+- 在main函数中提供分支选择，提供每个功能接口
+
+代码：
+
+```c++
+#include<iostream>
+using namespace std;
+#include<iostream>
+#include"speechManager.h"
+
+int main() {
+	//创建管理类对象
+	SpeechManager sm;
+
+	int select = 0; //用来存储用户的选择
+	while (true) {
+		sm.showMenu();
+		cout << "请输入您的选择：";
+		cin >> select;
+		switch (select)
+		{
+		case 1: //开始演讲比赛
+
+			break;
+		case 2: //查看往届记录
+
+			break;
+
+		case 3: //清空比赛记录
+
+			break;
+
+		case 0: //退出程序
+
+			break;
+		default:
+			cout << "输入有误，请重新输入！" << endl;
+			system("pause");
+			system("cls");
+			break;
+		}
+	}
+
+	system("pause");
+	return 0;
+}
+```
+
+
+
+### 5.2 实现退出功能
+
+在speechManager.h中提供退出系统的成员函数`void exitSystem();`
+
+在speechManager.cpp中提供具体的功能实现
+
+```c++
+//退出比赛程序
+void SpeechManager::exitSpeech()
+{
+	cout << "退出比赛程序，欢迎下次使用！" << endl;
+	system("pause");
+	//注意exit(0)会导致析构函数不被执行直接退出，这就是和return 0的关键区别
+	exit(0);
+}
+```
+
+
+
+### 5.3 测试功能
+
+在main函数分支0选项中，调用退出程序的接口
+
+
+
+## 2、演讲比赛功能
+
+### 6.1 功能分析
+
+比赛流程分析：
+
+抽签 -> 开始演讲比赛 -> 显示第一轮比赛结果 -> 抽签 -> 开始演讲比赛 -> 显示前三名结果 -> 保存分数
+
+
+
+### 6.2 创建选手类
+
+- 选手类中的属性包含：选手姓名、分数
+- 头文件中创建speaker.h头文件，并添加代码：
+
+```c++
+#pragma once
+#include<iostream>
+using namespace std;
+
+class Speaker
+{
+public:
+	string m_Name;
+	double m_Score[2];
+};
+```
+
+
+
+### 6.3 比赛
+
+#### 6.3.1 成员属性添加
+
+- 在speechManager.h中添加属性
+
+```c++
+#pragma once
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<map>
+#include"speaker.h"
+
+//设计演讲管理类
+class SpeechManager
+{
+public:
+	SpeechManager(); //构造函数
+	~SpeechManager(); //析构函数
+	void showMenu(); //显示菜单
+	void exitSpeech(); //退出比赛程序
+
+	//比赛选手容器 12人
+	vector<int> v1;
+	//第一轮晋级容器 6人
+	vector<int> v2;
+	//胜利前三名容器 3人
+	vector<int> vVictory;
+	//存放编号 以及对应的 具体选手 容器
+	map<int, Speaker> m_Speaker;
+	//存放比赛轮数
+	int m_Index;
+};
+```
+
+
+
+#### 6.3.2 初始化属性
+
+- 在speechManager.h中提供开始比赛的成员函数`void initSpeech();`
+
+```c++
+	void initSpeech(); //初始化比赛
+```
+
+
+
+- 在speechManager.cpp中实现`void initSpeech();`
+
+```c++
+//初始化比赛
+void SpeechManager::initSpeech()
+{
+	//初始化比赛选手
+	//初始化容器
+	v1.clear();
+	v2.clear();
+	vVictory.clear();
+	m_Speaker.clear();
+	//编号
+	int index = 1001;
+	//名称后缀种子
+	string nameSeed = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	//初始化12名选手
+	for (int i = 0; i < 12; i++)
+	{
+		//创建选手对象
+		Speaker sp;
+		sp.m_Name = "选手" + nameSeed[i];
+		//编号
+		sp.m_Score[0] = 0;
+		sp.m_Score[1] = 0;
+		//放入容器
+		m_Speaker.insert(make_pair(index, sp));
+		//放入v1容器
+		v1.push_back(index);
+		//编号递增
+		index++;
+	}
+	//初始化比赛轮数
+	m_Index = 1;
+}
+```
+
+
+
+- speechManager构造函数中调用`void initSpeech();`
+
+```c++
+//构造函数
+SpeechManager::SpeechManager()
+{
+	//初始化比赛
+	initSpeech();
+}
+```
+
+
+
+#### 6.3.3 创建选手
+
+- 在上一节初始化属性的同时已经创建了选手
+- 测试，在main函数测试一下，创建完管理对象后，使用下列代码测试12名选手的初始状态
+
+```c++
+	//测试12名选手状态
+	for (auto v : sm.m_Speaker) {
+		cout << "选手编号：" << v.first << " 姓名：" << v.second.m_Name << " 成绩：" << v.second.m_Score[0] << endl;
+	}
+```
+
+
+
+#### 6.3.4 开始比赛成员函数添加
+
+- 在speechManager.h中提供开始比赛的成员函数`void startSpeech();`
+- 该函数功能主要是控制比赛的流程
+
+```c++
+	void startSpeech(); //开始比赛
+```
+
+
+
+- 在speechManager.cpp中将startSpeech完善，可以先用注释整理比赛流程
+
+```c++
+//开始比赛
+void SpeechManager::startSpeech()
+{
+	//第一轮比赛
+	//1.抽签
+
+	//2.比赛
+
+	//3.显示晋级结果
+
+	//第二轮比赛
+	//1.抽签
+
+	//2.比赛
+
+	//3.显示最终结果
+
+	//4.保存分数
+}
+```
+
+
+
+#### 6.3.5 抽签
+
+**功能描述：**
+
+- 正式比赛之前，所有选手的比赛顺序需要打乱，我们只需要将存放选手编号的容器 打乱次序即可
+- 在speechManager.h中提供抽签的成员函数`void speechDraw();`
+
+```c++
+	void speechDraw(); //抽签
+```
+
+
+
+- 在speechManager.cpp中实现成员函数`void speechDraw();`
+
+```c++
+//抽签
+void SpeechManager::speechDraw() {
+	cout << "正在第" << m_Index << "轮比赛抽签，请稍后......" << endl;
+	cout << "---------------------" << endl;
+	cout << "第" << m_Index << "轮比赛抽签结果如下：" << endl;
+	if (m_Index == 1) {
+		random_shuffle(v1.begin(), v1.end());
+		for (vector<int>::iterator it = v1.begin(); it != v1.end(); it++) {
+			cout << *it << " ";
+		}
+		cout << endl;
+	}
+	else {
+		random_shuffle(v2.begin(), v2.end());
+		for (vector<int>::iterator it = v2.begin(); it != v2.end(); it++) {
+			cout << *it << " ";
+		}
+		cout << endl;
+	}
+	cout << "---------------------" << endl;
+	system("pause");
+	system("cls");
+}
+```
+
+
+
+- 在startSpeech比赛流程控制的函数中，调用抽签函数
+
+```c++
+//开始比赛
+void SpeechManager::startSpeech()
+{
+	//第一轮比赛
+	//1.抽签
+	speechDraw();
+
+	//2.比赛
+
+	//3.显示晋级结果
+
+	//第二轮比赛
+	//1.抽签
+
+	//2.比赛
+
+	//3.显示最终结果
+
+	//4.保存分数
+}
+```
+
+- 在main函数中，分支1选项中，调用开始比赛的接口
+
+```c++
+		case 1: //开始演讲比赛
+			sm.startSpeech();
+			break;
+```
+
+- 测试
+
+![image-20250826194656613](https://gitee.com/YuXinHome/blogimg/raw/master/img/image-20250826194656613.png)
+
+
+
+#### 6.3.6 开始比赛
+
+- 在speechManager.h中提供比赛的成员函数`void speechContest();`
+
+```c++
+	void speechContest(); //比赛
+```
+
+
+
+- 在speechManager.cpp中实现成员函数`void speechContest();`
+
+```c++
+//开始比赛
+void SpeechManager::speechContest() {
+	cout << "第" << m_Index << "轮比赛正式开始：-----------------" << endl;
+	//临时容器，保存key分数value选手编号
+	multimap<double, int, greater<int>> group;
+	//记录人员数，6个为1组
+	int num = 0;
+	//比赛人员容器
+	vector<int> v;
+	if (m_Index == 1) {
+		v = v1;
+	}
+	else {
+		v = v2;
+	}
+	//遍历所有选手
+	for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+		num++;
+		//评委打分
+		deque<double> d;
+		for (int i = 0; i < 10; i++) {
+			double score = (rand() % 401 + 600) / 10.0;
+			//cout << score << " ";
+			d.push_back(score);
+		}
+		//sort排序
+		sort(d.begin(), d.end(), greater<double>());
+		//去除最高和最低分
+		d.pop_back();
+		d.pop_front();
+		//计算平均分
+		double sum = accumulate(d.begin(), d.end(), 0.0);
+		double avg = sum / (double)d.size();
+
+		//打印每个人的分数
+		cout << "编号：" << *it << " 姓名：" << m_Speaker[*it].m_Name << " 成绩：" << avg << endl;
+
+		//保存平均分
+		m_Speaker[*it].m_Score[m_Index - 1] = avg;
+		//将平均分和选手编号插入到multimap中
+		group.insert(make_pair(avg, *it));
+		if (num % 6 == 0) {
+			//展示第xx小组名次
+			cout << "第" << m_Index << "轮第" << num / 6 << "小组比赛结果：" << endl;
+			for (multimap<double, int, greater<int>>::iterator it = group.begin(); it != group.end(); it++) {
+				cout << "编号：" << it->second << " 姓名：" << m_Speaker[it->second].m_Name << " 成绩：" << it->first << endl;
+			}
+			int count = 0;
+			//取前3名
+			for (multimap<double, int, greater<int>>::iterator it = group.begin(); it != group.end() && count < 3; it++, count++) {
+				if (m_Index == 1) {
+					v2.push_back(it->second);
+				}
+				else {
+					vVictory.push_back(it->second);
+				}
+			}
+			//清空临时容器
+			group.clear();
+
+			cout << "---------------------" << endl;
+		}
+	}
+	cout << "第" << m_Index << "轮比赛完毕！" << endl;
+	system("pause");
+}
+```
+

@@ -127,6 +127,8 @@
     <ClCompile Include="02 谓词_一元谓词.cpp" />
     <ClCompile Include="03 谓词_二元谓词.cpp" />
     <ClCompile Include="04 内建函数对象_算术仿函数.cpp" />
+    <ClCompile Include="05 内建函数对象_关系仿函数.cpp" />
+    <ClCompile Include="06 内建函数对象_逻辑仿函数.cpp" />
     <ClCompile Include="模板.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
