@@ -8,6 +8,8 @@ using namespace std;
 #include<algorithm>
 #include<deque>
 #include<numeric>
+#include<fstream>
+#include<ctime>
 
 //设计演讲管理类
 class SpeechManager
@@ -21,6 +23,11 @@ public:
 	void startSpeech(); //开始比赛
 	void speechDraw(); //抽签
 	void speechContest(); //比赛
+	void showScore(); //显示比赛结果
+	void saveScore(); //保存结果
+	void loadRecord(); //读取记录
+	void showRecord(); //显示往届记录
+	void clearRecord(); //清空记录
 
 	//比赛选手容器 12人
 	vector<int> v1;
@@ -32,4 +39,8 @@ public:
 	map<int, Speaker> m_Speaker;
 	//存放比赛轮数
 	int m_Index;
+	//文件为空的标志
+	bool fileIsEmpty;
+	//往届记录
+	map<int, vector<string>> m_Record;
 };

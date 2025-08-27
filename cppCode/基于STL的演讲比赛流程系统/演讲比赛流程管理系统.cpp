@@ -20,13 +20,15 @@ int main() {
 		{
 		case 1: //开始演讲比赛
 			sm.startSpeech();
+			sm.initSpeech();
 			break;
 		case 2: //查看往届记录
-
+			sm.loadRecord();
+			sm.showRecord();
 			break;
 
 		case 3: //清空比赛记录
-
+			sm.clearRecord();
 			break;
 
 		case 0: //退出程序
