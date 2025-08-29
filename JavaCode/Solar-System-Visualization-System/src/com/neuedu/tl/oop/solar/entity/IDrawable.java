@@ -1,0 +1,7 @@
+package com.neuedu.tl.oop.solar.entity;
+
+import java.awt.*;
+
+public interface IDrawable {
+  void draw(Graphics g);
+}
