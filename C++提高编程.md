@@ -8084,6 +8084,63 @@ int main() {
 - 在main中添加代码
 
 ```c++
+#include<iostream>
+using namespace std;
 
+int main() {
+	int select = 0; //选择变量
+
+	while (1) {
+		//实现菜单
+		cout << "**********欢迎使用机房预约系统**********" << endl;
+		cout << endl;
+		cout << "请输入你的身份" << endl;
+		cout << "1.学生" << endl;
+		cout << "2.老师" << endl;
+		cout << "3.管理员" << endl;
+		cout << "0.退出" << endl;
+
+		cin >> select; //输入选择
+		switch (select) {
+		case 1:
+			cout << "学生登录" << endl;
+			break;
+		case 2:
+			cout << "老师登录" << endl;
+			break;
+		case 3:
+			cout << "管理员登录" << endl;
+			break;
+		case 0:
+			cout << "退出系统" << endl;
+			return 0;
+		default:
+			cout << "输入错误，请重新输入" << endl;
+			system("pause");
+			system("cls");
+			break;
+		}
+	}
+
+	system("pause");
+	return 0;
+}
+```
+
+测试，输入0、1、2、3会重新回到界面，输入其他提示输入有误，清屏后重新选择
+
+
+
+## 4、退出功能实现
+
+### 4.1 退出功能实现
+
+在main函数分支0选项中，添加退出程序的代码：
+
+```c++
+		case 0:
+			cout << "退出系统,欢迎下次使用" << endl;
+			system("pause");
+			return 0;
 ```
 
