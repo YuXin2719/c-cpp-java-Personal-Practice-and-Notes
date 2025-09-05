@@ -243,4 +243,96 @@ GitHub 自动跳转到 2FA 的 recovery codes 页面，点击 Download 后，然
 
 
 
-## 七、开始申请
+## 七、开始申请 GitHub co-pilot pro
+
+
+
+目前的GitHub教育优惠中包括免费使用两年GitHub co-pilot pro，但是我们不能直接使用co-pilot pro，还挺麻烦，需要先申请一个月免费订阅，然后退订，接下来的教程教大家如何申请。
+
+
+
+申请好教育优惠后展开菜单，点击 link 链接
+
+![image-20250905000412392](https://blogimg-yuxin.oss-cn-beijing.aliyuncs.com/img/image-20250905000412392.png)
+
+
+
+进入如下界面点击绿色按钮继续
+
+![image-20250905001001595](https://blogimg-yuxin.oss-cn-beijing.aliyuncs.com/img/image-20250905001001595.png)
+
+
+
+接下来的界面中：
+
+Billing frequency的选项不用动，默认按月收费就行，这里实际上是申请连续包月服务，然后第一个月免费，我们先申请，然后退订掉即可，不会扣钱。
+
+Billing information账单信息这一栏之前就填好了，也不用动
+
+注意下面的Payment method需要选择PayPal account选项，所以我们**需要注册自己的PayPal账号，并且在PayPal中绑定自己的国内银行卡**，但是不用担心，PayPal允许在国内注册和绑定银行卡，不用翻墙等复杂操作。
+
+![fd3adc7789d7b708245c61d561906110](https://blogimg-yuxin.oss-cn-beijing.aliyuncs.com/img/fd3adc7789d7b708245c61d561906110.png)
+
+
+
+本文不提供注册PayPal以及绑定国内银行卡的教程，不过这一步也非常简单，进入PayPal官网按照提示操作即可
+
+PayPal官网：[安全海淘国际支付平台_安全收款外贸平台-PayPal CN](https://www.paypal.com/c2/home)
+
+
+
+**注意：**需要注意的是，你绑定的国内银行卡得有10美元（约 71.4 RMB）以上的余额比较保险，因为GitHub虽然不会实际扣你卡里的钱，但是会验证你的卡里有没有足够支付一个月订阅的钱。
+
+
+
+总之，你完成PayPal的操作之后，回到GitHub点击PayPal蓝色按钮，登录你自己的PayPal账号，点击你绑定的银行卡之后继续
+
+![image-20250905002557369](https://blogimg-yuxin.oss-cn-beijing.aliyuncs.com/img/image-20250905002557369.png)
+
+
+
+然后点击Save and continue
+
+![image-20250905002630943](https://blogimg-yuxin.oss-cn-beijing.aliyuncs.com/img/image-20250905002630943.png)
+
+
+
+出现如下界面即成功保存好PayPal信息
+
+![image-20250905002821625](https://blogimg-yuxin.oss-cn-beijing.aliyuncs.com/img/image-20250905002821625.png)
+
+
+
+然后点击网页右侧的Activate now
+
+![image-20250905003041937](https://blogimg-yuxin.oss-cn-beijing.aliyuncs.com/img/image-20250905003041937.png)
+
+
+
+正常情况下操作到这一步就**成功申请co-pilot pro**了，但是还没结束，记得退订co-pilot pro（虽然我不确定是不是需要退订，但是以防万一真的扣钱，博主目前还没使用满一个月也不清楚后续情况，如果还需要订阅大家也已经有经验了，自己操作即可）
+
+
+
+## 八、退订co-pilot pro（如果需要）
+
+
+
+接下来教大家退订co-pilot pro的连续包月订阅
+
+
+
+点击右上角头像，点击Settings，点击左侧Billing and licensing，下拉菜单中点击Overview，点击右侧Manage subsciptions
+
+![image-20250905004059174](https://blogimg-yuxin.oss-cn-beijing.aliyuncs.com/img/image-20250905004059174.png)
+
+
+
+在如下界面的右侧会有退订co-pilot pro的按钮，博主目前无法复现准确的界面，所以**下方的配图是不准确的**，我只能说就在红框的这一块儿地方有个按钮可以退订co-pilot pro，请大家自行翻译后找到退订按钮点击退订即可
+
+![image-20250905004204229](https://blogimg-yuxin.oss-cn-beijing.aliyuncs.com/img/image-20250905004204229.png)
+
+
+
+**至此，您大概已经申请好教育优惠和co-pilot pro了，接下来就可以在主流的IDE（例如vs2022，idea，vscode）中使用co-pilot强大的插件帮助你高效完成代码了。通常您去插件中搜索co-pilot pro即可安装插件，安装好插件后登录您的GitHub账号即可使用。**
+
+**谢谢大家！**
